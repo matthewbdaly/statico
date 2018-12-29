@@ -11,7 +11,8 @@
         "filp/whoops": "^2.3",
         "monolog/monolog": "^1.24",
         "league/flysystem": "^1.0",
-        "tedivm/stash": "^0.15.1"
+        "tedivm/stash": "^0.15.1",
+        "zendframework/zend-httphandlerrunner": "^1.0"
     },
     "require-dev": {
         "mockery/mockery": "^1.2",
