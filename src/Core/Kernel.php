@@ -31,6 +31,7 @@ class Kernel
         'Statico\Core\Providers\CacheProvider',
         'Statico\Core\Providers\EventProvider',
         'Statico\Core\Providers\FlysystemProvider',
+        'Statico\Core\Providers\HandlerProvider',
         'Statico\Core\Providers\LoggerProvider',
         'Statico\Core\Providers\RouterProvider',
         'Statico\Core\Providers\TwigProvider',
@@ -93,7 +94,7 @@ class Kernel
         if ($environment !== 'production') {
             $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
         } else {
-            $handler = $this->container->get('App\Contracts\Exceptions\Handler');
+            $handler = $this->container->get('Statico\Core\Contracts\Exceptions\Handler');
             $whoops->pushHandler(new \Whoops\Handler\CallbackHandler($handler));
         }
         $whoops->register();
