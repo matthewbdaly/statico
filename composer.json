@@ -1,6 +1,6 @@
 {
-    "name": "statico/template",
-    "description": "Template for the Statico flat file CMS",
+    "name": "statico/statico",
+    "description": "Starter for the Statico flat file CMS",
     "type": "library",
     "require": {
         "league/route": "^4.2",
