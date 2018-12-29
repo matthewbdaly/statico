@@ -1,0 +1,24 @@
+{
+    "name": "statico/template",
+    "description": "Template for the Statico flat file CMS",
+    "type": "library",
+    "require": {
+        "league/route": "^4.2",
+        "league/event": "^2.2",
+        "league/container": "^3.2",
+        "vlucas/phpdotenv": "^2.5",
+        "zendframework/zend-diactoros": "^2.1"
+    },
+    "require-dev": {
+        "mockery/mockery": "^1.2",
+        "phpunit/phpunit": "^7.5",
+        "psy/psysh": "^0.9.9"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Matthew Daly",
+            "email": "450801+matthewbdaly@users.noreply.github.com"
+        }
+    ]
+}
