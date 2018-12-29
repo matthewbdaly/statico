@@ -14,7 +14,8 @@
         "tedivm/stash": "^0.15.1",
         "zendframework/zend-httphandlerrunner": "^1.0",
         "zendframework/zend-session": "^2.8",
-        "mnapoli/front-yaml": "^1.6"
+        "mnapoli/front-yaml": "^1.6",
+        "twig/twig": "^2.6"
     },
     "require-dev": {
         "mockery/mockery": "^1.2",
