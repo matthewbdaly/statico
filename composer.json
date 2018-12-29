@@ -24,5 +24,15 @@
             "name": "Matthew Daly",
             "email": "450801+matthewbdaly@users.noreply.github.com"
         }
-    ]
+    ],
+    "autoload": {
+        "psr-4": {
+            "Statico\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    }
 }
