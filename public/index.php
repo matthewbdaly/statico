@@ -28,4 +28,6 @@ $request = Zend\Diactoros\ServerRequestFactory::fromGlobals(
 $app = new Statico\Core\Kernel;
 $response = $app->bootstrap()
     ->handle($request);
-$app->getContainer()->get('emitter')->emit($response);
+
+// send the response to the browser
+(new Zend\HttpHandlerRunner\Emitter\SapiEmitter)->emit($response);
