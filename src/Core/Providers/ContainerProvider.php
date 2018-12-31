@@ -5,7 +5,7 @@ namespace Statico\Core\Providers;
 use League\Container\ServiceProvider\AbstractServiceProvider;
 use League\Container\Container;
 
-class ContainerProvider extends AbstractServiceProvider
+final class ContainerProvider extends AbstractServiceProvider
 {
     protected $provides = [
         'Psr\Container\ContainerInterface',

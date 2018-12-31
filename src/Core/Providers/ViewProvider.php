@@ -5,7 +5,7 @@ namespace Statico\Core\Providers;
 use League\Container\ServiceProvider\AbstractServiceProvider;
 use Statico\Core\Views\TwigRenderer;
 
-class ViewProvider extends AbstractServiceProvider
+final class ViewProvider extends AbstractServiceProvider
 {
     protected $provides = [
         'Statico\Core\Contracts\Views\Renderer',

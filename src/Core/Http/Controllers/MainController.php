@@ -7,7 +7,7 @@ use Psr\Http\Message\ResponseInterface;
 use Mni\FrontYAML\Parser;
 use Statico\Core\Contracts\Views\Renderer;
 
-class MainController
+final class MainController
 {
     protected $response;
 

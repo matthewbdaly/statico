@@ -6,7 +6,7 @@ use League\Container\ServiceProvider\AbstractServiceProvider;
 use League\Flysystem\Filesystem;
 use League\Flysystem\Adapter\Local;
 
-class FlysystemProvider extends AbstractServiceProvider
+final class FlysystemProvider extends AbstractServiceProvider
 {
     protected $provides = [
         'League\Flysystem\Filesystem',

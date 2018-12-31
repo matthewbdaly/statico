@@ -11,7 +11,7 @@ use Psr\Http\Message\RequestInterface;
 /**
  * Application kernel
  */
-class Kernel
+final class Kernel
 {
     /**
      * @var Container

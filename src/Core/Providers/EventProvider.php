@@ -5,7 +5,7 @@ namespace Statico\Core\Providers;
 use League\Container\ServiceProvider\AbstractServiceProvider;
 use League\Event\Emitter;
 
-class EventProvider extends AbstractServiceProvider
+final class EventProvider extends AbstractServiceProvider
 {
     protected $provides = [
         'League\Event\EmitterInterface',

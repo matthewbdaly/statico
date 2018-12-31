@@ -9,7 +9,7 @@ use Psr\Container\ContainerInterface;
 use Psy\Shell as Psysh;
 use Psy\Configuration;
 
-class Shell extends Command
+final class Shell extends Command
 {
     protected $container;
 

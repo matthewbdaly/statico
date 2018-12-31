@@ -5,7 +5,7 @@ namespace Statico\Core\Providers;
 use League\Container\ServiceProvider\AbstractServiceProvider;
 use Statico\Core\Exceptions\LogHandler;
 
-class HandlerProvider extends AbstractServiceProvider
+final class HandlerProvider extends AbstractServiceProvider
 {
     protected $provides = [
         'Statico\Core\Contracts\Exceptions\Handler',

@@ -6,7 +6,7 @@ use League\Container\ServiceProvider\AbstractServiceProvider;
 use Stash\Pool;
 use Stash\Driver\FileSystem;
 
-class CacheProvider extends AbstractServiceProvider
+final class CacheProvider extends AbstractServiceProvider
 {
     protected $provides = [
         'Psr\Cache\CacheItemPoolInterface',

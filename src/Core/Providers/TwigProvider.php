@@ -4,7 +4,7 @@ namespace Statico\Core\Providers;
 
 use League\Container\ServiceProvider\AbstractServiceProvider;
 
-class TwigProvider extends AbstractServiceProvider
+final class TwigProvider extends AbstractServiceProvider
 {
     protected $provides = [
         'Twig_Environment',

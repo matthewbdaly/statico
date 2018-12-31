@@ -8,7 +8,7 @@ use Whoops\Exception\Inspector;
 use Whoops\RunInterface;
 use Statico\Core\Contracts\Exceptions\Handler;
 
-class LogHandler implements Handler
+final class LogHandler implements Handler
 {
     public function __construct(LoggerInterface $logger)
     {

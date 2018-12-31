@@ -5,7 +5,7 @@ namespace Statico\Core\Providers;
 use League\Container\ServiceProvider\AbstractServiceProvider;
 use Mni\FrontYAML\Parser;
 
-class YamlProvider extends AbstractServiceProvider
+final class YamlProvider extends AbstractServiceProvider
 {
     protected $provides = [
         'Mni\FrontYAML\Parser',
