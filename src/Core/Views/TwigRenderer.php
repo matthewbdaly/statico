@@ -20,5 +20,5 @@ final class TwigRenderer implements Renderer
         $tpl = $this->twig->load($template);
         $response->getBody()->write($tpl->render($data));
         return $response;
-    }        
+    }
 }
