@@ -5,6 +5,7 @@ namespace Statico\Core\Http\Controllers;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Mni\FrontYAML\Parser;
+use Statico\Core\Contracts\Views\Renderer;
 
 class MainController
 {
@@ -12,10 +13,13 @@ class MainController
 
     protected $parser;
 
-    public function __construct(ResponseInterface $response, Parser $parser)
+    protected $view;
+
+    public function __construct(ResponseInterface $response, Parser $parser, Renderer $view)
     {
         $this->response = $response;
         $this->parser = $parser;
+        $this->view = $view;
     }
 
     public function index(ServerRequestInterface $request, array $args): ResponseInterface
@@ -34,7 +38,7 @@ class MainController
             $title = $data['title'];
             $layout = isset($data['layout']) ? $data['layout'].'.phtml' : 'default.phtml';
 
-            return $this->view->render($response, $layout, $data);
+            return $this->view->render($this->response, $layout, $data);
         } else {
             throw new NotFoundException($request, $response);
         }

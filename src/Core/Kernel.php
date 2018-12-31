@@ -35,6 +35,7 @@ class Kernel
         'Statico\Core\Providers\LoggerProvider',
         'Statico\Core\Providers\RouterProvider',
         'Statico\Core\Providers\TwigProvider',
+        'Statico\Core\Providers\ViewProvider',
         'Statico\Core\Providers\YamlProvider',
     ];
 
