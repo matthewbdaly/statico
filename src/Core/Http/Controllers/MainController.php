@@ -7,6 +7,7 @@ use Psr\Http\Message\ResponseInterface;
 use Mni\FrontYAML\Parser;
 use Statico\Core\Contracts\Views\Renderer;
 use Statico\Core\Contracts\Paths\Resolver;
+use League\Route\Http\Exception\NotFoundException;
 
 final class MainController
 {
@@ -31,7 +32,7 @@ final class MainController
         // Does that page exist?
         $name = isset($args['name']) ? $args['name'] : 'index';
         if (!$filename = $this->resolver->resolve($name)) {
-            throw new NotFoundException($request, $response);
+            throw new NotFoundException('Page not found');
         }
 
         // Get content
@@ -42,7 +43,7 @@ final class MainController
         $data = $document->getYAML();
         $data['content'] = $document->getContent();
         $title = $data['title'];
-        $layout = isset($data['layout']) ? $data['layout'].'.phtml' : 'default.phtml';
+        $layout = isset($data['layout']) ? $data['layout'].'.html' : 'default.html';
 
         return $this->view->render($this->response, $layout, $data);
     }
