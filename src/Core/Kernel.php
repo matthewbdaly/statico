@@ -54,9 +54,9 @@ final class Kernel
     public function bootstrap(): Kernel
     {
         $this->setupContainer();
-        $this->setupRoutes();
         $this->setErrorHandler();
         $this->registerPlugins();
+        $this->setupRoutes();
         return $this;
     }
 
@@ -131,7 +131,7 @@ final class Kernel
             if (!$ref->implementsInterface('Statico\Core\Contracts\Extension\Plugin')) {
                 continue;
             }
-            $this->plugins[] = $declaredClass;
+            $this->plugins[] = $this->container->get($declaredClass);
         }
     }
 }
