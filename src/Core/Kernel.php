@@ -33,6 +33,7 @@ final class Kernel
         'Statico\Core\Providers\FlysystemProvider',
         'Statico\Core\Providers\HandlerProvider',
         'Statico\Core\Providers\LoggerProvider',
+        'Statico\Core\Providers\ResolverProvider',
         'Statico\Core\Providers\RouterProvider',
         'Statico\Core\Providers\TwigProvider',
         'Statico\Core\Providers\ViewProvider',
