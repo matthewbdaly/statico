@@ -8,6 +8,9 @@ use Symfony\Component\Console\Application;
 if (!defined('BASE_DIR')) {
     define('BASE_DIR', __DIR__);
 }
+if (!defined('CONTENT_PATH')) {
+    define('CONTENT_PATH', 'content/');
+}
 
 $app = new Application();
 $kernel = new Statico\Core\Kernel;
