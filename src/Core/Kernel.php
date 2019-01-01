@@ -131,7 +131,9 @@ final class Kernel
             if (!$ref->implementsInterface('Statico\Core\Contracts\Extension\Plugin')) {
                 continue;
             }
-            $this->plugins[] = $this->container->get($declaredClass);
+            $plugin = $this->container->get($declaredClass);
+            $plugin->register();
+            $this->plugins[] = $plugin;
         }
     }
 }
