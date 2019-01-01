@@ -20,7 +20,6 @@ final class AdminController
 
     public function index(ServerRequestInterface $request): ResponseInterface
     {
-        eval(\Psy\Sh());
-        return $this->view->render($this->response, $layout, $data);
+        return $this->view->render($this->response, 'admin.html');
     }
 }
