@@ -20,12 +20,12 @@ final class Kernel
     private $container;
 
     /**
-     * @var Router
+     * @var League\Route\Router
      */
     private $router;
 
     /**
-     * @var Router
+     * @var array
      */
     private $plugins = [];
 

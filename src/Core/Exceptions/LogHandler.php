@@ -10,6 +10,8 @@ use Statico\Core\Contracts\Exceptions\Handler;
 
 final class LogHandler implements Handler
 {
+    protected $logger;
+
     public function __construct(LoggerInterface $logger)
     {
         $this->logger = $logger;

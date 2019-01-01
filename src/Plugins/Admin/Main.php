@@ -21,6 +21,6 @@ final class Main implements Plugin
 
     private function registerRoutes()
     {
-        $this->router->get('/admin', 'Statico\Plugins\Admin\Http\Controllers\AdminController::index');
+        $this->route->get('/admin', 'Statico\Plugins\Admin\Http\Controllers\AdminController::index');
     }
 }
