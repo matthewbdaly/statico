@@ -5,7 +5,6 @@ namespace Statico\Core;
 use Zend\Diactoros\ServerRequestFactory;
 use League\Container\Container;
 use League\Container\ReflectionContainer;
-use League\Route\Strategy\ApplicationStrategy;
 use Psr\Http\Message\RequestInterface;
 use ReflectionClass;
 
@@ -112,9 +111,7 @@ final class Kernel
 
     private function setupRoutes(): void
     {
-        $strategy = (new ApplicationStrategy)->setContainer($this->container);
-        $router = $this->container->get('League\Route\Router')
-            ->setStrategy($strategy);
+        $router = $this->container->get('League\Route\Router');
         require_once BASE_DIR.'/routes.php';
         $this->router = $router;
     }
