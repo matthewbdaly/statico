@@ -26,7 +26,7 @@ final class MainController
     {
         // Does that page exist?
         $name = isset($args['name']) ? $args['name'] : 'index';
-        $filename = BASE_DIR.CONTENT_PATH. $name . '.md';
+        $filename = BASE_DIR.CONTENT_PATH. rtrim($name, '/') . '.md';
         if (file_exists($filename)) {
             // Get content
             $rawcontent = file_get_contents($filename);
