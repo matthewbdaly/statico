@@ -7,6 +7,7 @@ use League\Container\Container;
 use League\Container\ReflectionContainer;
 use League\Route\Strategy\ApplicationStrategy;
 use Psr\Http\Message\RequestInterface;
+use ReflectionClass;
 
 /**
  * Application kernel
@@ -22,6 +23,11 @@ final class Kernel
      * @var Router
      */
     private $router;
+
+    /**
+     * @var Router
+     */
+    private $plugins = [];
 
     /**
      * @var Providers
@@ -50,6 +56,7 @@ final class Kernel
         $this->setupContainer();
         $this->setupRoutes();
         $this->setErrorHandler();
+        $this->registerPlugins();
         return $this;
     }
 
@@ -114,5 +121,16 @@ final class Kernel
     public function getContainer(): Container
     {
         return $this->container;
+    }
+
+    private function registerPlugins()
+    {
+        foreach (get_declared_classes() as $declaredClass) {
+            $ref = new ReflectionClass($declaredClass);
+            if (!$ref->implementsInterface('Statico\Core\Contracts\Extension\Plugin')) {
+                continue;
+            }
+            $this->plugins[] = $declaredClass;
+        }
     }
 }
