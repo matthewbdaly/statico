@@ -1,2 +1,3 @@
 plugins:
-  admin
+  - Statico\Plugins\Admin\Main
+  - Statico\Plugins\Search\Main

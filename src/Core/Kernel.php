@@ -34,6 +34,7 @@ final class Kernel
     private $providers = [
         'Statico\Core\Providers\ContainerProvider',
         'Statico\Core\Providers\CacheProvider',
+        'Statico\Core\Providers\ConfigProvider',
         'Statico\Core\Providers\EventProvider',
         'Statico\Core\Providers\FlysystemProvider',
         'Statico\Core\Providers\HandlerProvider',
@@ -123,14 +124,21 @@ final class Kernel
 
     private function registerPlugins()
     {
-        foreach (get_declared_classes() as $declaredClass) {
-            $ref = new ReflectionClass($declaredClass);
+        foreach ($this->getPlugins() as $pluginClass) {
+            $ref = new ReflectionClass($pluginClass);
             if (!$ref->implementsInterface('Statico\Core\Contracts\Extension\Plugin')) {
                 continue;
             }
-            $plugin = $this->container->get($declaredClass);
+            $plugin = $this->container->get($pluginClass);
             $plugin->register();
             $this->plugins[] = $plugin;
         }
+    }
+
+    private function getPlugins()
+    {
+        $reader = $this->container->get('Zend\Config\Reader\ReaderInterface');
+        $config = $reader->fromFile('config.yml');
+        return $config['plugins'];
     }
 }

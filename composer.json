@@ -17,7 +17,8 @@
         "mnapoli/front-yaml": "^1.6",
         "twig/twig": "^2.6",
         "symfony/console": "^4.2",
-        "zendframework/zend-config": "^3.2"
+        "zendframework/zend-config": "^3.2",
+        "symfony/yaml": "^4.2"
     },
     "require-dev": {
         "mockery/mockery": "^1.2",
