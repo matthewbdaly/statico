@@ -138,7 +138,7 @@ final class Kernel
     private function getPlugins()
     {
         $reader = $this->container->get('Zend\Config\Reader\ReaderInterface');
-        $config = $reader->fromFile('config.yml');
+        $config = $reader->fromFile(BASE_DIR.'/config.yml');
         return $config['plugins'];
     }
 }
