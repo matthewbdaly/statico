@@ -1,3 +1,6 @@
 plugins:
   - Statico\Plugins\Admin\Main
+  - Statico\Plugins\Blocks\Main
+  - Statico\Plugins\Forms\Main
   - Statico\Plugins\Search\Main
+  - Statico\Plugins\Sitemap\Main
