@@ -14,6 +14,9 @@ class TestCase extends \PHPUnit\Framework\TestCase
         if (!defined('BASE_DIR')) {
             define('BASE_DIR', __DIR__.'/../');
         }
+        if (!defined('CONTENT_PATH')) {
+            define('CONTENT_PATH', 'content/');
+        }
         $this->app = new Kernel;
         $this->app->bootstrap();
         $this->container = $this->app->getContainer();
