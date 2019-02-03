@@ -20,6 +20,6 @@ final class AdminController
 
     public function index(ServerRequestInterface $request): ResponseInterface
     {
-        return $this->view->render($this->response, 'admin.html');
+        return $this->view->render($this->response, '@admin/index.html');
     }
 }
