@@ -11,4 +11,5 @@ $kernel->bootstrap();
 $container = $kernel->getContainer();
 $app->add($container->get('Statico\Core\Console\Shell'));
 $app->add($container->get('Statico\Core\Console\Server'));
+$app->add($container->get('Statico\Plugins\Search\Console\GenerateIndex'));
 $app->run();
