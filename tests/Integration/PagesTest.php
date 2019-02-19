@@ -20,4 +20,10 @@ class PagesTest extends IntegrationTestCase
         $this->makeRequest('/about')
             ->assertStatusCode(200);
     }
+
+    public function test404(): void
+    {
+        $this->makeRequest('/foo')
+            ->assertStatusCode(404);
+    }
 }
