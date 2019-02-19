@@ -2,17 +2,20 @@
 
 namespace Statico\Core\Utilities;
 
-use Statico\Core\Contracts\Extension\Plugin;
+use Matthewbdaly\Proper\Traits\IsCollection;
+use Matthewbdaly\Proper\Contracts\Collectable;
 
-final class PluginCollection extends Collection
+final class PluginCollection implements Collectable
 {
+    use IsCollection;
+
     /**
      * Constructor
      *
      * @param array $items Items to collect.
      * @return void
      */
-    public function __construct(Plugin ...$items)
+    public function __construct(array $items)
     {
         $this->items = $items;
     }
@@ -21,9 +24,9 @@ final class PluginCollection extends Collection
      * Create collection
      *
      * @param array $items Items to collect.
-     * @return Collection
+     * @return Collectable
      */
-    public static function make(Plugin ...$items)
+    public static function make(array $items)
     {
         return new static($items);
     }

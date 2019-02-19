@@ -18,7 +18,8 @@
         "twig/twig": "^2.6",
         "symfony/console": "^4.2",
         "zendframework/zend-config": "^3.2",
-        "symfony/yaml": "^4.2"
+        "symfony/yaml": "^4.2",
+        "matthewbdaly/proper": "^0.0.10"
     },
     "require-dev": {
         "mockery/mockery": "^1.2",
