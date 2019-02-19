@@ -8,8 +8,14 @@ use Statico\Core\Contracts\Views\Renderer;
 
 final class AdminController
 {
+    /**
+     * @var ResponseInterface
+     */
     protected $response;
 
+    /**
+     * @var Renderer
+     */
     protected $view;
 
     public function __construct(ResponseInterface $response, Renderer $view)

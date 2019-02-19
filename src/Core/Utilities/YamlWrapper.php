@@ -6,6 +6,9 @@ use Symfony\Component\Yaml\Yaml;
 
 final class YamlWrapper
 {
+    /**
+     * @var Yaml
+     */
     private $parser;
 
     public function __construct(Yaml $parser)

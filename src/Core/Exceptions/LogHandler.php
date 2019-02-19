@@ -10,6 +10,9 @@ use Statico\Core\Contracts\Exceptions\Handler;
 
 final class LogHandler implements Handler
 {
+    /**
+     * @var LoggerInterface
+     */
     protected $logger;
 
     public function __construct(LoggerInterface $logger)

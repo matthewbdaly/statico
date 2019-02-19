@@ -11,12 +11,24 @@ use League\Route\Http\Exception\NotFoundException;
 
 final class MainController
 {
+    /**
+     * @var ResponseInterface
+     */
     protected $response;
 
+    /**
+     * @var Parser
+     */
     protected $parser;
 
+    /**
+     * @var Renderer
+     */
     protected $view;
 
+    /**
+     * @var Resolver
+     */
     protected $resolver;
 
     public function __construct(ResponseInterface $response, Parser $parser, Renderer $view, Resolver $resolver)

@@ -11,8 +11,14 @@ use Psy\Configuration;
 
 final class Shell extends Command
 {
+    /**
+     * @var ContainerInterface
+     */
     protected $container;
 
+    /**
+     * @var Psysh
+     */
     protected $shell;
     
     public function __construct(ContainerInterface $container, Psysh $shell)

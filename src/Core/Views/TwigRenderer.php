@@ -8,6 +8,9 @@ use Twig_Environment;
 
 final class TwigRenderer implements Renderer
 {
+    /**
+     * @var Twig_Environment
+     */
     protected $twig;
 
     public function __construct(Twig_Environment $twig)

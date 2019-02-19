@@ -8,8 +8,14 @@ use Twig_Loader_Filesystem;
 
 final class Main implements Plugin
 {
+    /**
+     * @var Router
+     */
     protected $route;
 
+    /**
+     * @var Twig_Loader_Filesystem
+     */
     protected $twig;
 
     public function __construct(Router $route, Twig_Loader_Filesystem $twig)
