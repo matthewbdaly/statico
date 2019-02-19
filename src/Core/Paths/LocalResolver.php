@@ -14,4 +14,20 @@ final class LocalResolver implements Resolver
         }
         return $filename;
     }
+
+    public function index(): array
+    {
+        $root = BASE_DIR.CONTENT_PATH;
+        $iterator = new \RecursiveIteratorIterator(
+            new \RecursiveDirectoryIterator($root)
+        );
+        $contentFiles = [];
+        foreach ($iterator as $item) {
+            if ($item->getType() == 'dir') {
+                continue;
+            }
+            $contentFiles[] = $item;
+        }
+        return $contentFiles;
+    }
 }
