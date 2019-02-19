@@ -46,6 +46,14 @@ final class Kernel
         'Statico\Core\Providers\YamlProvider',
     ];
 
+    public function __construct(Container $container = null)
+    {
+        if (!$container) {
+            $container = new Container;
+        }
+        $this->container = $container;
+    }
+
     /**
      * Bootstrap the application
      *
@@ -82,7 +90,7 @@ final class Kernel
 
     private function setupContainer(): void
     {
-        $container = new Container;
+        $container = $this->container;
         $container->delegate(
             new ReflectionContainer
         );
@@ -133,6 +141,11 @@ final class Kernel
             $plugin->register();
             $this->plugins[] = $plugin;
         }
+    }
+
+    public function getRegisteredPlugins()
+    {
+        return $this->plugins;
     }
 
     private function getPlugins()
