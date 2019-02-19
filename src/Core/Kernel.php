@@ -42,6 +42,7 @@ final class Kernel
         'Statico\Core\Providers\ResolverProvider',
         'Statico\Core\Providers\RouterProvider',
         'Statico\Core\Providers\TwigProvider',
+        'Statico\Core\Providers\TwigLoaderProvider',
         'Statico\Core\Providers\ViewProvider',
         'Statico\Core\Providers\YamlProvider',
     ];
