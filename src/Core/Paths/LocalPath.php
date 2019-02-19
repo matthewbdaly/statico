@@ -13,6 +13,9 @@ final class LocalPath implements Path
 
     public function __construct(string $path)
     {
+        if (!file_exists($path)) {
+            throw new PathDoesNotExistException;
+        }
         $this->path = $path;
     }
 
