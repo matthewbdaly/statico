@@ -3,22 +3,24 @@
 namespace Statico\Core\Providers;
 
 use League\Container\ServiceProvider\AbstractServiceProvider;
+use Twig\Loader\FilesystemLoader;
+use Twig\Environment;
 
 final class TwigProvider extends AbstractServiceProvider
 {
     protected $provides = [
-        'Twig_Environment',
+        'Twig\Environment',
     ];
 
     public function register(): void
     {
         // Register items
         $container = $this->getContainer();
-        $container->add('Twig_Loader_Filesystem', function () {
-            return new \Twig_Loader_Filesystem(BASE_DIR.'src/views');
+        $container->add('Twig\Loader\FilesystemLoader', function () {
+            return new FilesystemLoader(BASE_DIR.'src/views');
         });
-        $container->add('Twig_Environment', function () {
-            $twig = new \Twig_Environment($this->getContainer()->get('Twig_Loader_Filesystem'), array(
+        $container->add('Twig\Environment', function () {
+            $twig = new Environment($this->getContainer()->get('Twig\Loader\FilesystemLoader'), array(
                 'cache' => BASE_DIR.'/cache/views',
             ));
             return $twig;

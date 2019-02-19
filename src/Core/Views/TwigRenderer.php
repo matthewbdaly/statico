@@ -4,16 +4,16 @@ namespace Statico\Core\Views;
 
 use Statico\Core\Contracts\Views\Renderer;
 use Psr\Http\Message\ResponseInterface;
-use Twig_Environment;
+use Twig\Environment;
 
 final class TwigRenderer implements Renderer
 {
     /**
-     * @var Twig_Environment
+     * @var Environment
      */
     protected $twig;
 
-    public function __construct(Twig_Environment $twig)
+    public function __construct(Environment $twig)
     {
         $this->twig = $twig;
     }

@@ -4,7 +4,7 @@ namespace Statico\Plugins\Admin;
 
 use Statico\Core\Contracts\Extension\Plugin;
 use League\Route\Router;
-use Twig_Loader_Filesystem;
+use Twig\Loader\FilesystemLoader;
 
 final class Main implements Plugin
 {
@@ -14,11 +14,11 @@ final class Main implements Plugin
     protected $route;
 
     /**
-     * @var Twig_Loader_Filesystem
+     * @var FilesystemLoader
      */
     protected $twig;
 
-    public function __construct(Router $route, Twig_Loader_Filesystem $twig)
+    public function __construct(Router $route, FilesystemLoader $twig)
     {
         $this->route = $route;
         $this->twig = $twig;
