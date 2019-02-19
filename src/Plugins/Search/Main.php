@@ -6,8 +6,13 @@ use Statico\Core\Contracts\Extension\Plugin;
 
 final class Main implements Plugin
 {
-    public function register()
+    public function register(): void
     {
         // Register plugin
+    }
+
+    public function getViews(): array
+    {
+        return [];
     }
 }

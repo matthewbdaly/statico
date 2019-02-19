@@ -7,5 +7,7 @@ namespace Statico\Core\Contracts\Extension;
  */
 interface Plugin
 {
-    public function register();
+    public function register(): void;
+
+    public function getViews(): array;
 }

@@ -24,10 +24,9 @@ final class Main implements Plugin
         $this->twig = $twig;
     }
 
-    public function register()
+    public function register(): void
     {
         $this->registerRoutes();
-        $this->registerViews();
     }
 
     private function registerRoutes()
@@ -35,8 +34,10 @@ final class Main implements Plugin
         $this->route->get('/admin', 'Statico\Plugins\Admin\Http\Controllers\AdminController::index');
     }
 
-    private function registerViews()
+    public function getViews(): array
     {
-        $this->twig->addPath(dirname(__FILE__) . '/views', 'admin');
+        return [
+            dirname(__FILE__) . '/views',
+        ];
     }
 }
