@@ -4,8 +4,12 @@ namespace Statico\Core\Utilities;
 
 use Matthewbdaly\Proper\Traits\IsCollection;
 use Matthewbdaly\Proper\Contracts\Collectable;
+use Countable;
+use ArrayAccess;
+use SeekableIterator;
+use JsonSerializable;
 
-final class PluginCollection implements Collectable
+final class PluginCollection implements Collectable, Countable, ArrayAccess, SeekableIterator, JsonSerializable
 {
     use IsCollection;
 

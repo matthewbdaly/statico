@@ -54,7 +54,7 @@ final class Kernel
             $container = new Container;
         }
         $this->container = $container;
-        $this->plugins = new PluginCollection;
+        $this->plugins = new PluginCollection([]);
     }
 
     /**
