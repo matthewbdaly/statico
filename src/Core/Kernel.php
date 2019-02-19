@@ -7,6 +7,7 @@ use League\Container\Container;
 use League\Container\ReflectionContainer;
 use Psr\Http\Message\RequestInterface;
 use ReflectionClass;
+use Statico\Core\Utilities\PluginCollection;
 
 /**
  * Application kernel
@@ -24,9 +25,9 @@ final class Kernel
     private $router;
 
     /**
-     * @var array
+     * @var PluginCollection
      */
-    private $plugins = [];
+    private $plugins;
 
     /**
      * @var Providers
@@ -53,6 +54,7 @@ final class Kernel
             $container = new Container;
         }
         $this->container = $container;
+        $this->plugins = new PluginCollection;
     }
 
     /**
