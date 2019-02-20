@@ -9,6 +9,7 @@ try {
     window.$.getJSON('/storage/index.json', function (response) {
       const fuse = new Fuse(response, {
         keys: ['title'],
+        shouldSort: true
       });
       $('#search').on('keyup', function () {
         let result = fuse.search($(this).val());
