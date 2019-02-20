@@ -4,10 +4,9 @@ namespace Statico\Core\Http\Controllers;
 
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ResponseInterface;
-use Mni\FrontYAML\Parser;
 use Statico\Core\Contracts\Views\Renderer;
 use League\Route\Http\Exception\NotFoundException;
-use League\Flysystem\MountManager;
+use Statico\Core\Contracts\Sources\Source;
 
 final class MainController
 {
@@ -17,49 +16,32 @@ final class MainController
     protected $response;
 
     /**
-     * @var Parser
+     * @var Source
      */
-    protected $parser;
+    protected $source;
 
     /**
      * @var Renderer
      */
     protected $view;
 
-    /**
-     * @var MountManager
-     */
-    protected $manager;
-
-    public function __construct(ResponseInterface $response, Parser $parser, Renderer $view, MountManager $manager)
+    public function __construct(ResponseInterface $response, Source $source, Renderer $view)
     {
         $this->response = $response;
-        $this->parser = $parser;
+        $this->source = $source;
         $this->view = $view;
-        $this->manager = $manager;
     }
 
     public function index(ServerRequestInterface $request, array $args): ResponseInterface
     {
-        // Does that page exist?
         $name = isset($args['name']) ? $args['name'] : 'index';
-        $path = "content://".rtrim($name, '/') . '.md';
-        if (!$this->manager->has($path)) {
+        if (!$document = $this->source->find($name)) {
             throw new NotFoundException('Page not found');
         }
-
-        // Get content
-        if (!$rawcontent = $this->manager->read($path)) {
-            throw new NotFoundException('Page not found');
-        }
-        $document = $this->parser->parse($rawcontent);
-
-        // Get title
         $data = $document->getYAML();
         $data['content'] = $document->getContent();
         $title = $data['title'];
         $layout = isset($data['layout']) ? $data['layout'].'.html' : 'default.html';
-
         return $this->view->render($this->response, $layout, $data);
     }
 }

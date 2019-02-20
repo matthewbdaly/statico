@@ -4,5 +4,7 @@ namespace Statico\Core\Contracts\Sources;
 
 interface Source
 {
-    public function __invoke(): array;
+    public function all(): array;
+
+    public function find(string $name);
 }

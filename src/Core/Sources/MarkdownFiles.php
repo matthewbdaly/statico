@@ -27,7 +27,7 @@ final class MarkdownFiles implements Source
         $this->parser = $parser;
     }
  
-    public function __invoke(): array
+    public function all(): array
     {
         $files = $this->manager->listContents('content://', true);
         $searchable = [];
@@ -44,5 +44,20 @@ final class MarkdownFiles implements Source
             }
         }
         return $searchable;
+    }
+
+    public function find(string $name)
+    {
+        // Does that page exist?
+        $path = "content://".rtrim($name, '/') . '.md';
+        if (!$this->manager->has($path)) {
+            return null;
+        }
+
+        // Get content
+        if (!$rawcontent = $this->manager->read($path)) {
+            return null;
+        }
+        return $this->parser->parse($rawcontent);
     }
 }
