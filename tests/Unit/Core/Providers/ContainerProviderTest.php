@@ -1,6 +1,6 @@
 <?php declare(strict_types = 1);
 
-namespace Tests\Unit\Providers;
+namespace Tests\Unit\Core\Providers;
 
 use Tests\TestCase;
 

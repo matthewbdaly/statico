@@ -1,6 +1,6 @@
 <?php declare(strict_types = 1);
 
-namespace Tests\Unit\Exceptions;
+namespace Tests\Unit\Core\Exceptions;
 
 use Tests\TestCase;
 use Statico\Core\Exceptions\LogHandler;
