@@ -46,10 +46,15 @@ final class GenerateIndex extends Command
                 $document = $this->parser->parse($content);
                 $searchable[] = [
                     'title' => $document->getYAML()['title'],
-                    'path' => $file['path']
+                    'path' => $this->parsePath($file['path'])
                 ];
             }
         }
-        $this->manager->put('assets://index.json', json_encode($searchable));
+        $this->manager->put('assets://index.json', json_encode($searchable, JSON_UNESCAPED_SLASHES));
+    }
+
+    private function parsePath(string $path)
+    {
+        return preg_replace('/.(markdown|md)$/', '/', $path);
     }
 }
