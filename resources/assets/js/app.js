@@ -9,7 +9,6 @@ try {
     window.$.getJSON('/storage/index.json', function (response) {
       const fuse = new Fuse(response, {
         keys: ['title'],
-        id: 'path'
       });
       $('#search').on('keyup', function () {
         let result = fuse.search($(this).val());
@@ -23,8 +22,8 @@ try {
           // Show results
           resultdiv.empty();
           for (let item in result.slice(0,4)) {
-            let ref = result[item].ref;
-            let searchitem = '<li><a href="' + ref + '">' + store[ref].title + '</a></li>';
+            debugger;
+            let searchitem = '<li><a href="' + result[item].path + '">' + result[item].title + '</a></li>';
             resultdiv.append(searchitem);
           }
           resultdiv.show();
