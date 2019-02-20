@@ -1,15 +1,12 @@
 <?php declare(strict_types = 1);
 
-namespace Statico\Core\Console;
+namespace Statico\Core\Services;
 
-use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
 use League\Flysystem\MountManager;
 use Mni\FrontYAML\Parser;
 use Statico\Core\Traits\ParsesPath;
 
-final class GenerateIndex extends Command
+final class Navigation
 {
     use ParsesPath;
 
@@ -25,19 +22,11 @@ final class GenerateIndex extends Command
 
     public function __construct(MountManager $manager, Parser $parser)
     {
-        parent::__construct();
         $this->manager = $manager;
         $this->parser = $parser;
     }
-    
-    protected function configure(): void
-    {
-        $this->setName('index:generate')
-             ->setDescription('Generates the search index')
-             ->setHelp('This command will generate the search index file');
-    }
-
-    protected function execute(InputInterface $input, OutputInterface $output): void
+ 
+    public function __invoke()
     {
         $files = $this->manager->listContents('content://', true);
         $searchable = [];
@@ -53,6 +42,6 @@ final class GenerateIndex extends Command
                 ];
             }
         }
-        $this->manager->put('assets://index.json', json_encode($searchable, JSON_UNESCAPED_SLASHES));
+        return $searchable;
     }
 }
