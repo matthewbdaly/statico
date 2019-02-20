@@ -6,7 +6,6 @@ use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Mni\FrontYAML\Parser;
 use Statico\Core\Contracts\Views\Renderer;
-use Statico\Core\Contracts\Paths\Resolver;
 use League\Route\Http\Exception\NotFoundException;
 use League\Flysystem\MountManager;
 
