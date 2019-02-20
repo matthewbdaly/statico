@@ -27,7 +27,7 @@ final class MarkdownFiles implements Source
         $this->parser = $parser;
     }
  
-    public function __invoke()
+    public function __invoke(): array
     {
         $files = $this->manager->listContents('content://', true);
         $searchable = [];

@@ -5,29 +5,26 @@ namespace Statico\Core\Console;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Statico\Core\Contracts\Sources\Source;
 use League\Flysystem\MountManager;
-use Mni\FrontYAML\Parser;
-use Statico\Core\Traits\ParsesPath;
 
 final class GenerateIndex extends Command
 {
-    use ParsesPath;
+    /**
+     * @var Source
+     */
+    protected $source;
 
     /**
      * @var MountManager
      */
     protected $manager;
 
-    /**
-     * @var Parser
-     */
-    protected $parser;
-
-    public function __construct(MountManager $manager, Parser $parser)
+    public function __construct(Source $source, MountManager $manager)
     {
         parent::__construct();
+        $this->source = $source;
         $this->manager = $manager;
-        $this->parser = $parser;
     }
     
     protected function configure(): void
@@ -39,20 +36,7 @@ final class GenerateIndex extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): void
     {
-        $files = $this->manager->listContents('content://', true);
-        $searchable = [];
-        foreach ($files as $file) {
-            if ($file['type'] == 'dir') {
-                continue;
-            }
-            if ($content = $this->manager->read('content://'.$file['path'])) {
-                $document = $this->parser->parse($content);
-                $searchable[] = [
-                    'title' => $document->getYAML()['title'],
-                    'path' => $this->parsePath($file['path'])
-                ];
-            }
-        }
+        $searchable = $this->source->__invoke();
         $this->manager->put('assets://index.json', json_encode($searchable, JSON_UNESCAPED_SLASHES));
     }
 }
