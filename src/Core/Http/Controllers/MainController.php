@@ -8,6 +8,7 @@ use Mni\FrontYAML\Parser;
 use Statico\Core\Contracts\Views\Renderer;
 use Statico\Core\Contracts\Paths\Resolver;
 use League\Route\Http\Exception\NotFoundException;
+use League\Flysystem\MountManager;
 
 final class MainController
 {
@@ -27,28 +28,29 @@ final class MainController
     protected $view;
 
     /**
-     * @var Resolver
+     * @var MountManager
      */
-    protected $resolver;
+    protected $manager;
 
-    public function __construct(ResponseInterface $response, Parser $parser, Renderer $view, Resolver $resolver)
+    public function __construct(ResponseInterface $response, Parser $parser, Renderer $view, MountManager $manager)
     {
         $this->response = $response;
         $this->parser = $parser;
         $this->view = $view;
-        $this->resolver = $resolver;
+        $this->manager = $manager;
     }
 
     public function index(ServerRequestInterface $request, array $args): ResponseInterface
     {
         // Does that page exist?
         $name = isset($args['name']) ? $args['name'] : 'index';
-        if (!$filename = $this->resolver->resolve($name)) {
+        $path = "content://".rtrim($name, '/') . '.md';
+        if (!$this->manager->has($path)) {
             throw new NotFoundException('Page not found');
         }
 
         // Get content
-        $rawcontent = file_get_contents($filename);
+        $rawcontent = $this->manager->read($path);
         $document = $this->parser->parse($rawcontent);
 
         // Get title
