@@ -15,7 +15,7 @@ class PagesTest extends IntegrationTestCase
             ->assertStatusCode(200);
     }
 
-    public function testLogin(): void
+    public function testAbout(): void
     {
         $this->makeRequest('/about')
             ->assertStatusCode(200);
