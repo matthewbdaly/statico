@@ -7,7 +7,6 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use League\Flysystem\MountManager;
 use Mni\FrontYAML\Parser;
-use Matthewbdaly\Proper\Collection;
 
 final class GenerateIndex extends Command
 {
@@ -38,14 +37,19 @@ final class GenerateIndex extends Command
     protected function execute(InputInterface $input, OutputInterface $output): void
     {
         $files = $this->manager->listContents('content://', true);
-        $documents = new Collection;
+        $searchable = [];
         foreach ($files as $file) {
             if ($file['type'] == 'dir') {
                 continue;
             }
             if ($content = $this->manager->read('content://'.$file['path'])) {
-                $documents[] = $this->parser->parse($content);
+                $document = $this->parser->parse($content);
+                $searchable[] = [
+                    'title' => $document->getYAML()['title'],
+                    'path' => $file['path']
+                ];
             }
         }
+        $this->manager->put('assets://index.json', json_encode($searchable));
     }
 }
