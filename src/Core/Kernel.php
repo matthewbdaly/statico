@@ -7,7 +7,6 @@ use League\Container\Container;
 use League\Container\ReflectionContainer;
 use Psr\Http\Message\RequestInterface;
 use ReflectionClass;
-use Statico\Core\Utilities\PluginCollection;
 
 /**
  * Application kernel
@@ -23,11 +22,6 @@ final class Kernel
      * @var League\Route\Router
      */
     private $router;
-
-    /**
-     * @var PluginCollection
-     */
-    private $plugins;
 
     /**
      * @var Providers
@@ -54,7 +48,6 @@ final class Kernel
             $container = new Container;
         }
         $this->container = $container;
-        $this->plugins = new PluginCollection([]);
     }
 
     /**
@@ -66,7 +59,6 @@ final class Kernel
     {
         $this->setupContainer();
         $this->setErrorHandler();
-        $this->registerPlugins();
         $this->setupRoutes();
         return $this;
     }
@@ -131,30 +123,5 @@ final class Kernel
     public function getContainer(): Container
     {
         return $this->container;
-    }
-
-    private function registerPlugins()
-    {
-        foreach ($this->getPlugins() as $pluginClass) {
-            $ref = new ReflectionClass($pluginClass);
-            if (!$ref->implementsInterface('Statico\Core\Contracts\Extension\Plugin')) {
-                continue;
-            }
-            $plugin = $this->container->get($pluginClass);
-            $plugin->register();
-            $this->plugins[] = $plugin;
-        }
-    }
-
-    public function getRegisteredPlugins()
-    {
-        return $this->plugins;
-    }
-
-    private function getPlugins()
-    {
-        $reader = $this->container->get('Zend\Config\Reader\ReaderInterface');
-        $config = $reader->fromFile(BASE_DIR.'/config.yml');
-        return $config['plugins'];
     }
 }
