@@ -43,8 +43,9 @@ final class GenerateIndex extends Command
             if ($file['type'] == 'dir') {
                 continue;
             }
-            $content = $this->manager->read('content://'.$file['path']);
-            $documents[] = $this->parser->parse($content);
+            if ($content = $this->manager->read('content://'.$file['path'])) {
+                $documents[] = $this->parser->parse($content);
+            }
         }
     }
 }
