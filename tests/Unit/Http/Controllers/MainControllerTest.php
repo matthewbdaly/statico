@@ -39,6 +39,27 @@ class MainControllerTest extends TestCase
         $controller->index($request, ['name' => 'foo']);
     }
 
+    public function testEmpty()
+    {
+        $this->expectException('League\Route\Http\Exception\NotFoundException');
+        $response = m::mock('Psr\Http\Message\ResponseInterface');
+        $parser = m::mock('Mni\FrontYAML\Parser');
+        $view = m::mock('Statico\Core\Contracts\Views\Renderer');
+        $manager = m::mock('League\Flysystem\MountManager');
+        $manager->shouldReceive('has')->with('content://foo.md')->once()
+            ->andReturn(true);
+        $manager->shouldReceive('read')->with('content://foo.md')->once()
+            ->andReturn(null);
+        $request = m::mock('Psr\Http\Message\ServerRequestInterface');
+        $controller = new MainController(
+            $response,
+            $parser,
+            $view,
+            $manager
+        );
+        $controller->index($request, ['name' => 'foo']);
+    }
+
     public function test404()
     {
         $this->expectException('League\Route\Http\Exception\NotFoundException');
