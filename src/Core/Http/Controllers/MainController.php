@@ -49,7 +49,9 @@ final class MainController
         }
 
         // Get content
-        $rawcontent = $this->manager->read($path);
+        if (!$rawcontent = $this->manager->read($path)) {
+            throw new NotFoundException('Page not found');
+        }
         $document = $this->parser->parse($rawcontent);
 
         // Get title

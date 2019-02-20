@@ -53,7 +53,7 @@ final class GenerateIndex extends Command
         $this->manager->put('assets://index.json', json_encode($searchable, JSON_UNESCAPED_SLASHES));
     }
 
-    private function parsePath(string $path)
+    private function parsePath(string $path): string
     {
         return preg_replace('/.(markdown|md)$/', '/', $path);
     }

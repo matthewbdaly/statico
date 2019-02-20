@@ -19,12 +19,12 @@ final class Kernel
     private $container;
 
     /**
-     * @var League\Route\Router
+     * @var \League\Route\Router
      */
     private $router;
 
     /**
-     * @var Providers
+     * @var array
      */
     private $providers = [
         'Statico\Core\Providers\ContainerProvider',
@@ -66,7 +66,7 @@ final class Kernel
      * Handle a request
      *
      * @param RequestInterface $request HTTP request.
-     * @return void
+     * @return \Psr\Http\Message\ResponseInterface
      */
     public function handle(RequestInterface $request): \Psr\Http\Message\ResponseInterface
     {
