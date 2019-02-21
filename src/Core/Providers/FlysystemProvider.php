@@ -7,7 +7,7 @@ use League\Flysystem\Filesystem;
 use League\Flysystem\Adapter\Local;
 use League\Flysystem\MountManager;
 use League\Flysystem\Cached\CachedAdapter;
-use League\Flysystem\Cached\Storage\Memory as MemoryStore;
+use League\Flysystem\Cached\Storage\Stash as StashStore;
 
 final class FlysystemProvider extends AbstractServiceProvider
 {
@@ -20,9 +20,10 @@ final class FlysystemProvider extends AbstractServiceProvider
         // Register items
         $this->getContainer()
             ->add('League\Flysystem\MountManager', function () {
+                $pool = $this->getContainer()->get('Psr\Cache\CacheItemPoolInterface');
 
                 // Create the cache store
-                $cacheStore = new MemoryStore();
+                $cacheStore = new StashStore($pool, 'pages', 300);
 
                 // Decorate the adapter
                 $contentFilesystem = new Filesystem(
