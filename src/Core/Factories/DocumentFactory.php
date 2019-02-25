@@ -11,6 +11,10 @@ final class DocumentFactory
     {
         $document = new Document;
         $document->setContent($doc->getContent());
+        foreach ($doc->getYAML() as $field => $value) {
+            $document->setField($field, $value);
+        }
+        $document->setPath($path);
         return $document;
     }
 }

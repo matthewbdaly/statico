@@ -85,4 +85,9 @@ final class Document
             $this->setField($name, $value);
         }
     }
+
+    public function getFields(): array
+    {
+        return $this->data;
+    }
 }
