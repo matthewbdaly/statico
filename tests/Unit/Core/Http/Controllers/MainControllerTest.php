@@ -5,17 +5,17 @@ namespace Tests\Unit\Core\Http\Controllers;
 use Tests\TestCase;
 use Mockery as m;
 use Statico\Core\Http\Controllers\MainController;
+use Statico\Core\Objects\Document;
 
 class MainControllerTest extends TestCase
 {
     public function testGetResponse()
     {
         $response = m::mock('Psr\Http\Message\ResponseInterface');
-        $doc = m::mock('Statico\Core\Objects\Document');
-        $doc->shouldReceive('getFields')->once()->andReturn([
-            'title' => 'Foo'
-        ]);
-        $doc->shouldReceive('getContent')->once()->andReturn('foo');
+        $doc = (new Document)
+            ->setField('title', 'Foo')
+            ->setPath('foo.md')
+            ->setContent('foo');
         $source = m::mock('Statico\Core\Contracts\Sources\Source');
         $source->shouldReceive('find')->once()->andReturn($doc);
         $view = m::mock('Statico\Core\Contracts\Views\Renderer');
