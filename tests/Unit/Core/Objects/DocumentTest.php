@@ -20,4 +20,11 @@ class DocumentTest extends TestCase
         $this->assertEquals('custom.html', $doc->getField('layout'));
         $this->assertEquals('foo.md', $doc->getPath());
     }
+
+    public function testTostring()
+    {
+        $doc = new Document;
+        $doc->setContent('This is my content');
+        $this->assertEquals('This is my content', $doc->__toString());
+    }
 }

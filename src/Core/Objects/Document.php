@@ -58,4 +58,9 @@ final class Document
         $this->path = $path;
         return $this;
     }
+
+    public function __toString(): string
+    {
+        return $this->content;
+    }
 }
