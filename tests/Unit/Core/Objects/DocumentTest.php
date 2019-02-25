@@ -27,4 +27,18 @@ class DocumentTest extends TestCase
         $doc->setContent('This is my content');
         $this->assertEquals('This is my content', $doc->__toString());
     }
+
+    public function testSet()
+    {
+        $doc = new Document;
+        $doc->content = 'This is my content';
+        $doc->title = 'My Page';
+        $doc->layout = 'custom.html';
+        $doc->path = 'foo.md';
+        $this->assertEquals('This is my content', $doc->getContent());
+        $this->assertEquals('My Page', $doc->getField('title'));
+        $this->assertEquals('custom.html', $doc->getField('layout'));
+        $this->assertEquals('foo.md', $doc->getPath());
+
+    }
 }

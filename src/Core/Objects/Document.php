@@ -63,4 +63,15 @@ final class Document
     {
         return $this->content;
     }
+
+    public function __set(string $name, string $value)
+    {
+        if ($name == 'content') {
+            $this->setContent($value);
+        } else if ($name == 'path') {
+            $this->setPath($value);
+        } else {
+            $this->setField($name, $value);
+        }
+    }
 }
