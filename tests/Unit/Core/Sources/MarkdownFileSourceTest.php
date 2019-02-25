@@ -25,6 +25,8 @@ class MarkdownFileSourceTest extends TestCase
             ->once()
             ->andReturn('foo');
         $document = m::mock('Mni\FrontYAML\Document');
+        $document->shouldReceive('getContent')->once()
+            ->andReturn('My content');
         $document->shouldReceive('getYAML')->once()
             ->andReturn([
                 'title' => 'Foo'
@@ -33,7 +35,12 @@ class MarkdownFileSourceTest extends TestCase
         $parser->shouldReceive('parse')->with('foo')->once()
             ->andReturn($document);
         $source = new MarkdownFiles($manager, $parser);
-        $source->all();
+        $response = $source->all();
+        $this->assertCount(1, $response);
+        $this->assertInstanceOf('Statico\Core\Objects\Document', $response[0]);
+        $this->assertEquals('My content', $response[0]->content);
+        $this->assertEquals('Foo', $response[0]->title);
+        $this->assertEquals('foo.md', $response[0]->path);
     }
 
     public function testFind()

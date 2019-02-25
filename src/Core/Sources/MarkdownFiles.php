@@ -6,6 +6,7 @@ use League\Flysystem\MountManager;
 use Mni\FrontYAML\Parser;
 use Statico\Core\Traits\ParsesPath;
 use Statico\Core\Contracts\Sources\Source;
+use Statico\Core\Factories\DocumentFactory;
 
 final class MarkdownFiles implements Source
 {
@@ -36,11 +37,7 @@ final class MarkdownFiles implements Source
                 continue;
             }
             if ($content = $this->manager->read('content://'.$file['path'])) {
-                $document = $this->parser->parse($content);
-                $searchable[] = [
-                    'title' => $document->getYAML()['title'],
-                    'path' => $this->parsePath($file['path'])
-                ];
+                $searchable[] = DocumentFactory::fromYaml($this->parser->parse($content), $file['path']);
             }
         }
         return $searchable;
@@ -58,6 +55,6 @@ final class MarkdownFiles implements Source
         if (!$rawcontent = $this->manager->read($path)) {
             return null;
         }
-        return $this->parser->parse($rawcontent);
+        return DocumentFactory::fromYaml($this->parser->parse($rawcontent), $path);
     }
 }
