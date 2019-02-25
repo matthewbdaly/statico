@@ -46,13 +46,13 @@ final class MarkdownFiles implements Source
     public function find(string $name)
     {
         // Does that page exist?
-        $path = "content://".rtrim($name, '/') . '.md';
-        if (!$this->manager->has($path)) {
+        $path = rtrim($name, '/') . '.md';
+        if (!$this->manager->has("content://".$path)) {
             return null;
         }
 
         // Get content
-        if (!$rawcontent = $this->manager->read($path)) {
+        if (!$rawcontent = $this->manager->read("content://".$path)) {
             return null;
         }
         return DocumentFactory::fromYaml($this->parser->parse($rawcontent), $path);

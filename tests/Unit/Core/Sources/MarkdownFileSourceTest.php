@@ -53,11 +53,21 @@ class MarkdownFileSourceTest extends TestCase
             ->once()
             ->andReturn('foo');
         $document = m::mock('Mni\FrontYAML\Document');
+        $document->shouldReceive('getContent')->once()
+            ->andReturn('My content');
+        $document->shouldReceive('getYAML')->once()
+            ->andReturn([
+                'title' => 'Foo'
+            ]);
         $parser = m::mock('Mni\FrontYAML\Parser');
         $parser->shouldReceive('parse')->with('foo')->once()
             ->andReturn($document);
         $source = new MarkdownFiles($manager, $parser);
-        $this->assertEquals($document, $source->find('foo'));
+        $document = $source->find('foo');
+        $this->assertInstanceOf('Statico\Core\Objects\Document', $document);
+        $this->assertEquals('My content', $document->content);
+        $this->assertEquals('Foo', $document->title);
+        $this->assertEquals('foo.md', $document->path);
     }
 
     public function testFindEmpty()
