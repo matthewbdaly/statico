@@ -64,6 +64,17 @@ final class Document
         return $this->content;
     }
 
+    public function __get(string $name)
+    {
+        if ($name == 'content') {
+            return $this->getContent();
+        } else if ($name == 'path') {
+            return $this->getPath();
+        } else {
+            return $this->getField($name);
+        }
+    }
+
     public function __set(string $name, string $value)
     {
         if ($name == 'content') {
