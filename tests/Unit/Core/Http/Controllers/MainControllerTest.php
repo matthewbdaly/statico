@@ -11,8 +11,8 @@ class MainControllerTest extends TestCase
     public function testGetResponse()
     {
         $response = m::mock('Psr\Http\Message\ResponseInterface');
-        $doc = m::mock('Mni\FrontYAML\Document');
-        $doc->shouldReceive('getYAML')->once()->andReturn([
+        $doc = m::mock('Statico\Core\Objects\Document');
+        $doc->shouldReceive('getFields')->once()->andReturn([
             'title' => 'Foo'
         ]);
         $doc->shouldReceive('getContent')->once()->andReturn('foo');

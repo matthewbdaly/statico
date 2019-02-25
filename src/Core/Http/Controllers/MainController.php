@@ -38,7 +38,7 @@ final class MainController
         if (!$document = $this->source->find($name)) {
             throw new NotFoundException('Page not found');
         }
-        $data = $document->getYAML();
+        $data = $document->getFields();
         $data['content'] = $document->getContent();
         $title = $data['title'];
         $layout = isset($data['layout']) ? $data['layout'].'.html' : 'default.html';
