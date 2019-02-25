@@ -39,6 +39,18 @@ class DocumentTest extends TestCase
         $this->assertEquals('My Page', $doc->getField('title'));
         $this->assertEquals('custom.html', $doc->getField('layout'));
         $this->assertEquals('foo.md', $doc->getPath());
+    }
 
+    public function testGet()
+    {
+        $doc = new Document;
+        $doc->setContent('This is my content');
+        $doc->setField('title', 'My Page');
+        $doc->setField('layout', 'custom.html');
+        $doc->setPath('foo.md');
+        $this->assertEquals('This is my content', $doc->content);
+        $this->assertEquals('My Page', $doc->title);
+        $this->assertEquals('custom.html', $doc->layout);
+        $this->assertEquals('foo.md', $doc->path);
     }
 }
