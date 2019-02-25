@@ -4,11 +4,27 @@ namespace Statico\Core\Objects;
 
 final class Document
 {
+    /**
+     * @var string
+     */
     protected $content;
 
+    /**
+     * @var array
+     */
     protected $data = [];
 
+    /**
+     * @var string
+     */
     protected $path;
+
+    public function __construct()
+    {
+        $this->content = '';
+        $this->data = [];
+        $this->path = '';
+    }
 
     public function getContent(): string
     {
