@@ -7,6 +7,7 @@ use Mni\FrontYAML\Parser;
 use Statico\Core\Traits\ParsesPath;
 use Statico\Core\Contracts\Sources\Source;
 use Statico\Core\Factories\DocumentFactory;
+use Statico\Core\Objects\Document;
 
 final class MarkdownFiles implements Source
 {
@@ -43,7 +44,7 @@ final class MarkdownFiles implements Source
         return $searchable;
     }
 
-    public function find(string $name)
+    public function find(string $name): ?Document
     {
         // Does that page exist?
         $path = rtrim($name, '/') . '.md';
