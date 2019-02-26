@@ -12,4 +12,5 @@ $container = $kernel->getContainer();
 $app->add($container->get('Statico\Core\Console\Shell'));
 $app->add($container->get('Statico\Core\Console\Server'));
 $app->add($container->get('Statico\Core\Console\GenerateIndex'));
+$app->add($container->get('Statico\Core\Console\GenerateSitemap'));
 $app->run();

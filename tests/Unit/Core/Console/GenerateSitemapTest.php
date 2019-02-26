@@ -13,7 +13,7 @@ class GenerateSitemapTest extends TestCase
     public function testExecute()
     {
         $response = <<<EOF
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://mysite.com/foo/</loc>
@@ -27,9 +27,9 @@ EOF;
         $doc->setPath('foo.md');
 
         $source = m::mock('Statico\Core\Contracts\Sources\Source');
-        $source->shouldReceive('all')->once()->andReturn([[
+        $source->shouldReceive('all')->once()->andReturn([
             $doc
-        ]]);
+        ]);
         $manager = m::mock('League\Flysystem\MountManager');
         $manager->shouldReceive('put')
             ->with('assets://sitemap.xml', $response)
