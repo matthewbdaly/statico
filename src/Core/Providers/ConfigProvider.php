@@ -3,20 +3,24 @@
 namespace Statico\Core\Providers;
 
 use League\Container\ServiceProvider\AbstractServiceProvider;
+use Zend\Config\Reader\Yaml;
+use Zend\Config\Config;
+use Zend\Config\Factory;
 
 final class ConfigProvider extends AbstractServiceProvider
 {
     protected $provides = [
-        'Zend\Config\Reader\ReaderInterface',
+        'Zend\Config\Config',
     ];
 
     public function register(): void
     {
         // Register items
         $this->getContainer()
-            ->share('Zend\Config\Reader\ReaderInterface', function () {
+            ->share('Zend\Config\Config', function () {
                 $parser = $this->getContainer()->get('Statico\Core\Utilities\YamlWrapper');
-                return new \Zend\Config\Reader\Yaml($parser);
+                Factory::registerReader('yml', new Yaml($parser));
+                return new Config(Factory::fromFile('config.yml'));
             });
     }
 }

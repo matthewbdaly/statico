@@ -8,8 +8,7 @@ class ConfigProviderTest extends TestCase
 {
     public function testCreateContainer(): void
     {
-        $config = $this->container->get('Zend\Config\Reader\ReaderInterface');
-        $this->assertInstanceOf('Zend\Config\Reader\ReaderInterface', $config);
-        $this->assertInstanceOf('Zend\Config\Reader\Yaml', $config);
+        $config = $this->container->get('Zend\Config\Config');
+        $this->assertInstanceOf('Zend\Config\Config', $config);
     }
 }
