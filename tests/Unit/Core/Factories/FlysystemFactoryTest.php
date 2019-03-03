@@ -9,9 +9,10 @@ class FlysystemFactoryTest extends TestCase
 {
     public function testLocal()
     {
-        $factory = FlysystemFactory::create([
+        $factory = new FlysystemFactory;
+        $adapter = $factory->make([
             'path' => 'content/'
         ]);
-        $this->assertInstanceOf('League\Flysystem\Adapter\Local', $factory);
+        $this->assertInstanceOf('League\Flysystem\Adapter\Local', $adapter);
     }
 }

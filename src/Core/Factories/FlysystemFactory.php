@@ -6,7 +6,7 @@ use League\Flysystem\Adapter\Local;
 
 final class FlysystemFactory
 {
-    public static function create(array $config)
+    public function make(array $config)
     {
         return new Local(BASE_DIR.'/'.$config['path']);
     }
