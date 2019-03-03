@@ -6,9 +6,16 @@ use Tests\TestCase;
 
 class CacheProviderTest extends TestCase
 {
-    public function testCreateContainer(): void
+    public function testCreateCache(): void
     {
         $cache = $this->container->get('Psr\Cache\CacheItemPoolInterface');
+        $this->assertInstanceOf('Psr\Cache\CacheItemPoolInterface', $cache);
+        $this->assertInstanceOf('Stash\Pool', $cache);
+    }
+
+    public function testCreatePool(): void
+    {
+        $cache = $this->container->get('Stash\Pool');
         $this->assertInstanceOf('Psr\Cache\CacheItemPoolInterface', $cache);
         $this->assertInstanceOf('Stash\Pool', $cache);
     }
