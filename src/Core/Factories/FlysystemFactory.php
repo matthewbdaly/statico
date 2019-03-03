@@ -6,8 +6,8 @@ use League\Flysystem\Adapter\Local;
 
 final class FlysystemFactory
 {
-    public static function create()
+    public static function create(array $config)
     {
-        return new Local(BASE_DIR.'/content');
+        return new Local(BASE_DIR.'/'.$config['path']);
     }
 }

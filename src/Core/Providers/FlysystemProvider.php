@@ -8,6 +8,7 @@ use League\Flysystem\Adapter\Local;
 use League\Flysystem\MountManager;
 use League\Flysystem\Cached\CachedAdapter;
 use League\Flysystem\Cached\Storage\Stash as StashStore;
+use Statico\Core\Factories\FlysystemFactory;
 
 final class FlysystemProvider extends AbstractServiceProvider
 {
@@ -28,13 +29,13 @@ final class FlysystemProvider extends AbstractServiceProvider
                 // Decorate the adapter
                 $contentFilesystem = new Filesystem(
                     new CachedAdapter(
-                        new Local(BASE_DIR.'/content/'),
+                        FlysystemFactory::create(['path' => 'content']),
                         $cacheStore
                     )
                 );
                 $assetFilesystem = new Filesystem(
                     new CachedAdapter(
-                        new Local(BASE_DIR.'/public/storage/'),
+                        FlysystemFactory::create(['path' => 'public/storage/']),
                         $cacheStore
                     )
                 );
