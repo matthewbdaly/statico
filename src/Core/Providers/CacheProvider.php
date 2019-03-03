@@ -9,6 +9,7 @@ use Stash\Driver\FileSystem;
 final class CacheProvider extends AbstractServiceProvider
 {
     protected $provides = [
+        'Stash\Pool',
         'Psr\Cache\CacheItemPoolInterface',
     ];
 
@@ -21,6 +22,8 @@ final class CacheProvider extends AbstractServiceProvider
                  $pool = new Pool($driver);
                  return $pool;
         });
-        $container->add('Psr\Cache\CacheItemPoolInterface', 'Stash\Pool');
+        $container->add('Psr\Cache\CacheItemPoolInterface', function () {
+            return $this->getContainer()->get('Stash\Pool');
+        });
     }
 }
