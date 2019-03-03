@@ -19,6 +19,9 @@ final class FlysystemFactory
 
     public function make(array $config)
     {
+        if (!isset($config['driver'])) {
+            $config['driver'] = 'local';
+        }
         switch ($config['driver']) {
             case 'dropbox':
                 $adapter = $this->createDropboxAdapter($config);
