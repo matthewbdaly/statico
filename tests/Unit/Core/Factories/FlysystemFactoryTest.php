@@ -41,7 +41,7 @@ class FlysystemFactoryTest extends TestCase
         $this->assertInstanceOf('League\Flysystem\Adapter\Local', $cache->getAdapter());
     }
 
-    public function testMisconfigurationException()
+    public function testLocalMisconfigured()
     {
         $this->expectException('Statico\Core\Exceptions\Factories\BadFlysystemConfigurationException');
         $pool = m::mock('Stash\Pool');
@@ -65,5 +65,15 @@ class FlysystemFactoryTest extends TestCase
         $cache = $fs->getAdapter();
         $this->assertInstanceOf('League\Flysystem\Cached\CachedAdapter', $cache);
         $this->assertInstanceOf('Spatie\FlysystemDropbox\DropboxAdapter', $cache->getAdapter());
+    }
+
+    public function testDropboxMisconfigured()
+    {
+        $this->expectException('Statico\Core\Exceptions\Factories\BadFlysystemConfigurationException');
+        $pool = m::mock('Stash\Pool');
+        $factory = new FlysystemFactory($pool);
+        $fs = $factory->make([
+            'driver' => 'dropbox',
+        ]);
     }
 }

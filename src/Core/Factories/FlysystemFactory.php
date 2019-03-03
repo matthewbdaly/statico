@@ -50,6 +50,9 @@ final class FlysystemFactory
 
     private function createDropboxAdapter(array $config)
     {
+        if (!isset($config['token'])) {
+            throw new BadFlysystemConfigurationException('Token not set for Dropbox driver');
+        }
         $client = new Client($config['token']);
         return new DropboxAdapter($client);
     }
