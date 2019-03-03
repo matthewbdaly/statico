@@ -15,11 +15,12 @@ final class CacheProvider extends AbstractServiceProvider
     public function register(): void
     {
         // Register items
-        $this->getContainer()
-             ->add('Psr\Cache\CacheItemPoolInterface', function () {
+        $container = $this->getContainer();
+        $container->add('Stash\Pool', function () {
                  $driver = new FileSystem;
                  $pool = new Pool($driver);
                  return $pool;
-             });
+        });
+        $container->add('Psr\Cache\CacheItemPoolInterface', 'Stash\Pool');
     }
 }
