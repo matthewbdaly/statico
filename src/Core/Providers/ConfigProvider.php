@@ -20,7 +20,7 @@ final class ConfigProvider extends AbstractServiceProvider
             ->share('Zend\Config\Config', function () {
                 $parser = $this->getContainer()->get('Statico\Core\Utilities\YamlWrapper');
                 Factory::registerReader('yml', new Yaml($parser));
-                return new Config(Factory::fromFile('config.yml'));
+                return new Config(Factory::fromFiles(glob('config/*.*')));
             });
     }
 }
