@@ -29,7 +29,11 @@
         "squizlabs/php_codesniffer": "^3.4",
         "phpstan/phpstan": "^0.10.7",
         "vimeo/psalm": "^3.0",
-        "infection/infection": "^0.12.2"
+        "infection/infection": "^0.12.2",
+        "spatie/flysystem-dropbox": "^1.0"
+    },
+    "suggest": {
+        "spatie/flysystem-dropbox": "Allows use of Dropbox as the Flysystem backend"
     },
     "license": "MIT",
     "authors": [

@@ -19,8 +19,14 @@ final class FlysystemProvider extends AbstractServiceProvider
                 $factory = $this->getContainer()->get('Statico\Core\Factories\FlysystemFactory');
 
                 // Decorate the adapter
-                $contentFilesystem = $factory->make(['path' => 'content']);
-                $assetFilesystem = $factory->make(['path' => 'public/storage/']);
+                $contentFilesystem = $factory->make([
+                    'driver' => 'local',
+                    'path' => 'content'
+                ]);
+                $assetFilesystem = $factory->make([
+                    'driver' => 'local',
+                    'path' => 'public/storage/'
+                ]);
                 return new MountManager([
                     'content' => $contentFilesystem,
                     'assets'  => $assetFilesystem,

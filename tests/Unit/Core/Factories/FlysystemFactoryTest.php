@@ -16,11 +16,29 @@ class FlysystemFactoryTest extends TestCase
         $pool->shouldReceive('isMiss')->once()->andReturn(true);
         $factory = new FlysystemFactory($pool);
         $fs = $factory->make([
+            'driver' => 'local',
             'path' => 'content/'
         ]);
         $this->assertInstanceOf('League\Flysystem\Filesystem', $fs);
         $cache = $fs->getAdapter();
         $this->assertInstanceOf('League\Flysystem\Cached\CachedAdapter', $cache);
         $this->assertInstanceOf('League\Flysystem\Adapter\Local', $cache->getAdapter());
+    }
+
+    public function testDropbox()
+    {
+        $pool = m::mock('Stash\Pool');
+        $pool->shouldReceive('getItem')->once()->andReturn($pool);
+        $pool->shouldReceive('get')->once()->andReturn(false);
+        $pool->shouldReceive('isMiss')->once()->andReturn(true);
+        $factory = new FlysystemFactory($pool);
+        $fs = $factory->make([
+            'driver' => 'dropbox',
+            'token' => 'foo'
+        ]);
+        $this->assertInstanceOf('League\Flysystem\Filesystem', $fs);
+        $cache = $fs->getAdapter();
+        $this->assertInstanceOf('League\Flysystem\Cached\CachedAdapter', $cache);
+        $this->assertInstanceOf('Spatie\FlysystemDropbox\DropboxAdapter', $cache->getAdapter());
     }
 }
