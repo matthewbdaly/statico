@@ -9,6 +9,7 @@ use League\Flysystem\Cached\Storage\Stash as StashStore;
 use Stash\Pool;
 use Spatie\Dropbox\Client;
 use Spatie\FlysystemDropbox\DropboxAdapter;
+use Statico\Core\Exceptions\Factories\BadFlysystemConfigurationException;
 
 final class FlysystemFactory
 {
@@ -41,6 +42,9 @@ final class FlysystemFactory
 
     private function createLocalAdapter(array $config)
     {
+        if (!isset($config['path'])) {
+            throw new BadFlysystemConfigurationException('Path not set for local driver');
+        }
         return new Local(BASE_DIR.'/'.$config['path']);
     }
 

@@ -41,6 +41,15 @@ class FlysystemFactoryTest extends TestCase
         $this->assertInstanceOf('League\Flysystem\Adapter\Local', $cache->getAdapter());
     }
 
+    public function testMisconfigurationException()
+    {
+        $this->expectException('Statico\Core\Exceptions\Factories\BadFlysystemConfigurationException');
+        $pool = m::mock('Stash\Pool');
+        $factory = new FlysystemFactory($pool);
+        $fs = $factory->make([
+        ]);
+    }
+
     public function testDropbox()
     {
         $pool = m::mock('Stash\Pool');
