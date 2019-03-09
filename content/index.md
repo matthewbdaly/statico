@@ -1,5 +1,9 @@
 ---
-title: "Home"
+title: "Statico"
 ---
 
-Welcome to my website.
+Statico is a content management system intended for brochure sites. It's designed to work without any kind of database - instead, the content is stored in Markdown files.
+
+```
+composer update
+```
