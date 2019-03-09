@@ -1,5 +1,4 @@
 vendor/
-cache/*
 build/
 tags
 node_modules/
