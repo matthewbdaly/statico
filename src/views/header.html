@@ -1,20 +1,24 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">Navbar</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="list-reset flex">
-      <li class="mr-6">
-        <a class="text-blue hover:text-blue-darker" href="/">Home</a>
-      </li>
-      <li class="mr-6">
-        <a class="text-blue hover:text-blue-darker" href="/about/">About</a>
-      </li>
-      <form class="form-inline my-2 my-lg-0 pull-right" method="GET" name="searchForm" id="searchForm">
-        <input class="form-control mr-sm-2" id="search" name="q" maxlength="200" autocomplete="off" type="search" placeholder="Search" aria-label="Search">
-        <ul class="searchresults"></ul>
-      </form>
-    </ul>
+<nav class="flex items-center justify-between flex-wrap bg-teal p-6">
+  <div class="flex items-center flex-no-shrink text-white mr-6">
+    <span class="font-semibold text-xl tracking-tight">Statico</span>
+  </div>
+  <div class="block lg:hidden">
+    <button class="flex items-center px-3 py-2 border rounded text-teal-lighter border-teal-light hover:text-white hover:border-white">
+      <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
+    </button>
+  </div>
+  <div class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
+    <div class="text-sm lg:flex-grow">
+      <a href="/" class="block mt-4 lg:inline-block lg:mt-0 text-teal-lighter hover:text-white mr-4">
+        Home
+      </a>
+      <a href="/about/" class="block mt-4 lg:inline-block lg:mt-0 text-teal-lighter hover:text-white mr-4">
+        About
+      </a>
+    <form class="form-inline my-2 my-lg-0 pull-right" method="GET" name="searchForm" id="searchForm">
+      <input class="form-control mr-sm-2" id="search" name="q" maxlength="200" autocomplete="off" type="search" placeholder="Search" aria-label="Search">
+      <ul class="searchresults"></ul>
+    </form>
+    </div>
   </div>
 </nav>
