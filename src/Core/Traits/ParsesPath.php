@@ -4,7 +4,7 @@ namespace Statico\Core\Traits;
 
 trait ParsesPath
 {
-    protected function parsePath(string $path): string
+    protected function parsePath(string $path): ?string
     {
         return preg_replace('/.(markdown|md)$/', '/', $path);
     }
