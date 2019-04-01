@@ -26,7 +26,7 @@
     },
     "homepage": "https://gitlab.com/statico-cms/statico#readme",
     "devDependencies": {
-        "@babel/core": "^7.3.4",
+        "@babel/core": "^7.4.0",
         "axios": "^0.18",
         "babel-loader": "^8.0.5",
         "bootstrap": "^4.0.0",
@@ -39,7 +39,6 @@
         "resolve-url-loader": "^2.3.1",
         "sass": "^1.15.2",
         "sass-loader": "^7.1.0",
-        "tailwindcss": "^0.7.4",
-        "vue-template-compiler": "^2.6.9"
+        "tailwindcss": "^0.7.4"
     }
 }
