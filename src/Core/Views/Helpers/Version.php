@@ -6,6 +6,6 @@ final class Version
 {
     public function __invoke(string $path): string
     {
-        return $path."?v=".filemtime($path);
+        return "/".$path."?v=".filemtime($path);
     }
 }
