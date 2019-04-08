@@ -73,7 +73,7 @@ final class Kernel
     public function handle(RequestInterface $request): \Psr\Http\Message\ResponseInterface
     {
         try {
-            $response = $this->router->dispatch($request, $this->container->get('response'));
+            $response = $this->router->dispatch($request);
         } catch (\League\Route\Http\Exception\NotFoundException $e) {
             $view = $this->container->get('Statico\Core\Contracts\Views\Renderer');
             $response = $view->render(
