@@ -2,7 +2,9 @@
 
 namespace Statico\Core\Objects;
 
-final class Document
+use Statico\Core\Contracts\Objects\Documentable;
+
+final class Document implements Documentable
 {
     /**
      * @var string
