@@ -3,8 +3,9 @@
 namespace Statico\Core\Objects;
 
 use Statico\Core\Contracts\Objects\Documentable;
+use JsonSerializable;
 
-final class Document implements Documentable
+final class Document implements Documentable, JsonSerializable
 {
     /**
      * @var string
@@ -91,5 +92,16 @@ final class Document implements Documentable
     public function getFields(): array
     {
         return $this->data;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function jsonSerialize()
+    {
+        $data = $this->getFields();
+        $data['content'] = $this->getContent();
+        $data['path'] = $this->getPath();
+        return $data;
     }
 }
