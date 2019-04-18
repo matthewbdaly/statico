@@ -3,9 +3,13 @@
 namespace Tests\Unit\Utilities;
 
 use Statico\Core\Utilities\Collection;
+use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
+use Mockery as m;
 
 class CollectionTest extends \PHPUnit\Framework\TestCase
 {
+    use MockeryPHPUnitIntegration;
+
     /**
      * @var \Statico\Core\Utilities\Collection
      */
@@ -277,12 +281,15 @@ class CollectionTest extends \PHPUnit\Framework\TestCase
     function testImplementsEach()
     {
         /** @var DateTime|\PHPUnit\Framework\MockObject\MockObject $date */
-        $date = $this->createMock(\DateTime::class);
+        $date = m::mock('DateTime');
+        $date->shouldReceive('setTimezone')
+            ->with('Europe/London')
+            ->once()
+            ->andReturn(null);
         $this->collection = new Collection([$date]);
         $this->collection->each(function ($item) {
             $item->setTimezone('Europe/London');
         });
-        $date->setTimezone('Europe/London')->shouldHaveBeenCalled();
     }
 
     function testImplementsPush()
@@ -422,9 +429,9 @@ class CollectionTest extends \PHPUnit\Framework\TestCase
     function testImplementsGroupBy()
     {
         $items = [
-                ['account_id' => 'account-x10', 'product' => 'Chair'],
-                    ['account_id' => 'account-x10', 'product' => 'Bookcase'],
-                        ['account_id' => 'account-x11', 'product' => 'Desk'],
+            ['account_id' => 'account-x10', 'product' => 'Chair'],
+            ['account_id' => 'account-x10', 'product' => 'Bookcase'],
+            ['account_id' => 'account-x11', 'product' => 'Desk'],
         ];
         $this->collection = new Collection($items);
         $this->assertSame([
