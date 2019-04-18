@@ -3,8 +3,6 @@
 namespace Tests\Unit\Utilities;
 
 use Statico\Core\Utilities\Collection;
-use PhpSpec\ObjectBehavior;
-use Prophecy\Argument;
 
 class CollectionTest extends \PHPUnit\Framework\TestCase
 {
@@ -29,7 +27,7 @@ class CollectionTest extends \PHPUnit\Framework\TestCase
 
     function testImplementsCountable()
     {
-        $this->collection->shouldImplement('Countable');
+        $this->assertInstanceOf('Countable', $this->collection);
     }
 
     function testCanCountCorrectly()
@@ -43,7 +41,7 @@ class CollectionTest extends \PHPUnit\Framework\TestCase
 
     function testImplementsArrayAccess()
     {
-        $this->collection->shouldImplement('ArrayAccess');
+        $this->assertInstanceOf('ArrayAccess', $this->collection);
     }
 
     function testCanConfirmOffsetExists()
@@ -107,12 +105,12 @@ class CollectionTest extends \PHPUnit\Framework\TestCase
 
     function testImplementsTraversable()
     {
-        $this->collection->shouldImplement('Traversable');
+        $this->assertInstanceOf('Traversable', $this->collection);
     }
 
     function testImplementsIterator()
     {
-        $this->collection->shouldImplement('Iterator');
+        $this->assertInstanceOf('Iterator', $this->collection);
     }
 
     function testCanGetCurrentPosition()
@@ -167,7 +165,7 @@ class CollectionTest extends \PHPUnit\Framework\TestCase
 
     function testImplementsJsonSerializable()
     {
-        $this->collection->shouldImplement('JsonSerializable');
+        $this->assertInstanceOf('JsonSerializable', $this->collection);
     }
 
     function testCanJsonSerialize()
@@ -182,7 +180,7 @@ class CollectionTest extends \PHPUnit\Framework\TestCase
 
     function testImplementsCollectable()
     {
-        $this->collection->shouldImplement('Matthewbdaly\Proper\Contracts\Collectable');
+        $this->assertInstanceOf('Statico\Core\Contracts\Utilities\Collectable', $this->collection);
     }
 
     function testCanConvertToJson()

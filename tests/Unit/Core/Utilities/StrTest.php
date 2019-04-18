@@ -3,15 +3,14 @@
 namespace Tests\Unit\Utilities;
 
 use Statico\Core\Utilities\Str;
-use PhpSpec\ObjectBehavior;
-use Prophecy\Argument;
 
 class StrTest extends \PHPUnit\Framework\TestCase
 {
     /**
-     * @var \Matthewbdaly\Proper\Str
+     * @var \Statico\Core\Utilities\Str
      */
     private $str;
+
     protected function setUp()
     {
         $str = 'I am the very model of a modern major general';
@@ -20,7 +19,7 @@ class StrTest extends \PHPUnit\Framework\TestCase
 
     function testImplementsCountable()
     {
-        $this->str->shouldImplement('Countable');
+        $this->assertInstanceOf('Countable', $this->str);
     }
 
     function testCanCountCorrectly()
@@ -37,7 +36,7 @@ class StrTest extends \PHPUnit\Framework\TestCase
 
     function testImplementsArrayAccess()
     {
-        $this->str->shouldImplement('ArrayAccess');
+        $this->assertInstanceOf('ArrayAccess', $this->str);
     }
 
     function testCanConfirmOffsetExists()
@@ -72,12 +71,12 @@ class StrTest extends \PHPUnit\Framework\TestCase
 
     function testImplementsTraversable()
     {
-        $this->str->shouldImplement('Traversable');
+        $this->assertInstanceOf('Traversable', $this->str);
     }
 
     function testImplementsIterator()
     {
-        $this->str->shouldImplement('Iterator');
+        $this->assertInstanceOf('Iterator', $this->str);
     }
 
     function testCanGetCurrentPosition()
