@@ -2,6 +2,10 @@
 
 require_once __DIR__.'/../bootstrap.php';
 
+if (!defined('PUBLIC_DIR')) {
+    define('PUBLIC_DIR', __DIR__);
+}
+
 $request = Zend\Diactoros\ServerRequestFactory::fromGlobals(
     $_SERVER,
     $_GET,
@@ -9,7 +13,7 @@ $request = Zend\Diactoros\ServerRequestFactory::fromGlobals(
     $_COOKIE,
     $_FILES
 );
- 
+
 $app = new Statico\Core\Kernel;
 $response = $app->bootstrap()
     ->handle($request);

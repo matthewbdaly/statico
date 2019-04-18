@@ -17,6 +17,9 @@ class TestCase extends \PHPUnit\Framework\TestCase
         if (!defined('CONTENT_PATH')) {
             define('CONTENT_PATH', 'content/');
         }
+        if (!defined('PUBLIC_DIR')) {
+            define('PUBLIC_DIR', __DIR__.'/../public/');
+        }
         $this->app = new Kernel;
         $this->app->bootstrap();
         $this->container = $this->app->getContainer();
