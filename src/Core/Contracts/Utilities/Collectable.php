@@ -15,7 +15,7 @@ interface Collectable
     public static function make(array $items);
 
     /**
-     * Convert collection to JSON
+    !( * onvert collection to J)SON
      *
      * @return string
      */

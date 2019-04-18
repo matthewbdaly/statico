@@ -7,9 +7,10 @@ use Statico\Core\Utilities\Collection;
 class CollectionTest extends \PHPUnit\Framework\TestCase
 {
     /**
-     * @var \Matthewbdaly\Proper\Collection
+     * @var \Statico\Core\Utilities\Collection
      */
     private $collection;
+
     protected function setUp()
     {
         $items = [];
