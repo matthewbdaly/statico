@@ -472,24 +472,24 @@ class CollectionTest extends \PHPUnit\Framework\TestCase
     function testSupportsMacros()
     {
         $items = [16, 25];
-        $this->collection = new Collection($items);
-        $this->collection->macro('squareRoot', function() {
-            return $this->collection->map(function($number) {
+        $collection = new Collection($items);
+        $collection->macro('squareRoot', function () use ($collection) {
+            return $collection->map(function($number) {
                 return (int)sqrt($number);
             });
         });
-        $this->assertSame([4, 5], $this->collection->squareRoot()->toArray());
+        $this->assertSame([4, 5], $collection->squareRoot()->toArray());
     }
 
     function testSupportsStaticMacros()
     {
-        Collection::macro('squareRoot', function() {
-            return $this->collection->map(function($number) {
+        $items = [16, 25];
+        $collection = new Collection($items);
+        Collection::macro('squareRoot', function () use ($collection) {
+            return $collection->map(function($number) {
                 return (int)sqrt($number);
             });
         });
-        $items = [16, 25];
-        $this->collection = new Collection($items);
-        $this->assertSame([4, 5], $this->collection->squareRoot()->toArray());
+        $this->assertSame([4, 5], $collection->squareRoot()->toArray());
     }
 }
