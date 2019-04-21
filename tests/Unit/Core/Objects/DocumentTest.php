@@ -14,11 +14,11 @@ class DocumentTest extends TestCase
         $doc->setContent('This is my content');
         $doc->setField('title', 'My Page');
         $doc->setField('layout', 'custom.html');
-        $doc->setPath('foo.md');
+        $doc->setPath('foo');
         $this->assertEquals('This is my content', $doc->getContent());
         $this->assertEquals('My Page', $doc->getField('title'));
         $this->assertEquals('custom.html', $doc->getField('layout'));
-        $this->assertEquals('foo.md', $doc->getPath());
+        $this->assertEquals('foo', $doc->getPath());
     }
 
     public function testTostring()
@@ -34,11 +34,11 @@ class DocumentTest extends TestCase
         $doc->content = 'This is my content';
         $doc->title = 'My Page';
         $doc->layout = 'custom.html';
-        $doc->path = 'foo.md';
+        $doc->path = 'foo';
         $this->assertEquals('This is my content', $doc->getContent());
         $this->assertEquals('My Page', $doc->getField('title'));
         $this->assertEquals('custom.html', $doc->getField('layout'));
-        $this->assertEquals('foo.md', $doc->getPath());
+        $this->assertEquals('foo', $doc->getPath());
     }
 
     public function testGet()
@@ -47,11 +47,11 @@ class DocumentTest extends TestCase
         $doc->setContent('This is my content');
         $doc->setField('title', 'My Page');
         $doc->setField('layout', 'custom.html');
-        $doc->setPath('foo.md');
+        $doc->setPath('foo');
         $this->assertEquals('This is my content', $doc->content);
         $this->assertEquals('My Page', $doc->title);
         $this->assertEquals('custom.html', $doc->layout);
-        $this->assertEquals('foo.md', $doc->path);
+        $this->assertEquals('foo', $doc->path);
     }
 
     public function testGetFields()
@@ -60,7 +60,7 @@ class DocumentTest extends TestCase
         $doc->setContent('This is my content');
         $doc->setField('title', 'My Page');
         $doc->setField('layout', 'custom.html');
-        $doc->setPath('foo.md');
+        $doc->setPath('foo');
         $this->assertEquals([
             'title' => 'My Page',
             'layout' => 'custom.html'
