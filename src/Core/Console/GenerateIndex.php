@@ -37,6 +37,6 @@ final class GenerateIndex extends Command
     protected function execute(InputInterface $input, OutputInterface $output): void
     {
         $searchable = $this->source->all();
-        $this->manager->put('assets://index.json', json_encode($searchable, JSON_UNESCAPED_SLASHES));
+        $this->manager->put('assets://index.json', json_encode($searchable->toArray()));
     }
 }
