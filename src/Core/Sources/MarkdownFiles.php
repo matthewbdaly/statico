@@ -38,6 +38,9 @@ final class MarkdownFiles implements Source
             if ($file['type'] == 'dir') {
                 continue;
             }
+            if (!preg_match('/.(markdown|md)$/', $file['path'])) {
+                continue;
+            }
             if ($content = $this->manager->read('content://'.$file['path'])) {
                 $searchable->push(
                     DocumentFactory::fromYaml($this->parser->parse($content), $file['path'])
