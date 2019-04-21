@@ -8,6 +8,7 @@ use Statico\Core\Traits\ParsesPath;
 use Statico\Core\Contracts\Sources\Source;
 use Statico\Core\Factories\DocumentFactory;
 use Statico\Core\Objects\Document;
+use Statico\Core\Utilities\Collection;
 
 final class MarkdownFiles implements Source
 {
@@ -29,16 +30,18 @@ final class MarkdownFiles implements Source
         $this->parser = $parser;
     }
  
-    public function all(): array
+    public function all(): Collection
     {
         $files = $this->manager->listContents('content://', true);
-        $searchable = [];
+        $searchable = Collection::make([]);
         foreach ($files as $file) {
             if ($file['type'] == 'dir') {
                 continue;
             }
             if ($content = $this->manager->read('content://'.$file['path'])) {
-                $searchable[] = DocumentFactory::fromYaml($this->parser->parse($content), $file['path']);
+                $searchable->push(
+                    DocumentFactory::fromYaml($this->parser->parse($content), $file['path'])
+                );
             }
         }
         return $searchable;

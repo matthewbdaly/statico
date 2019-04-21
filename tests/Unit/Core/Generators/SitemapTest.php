@@ -6,6 +6,7 @@ use Tests\TestCase;
 use Mockery as m;
 use Statico\Core\Objects\Document;
 use Statico\Core\Generators\XmlStringSitemap;
+use Statico\Core\Utilities\Collection;
 use Zend\Config\Config;
 
 class SitemapTest extends TestCase
@@ -21,11 +22,10 @@ EOF;
         $doc->setField('title', 'My Page');
         $doc->setField('layout', 'custom.html');
         $doc->setPath('foo.md');
+        $docs = Collection::make([$doc]);
 
         $source = m::mock('Statico\Core\Contracts\Sources\Source');
-        $source->shouldReceive('all')->once()->andReturn([
-            $doc
-        ]);
+        $source->shouldReceive('all')->once()->andReturn($docs);
         $config = m::mock('Zend\Config\Config');
         $config->shouldReceive('get')
             ->with('base_url')
