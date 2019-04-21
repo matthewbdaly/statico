@@ -43,7 +43,7 @@ final class MarkdownFiles implements Source
             }
             if ($content = $this->manager->read('content://'.$file['path'])) {
                 $searchable->push(
-                    DocumentFactory::fromYaml($this->parser->parse($content), $file['path'])
+                    DocumentFactory::fromYaml($this->parser->parse($content), $this->stripExtension($file['path']))
                 );
             }
         }
@@ -63,5 +63,10 @@ final class MarkdownFiles implements Source
             return null;
         }
         return DocumentFactory::fromYaml($this->parser->parse($rawcontent), $path);
+    }
+
+    private function stripExtension(string $path)
+    {
+        return preg_replace('/.(markdown|md)$/', '', $path);
     }
 }
