@@ -2,7 +2,13 @@
 title: "Statico"
 ---
 
-Statico is a content management system intended for brochure sites. It's designed to work without any kind of database - instead, the content is stored in Markdown files.
+Statico is a content management system intended largelyfor brochure sites.
+
+It's designed to be decoupled from the data source. Out of the box, it supports Markdown files as the data source - however, by implementing the simple `Source` interface, you can theoretically return the data from any source you like.
+
+In addition, Markdown files are retrieved using Flysystem, and can therefore be stored either locally, or remotely using one of the supported services. For instance, you can configure it to retrieve the content from a Dropbox folder, making updates simple.
+
+It uses Twig to render the views by default, but swapping to another template system should be straightforward.
 
 ```
 composer update
