@@ -4,7 +4,6 @@ namespace Statico\Core\Sources;
 
 use League\Flysystem\MountManager;
 use Mni\FrontYAML\Parser;
-use Statico\Core\Traits\ParsesPath;
 use Statico\Core\Contracts\Sources\Source;
 use Statico\Core\Factories\DocumentFactory;
 use Statico\Core\Objects\Document;
@@ -12,8 +11,6 @@ use Statico\Core\Utilities\Collection;
 
 final class MarkdownFiles implements Source
 {
-    use ParsesPath;
-
     /**
      * @var MountManager
      */

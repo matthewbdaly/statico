@@ -3,15 +3,12 @@
 namespace Statico\Core\Generators;
 
 use SimpleXmlElement;
-use Statico\Core\Traits\ParsesPath;
 use Statico\Core\Contracts\Sources\Source;
 use Statico\Core\Contracts\Generators\Sitemap;
 use Zend\Config\Config;
 
 final class XmlStringSitemap implements Sitemap
 {
-    use ParsesPath;
-
     /**
      * @var Config
      */
@@ -37,5 +34,10 @@ final class XmlStringSitemap implements Sitemap
             $item->addChild('loc', $this->config->get('base_url') . '/' . $this->parsePath($document->getPath()));
         }
         return $xml->asXml();
+    }
+
+    private function parsePath(string $path): string
+    {
+        return preg_replace('/.(markdown|md)$/', '/', $path);
     }
 }
