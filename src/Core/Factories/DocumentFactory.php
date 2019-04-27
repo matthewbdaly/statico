@@ -7,7 +7,7 @@ use Mni\FrontYAML\Document as YamlDocument;
 
 final class DocumentFactory
 {
-    public static function fromYaml(YamlDocument $doc, string $path)
+    public static function fromYaml(YamlDocument $doc, string $path): Document
     {
         $document = new Document;
         $document->setContent($doc->getContent());
