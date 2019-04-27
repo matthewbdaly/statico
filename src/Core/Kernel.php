@@ -5,7 +5,7 @@ namespace Statico\Core;
 use Zend\Diactoros\ServerRequestFactory;
 use League\Container\Container;
 use League\Container\ReflectionContainer;
-use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ServerRequestInterface;
 use ReflectionClass;
 
 /**
@@ -67,10 +67,10 @@ final class Kernel
     /**
      * Handle a request
      *
-     * @param RequestInterface $request HTTP request.
+     * @param ServerRequestInterface $request HTTP request.
      * @return \Psr\Http\Message\ResponseInterface
      */
-    public function handle(RequestInterface $request): \Psr\Http\Message\ResponseInterface
+    public function handle(ServerRequestInterface $request): \Psr\Http\Message\ResponseInterface
     {
         try {
             $response = $this->router->dispatch($request);
