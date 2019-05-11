@@ -3,7 +3,7 @@
 namespace Statico\Core\Utilities\Traits;
 
 use Closure;
-use Statico\Core\Contracts\Collectable;
+use Statico\Core\Utilities\Collection;
 use OutOfBoundsException;
 
 /**
@@ -168,7 +168,7 @@ trait IsCollection
      * Map operation
      *
      * @param Closure $callback The callback to use.
-     * @return Collectable
+     * @return Collection
      */
     public function map(Closure $callback)
     {
@@ -179,7 +179,7 @@ trait IsCollection
      * Filter operation
      *
      * @param Closure $callback The callback to use.
-     * @return Collectable
+     * @return Collection
      */
     public function filter(Closure $callback)
     {
@@ -190,7 +190,7 @@ trait IsCollection
      * Reverse filter operation
      *
      * @param Closure $callback The callback to use.
-     * @return Collectable
+     * @return Collection
      */
     public function reject(Closure $callback)
     {
@@ -245,7 +245,7 @@ trait IsCollection
      * Push item to end of collection
      *
      * @param mixed $item Item to push.
-     * @return Collectable
+     * @return Collection
      */
     public function push($item)
     {
@@ -267,7 +267,7 @@ trait IsCollection
      * Push item to start of collection
      *
      * @param mixed $item Item to push.
-     * @return Collectable
+     * @return Collection
      */
     public function unshift($item)
     {
@@ -289,7 +289,7 @@ trait IsCollection
      * Sort collection
      *
      * @param Closure|null $callback The callback to use.
-     * @return Collectable
+     * @return Collection
      */
     public function sort(Closure $callback = null)
     {
@@ -304,7 +304,7 @@ trait IsCollection
     /**
      * Reverse collection
      *
-     * @return Collectable
+     * @return Collection
      */
     public function reverse()
     {
@@ -314,7 +314,7 @@ trait IsCollection
     /**
      * Return keys
      *
-     * @return Collectable
+     * @return Collection
      */
     public function keys()
     {
@@ -324,7 +324,7 @@ trait IsCollection
     /**
      * Return values
      *
-     * @return Collectable
+     * @return Collection
      */
     public function values()
     {
@@ -335,7 +335,7 @@ trait IsCollection
      * Return chunked collection
      *
      * @param integer $size Chunk size.
-     * @return Collectable
+     * @return Collection
      */
     public function chunk(int $size)
     {
@@ -346,7 +346,7 @@ trait IsCollection
      * Merge another array into the collection
      *
      * @param mixed $merge Array to merge.
-     * @return Collectable
+     * @return Collection
      */
     public function merge($merge)
     {
@@ -357,7 +357,7 @@ trait IsCollection
      * Seek a position
      *
      * @param mixed $position Position to seek.
-     * @return Collectable
+     * @return Collection
      * @throws OutOfBoundsException Invalid position.
      */
     public function seek($position)
@@ -373,7 +373,7 @@ trait IsCollection
      * Group by a given key
      *
      * @param string $key Key to group by.
-     * @return Collectable
+     * @return Collection
      */
     public function groupBy(string $key)
     {
@@ -387,7 +387,7 @@ trait IsCollection
     /**
      * Flatten items
      *
-     * @return Collectable
+     * @return Collection
      */
     public function flatten()
     {

@@ -3,6 +3,7 @@
 namespace Statico\Core\Contracts\Utilities;
 
 use Closure;
+use OutOfBoundsException;
 
 interface Collectable
 {
