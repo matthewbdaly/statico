@@ -67,7 +67,7 @@ final class Document implements Documentable, JsonSerializable
         return $this->content;
     }
 
-    public function __get(string $name)
+    public function __get(string $name): string
     {
         if ($name == 'content') {
             return $this->getContent();
@@ -98,7 +98,7 @@ final class Document implements Documentable, JsonSerializable
     /**
      * {@inheritDoc}
      */
-    public function jsonSerialize()
+    public function jsonSerialize(): array
     {
         $data = $this->getFields();
         $data['content'] = $this->getContent();

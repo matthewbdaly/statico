@@ -13,12 +13,17 @@ use Statico\Core\Exceptions\Factories\BadFlysystemConfigurationException;
 
 final class FlysystemFactory
 {
+    /**
+     * @var Pool
+     */
+    private $pool;
+
     public function __construct(Pool $pool)
     {
         $this->pool = $pool;
     }
 
-    public function make(array $config)
+    public function make(array $config): Filesystem
     {
         if (!isset($config['driver'])) {
             $config['driver'] = 'local';
@@ -40,7 +45,7 @@ final class FlysystemFactory
         );
     }
 
-    private function createLocalAdapter(array $config)
+    private function createLocalAdapter(array $config): Local
     {
         if (!isset($config['path'])) {
             throw new BadFlysystemConfigurationException('Path not set for local driver');
@@ -48,7 +53,7 @@ final class FlysystemFactory
         return new Local(BASE_DIR.'/'.$config['path']);
     }
 
-    private function createDropboxAdapter(array $config)
+    private function createDropboxAdapter(array $config): DropboxAdapter
     {
         if (!isset($config['token'])) {
             throw new BadFlysystemConfigurationException('Token not set for Dropbox driver');
