@@ -47,7 +47,7 @@ class Str implements Countable, ArrayAccess, SeekableIterator, Stringable
      * @param string $string String to use.
      * @return Str
      */
-    public static function make(string $string): Stringable
+    public static function make(string $string): Str
     {
         return new static($string);
     }

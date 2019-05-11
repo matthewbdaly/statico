@@ -2,7 +2,7 @@
 
 namespace Statico\Core\Utilities\Traits;
 
-use Statico\Core\Contracts\Utilities\Stringable;
+use Statico\Core\Utilities\Str;
 use OutOfBoundsException;
 
 /**
@@ -148,9 +148,9 @@ trait IsString
      *
      * @param string $find    Text to find.
      * @param string $replace Text to replace.
-     * @return Stringable
+     * @return Str
      */
-    public function replace(string $find, string $replace): Stringable
+    public function replace(string $find, string $replace): Str
     {
         return new static(str_replace($find, $replace, $this->string));
     }
@@ -158,9 +158,9 @@ trait IsString
     /**
      * Convert to upper case
      *
-     * @return Stringable
+     * @return Str
      */
-    public function toUpper(): Stringable
+    public function toUpper(): Str
     {
         return new static(strtoupper($this->string));
     }
@@ -168,9 +168,9 @@ trait IsString
     /**
      * Convert to lower case
      *
-     * @return Stringable
+     * @return Str
      */
-    public function toLower(): Stringable
+    public function toLower(): Str
     {
         return new static(strtolower($this->string));
     }
@@ -178,9 +178,9 @@ trait IsString
     /**
      * Trim whitespace
      *
-     * @return Stringable
+     * @return Str
      */
-    public function trim(): Stringable
+    public function trim(): Str
     {
         return new static(trim($this->string));
     }
@@ -188,9 +188,9 @@ trait IsString
     /**
      * Trim left whitespace
      *
-     * @return Stringable
+     * @return Str
      */
-    public function ltrim(): Stringable
+    public function ltrim(): Str
     {
         return new static(ltrim($this->string));
     }
@@ -198,9 +198,9 @@ trait IsString
     /**
      * Trim right whitespace
      *
-     * @return Stringable
+     * @return Str
      */
-    public function rtrim(): Stringable
+    public function rtrim(): Str
     {
         return new static(rtrim($this->string));
     }
@@ -209,7 +209,7 @@ trait IsString
      * Seek a position
      *
      * @param mixed $position Position to seek.
-     * @return Stringable
+     * @return Str
      * @throws OutOfBoundsException Invalid position.
      */
     public function seek($position)

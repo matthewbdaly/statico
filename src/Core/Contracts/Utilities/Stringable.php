@@ -2,15 +2,17 @@
 
 namespace Statico\Core\Contracts\Utilities;
 
+use Statico\Core\Utilities\Str;
+
 interface Stringable
 {
     /**
      * Create string
      *
      * @param string $string String to use.
-     * @return Stringable
+     * @return Str
      */
-    public static function make(string $string): Stringable;
+    public static function make(string $string): Str;
 
     /**
      * Return count of characters
@@ -99,42 +101,42 @@ interface Stringable
      *
      * @param string $find    Text to find.
      * @param string $replace Text to replace.
-     * @return Stringable
+     * @return Str
      */
-    public function replace(string $find, string $replace): Stringable;
+    public function replace(string $find, string $replace): Str;
 
     /**
      * Convert to upper case
      *
-     * @return Stringable
+     * @return Str
      */
-    public function toUpper(): Stringable;
+    public function toUpper(): Str;
 
     /**
      * Convert to lower case
      *
-     * @return Stringable
+     * @return Str
      */
-    public function toLower(): Stringable;
+    public function toLower(): Str;
 
     /**
      * Trim whitespace
      *
-     * @return Stringable
+     * @return Str
      */
-    public function trim(): Stringable;
+    public function trim(): Str;
 
     /**
      * Trim left whitespace
      *
-     * @return Stringable
+     * @return Str
      */
-    public function ltrim(): Stringable;
+    public function ltrim(): Str;
 
     /**
      * Trim right whitespace
      *
-     * @return Stringable
+     * @return Str
      */
-    public function rtrim(): Stringable;
+    public function rtrim(): Str;
 }
