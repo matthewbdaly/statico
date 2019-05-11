@@ -71,14 +71,14 @@ final class Document implements Documentable, JsonSerializable
     {
         if ($name == 'content') {
             return $this->getContent();
-        } else if ($name == 'path') {
-            return $this->getPath();
-        } else {
-            return $this->getField($name);
         }
+        if ($name == 'path') {
+            return $this->getPath();
+        }
+        return $this->getField($name);
     }
 
-    public function __set(string $name, string $value)
+    public function __set(string $name, string $value): Document
     {
         if ($name == 'content') {
             $this->setContent($value);
@@ -87,6 +87,7 @@ final class Document implements Documentable, JsonSerializable
         } else {
             $this->setField($name, $value);
         }
+        return $this;
     }
 
     public function getFields(): array

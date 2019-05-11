@@ -63,13 +63,13 @@ trait IsString
      * @param mixed $value  The value to set.
      * @return void
      */
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value): void
     {
         if (is_null($offset)) {
             $this->string .= $value;
-        } else {
-            $this->string[$offset] = $value;
+            return;
         }
+        $this->string[$offset] = $value;
     }
 
     /**

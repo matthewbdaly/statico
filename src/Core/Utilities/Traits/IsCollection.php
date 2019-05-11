@@ -64,13 +64,13 @@ trait IsCollection
      * @param mixed $value  The value to set.
      * @return void
      */
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value): void
     {
         if (is_null($offset)) {
             $this->items[] = $value;
-        } else {
-            $this->items[$offset] = $value;
+            return;
         }
+        $this->items[$offset] = $value;
     }
 
     /**
