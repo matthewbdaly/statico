@@ -40,7 +40,6 @@ final class MainController
         }
         $data = $document->getFields();
         $data['content'] = $document->getContent();
-        $title = $data['title'];
         $layout = isset($data['layout']) ? $data['layout'].'.html' : 'default.html';
         return $this->view->render($this->response, $layout, $data);
     }
