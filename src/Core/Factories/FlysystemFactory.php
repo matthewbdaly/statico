@@ -135,16 +135,13 @@ final class FlysystemFactory
         if (!isset($config['password']) && !isset($config['privatekey'])) {
             throw new BadFlysystemConfigurationException('Neither password nor private key set for SFTP driver');
         }
-        if (!isset($config['root'])) {
-            throw new BadFlysystemConfigurationException('Root not set for SFTP driver');
-        }
         return new SftpAdapter([
             'host' => $config['host'],
             'port' => isset($config['port']) ? $config['port'] : 22,
             'username' => $config['username'],
             'password' => $config['password'],
             'privateKey' => isset($config['privatekey']) ? $config['privatekey'] : null,
-            'root' => $config['root'],
+            'root' => isset($config['root']) ? $config['root'] : null,
             'timeout' => isset($config['timeout']) ? $config['timeout'] : 10,
         ]);
     }
