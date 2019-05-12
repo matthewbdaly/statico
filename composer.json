@@ -30,7 +30,8 @@
         "vimeo/psalm": "^3.0",
         "infection/infection": "^0.12.2",
         "spatie/flysystem-dropbox": "^1.0",
-        "phpmd/phpmd": "^2.6"
+        "phpmd/phpmd": "^2.6",
+        "league/flysystem-azure-blob-storage": "^0.1.5"
     },
     "suggest": {
         "spatie/flysystem-dropbox": "Allows use of Dropbox as the Flysystem backend"

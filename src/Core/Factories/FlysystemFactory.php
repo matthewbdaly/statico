@@ -6,10 +6,12 @@ use League\Flysystem\Adapter\Local;
 use League\Flysystem\Filesystem;
 use League\Flysystem\Cached\CachedAdapter;
 use League\Flysystem\Cached\Storage\Stash as StashStore;
+use League\Flysystem\AzureBlobStorage\AzureBlobStorageAdapter;
 use Stash\Pool;
 use Spatie\Dropbox\Client;
 use Spatie\FlysystemDropbox\DropboxAdapter;
 use Statico\Core\Exceptions\Factories\BadFlysystemConfigurationException;
+use MicrosoftAzure\Storage\Blob\BlobRestProxy;
 
 final class FlysystemFactory
 {
@@ -31,6 +33,9 @@ final class FlysystemFactory
         switch ($config['driver']) {
             case 'dropbox':
                 $adapter = $this->createDropboxAdapter($config);
+                break;
+            case 'azure':
+                $adapter = $this->createAzureAdapter($config);
                 break;
             default:
                 $adapter = $this->createLocalAdapter($config);
@@ -60,5 +65,25 @@ final class FlysystemFactory
         }
         $client = new Client($config['token']);
         return new DropboxAdapter($client);
+    }
+
+    private function createAzureAdapter(array $config): AzureBlobStorageAdapter
+    {
+        if (!isset($config['container'])) {
+            throw new BadFlysystemConfigurationException('Container not set for Azure driver');
+        }
+        if (!isset($config['name'])) {
+            throw new BadFlysystemConfigurationException('Account name not set for Azure driver');
+        }
+        if (!isset($config['key'])) {
+            throw new BadFlysystemConfigurationException('Account key not set for Azure driver');
+        }
+        $endpoint = sprintf(
+            'DefaultEndpointsProtocol=https;AccountName=%s;AccountKey=%s',
+            $config['name'],
+            $config['key']
+        );
+        $client = BlobRestProxy::createBlobService($endpoint);
+        return new AzureBlobStorageAdapter($client, $config['container']);
     }
 }

@@ -76,4 +76,33 @@ class FlysystemFactoryTest extends TestCase
             'driver' => 'dropbox',
         ]);
     }
+
+    public function testAzure()
+    {
+        $pool = m::mock('Stash\Pool');
+        $pool->shouldReceive('getItem')->once()->andReturn($pool);
+        $pool->shouldReceive('get')->once()->andReturn(false);
+        $pool->shouldReceive('isMiss')->once()->andReturn(true);
+        $factory = new FlysystemFactory($pool);
+        $fs = $factory->make([
+            'driver' => 'azure',
+            'container' => 'foo',
+            'name' => 'bar',
+            'key' => 'baz',
+        ]);
+        $this->assertInstanceOf('League\Flysystem\Filesystem', $fs);
+        $cache = $fs->getAdapter();
+        $this->assertInstanceOf('League\Flysystem\Cached\CachedAdapter', $cache);
+        $this->assertInstanceOf('League\Flysystem\AzureBlobStorage\AzureBlobStorageAdapter', $cache->getAdapter());
+    }
+
+    public function testAzureMisconfigured()
+    {
+        $this->expectException('Statico\Core\Exceptions\Factories\BadFlysystemConfigurationException');
+        $pool = m::mock('Stash\Pool');
+        $factory = new FlysystemFactory($pool);
+        $fs = $factory->make([
+            'driver' => 'azure',
+        ]);
+    }
 }
