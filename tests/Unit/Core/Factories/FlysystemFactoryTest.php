@@ -105,4 +105,35 @@ class FlysystemFactoryTest extends TestCase
             'driver' => 'azure',
         ]);
     }
+
+    public function testS3()
+    {
+        $pool = m::mock('Stash\Pool');
+        $pool->shouldReceive('getItem')->once()->andReturn($pool);
+        $pool->shouldReceive('get')->once()->andReturn(false);
+        $pool->shouldReceive('isMiss')->once()->andReturn(true);
+        $factory = new FlysystemFactory($pool);
+        $fs = $factory->make([
+            'driver' => 's3',
+            'bucket' => 'foo',
+            'key' => 'bar',
+            'secret' => 'baz',
+            'region' => 'foo',
+            'version' => 'latest',
+        ]);
+        $this->assertInstanceOf('League\Flysystem\Filesystem', $fs);
+        $cache = $fs->getAdapter();
+        $this->assertInstanceOf('League\Flysystem\Cached\CachedAdapter', $cache);
+        $this->assertInstanceOf('League\Flysystem\AwsS3v3\AwsS3Adapter', $cache->getAdapter());
+    }
+
+    public function testS3Misconfigured()
+    {
+        $this->expectException('Statico\Core\Exceptions\Factories\BadFlysystemConfigurationException');
+        $pool = m::mock('Stash\Pool');
+        $factory = new FlysystemFactory($pool);
+        $fs = $factory->make([
+            'driver' => 's3',
+        ]);
+    }
 }

@@ -7,11 +7,13 @@ use League\Flysystem\Filesystem;
 use League\Flysystem\Cached\CachedAdapter;
 use League\Flysystem\Cached\Storage\Stash as StashStore;
 use League\Flysystem\AzureBlobStorage\AzureBlobStorageAdapter;
+use League\Flysystem\AwsS3v3\AwsS3Adapter;
 use Stash\Pool;
 use Spatie\Dropbox\Client;
 use Spatie\FlysystemDropbox\DropboxAdapter;
 use Statico\Core\Exceptions\Factories\BadFlysystemConfigurationException;
 use MicrosoftAzure\Storage\Blob\BlobRestProxy;
+use Aws\S3\S3Client;
 
 final class FlysystemFactory
 {
@@ -36,6 +38,9 @@ final class FlysystemFactory
                 break;
             case 'azure':
                 $adapter = $this->createAzureAdapter($config);
+                break;
+            case 's3':
+                $adapter = $this->createS3Adapter($config);
                 break;
             default:
                 $adapter = $this->createLocalAdapter($config);
@@ -85,5 +90,33 @@ final class FlysystemFactory
         );
         $client = BlobRestProxy::createBlobService($endpoint);
         return new AzureBlobStorageAdapter($client, $config['container']);
+    }
+
+    private function createS3Adapter(array $config): AwsS3Adapter
+    {
+        if (!isset($config['bucket'])) {
+            throw new BadFlysystemConfigurationException('Bucket not set for S3 driver');
+        }
+        if (!isset($config['key'])) {
+            throw new BadFlysystemConfigurationException('Key not set for S3 driver');
+        }
+        if (!isset($config['secret'])) {
+            throw new BadFlysystemConfigurationException('Secret not set for S3 driver');
+        }
+        if (!isset($config['region'])) {
+            throw new BadFlysystemConfigurationException('Region not set for S3 driver');
+        }
+        if (!isset($config['version'])) {
+            throw new BadFlysystemConfigurationException('Version not set for S3 driver');
+        }
+        $client = new S3Client([
+            'credentials' => [
+                'key'    => $config['key'],
+                'secret' => $config['secret'],
+            ],
+            'region' => $config['region'],
+            'version' => $config['version'],
+        ]);
+        return new AwsS3Adapter($client, $config['bucket']);
     }
 }
