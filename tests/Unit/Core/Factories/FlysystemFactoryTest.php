@@ -166,4 +166,34 @@ class FlysystemFactoryTest extends TestCase
             'driver' => 'sftp',
         ]);
     }
+
+    public function testFTP()
+    {
+        $pool = m::mock('Stash\Pool');
+        $pool->shouldReceive('getItem')->once()->andReturn($pool);
+        $pool->shouldReceive('get')->once()->andReturn(false);
+        $pool->shouldReceive('isMiss')->once()->andReturn(true);
+        $factory = new FlysystemFactory($pool);
+        $fs = $factory->make([
+            'driver' => 'ftp',
+            'host' => 'foo.com',
+            'username' => 'bob',
+            'password' => 'password',
+            'root' => 'foo',
+        ]);
+        $this->assertInstanceOf('League\Flysystem\Filesystem', $fs);
+        $cache = $fs->getAdapter();
+        $this->assertInstanceOf('League\Flysystem\Cached\CachedAdapter', $cache);
+        $this->assertInstanceOf('League\Flysystem\Adapter\Ftp', $cache->getAdapter());
+    }
+
+    public function testFTPMisconfigured()
+    {
+        $this->expectException('Statico\Core\Exceptions\Factories\BadFlysystemConfigurationException');
+        $pool = m::mock('Stash\Pool');
+        $factory = new FlysystemFactory($pool);
+        $fs = $factory->make([
+            'driver' => 'ftp',
+        ]);
+    }
 }

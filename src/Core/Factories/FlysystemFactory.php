@@ -9,6 +9,7 @@ use League\Flysystem\Cached\Storage\Stash as StashStore;
 use League\Flysystem\AzureBlobStorage\AzureBlobStorageAdapter;
 use League\Flysystem\AwsS3v3\AwsS3Adapter;
 use League\Flysystem\Sftp\SftpAdapter;
+use League\Flysystem\Adapter\Ftp as FTPAdapter;
 use Stash\Pool;
 use Spatie\Dropbox\Client;
 use Spatie\FlysystemDropbox\DropboxAdapter;
@@ -45,6 +46,9 @@ final class FlysystemFactory
                 break;
             case 'sftp':
                 $adapter = $this->createSftpAdapter($config);
+                break;
+            case 'ftp':
+                $adapter = $this->createFtpAdapter($config);
                 break;
             default:
                 $adapter = $this->createLocalAdapter($config);
@@ -136,6 +140,28 @@ final class FlysystemFactory
             throw new BadFlysystemConfigurationException('Neither password nor private key set for SFTP driver');
         }
         return new SftpAdapter([
+            'host' => $config['host'],
+            'port' => isset($config['port']) ? $config['port'] : 22,
+            'username' => $config['username'],
+            'password' => $config['password'],
+            'privateKey' => isset($config['privatekey']) ? $config['privatekey'] : null,
+            'root' => isset($config['root']) ? $config['root'] : null,
+            'timeout' => isset($config['timeout']) ? $config['timeout'] : 10,
+        ]);
+    }
+
+    private function createFtpAdapter(array $config): FTPAdapter
+    {
+        if (!isset($config['host'])) {
+            throw new BadFlysystemConfigurationException('Host not set for FTP driver');
+        }
+        if (!isset($config['username'])) {
+            throw new BadFlysystemConfigurationException('Username not set for FTP driver');
+        }
+        if (!isset($config['password']) && !isset($config['privatekey'])) {
+            throw new BadFlysystemConfigurationException('Neither password nor private key set for FTP driver');
+        }
+        return new FTPAdapter([
             'host' => $config['host'],
             'port' => isset($config['port']) ? $config['port'] : 22,
             'username' => $config['username'],
