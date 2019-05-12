@@ -8,6 +8,7 @@ use League\Flysystem\Cached\CachedAdapter;
 use League\Flysystem\Cached\Storage\Stash as StashStore;
 use League\Flysystem\AzureBlobStorage\AzureBlobStorageAdapter;
 use League\Flysystem\AwsS3v3\AwsS3Adapter;
+use League\Flysystem\Sftp\SftpAdapter;
 use Stash\Pool;
 use Spatie\Dropbox\Client;
 use Spatie\FlysystemDropbox\DropboxAdapter;
@@ -41,6 +42,9 @@ final class FlysystemFactory
                 break;
             case 's3':
                 $adapter = $this->createS3Adapter($config);
+                break;
+            case 'sftp':
+                $adapter = $this->createSftpAdapter($config);
                 break;
             default:
                 $adapter = $this->createLocalAdapter($config);
@@ -118,5 +122,30 @@ final class FlysystemFactory
             'version' => $config['version'],
         ]);
         return new AwsS3Adapter($client, $config['bucket']);
+    }
+
+    private function createSftpAdapter(array $config): SftpAdapter
+    {
+        if (!isset($config['host'])) {
+            throw new BadFlysystemConfigurationException('Host not set for SFTP driver');
+        }
+        if (!isset($config['username'])) {
+            throw new BadFlysystemConfigurationException('Username not set for SFTP driver');
+        }
+        if (!isset($config['password']) && !isset($config['privatekey'])) {
+            throw new BadFlysystemConfigurationException('Neither password nor private key set for SFTP driver');
+        }
+        if (!isset($config['root'])) {
+            throw new BadFlysystemConfigurationException('Root not set for SFTP driver');
+        }
+        return new SftpAdapter([
+            'host' => $config['host'],
+            'port' => isset($config['port']) ? $config['port'] : 22,
+            'username' => $config['username'],
+            'password' => $config['password'],
+            'privateKey' => isset($config['privatekey']) ? $config['privatekey'] : null,
+            'root' => $config['root'],
+            'timeout' => isset($config['timeout']) ? $config['timeout'] : 10,
+        ]);
     }
 }

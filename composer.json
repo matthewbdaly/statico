@@ -32,7 +32,8 @@
         "spatie/flysystem-dropbox": "^1.0",
         "phpmd/phpmd": "^2.6",
         "league/flysystem-azure-blob-storage": "^0.1.5",
-        "league/flysystem-aws-s3-v3": "^1.0"
+        "league/flysystem-aws-s3-v3": "^1.0",
+        "league/flysystem-sftp": "^1.0"
     },
     "suggest": {
         "spatie/flysystem-dropbox": "Allows use of Dropbox as the Flysystem backend"
