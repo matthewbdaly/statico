@@ -13,9 +13,9 @@ final class FormFactory
      */
     private $factory;
 
-    public function __construct(Factory $factory)
+    public function __construct()
     {
-        $this->factory = $factory;
+        $this->factory = new Factory;
     }
 
     public function make(array $form): ElementInterface
