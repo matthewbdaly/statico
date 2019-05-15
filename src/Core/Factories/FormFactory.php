@@ -5,6 +5,7 @@ namespace Statico\Core\Factories;
 use Zend\Form\ElementInterface;
 use Zend\Form\Factory;
 use Zend\Hydrator\ArraySerializableHydrator;
+use Zend\Config\Config;
 
 final class FormFactory
 {
@@ -18,11 +19,11 @@ final class FormFactory
         $this->factory = new Factory;
     }
 
-    public function make(array $form): ElementInterface
+    public function make(Config $form): ElementInterface
     {
         return $this->factory->createForm([
             'hydrator' => ArraySerializableHydrator::class,
-            'elements' => $form
+            'elements' => $form->toArray()
         ]);
     }
 }

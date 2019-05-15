@@ -25,11 +25,12 @@ final class Form
         $this->factory = $factory;
     }
 
-    public function __invoke(string $form): ElementInterface
+    public function __invoke(string $name)
     {
-        if (!isset($this->config[$form])) {
+        if (!isset($this->config[$name])) {
             throw new FormNotFound('The specified form is not registered');
         }
-        return $this->factory->make($this->config[$form]);
+        $form = $this->factory->make($this->config[$name]);
+        eval(\Psy\Sh());
     }
 }
