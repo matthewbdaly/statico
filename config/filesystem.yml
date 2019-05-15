@@ -1,0 +1,7 @@
+filesystem:
+  content:
+    driver: local
+    path: content
+  assets:
+    driver: local
+    path: public/storage
