@@ -66,4 +66,19 @@ class DocumentTest extends TestCase
             'layout' => 'custom.html'
         ], $doc->getFields());
     }
+
+    public function testJsonSerialize()
+    {
+        $doc = new Document;
+        $doc->setContent('This is my content');
+        $doc->setField('title', 'My Page');
+        $doc->setField('layout', 'custom.html');
+        $doc->setPath('foo');
+        $this->assertEquals([
+            'title' => 'My Page',
+            'layout' => 'custom.html',
+            'content' => 'This is my content',
+            'path' => 'foo'
+        ], $doc->jsonSerialize());
+    }
 }
