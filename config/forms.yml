@@ -1,6 +1,7 @@
-contact:
-  spec:
-    name: name
-    options:
-      label: Your name
-    type: Text
+forms:
+  contact:
+    spec:
+      name: name
+      options:
+        label: Your name
+      type: Text
