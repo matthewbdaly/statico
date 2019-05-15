@@ -13,7 +13,7 @@ class FormFactoryTest extends TestCase
     {
         $wrappedFactory = new Factory;
         $factory = new FormFactory($wrappedFactory);
-        $form = [[
+        $formData = [[
             'spec' => [
                 'name' => 'name',
                 'options' => [
@@ -22,6 +22,8 @@ class FormFactoryTest extends TestCase
                 'type' => 'Text'
             ]
         ]];
+        $form = m::mock('Zend\Config\Config');
+        $form->shouldReceive('toArray')->andReturn($formData);
         $response = $factory->make($form);
         $elements = $response->getElements();
         $this->assertCount(1, $elements);
