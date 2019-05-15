@@ -5,7 +5,9 @@ namespace Statico\Core\Providers;
 use League\Container\ServiceProvider\AbstractServiceProvider;
 use Twig\Environment;
 use Twig\TwigFilter;
+use Twig\TwigFunction;
 use Statico\Core\Views\Filters\Version;
+use Statico\Core\Views\Functions\Form;
 
 final class TwigProvider extends AbstractServiceProvider
 {
@@ -24,8 +26,8 @@ final class TwigProvider extends AbstractServiceProvider
             }
 
             $twig = new Environment($container->get('Twig\Loader\FilesystemLoader'), $config);
-            $filter = new TwigFilter('version', new Version);
-            $twig->addFilter($filter);
+            $twig->addFilter(new TwigFilter('version', new Version));
+            $twig->addFunction(new TwigFunction('form', new Form));
             return $twig;
         });
     }
