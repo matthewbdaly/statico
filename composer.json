@@ -19,7 +19,8 @@
         "symfony/console": "^4.2",
         "zendframework/zend-config": "^3.2",
         "symfony/yaml": "^4.2",
-        "league/flysystem-cached-adapter": "^1.0"
+        "league/flysystem-cached-adapter": "^1.0",
+        "zendframework/zend-form": "^2.14"
     },
     "require-dev": {
         "mockery/mockery": "^1.2",
