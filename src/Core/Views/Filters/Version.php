@@ -1,6 +1,6 @@
 <?php declare(strict_types = 1);
 
-namespace Statico\Core\Views\Helpers;
+namespace Statico\Core\Views\Filters;
 
 final class Version
 {

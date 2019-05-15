@@ -5,7 +5,7 @@ namespace Statico\Core\Providers;
 use League\Container\ServiceProvider\AbstractServiceProvider;
 use Twig\Environment;
 use Twig\TwigFilter;
-use Statico\Core\Views\Helpers\Version;
+use Statico\Core\Views\Filters\Version;
 
 final class TwigProvider extends AbstractServiceProvider
 {
