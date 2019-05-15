@@ -18,11 +18,10 @@ final class FlysystemProvider extends AbstractServiceProvider
         $container->add('League\Flysystem\MountManager', function () use ($container) {
                 $factory = $container->get('Statico\Core\Factories\FlysystemFactory');
                 $config = $container->get('Zend\Config\Config');
-                $fsConf = $config->get('filesystem');
 
                 // Decorate the adapter
-                $contentFilesystem = $factory->make($fsConf->content->toArray());
-                $assetFilesystem = $factory->make($fsConf->content->toArray());
+                $contentFilesystem = $factory->make($config->filesystem->content->toArray());
+                $assetFilesystem = $factory->make($config->filesystem->assets->toArray());
 
                 return new MountManager([
                     'content' => $contentFilesystem,
