@@ -8,7 +8,7 @@ use Statico\Core\Exceptions\Forms\FormNotFound;
 final class Form
 {
     /**
-     * @var Config;
+     * @var Config
      */
     private $config;
 
