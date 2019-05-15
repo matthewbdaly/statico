@@ -27,6 +27,6 @@ final class FlysystemProvider extends AbstractServiceProvider
                     'content' => $contentFilesystem,
                     'assets'  => $assetFilesystem,
                 ]);
-            });
+        });
     }
 }
