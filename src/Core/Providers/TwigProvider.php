@@ -20,14 +20,16 @@ final class TwigProvider extends AbstractServiceProvider
         // Register items
         $container = $this->getContainer();
         $container->add('Twig\Environment', function () use ($container) {
+            $version = $container->get('Statico\Core\Views\Filters\Version');
+            $form = $container->get('Statico\Core\Views\Functions\Form');
             $config = [];
             if (getenv('APP_ENV') !== 'development') {
                 $config['cache'] = BASE_DIR.'/cache/views';
             }
 
             $twig = new Environment($container->get('Twig\Loader\FilesystemLoader'), $config);
-            $twig->addFilter(new TwigFilter('version', new Version));
-            $twig->addFunction(new TwigFunction('form', new Form));
+            $twig->addFilter(new TwigFilter('version', $version));
+            $twig->addFunction(new TwigFunction('form', $form));
             return $twig;
         });
     }
