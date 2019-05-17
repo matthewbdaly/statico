@@ -3,7 +3,6 @@
 namespace Statico\Core\Providers;
 
 use League\Container\ServiceProvider\AbstractServiceProvider;
-use Statico\Core\Sources\MarkdownFiles;
 
 final class SourceProvider extends AbstractServiceProvider
 {
@@ -15,6 +14,7 @@ final class SourceProvider extends AbstractServiceProvider
     {
         // Register items
         $container = $this->getContainer();
-        $container->add('Statico\Core\Contracts\Sources\Source', $container->get(MarkdownFiles::class));
+        $config = $container->get('Zend\Config\Config');
+        $container->add('Statico\Core\Contracts\Sources\Source', $container->get($config->get('source')));
     }
 }
