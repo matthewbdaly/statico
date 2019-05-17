@@ -14,9 +14,7 @@ final class SourceProvider extends AbstractServiceProvider
     public function register(): void
     {
         // Register items
-        $this->getContainer()
-            ->add('Statico\Core\Contracts\Sources\Source', MarkdownFiles::class)
-            ->addArgument('League\Flysystem\MountManager')
-            ->addArgument('Mni\FrontYAML\Parser');
+        $container = $this->getContainer();
+        $container->add('Statico\Core\Contracts\Sources\Source', $container->get(MarkdownFiles::class));
     }
 }
