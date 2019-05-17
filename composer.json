@@ -20,7 +20,9 @@
         "zendframework/zend-config": "^3.2",
         "symfony/yaml": "^4.2",
         "league/flysystem-cached-adapter": "^1.0",
-        "zendframework/zend-form": "^2.14"
+        "zendframework/zend-form": "^2.14",
+        "zendframework/zend-i18n": "^2.9",
+        "zendframework/zend-view": "^2.11"
     },
     "require-dev": {
         "mockery/mockery": "^1.2",

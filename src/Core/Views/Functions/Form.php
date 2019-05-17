@@ -6,6 +6,7 @@ use Zend\Config\Config;
 use Zend\Form\ElementInterface;
 use Statico\Core\Exceptions\Forms\FormNotFound;
 use Statico\Core\Factories\FormFactory;
+use Zend\Form\View\Helper\Form as FormHelper;
 
 final class Form
 {
@@ -19,10 +20,16 @@ final class Form
      */
     private $factory;
 
-    public function __construct(Config $config, FormFactory $factory)
+    /**
+     * @var FormHelper
+     */
+    private $helper;
+
+    public function __construct(Config $config, FormFactory $factory, FormHelper $helper)
     {
         $this->config = $config->get('forms');
         $this->factory = $factory;
+        $this->helper = $helper;
     }
 
     public function __invoke(string $name)
@@ -31,6 +38,6 @@ final class Form
             throw new FormNotFound('The specified form is not registered');
         }
         $form = $this->factory->make($this->config[$name]);
-        eval(\Psy\Sh());
+        return $this->helper->__invoke($form);
     }
 }
