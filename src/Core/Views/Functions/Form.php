@@ -31,13 +31,9 @@ final class Form
         $this->config = $config->get('forms');
         $this->factory = $factory;
         $plugin = $renderer->getHelperPluginManager();
-        $plugin->setInvokableClass('formRow', 'Zend\Form\View\Helper\FormRow');
-        $plugin->setInvokableClass('form_label', 'Zend\Form\View\Helper\FormLabel');
-        $plugin->setInvokableClass('form_element', 'Zend\Form\View\Helper\FormElement');
-        $plugin->setInvokableClass('form_element_errors', 'Zend\Form\View\Helper\FormElementErrors');
-        $plugin->setInvokableClass('forminput', 'Zend\Form\View\Helper\FormInput');
-        $plugin->setInvokableClass('formtext', 'Zend\Form\View\Helper\FormText');
-        $plugin->setInvokableClass('formsubmit', 'Zend\Form\View\Helper\FormSubmit');
+        foreach ($this->getInvokables() as $pluginName => $pluginClass) {
+            $plugin->setInvokableClass($pluginName, $pluginClass);
+        }
         $helper->setView($renderer);
         $this->helper = $helper;
     }
@@ -49,5 +45,18 @@ final class Form
         }
         $form = $this->factory->make($this->config[$name]);
         return $this->helper->__invoke($form);
+    }
+
+    private function getInvokables()
+    {
+        return [
+            'formRow' => 'Zend\Form\View\Helper\FormRow',
+            'form_label' => 'Zend\Form\View\Helper\FormLabel',
+            'form_element' => 'Zend\Form\View\Helper\FormElement',
+            'form_element_errors' => 'Zend\Form\View\Helper\FormElementErrors',
+            'forminput' => 'Zend\Form\View\Helper\FormInput',
+            'formtext' => 'Zend\Form\View\Helper\FormText',
+            'formsubmit' => 'Zend\Form\View\Helper\FormSubmit',
+        ];
     }
 }
