@@ -6,8 +6,12 @@ forms:
           options:
             label: Your name
           type: Text
+          attributes:
+            class: form-control mr-sm-2
       - spec:
           name: submit
           options:
             label: submit
           type: Submit
+          attributes:
+            class: form-control mr-sm-2
