@@ -29,7 +29,9 @@ final class TwigProvider extends AbstractServiceProvider
 
             $twig = new Environment($container->get('Twig\Loader\FilesystemLoader'), $config);
             $twig->addFilter(new TwigFilter('version', $version));
-            $twig->addFunction(new TwigFunction('form', $form));
+            $twig->addFunction(new TwigFunction('form', $form, [
+                'is_safe' => ['html']
+            ]));
             return $twig;
         });
     }
