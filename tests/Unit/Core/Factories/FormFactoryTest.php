@@ -23,6 +23,8 @@ class FormFactoryTest extends TestCase
             ]
         ]];
         $form = m::mock('Zend\Config\Config');
+        $form->shouldReceive('get')->with('elements')->once()
+            ->andReturn($form);
         $form->shouldReceive('toArray')->andReturn($formData);
         $response = $factory->make($form);
         $elements = $response->getElements();

@@ -1,7 +1,13 @@
 forms:
   contact:
-    spec:
-      name: name
-      options:
-        label: Your name
-      type: Text
+    elements:
+      - spec:
+          name: name
+          options:
+            label: Your name
+          type: Text
+      - spec:
+          name: submit
+          options:
+            label: submit
+          type: Submit

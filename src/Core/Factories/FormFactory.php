@@ -23,7 +23,7 @@ final class FormFactory
     {
         return $this->factory->createForm([
             'hydrator' => ArraySerializableHydrator::class,
-            'elements' => $form->toArray()
+            'elements' => $form->get('elements')->toArray()
         ]);
     }
 }

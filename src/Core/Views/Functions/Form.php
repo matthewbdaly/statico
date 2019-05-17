@@ -36,6 +36,8 @@ final class Form
         $plugin->setInvokableClass('form_element', 'Zend\Form\View\Helper\FormElement');
         $plugin->setInvokableClass('form_element_errors', 'Zend\Form\View\Helper\FormElementErrors');
         $plugin->setInvokableClass('forminput', 'Zend\Form\View\Helper\FormInput');
+        $plugin->setInvokableClass('formtext', 'Zend\Form\View\Helper\FormText');
+        $plugin->setInvokableClass('formsubmit', 'Zend\Form\View\Helper\FormSubmit');
         $helper->setView($renderer);
         $this->helper = $helper;
     }
