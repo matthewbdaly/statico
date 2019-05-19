@@ -1,5 +1,7 @@
 forms:
   contact:
+    attributes:
+      class: form-inline my-2 my-lg-0 pull-right
     elements:
       - spec:
           name: name
