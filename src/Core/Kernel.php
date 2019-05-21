@@ -41,6 +41,7 @@ final class Kernel
         'Statico\Core\Providers\TwigLoaderProvider',
         'Statico\Core\Providers\ViewProvider',
         'Statico\Core\Providers\YamlProvider',
+        'Statico\Core\Providers\MailerProvider',
     ];
 
     public function __construct(Container $container = null)
