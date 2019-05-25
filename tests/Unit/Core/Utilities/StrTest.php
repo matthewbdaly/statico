@@ -154,7 +154,8 @@ class StrTest extends \PHPUnit\Framework\TestCase
     {
         $str = 'I am the very model of a modern major general  ';
         $this->str = new Str($str);
-        $this->assertSame("a", $this->str->seek(2)->current());
+        $this->str->seek(2);
+        $this->assertSame("a", $this->str->current());
     }
 
     function testSupportsMacros()
