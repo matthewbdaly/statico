@@ -5,6 +5,9 @@ require_once __DIR__.'/bootstrap.php';
 
 use Symfony\Component\Console\Application;
 
+$dotenv = new Dotenv\Dotenv(__DIR__);
+$dotenv->load();
+
 $app = new Application();
 $kernel = new Statico\Core\Kernel;
 $kernel->bootstrap();
