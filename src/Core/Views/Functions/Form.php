@@ -47,7 +47,7 @@ final class Form
         return $this->helper->__invoke($form);
     }
 
-    private function getInvokables()
+    private function getInvokables(): array
     {
         return [
             'formRow' => 'Zend\Form\View\Helper\FormRow',
