@@ -6,6 +6,9 @@ use BadMethodCallException;
 
 trait IsMacroable
 {
+    /**
+     * @var array
+     */
     protected static $macros = [];
 
     /**
