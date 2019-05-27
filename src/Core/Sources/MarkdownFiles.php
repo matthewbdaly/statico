@@ -2,7 +2,7 @@
 
 namespace Statico\Core\Sources;
 
-use League\Flysystem\MountManager;
+use League\Flysystem\FilesystemInterface;
 use Mni\FrontYAML\Parser;
 use Statico\Core\Contracts\Sources\Source;
 use Statico\Core\Factories\DocumentFactory;
@@ -12,24 +12,24 @@ use Statico\Core\Utilities\Collection;
 final class MarkdownFiles implements Source
 {
     /**
-     * @var MountManager
+     * @var FilesystemInterface
      */
-    protected $manager;
+    protected $fs;
 
     /**
      * @var Parser
      */
     protected $parser;
 
-    public function __construct(MountManager $manager, Parser $parser)
+    public function __construct(FilesystemInterface $fs, Parser $parser)
     {
-        $this->manager = $manager;
+        $this->fs = $fs;
         $this->parser = $parser;
     }
  
     public function all(): Collection
     {
-        $files = $this->manager->listContents('content://', true);
+        $files = $this->fs->listContents('content://', true);
         $searchable = Collection::make([]);
         foreach ($files as $file) {
             if ($file['type'] == 'dir') {
@@ -38,7 +38,7 @@ final class MarkdownFiles implements Source
             if (!preg_match('/.(markdown|md)$/', $file['path'])) {
                 continue;
             }
-            if ($content = $this->manager->read('content://'.$file['path'])) {
+            if ($content = $this->fs->read('content://'.$file['path'])) {
                 $searchable->push(
                     DocumentFactory::fromYaml($this->parser->parse($content), $this->stripExtension($file['path']))
                 );
@@ -51,12 +51,12 @@ final class MarkdownFiles implements Source
     {
         // Does that page exist?
         $path = rtrim($name, '/') . '.md';
-        if (!$this->manager->has("content://".$path)) {
+        if (!$this->fs->has("content://".$path)) {
             return null;
         }
 
         // Get content
-        if (!$rawcontent = $this->manager->read("content://".$path)) {
+        if (!$rawcontent = $this->fs->read("content://".$path)) {
             return null;
         }
         return DocumentFactory::fromYaml($this->parser->parse($rawcontent), $path);

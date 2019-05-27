@@ -13,6 +13,7 @@ class ShellTest extends TestCase
     {
         $container = m::mock('Psr\Container\ContainerInterface');
         $shell = m::mock('Psy\Shell');
+        $shell->shouldReceive('setScopeVariables')->with(['container' => $container])->once();
         $shell->shouldReceive('run')
             ->once()
             ->andReturn(true);

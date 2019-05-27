@@ -8,14 +8,14 @@ use League\Flysystem\MountManager;
 final class FlysystemProvider extends AbstractServiceProvider
 {
     protected $provides = [
-        'League\Flysystem\MountManager',
+        'League\Flysystem\FilesystemInterface',
     ];
 
     public function register(): void
     {
         // Register items
         $container = $this->getContainer();
-        $container->add('League\Flysystem\MountManager', function () use ($container) {
+        $container->add('League\Flysystem\FilesystemInterface', function () use ($container) {
                 $factory = $container->get('Statico\Core\Factories\FlysystemFactory');
                 $config = $container->get('Zend\Config\Config');
 
