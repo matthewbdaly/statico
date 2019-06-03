@@ -20,13 +20,13 @@ final class Token
         return new Token($token);
     }
 
-    public function toString(): string
+    public function __toString(): string
     {
         return $this->token;
     }
 
     public function equals(Token $token): bool
     {
-        return ($this->token === $token->toString());
+        return ($this->token === $token->__toString());
     }
 }
