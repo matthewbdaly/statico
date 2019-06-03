@@ -35,6 +35,7 @@ final class Kernel
         'Statico\Core\Providers\HandlerProvider',
         'Statico\Core\Providers\LoggerProvider',
         'Statico\Core\Providers\RouterProvider',
+        'Statico\Core\Providers\SessionProvider',
         'Statico\Core\Providers\SitemapGeneratorProvider',
         'Statico\Core\Providers\SourceProvider',
         'Statico\Core\Providers\TwigProvider',
