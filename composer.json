@@ -13,6 +13,7 @@
         "mnapoli/front-yaml": "^1.6",
         "monolog/monolog": "^1.24",
         "symfony/console": "^4.2",
+        "symfony/http-foundation": "^4.3",
         "symfony/yaml": "^4.2",
         "tedivm/stash": "^0.15.1",
         "twig/twig": "^2.6",
@@ -24,7 +25,6 @@
         "zendframework/zend-httphandlerrunner": "^1.0",
         "zendframework/zend-i18n": "^2.9",
         "zendframework/zend-mail": "^2.10",
-        "zendframework/zend-session": "^2.8",
         "zendframework/zend-view": "^2.11"
     },
     "require-dev": {
