@@ -3,32 +3,21 @@
 namespace Statico\Core\Providers;
 
 use League\Container\ServiceProvider\AbstractServiceProvider;
-use Zend\Mail\Transport\Smtp;
-use Zend\Mail\Transport\SmtpOptions;
+use Symfony\Component\Mailer\Mailer;
+use Symfony\Component\Mailer\Transport\SendmailTransport;
 
 final class MailerProvider extends AbstractServiceProvider
 {
     protected $provides = [
-        'Zend\Mail\Transport\TransportInterface',
+        'Symfony\Component\Mailer\MailerInterface',
     ];
 
     public function register(): void
     {
         $this->getContainer()
-            ->add('Zend\Mail\Transport\TransportInterface', function () {
-                $transport = new Smtp();
-                $options   = new SmtpOptions([
-                    'name'              => getenv('SMTP_NAME'),
-                    'host'              => getenv('SMTP_HOST'),
-                    'port'              => getenv('SMTP_PORT'),
-                    'connection_class'  => getenv('SMTP_CONNECTION_CLASS'),
-                    'connection_config' => array(
-                        'username' => getenv('SMTP_USERNAME'),
-                        'password' => getenv('SMTP_PASS'),
-                    ),
-                ]);
-                $transport->setOptions($options);
-                return $transport;
+            ->add('Symfony\Component\Mailer\MailerInterface', function () {
+                $transport = new SendmailTransport;
+                return new Mailer($transport);
             });
     }
 }
