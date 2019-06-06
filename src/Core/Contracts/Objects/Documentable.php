@@ -2,21 +2,21 @@
 
 namespace Statico\Core\Contracts\Objects;
 
-use Statico\Core\Objects\Content;
+use Statico\Core\Objects\Document;
 
 interface Documentable
 {
     public function getContent(): string;
 
-    public function setContent(string $data): Content;
+    public function setContent(string $data): Document;
 
     public function getField(string $key): string;
 
-    public function setField(string $key, string $value): Content;
+    public function setField(string $key, string $value): Document;
 
     public function getPath(): string;
 
-    public function setPath(string $path): Content;
+    public function setPath(string $path): Document;
 
     public function getFields(): array;
 }
