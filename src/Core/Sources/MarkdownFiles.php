@@ -30,7 +30,7 @@ final class MarkdownFiles implements Source
     public function all(): Collection
     {
         $files = $this->fs->listContents('content://', true);
-        $searchable = Collection::make([]);
+        $items = Collection::make([]);
         foreach ($files as $file) {
             if ($file['type'] == 'dir') {
                 continue;
@@ -39,12 +39,12 @@ final class MarkdownFiles implements Source
                 continue;
             }
             if ($content = $this->fs->read('content://'.$file['path'])) {
-                $searchable->push(
+                $items->push(
                     DocumentFactory::fromYaml($this->parser->parse($content), $this->stripExtension($file['path']))
                 );
             }
         }
-        return $searchable;
+        return $items;
     }
 
     public function find(string $name): ?Document
