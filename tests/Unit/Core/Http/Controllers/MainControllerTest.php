@@ -7,7 +7,7 @@ use Mockery as m;
 use Statico\Core\Http\Controllers\MainController;
 use Statico\Core\Objects\Document;
 
-class MainControllerTest extends TestCase
+final class MainControllerTest extends TestCase
 {
     public function testGetResponse()
     {

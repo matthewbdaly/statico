@@ -6,7 +6,7 @@ use Tests\TestCase;
 use Mockery as m;
 use Statico\Core\Views\TwigRenderer;
 
-class TwigRendererTest extends TestCase
+final class TwigRendererTest extends TestCase
 {
     public function testRenderer(): void
     {

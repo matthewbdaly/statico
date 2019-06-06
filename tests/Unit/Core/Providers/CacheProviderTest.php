@@ -4,7 +4,7 @@ namespace Tests\Unit\Core\Providers;
 
 use Tests\TestCase;
 
-class CacheProviderTest extends TestCase
+final class CacheProviderTest extends TestCase
 {
     public function testCreateCache(): void
     {

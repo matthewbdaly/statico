@@ -4,7 +4,7 @@ namespace Tests\Unit\Core\Providers;
 
 use Tests\TestCase;
 
-class SitemapGeneratorProviderTest extends TestCase
+final class SitemapGeneratorProviderTest extends TestCase
 {
     public function testCreateSouce(): void
     {

@@ -4,7 +4,7 @@ namespace Tests\Unit\Providers;
 
 use Tests\TestCase;
 
-class MailerProviderTest extends TestCase
+final class MailerProviderTest extends TestCase
 {
     public function testCreateSession(): void
     {

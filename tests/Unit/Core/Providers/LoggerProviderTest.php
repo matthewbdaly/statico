@@ -4,7 +4,7 @@ namespace Tests\Unit\Core\Providers;
 
 use Tests\TestCase;
 
-class LoggerProviderTest extends TestCase
+final class LoggerProviderTest extends TestCase
 {
     public function testCreateLogger(): void
     {

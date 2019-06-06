@@ -4,7 +4,7 @@ namespace Tests\Unit\Core\Providers;
 
 use Tests\TestCase;
 
-class EventProviderTest extends TestCase
+final class EventProviderTest extends TestCase
 {
     public function testCreateEventEmitter(): void
     {

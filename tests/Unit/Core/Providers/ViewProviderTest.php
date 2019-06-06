@@ -4,7 +4,7 @@ namespace Tests\Unit\Core\Providers;
 
 use Tests\TestCase;
 
-class ViewProviderTest extends TestCase
+final class ViewProviderTest extends TestCase
 {
     public function testCreateTwig(): void
     {

@@ -7,7 +7,7 @@ use Statico\Core\Exceptions\LogHandler;
 use Mockery as m;
 use Exception;
 
-class LogHandlerTest extends TestCase
+final class LogHandlerTest extends TestCase
 {
     public function testHandleException(): void
     {

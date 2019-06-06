@@ -7,7 +7,7 @@ use Statico\Core\Csrf\SymfonySessionTokenStorage;
 use Statico\Core\Csrf\Token;
 use Mockery as m;
 
-class SymfonySessionTokenStorageTest extends TestCase
+final class SymfonySessionTokenStorageTest extends TestCase
 {
     public function testCreate()
     {

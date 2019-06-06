@@ -4,7 +4,7 @@ namespace Tests\Unit\Core\Providers;
 
 use Tests\TestCase;
 
-class YamlProviderTest extends TestCase
+final class YamlProviderTest extends TestCase
 {
     public function testCreateYaml(): void
     {

@@ -4,7 +4,7 @@ namespace Tests\Unit\Utilities;
 
 use Statico\Core\Utilities\Str;
 
-class StrTest extends \PHPUnit\Framework\TestCase
+final class StrTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var \Statico\Core\Utilities\Str

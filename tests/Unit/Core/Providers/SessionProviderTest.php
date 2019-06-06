@@ -4,7 +4,7 @@ namespace Tests\Unit\Providers;
 
 use Tests\TestCase;
 
-class SessionProviderTest extends TestCase
+final class SessionProviderTest extends TestCase
 {
     public function testCreateSession(): void
     {

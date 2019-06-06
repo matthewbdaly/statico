@@ -6,7 +6,7 @@ use Tests\TestCase;
 use Mockery as m;
 use Statico\Core\Objects\EmailAddress;
 
-class EmailAddressTest extends TestCase
+final class EmailAddressTest extends TestCase
 {
     public function testCreate()
     {

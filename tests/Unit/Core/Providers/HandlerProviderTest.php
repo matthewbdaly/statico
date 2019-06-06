@@ -4,7 +4,7 @@ namespace Tests\Unit\Core\Providers;
 
 use Tests\TestCase;
 
-class HandlerProviderTest extends TestCase
+final class HandlerProviderTest extends TestCase
 {
     public function testCreateHandler(): void
     {

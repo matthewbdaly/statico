@@ -6,7 +6,7 @@ use Tests\TestCase;
 use Mockery as m;
 use Statico\Core\Objects\Document;
 
-class DocumentTest extends TestCase
+final class DocumentTest extends TestCase
 {
     public function testCreate()
     {

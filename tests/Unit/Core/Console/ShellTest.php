@@ -7,7 +7,7 @@ use Mockery as m;
 use Statico\Core\Console\Shell;
 use Symfony\Component\Console\Tester\CommandTester;
 
-class ShellTest extends TestCase
+final class ShellTest extends TestCase
 {
     public function testExecute()
     {

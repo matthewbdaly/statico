@@ -9,7 +9,7 @@ use Statico\Core\Generators\XmlStringSitemap;
 use Statico\Core\Utilities\Collection;
 use Zend\Config\Config;
 
-class SitemapTest extends TestCase
+final class SitemapTest extends TestCase
 {
     public function testExecute()
     {

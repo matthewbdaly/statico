@@ -6,7 +6,7 @@ use Tests\TestCase;
 use Mockery as m;
 use Statico\Core\Sources\MarkdownFiles;
 
-class MarkdownFileSourceTest extends TestCase
+final class MarkdownFileSourceTest extends TestCase
 {
     public function testAll()
     {

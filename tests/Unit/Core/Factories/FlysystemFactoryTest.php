@@ -6,7 +6,7 @@ use Tests\TestCase;
 use Statico\Core\Factories\FlysystemFactory;
 use Mockery as m;
 
-class FlysystemFactoryTest extends TestCase
+final class FlysystemFactoryTest extends TestCase
 {
     public function testLocal()
     {

@@ -7,7 +7,7 @@ use Statico\Core\Factories\FormFactory;
 use Zend\Form\Factory;
 use Mockery as m;
 
-class FormFactoryTest extends TestCase
+final class FormFactoryTest extends TestCase
 {
     public function testMake()
     {

@@ -8,7 +8,7 @@ use Statico\Core\Console\GenerateIndex;
 use Statico\Core\Utilities\Collection;
 use Symfony\Component\Console\Tester\CommandTester;
 
-class GenerateIndexTest extends TestCase
+final class GenerateIndexTest extends TestCase
 {
     public function testExecute()
     {

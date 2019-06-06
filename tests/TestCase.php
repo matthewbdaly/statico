@@ -5,7 +5,7 @@ namespace Tests;
 use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
 use Statico\Core\Kernel;
 
-class TestCase extends \PHPUnit\Framework\TestCase
+abstract class TestCase extends \PHPUnit\Framework\TestCase
 {
     use MockeryPHPUnitIntegration;
 

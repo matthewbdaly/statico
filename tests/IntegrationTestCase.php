@@ -4,7 +4,7 @@ namespace Tests;
 
 use Zend\Diactoros\ServerRequest;
 
-class IntegrationTestCase extends TestCase
+abstract class IntegrationTestCase extends TestCase
 {
     public function makeRequest(string $uri, string $method = 'GET', $server = [], $files = [], $body = 'php://input', $headers = [], $cookies = [], $queryParams = [], $parsedBody = null): IntegrationTestCase
     {

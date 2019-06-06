@@ -7,7 +7,7 @@ use Statico\Core\Csrf\StoredTokenReader;
 use Statico\Core\Csrf\Token;
 use Mockery as m;
 
-class StoredTokenReaderTest extends TestCase
+final class StoredTokenReaderTest extends TestCase
 {
     public function testReadToken()
     {

@@ -6,7 +6,7 @@ use Tests\TestCase;
 use Mockery as m;
 use Statico\Core\Http\Middleware\ETag;
 
-class ETagTest extends TestCase
+final class ETagTest extends TestCase
 {
     public function testNotGet()
     {

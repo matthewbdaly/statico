@@ -7,7 +7,7 @@ use Mockery as m;
 use Statico\Core\Utilities\YamlWrapper;
 use Symfony\Component\Yaml\Yaml;
 
-class YamlWrapperTest extends TestCase
+final class YamlWrapperTest extends TestCase
 {
     public function testParse()
     {

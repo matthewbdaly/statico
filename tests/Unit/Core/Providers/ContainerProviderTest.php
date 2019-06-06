@@ -4,7 +4,7 @@ namespace Tests\Unit\Core\Providers;
 
 use Tests\TestCase;
 
-class ContainerProviderTest extends TestCase
+final class ContainerProviderTest extends TestCase
 {
     public function testCreateContainer(): void
     {

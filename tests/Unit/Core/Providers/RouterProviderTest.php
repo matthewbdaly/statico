@@ -4,7 +4,7 @@ namespace Tests\Unit\Core\Providers;
 
 use Tests\TestCase;
 
-class RouterProviderTest extends TestCase
+final class RouterProviderTest extends TestCase
 {
     public function testCreateFlysystem(): void
     {

@@ -6,7 +6,7 @@ use Statico\Core\Utilities\Collection;
 use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
 use Mockery as m;
 
-class CollectionTest extends \PHPUnit\Framework\TestCase
+final class CollectionTest extends \PHPUnit\Framework\TestCase
 {
     use MockeryPHPUnitIntegration;
 

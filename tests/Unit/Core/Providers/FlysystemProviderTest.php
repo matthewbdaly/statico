@@ -4,7 +4,7 @@ namespace Tests\Unit\Core\Providers;
 
 use Tests\TestCase;
 
-class FlysystemProviderTest extends TestCase
+final class FlysystemProviderTest extends TestCase
 {
     public function testCreateFlysystem(): void
     {

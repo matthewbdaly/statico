@@ -7,7 +7,7 @@ use Mockery as m;
 use Statico\Core\Console\GenerateSitemap;
 use Symfony\Component\Console\Tester\CommandTester;
 
-class GenerateSitemapTest extends TestCase
+final class GenerateSitemapTest extends TestCase
 {
     public function testExecute()
     {

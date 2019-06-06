@@ -7,7 +7,7 @@ use Tests\IntegrationTestCase;
 /**
  * @runTestsInSeparateProcesses
  */
-class PagesTest extends IntegrationTestCase
+final class PagesTest extends IntegrationTestCase
 {
     public function testHome(): void
     {

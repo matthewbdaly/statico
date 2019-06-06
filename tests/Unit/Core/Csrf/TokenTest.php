@@ -5,7 +5,7 @@ namespace Tests\Unit\Core\Csrf;
 use Tests\TestCase;
 use Statico\Core\Csrf\Token;
 
-class TokenTest extends TestCase
+final class TokenTest extends TestCase
 {
     public function testCreate()
     {

@@ -4,7 +4,7 @@ namespace Tests\Unit\Core\Providers;
 
 use Tests\TestCase;
 
-class ShellProviderTest extends TestCase
+final class ShellProviderTest extends TestCase
 {
     public function testCreateShell(): void
     {
