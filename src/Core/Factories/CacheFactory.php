@@ -5,6 +5,8 @@ namespace Statico\Core\Factories;
 use Stash\Pool;
 use Stash\Driver\Apc;
 use Stash\Driver\FileSystem;
+use Stash\Driver\Memcache;
+use Stash\Driver\Redis;
 use Stash\Driver\Sqlite;
 
 final class CacheFactory
@@ -20,6 +22,12 @@ final class CacheFactory
                 break;
             case 'apc':
                 $driver = $this->createApcAdapter($config);
+                break;
+            case 'memcache':
+                $driver = $this->createMemcacheAdapter($config);
+                break;
+            case 'redis':
+                $driver = $this->createRedisAdapter($config);
                 break;
             default:
                 $driver = $this->createFilesystemAdapter($config);
@@ -47,6 +55,24 @@ final class CacheFactory
         return new Apc([
             'ttl' => isset($config['ttl']) ? $config['ttl'] : null,
             'namespace' => isset($config['namespace']) ? $config['namespace'] : null
+        ]);
+    }
+
+    private function createMemcacheAdapter(array $config): Memcache
+    {
+        return new Memcache([
+            'servers' => isset($config['servers']) ? $config['servers'] : null,
+            'prefix_key' => isset($config['prefix_key']) ? $config['prefix_key'] : null,
+            'libketama_compatible' => isset($config['libketama_compatible']) ? $config['libketama_compatible'] : null,
+            'cache_lookups' => isset($config['cache_lookups']) ? $config['cache_lookups'] : null,
+            'serializer' => isset($config['serializer']) ? $config['serializer'] : null,
+        ]);
+    }
+
+    private function createRedisAdapter(array $config): Redis
+    {
+        return new Redis([
+            'servers' => isset($config['servers']) ? $config['servers'] : null,
         ]);
     }
 }
