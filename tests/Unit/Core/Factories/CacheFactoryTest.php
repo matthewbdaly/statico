@@ -50,7 +50,10 @@ final class CacheFactoryTest extends TestCase
     {
         $factory = new CacheFactory;
         $pool = $factory->make([
-            'driver' => 'redis'
+            'driver' => 'redis',
+            'servers' => [
+                '127.0.0.1',
+            ]
         ]);
         $this->assertInstanceOf('Stash\Pool', $pool);
         $this->assertInstanceOf('Stash\Driver\Redis', $pool->getDriver());
