@@ -10,7 +10,7 @@ final class TwigRendererTest extends TestCase
 {
     public function testRenderer(): void
     {
-        $twig = m::mock('Twig_Environment');
+        $twig = m::mock('Twig\Environment');
         $twig->shouldReceive('load')->with('foo.html')->once()->andReturn($twig);
         $twig->shouldReceive('render')->with(['Foo'])->once()->andReturn(['Foo']);
         $response = m::mock('Psr\Http\Message\ResponseInterface');
