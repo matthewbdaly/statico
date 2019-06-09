@@ -5,6 +5,7 @@ namespace Statico\Core\Factories;
 use Stash\Pool;
 use Stash\Driver\Apc;
 use Stash\Driver\BlackHole;
+use Stash\Driver\Ephemeral;
 use Stash\Driver\FileSystem;
 use Stash\Driver\Memcache;
 use Stash\Driver\Redis;
@@ -20,6 +21,9 @@ final class CacheFactory
         switch ($config['driver']) {
             case 'test':
                 $driver = $this->createBlackHoleAdapter($config);
+                break;
+            case 'ephemeral':
+                $driver = $this->createEphemeralAdapter($config);
                 break;
             case 'sqlite':
                 $driver = $this->createSqliteAdapter($config);
@@ -53,6 +57,11 @@ final class CacheFactory
     private function createBlackHoleAdapter(array $config): BlackHole
     {
         return new BlackHole;
+    }
+    
+    private function createEphemeralAdapter(array $config): Ephemeral
+    {
+        return new Ephemeral;
     }
 
     private function createSqliteAdapter(array $config): Sqlite
