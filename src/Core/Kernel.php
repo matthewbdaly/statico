@@ -32,6 +32,7 @@ final class Kernel
         'Statico\Core\Providers\ConfigProvider',
         'Statico\Core\Providers\EventProvider',
         'Statico\Core\Providers\FlysystemProvider',
+        'Statico\Core\Providers\FormsProvider',
         'Statico\Core\Providers\HandlerProvider',
         'Statico\Core\Providers\LoggerProvider',
         'Statico\Core\Providers\RouterProvider',

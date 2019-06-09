@@ -3,16 +3,16 @@
 namespace Tests\Unit\Core\Factories;
 
 use Tests\TestCase;
-use Statico\Core\Factories\FormFactory;
+use Statico\Core\Factories\Forms\ZendFormFactory;
 use Zend\Form\Factory;
 use Mockery as m;
 
-final class FormFactoryTest extends TestCase
+final class ZendFormFactoryTest extends TestCase
 {
     public function testMake()
     {
         $wrappedFactory = new Factory;
-        $factory = new FormFactory($wrappedFactory);
+        $factory = new ZendFormFactory($wrappedFactory);
         $formData = [[
             'spec' => [
                 'name' => 'name',

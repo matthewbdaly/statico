@@ -5,7 +5,7 @@ namespace Statico\Core\Views\Functions;
 use Zend\Config\Config;
 use Zend\Form\ElementInterface;
 use Statico\Core\Exceptions\Forms\FormNotFound;
-use Statico\Core\Factories\FormFactory;
+use Statico\Core\Contracts\Factories\FormFactory;
 use Zend\Form\View\Helper\Form as FormHelper;
 use Zend\View\Renderer\PhpRenderer;
 
