@@ -6,6 +6,9 @@ use League\Container\ServiceProvider\AbstractServiceProvider;
 use Twig\Environment;
 use Twig\TwigFilter;
 use Twig\TwigFunction;
+use Asm89\Twig\CacheExtension\CacheProvider\PsrCacheAdapter;
+use Asm89\Twig\CacheExtension\CacheStrategy\LifetimeCacheStrategy;
+use Asm89\Twig\CacheExtension\Extension as CacheExtension;
 use Statico\Core\Views\Filters\Version;
 use Statico\Core\Views\Functions\Form;
 
@@ -23,15 +26,18 @@ final class TwigProvider extends AbstractServiceProvider
             $version = $container->get('Statico\Core\Views\Filters\Version');
             $form = $container->get('Statico\Core\Views\Functions\Form');
             $config = [];
-            if (getenv('APP_ENV') !== 'development') {
-                $config['cache'] = BASE_DIR.'/cache/views';
-            }
 
             $twig = new Environment($container->get('Twig\Loader\FilesystemLoader'), $config);
             $twig->addFilter(new TwigFilter('version', $version));
             $twig->addFunction(new TwigFunction('form', $form, [
                 'is_safe' => ['html']
             ]));
+            $cache = $container->get('Psr\Cache\CacheItemPoolInterface');
+            $cacheProvider  = new PsrCacheAdapter($cache);
+            $cacheStrategy  = new LifetimeCacheStrategy($cacheProvider);
+            $cacheExtension = new CacheExtension($cacheStrategy);
+            $twig->addExtension($cacheExtension);
+
             return $twig;
         });
     }
