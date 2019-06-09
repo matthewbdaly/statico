@@ -4,6 +4,7 @@ namespace Statico\Core\Factories;
 
 use Stash\Pool;
 use Stash\Driver\Apc;
+use Stash\Driver\BlackHole;
 use Stash\Driver\FileSystem;
 use Stash\Driver\Memcache;
 use Stash\Driver\Redis;
@@ -17,6 +18,9 @@ final class CacheFactory
             $config['driver'] = 'filesystem';
         }
         switch ($config['driver']) {
+            case 'test':
+                $driver = $this->createBlackHoleAdapter($config);
+                break;
             case 'sqlite':
                 $driver = $this->createSqliteAdapter($config);
                 break;
@@ -44,6 +48,11 @@ final class CacheFactory
             'filePermissions' => isset($config['filePermissions']) ? $config['filePermissions'] : null,
             'dirPermissions' => isset($config['dirPermissions']) ? $config['dirPermissions'] : null
         ]);
+    }
+
+    private function createBlackHoleAdapter(array $config): BlackHole
+    {
+        return new BlackHole;
     }
 
     private function createSqliteAdapter(array $config): Sqlite

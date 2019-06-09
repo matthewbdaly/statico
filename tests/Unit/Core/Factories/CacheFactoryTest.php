@@ -17,6 +17,16 @@ final class CacheFactoryTest extends TestCase
         $this->assertInstanceOf('Stash\Driver\FileSystem', $pool->getDriver());
     }
 
+    public function testBlackhole()
+    {
+        $factory = new CacheFactory;
+        $pool = $factory->make([
+            'driver' => 'test'
+        ]);
+        $this->assertInstanceOf('Stash\Pool', $pool);
+        $this->assertInstanceOf('Stash\Driver\BlackHole', $pool->getDriver());
+    }
+
     public function testSqlite()
     {
         $factory = new CacheFactory;
