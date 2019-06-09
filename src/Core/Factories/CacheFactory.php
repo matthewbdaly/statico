@@ -39,14 +39,22 @@ final class CacheFactory
     private function createFilesystemAdapter(array $config): FileSystem
     {
         return new FileSystem([
-            'path' => isset($config['path']) ? $config['path'] : null
+            'path' => isset($config['path']) ? $config['path'] : null,
+            'dirSplit' => isset($config['dirSplit']) ? $config['dirSplit'] : null,
+            'filePermissions' => isset($config['filePermissions']) ? $config['filePermissions'] : null,
+            'dirPermissions' => isset($config['dirPermissions']) ? $config['dirPermissions'] : null
         ]);
     }
 
     private function createSqliteAdapter(array $config): Sqlite
     {
         return new Sqlite([
-            'path' => isset($config['path']) ? $config['path'] : null
+            'extension' => isset($config['extension']) ? $config['extension'] : null,
+            'version' => isset($config['version']) ? $config['version'] : null,
+            'nesting' => isset($config['nesting']) ? $config['nesting'] : null,
+            'path' => isset($config['path']) ? $config['path'] : null,
+            'filePermissions' => isset($config['filePermissions']) ? $config['filePermissions'] : null,
+            'dirPermissions' => isset($config['dirPermissions']) ? $config['dirPermissions'] : null
         ]);
     }
 
@@ -62,6 +70,7 @@ final class CacheFactory
     {
         return new Memcache([
             'servers' => isset($config['servers']) ? $config['servers'] : null,
+            'extension' => isset($config['extension']) ? $config['extension'] : null,
             'prefix_key' => isset($config['prefix_key']) ? $config['prefix_key'] : null,
             'libketama_compatible' => isset($config['libketama_compatible']) ? $config['libketama_compatible'] : null,
             'cache_lookups' => isset($config['cache_lookups']) ? $config['cache_lookups'] : null,
