@@ -7,9 +7,23 @@ use Stash\Driver\FileSystem;
 
 final class CacheFactory
 {
-    public static function make(array $config): Pool
+    public function make(array $config): Pool
     {
-        $driver = new FileSystem;
+        if (!isset($config['driver'])) {
+            $config['driver'] = 'filesystem';
+        }
+        switch ($config['driver']) {
+            default:
+                $driver = $this->createFilesystemAdapter($config);
+                break;
+        }
         return new Pool($driver);
+    }
+
+    private function createFilesystemAdapter(array $config): FileSystem
+    {
+        return new FileSystem([
+            'path' => isset($config['path']) ? $config['path'] : null
+        ]);
     }
 }

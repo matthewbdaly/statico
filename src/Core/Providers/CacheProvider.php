@@ -16,8 +16,9 @@ final class CacheProvider extends AbstractServiceProvider
     {
         // Register items
         $container = $this->getContainer();
-        $container->add('Stash\Pool', function () {
-            return CacheFactory::make([]);
+        $container->add('Stash\Pool', function () use ($container) {
+            $factory = $container->get('Statico\Core\Factories\CacheFactory');
+            return $factory->make([]);
         });
         $container->add('Psr\Cache\CacheItemPoolInterface', function () {
             return $this->getContainer()->get('Stash\Pool');
