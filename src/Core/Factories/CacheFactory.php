@@ -5,15 +5,23 @@ namespace Statico\Core\Factories;
 use Stash\Pool;
 use Stash\Driver\Apc;
 use Stash\Driver\BlackHole;
+use Stash\Driver\Composite;
 use Stash\Driver\Ephemeral;
 use Stash\Driver\FileSystem;
 use Stash\Driver\Memcache;
 use Stash\Driver\Redis;
 use Stash\Driver\Sqlite;
+use Stash\Interfaces\DriverInterface;
 
 final class CacheFactory
 {
     public function make(array $config): Pool
+    {
+        $driver = $this->createAdapter($config);
+        return new Pool($driver);
+    }
+
+    private function createAdapter(array $config): DriverInterface
     {
         if (!isset($config['driver'])) {
             $config['driver'] = 'filesystem';
@@ -24,6 +32,9 @@ final class CacheFactory
                 break;
             case 'ephemeral':
                 $driver = $this->createEphemeralAdapter($config);
+                break;
+            case 'composite':
+                $driver = $this->createCompositeAdapter($config);
                 break;
             case 'sqlite':
                 $driver = $this->createSqliteAdapter($config);
@@ -41,7 +52,7 @@ final class CacheFactory
                 $driver = $this->createFilesystemAdapter($config);
                 break;
         }
-        return new Pool($driver);
+        return $driver;
     }
 
     private function createFilesystemAdapter(array $config): FileSystem
@@ -62,6 +73,17 @@ final class CacheFactory
     private function createEphemeralAdapter(array $config): Ephemeral
     {
         return new Ephemeral;
+    }
+
+    private function createCompositeAdapter(array $config): Composite
+    {
+        $drivers = [];
+        foreach ($config['subdrivers'] as $driver) {
+            $drivers[] = $this->createAdapter($driver);
+        }
+        return new Composite([
+            'drivers' => $drivers
+        ]);
     }
 
     private function createSqliteAdapter(array $config): Sqlite

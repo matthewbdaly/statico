@@ -37,6 +37,20 @@ final class CacheFactoryTest extends TestCase
         $this->assertInstanceOf('Stash\Driver\Ephemeral', $pool->getDriver());
     }
 
+    public function testComposite()
+    {
+        $factory = new CacheFactory;
+        $pool = $factory->make([
+            'driver' => 'composite',
+            'subdrivers' => [[
+                'driver' => 'ephemeral',
+            ], [
+                'driver' => 'filesystem',
+            ]]
+        ]);
+        $this->assertInstanceOf('Stash\Pool', $pool);
+        $this->assertInstanceOf('Stash\Driver\Composite', $pool->getDriver());
+    }
 
     public function testSqlite()
     {
