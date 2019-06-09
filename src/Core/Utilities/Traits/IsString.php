@@ -219,4 +219,9 @@ trait IsString
         }
         $this->position = $position;
     }
+
+    public function path()
+    {
+        return new static(preg_replace('/(\\\|\/)/', DIRECTORY_SEPARATOR, $this->string));
+    }
 }

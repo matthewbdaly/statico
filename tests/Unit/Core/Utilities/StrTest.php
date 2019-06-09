@@ -175,4 +175,10 @@ final class StrTest extends \PHPUnit\Framework\TestCase
         $this->str = new Str($str);
         $this->assertSame('bananas', $this->str->bananas());
     }
+
+    function testPath()
+    {
+        $str = new Str('\foo\bar');
+        $this->assertSame(DIRECTORY_SEPARATOR.'foo'.DIRECTORY_SEPARATOR.'bar', $str->path()->__toString());
+    }
 }
