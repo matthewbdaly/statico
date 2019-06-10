@@ -3,8 +3,7 @@
 namespace Statico\Core\Providers;
 
 use League\Container\ServiceProvider\AbstractServiceProvider;
-use Monolog\Logger;
-use Monolog\Handler\StreamHandler;
+use Statico\Core\Factories\LoggerFactory;
 
 final class LoggerProvider extends AbstractServiceProvider
 {
@@ -17,9 +16,8 @@ final class LoggerProvider extends AbstractServiceProvider
         // Register items
         $this->getContainer()
              ->add('Psr\Log\LoggerInterface', function () {
-                 $log = new Logger('app');
-                 $log->pushHandler(new StreamHandler('../logs/site.log', Logger::WARNING));
-                 return $log;
+                 $factory = new LoggerFactory;
+                 return $factory->make([]);
              });
     }
 }
