@@ -503,7 +503,11 @@ final class CollectionTest extends \PHPUnit\Framework\TestCase
 
     public function testMixinFromClass()
     {
-        Collection::mixin(new TestMacro);
+		Collection::mixin(new class {
+			public function foo() {
+				return 'Foo';
+			}
+		});
         $items = [16, 25];
         $collection = new Collection($items);
         $this->assertEquals('Foo', $collection->foo());
