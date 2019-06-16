@@ -158,6 +158,12 @@ final class StrTest extends \PHPUnit\Framework\TestCase
         $this->assertSame("a", $this->str->current());
     }
 
+    public function testPath()
+    {
+        $str = new Str('\foo\bar');
+        $this->assertSame(DIRECTORY_SEPARATOR.'foo'.DIRECTORY_SEPARATOR.'bar', $str->path()->__toString());
+    }
+
     public function testSupportsMacros()
     {
         $this->str->macro('bananas', function () {
@@ -176,17 +182,17 @@ final class StrTest extends \PHPUnit\Framework\TestCase
         $this->assertSame('bananas', $this->str->bananas());
     }
 
-    public function testPath()
-    {
-        $str = new Str('\foo\bar');
-        $this->assertSame(DIRECTORY_SEPARATOR.'foo'.DIRECTORY_SEPARATOR.'bar', $str->path()->__toString());
-    }
-
     public function testAbsentMacroMethod()
     {
         $this->expectException('BadMethodCallException');
         $str = new Str('I am the very model of a modern major general');
         $str->foo();
+    }
+
+    public function testAbsentMacroMethodStatic()
+    {
+        $this->expectException('BadMethodCallException');
+        Str::foo();
     }
 
     public function testMixinFromClass()

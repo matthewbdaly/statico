@@ -501,6 +501,12 @@ final class CollectionTest extends \PHPUnit\Framework\TestCase
         $collection->foo();
     }
 
+    public function testAbsentMacroMethodStatic()
+    {
+        $this->expectException('BadMethodCallException');
+        Collection::foo();
+    }
+
     public function testMixinFromClass()
     {
         Collection::mixin(new class {
