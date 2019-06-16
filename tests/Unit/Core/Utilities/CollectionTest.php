@@ -493,6 +493,14 @@ final class CollectionTest extends \PHPUnit\Framework\TestCase
         $this->assertSame([4, 5], $collection->squareRoot()->toArray());
     }
 
+    public function testSupportsCallingMacrosStatically()
+    {
+        Collection::macro('bananas', function () {
+            return 'bananas';
+        });
+        $this->assertSame('bananas', Collection::bananas());
+    }
+
     public function testAbsentMacroMethod()
     {
         $this->expectException('BadMethodCallException');

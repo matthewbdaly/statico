@@ -182,6 +182,14 @@ final class StrTest extends \PHPUnit\Framework\TestCase
         $this->assertSame('bananas', $this->str->bananas());
     }
 
+    public function testSupportsCallingMacrosStatically()
+    {
+        Str::macro('bananas', function () {
+            return 'bananas';
+        });
+        $this->assertSame('bananas', Str::bananas());
+    }
+
     public function testAbsentMacroMethod()
     {
         $this->expectException('BadMethodCallException');
