@@ -199,4 +199,15 @@ final class StrTest extends \PHPUnit\Framework\TestCase
 		$str = new Str('I am the very model of a modern major general');
 		$this->assertEquals('Foo', $str->foo());
 	}
+
+	public function testCallMacroStatically()
+	{
+		Str::mixin(new class {
+			public function foo() {
+				return 'Foo';
+			}
+		});
+		$str = new Str('I am the very model of a modern major general');
+		$this->assertEquals('Foo', Str::foo());
+	}
 }

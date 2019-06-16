@@ -72,12 +72,36 @@ trait IsMacroable
     }
 
     /**
+     * Dynamically handle calls to the class.
+     *
+     * @param  string  $method
+     * @param  array   $parameters
+     * @return mixed
+     *
+     * @throws \BadMethodCallException
+     */
+    public static function __callStatic($method, $parameters)
+    {
+        if (! static::hasMacro($method)) {
+            throw new BadMethodCallException(sprintf(
+                'Method %s::%s does not exist.', static::class, $method
+            ));
+        }
+
+        if (static::$macros[$method] instanceof Closure) {
+            return call_user_func_array(Closure::bind(static::$macros[$method], null, static::class), $parameters);
+        }
+
+        return call_user_func_array(static::$macros[$method], $parameters);
+    }
+
+    /**
      * Is a given macro defined?
      *
      * @param string $name Name of macro.
      * @return boolean
      */
-    protected function hasMacro(string $name)
+    public static function hasMacro(string $name)
     {
         return isset(static::$macros[$name]);
     }
