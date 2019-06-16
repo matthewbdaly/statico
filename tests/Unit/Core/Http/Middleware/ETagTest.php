@@ -36,4 +36,18 @@ final class ETagTest extends TestCase
         $middleware = new ETag();
         $received = $middleware->process($request, $handler);
     }
+
+    public function testInactiveInDevelopment()
+    {
+        putenv('APP_ENV=development');
+        $request = m::mock('Psr\Http\Message\ServerRequestInterface');
+        $request->shouldReceive('getMethod')->andReturn('POST');
+        $response = m::mock('Psr\Http\Message\ResponseInterface');
+        $handler = m::mock('Psr\Http\Server\RequestHandlerInterface');
+        $handler->shouldReceive('handle')->with($request)->andReturn($response);
+        $middleware = new ETag();
+        $received = $middleware->process($request, $handler);
+        $this->assertEquals($received, $response);
+        putenv('APP_ENV=testing');
+    }
 }
