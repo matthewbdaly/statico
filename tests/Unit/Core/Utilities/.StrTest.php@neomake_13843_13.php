@@ -189,6 +189,13 @@ final class StrTest extends \PHPUnit\Framework\TestCase
         $str->foo();
     }
 
+    public function testAbsentMacroMethodStatic()
+    {
+        $this->expectException('BadMethodCallException');
+        Str::foo();
+    }
+
+
     public function testMixinFromClass()
     {
         Str::mixin(new class {
@@ -202,6 +209,15 @@ final class StrTest extends \PHPUnit\Framework\TestCase
     }
 
     public function testCallMacroStatically()
+    {
+        Str::macro('foo', function () {
+            return 'Foo';
+        });
+        $str = new Str('I am the very model of a modern major general');
+        $this->assertEquals('Foo', Str::foo());
+    }
+
+    public function testCallMacroFromClassStatically()
     {
         Str::mixin(new class {
             public function foo()

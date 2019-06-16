@@ -501,27 +501,29 @@ final class CollectionTest extends \PHPUnit\Framework\TestCase
         $collection->foo();
     }
 
-	public function testMixinFromClass()
-	{
-		Collection::mixin(new class {
-			public function foo() {
-				return 'Foo';
-			}
-		});
-		$items = [16, 25];
-		$collection = new Collection($items);
-		$this->assertEquals('Foo', $collection->foo());
-	}
+    public function testMixinFromClass()
+    {
+        Collection::mixin(new class {
+            public function foo()
+            {
+                return 'Foo';
+            }
+        });
+        $items = [16, 25];
+        $collection = new Collection($items);
+        $this->assertEquals('Foo', $collection->foo());
+    }
 
-	public function testCallMacroStatically()
-	{
-		Collection::mixin(new class {
-			public function foo() {
-				return 'Foo';
-			}
-		});
-		$items = [16, 25];
-		$collection = new Collection($items);
-		$this->assertEquals('Foo', Collection::foo());
-	}
+    public function testCallMacroStatically()
+    {
+        Collection::mixin(new class {
+            public function foo()
+            {
+                return 'Foo';
+            }
+        });
+        $items = [16, 25];
+        $collection = new Collection($items);
+        $this->assertEquals('Foo', Collection::foo());
+    }
 }
