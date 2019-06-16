@@ -1,6 +1,6 @@
 <?php declare(strict_types = 1);
 
-namespace Tests\Unit\Utilities;
+namespace Tests\Unit\Core\Utilities;
 
 use Statico\Core\Utilities\Collection;
 use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
@@ -499,5 +499,13 @@ final class CollectionTest extends \PHPUnit\Framework\TestCase
         $items = [16, 25];
         $collection = new Collection($items);
         $collection->foo();
+    }
+
+    public function testMixinFromClass()
+    {
+        Collection::mixin(new TestMacro);
+        $items = [16, 25];
+        $collection = new Collection($items);
+        $this->assertEquals('Foo', $collection->foo());
     }
 }

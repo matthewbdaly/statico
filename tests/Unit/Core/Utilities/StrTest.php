@@ -1,6 +1,6 @@
 <?php declare(strict_types = 1);
 
-namespace Tests\Unit\Utilities;
+namespace Tests\Unit\Core\Utilities;
 
 use Statico\Core\Utilities\Str;
 
@@ -185,7 +185,14 @@ final class StrTest extends \PHPUnit\Framework\TestCase
     public function testAbsentMacroMethod()
     {
         $this->expectException('BadMethodCallException');
-        $collection = new Str('I am the very model of a modern major general');
-        $collection->foo();
+        $str = new Str('I am the very model of a modern major general');
+        $str->foo();
+    }
+
+    public function testMixinFromClass()
+    {
+        Str::mixin(new TestMacro);
+        $str = new Str('I am the very model of a modern major general');
+        $this->assertEquals('Foo', $str->foo());
     }
 }
