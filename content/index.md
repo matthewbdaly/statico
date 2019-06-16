@@ -2,7 +2,7 @@
 title: "Statico"
 ---
 
-Statico is a content management system intended largelyfor brochure sites.
+Statico is a content management system intended largely for brochure sites.
 
 It's designed to be decoupled from the data source. Out of the box, it supports Markdown files as the data source - however, by implementing the simple `Source` interface, you can theoretically return the data from any source you like.
 
