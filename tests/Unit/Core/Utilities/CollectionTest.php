@@ -21,7 +21,7 @@ final class CollectionTest extends \PHPUnit\Framework\TestCase
         $this->collection = new Collection($items);
     }
 
-    function testCanBeCalledStatically()
+    public function testCanBeCalledStatically()
     {
         $items = [
             'foo' => 'bar'
@@ -30,12 +30,12 @@ final class CollectionTest extends \PHPUnit\Framework\TestCase
         $this->assertSame(1, $this->collection->count());
     }
 
-    function testImplementsCountable()
+    public function testImplementsCountable()
     {
         $this->assertInstanceOf('Countable', $this->collection);
     }
 
-    function testCanCountCorrectly()
+    public function testCanCountCorrectly()
     {
         $items = [
             'foo' => 'bar'
@@ -44,12 +44,12 @@ final class CollectionTest extends \PHPUnit\Framework\TestCase
         $this->assertSame(1, $this->collection->count());
     }
 
-    function testImplementsArrayAccess()
+    public function testImplementsArrayAccess()
     {
         $this->assertInstanceOf('ArrayAccess', $this->collection);
     }
 
-    function testCanConfirmOffsetExists()
+    public function testCanConfirmOffsetExists()
     {
         $items = [
             'foo',
@@ -59,7 +59,7 @@ final class CollectionTest extends \PHPUnit\Framework\TestCase
         $this->assertTrue($this->collection->offsetExists(0));
     }
 
-    function testCanGetOffset()
+    public function testCanGetOffset()
     {
         $items = [
             'foo',
@@ -69,7 +69,7 @@ final class CollectionTest extends \PHPUnit\Framework\TestCase
         $this->assertSame('foo', $this->collection->offsetGet(0));
     }
 
-    function testCanSetOffset()
+    public function testCanSetOffset()
     {
         $items = [
             'foo',
@@ -81,7 +81,7 @@ final class CollectionTest extends \PHPUnit\Framework\TestCase
         $this->assertSame('baz', $this->collection->offsetGet(0));
     }
 
-    function testAppendsElementWhenOffsetSetPassedNull()
+    public function testAppendsElementWhenOffsetSetPassedNull()
     {
         $items = [
             'foo',
@@ -95,7 +95,7 @@ final class CollectionTest extends \PHPUnit\Framework\TestCase
         $this->assertSame('baz', $this->collection->offsetGet(2));
     }
 
-    function testCanUnsetOffset()
+    public function testCanUnsetOffset()
     {
         $items = [
             'foo',
@@ -108,17 +108,17 @@ final class CollectionTest extends \PHPUnit\Framework\TestCase
         $this->assertSame(1, $this->collection->count());
     }
 
-    function testImplementsTraversable()
+    public function testImplementsTraversable()
     {
         $this->assertInstanceOf('Traversable', $this->collection);
     }
 
-    function testImplementsIterator()
+    public function testImplementsIterator()
     {
         $this->assertInstanceOf('Iterator', $this->collection);
     }
 
-    function testCanGetCurrentPosition()
+    public function testCanGetCurrentPosition()
     {
         $items = [
             'foo',
@@ -128,7 +128,7 @@ final class CollectionTest extends \PHPUnit\Framework\TestCase
         $this->assertSame('foo', $this->collection->current());
     }
 
-    function testCanGetKey()
+    public function testCanGetKey()
     {
         $items = [
             'foo',
@@ -138,7 +138,7 @@ final class CollectionTest extends \PHPUnit\Framework\TestCase
         $this->assertSame(0, $this->collection->key());
     }
 
-    function testCanMoveForward()
+    public function testCanMoveForward()
     {
         $items = [
             'foo',
@@ -150,7 +150,7 @@ final class CollectionTest extends \PHPUnit\Framework\TestCase
         $this->assertSame(1, $this->collection->key());
     }
 
-    function testCanRewind()
+    public function testCanRewind()
     {
         $items = [
             'foo',
@@ -163,17 +163,17 @@ final class CollectionTest extends \PHPUnit\Framework\TestCase
         $this->assertSame(0, $this->collection->key());
     }
 
-    function testCanValidate()
+    public function testCanValidate()
     {
         $this->assertFalse($this->collection->valid());
     }
 
-    function testImplementsJsonSerializable()
+    public function testImplementsJsonSerializable()
     {
         $this->assertInstanceOf('JsonSerializable', $this->collection);
     }
 
-    function testCanJsonSerialize()
+    public function testCanJsonSerialize()
     {
         $items = [
             'foo',
@@ -183,12 +183,12 @@ final class CollectionTest extends \PHPUnit\Framework\TestCase
         $this->assertSame(json_encode($items), $this->collection->jsonSerialize());
     }
 
-    function testImplementsCollectable()
+    public function testImplementsCollectable()
     {
         $this->assertInstanceOf('Statico\Core\Contracts\Utilities\Collectable', $this->collection);
     }
 
-    function testCanConvertToJson()
+    public function testCanConvertToJson()
     {
         $items = [
             'foo',
@@ -198,7 +198,7 @@ final class CollectionTest extends \PHPUnit\Framework\TestCase
         $this->assertSame(json_encode($items), $this->collection->toJson());
     }
 
-    function testCanConvertToArray()
+    public function testCanConvertToArray()
     {
         $items = [
             'foo',
@@ -208,7 +208,7 @@ final class CollectionTest extends \PHPUnit\Framework\TestCase
         $this->assertSame($items, $this->collection->toArray());
     }
 
-    function testImplementsMap()
+    public function testImplementsMap()
     {
         $items = [
             1,
@@ -221,7 +221,7 @@ final class CollectionTest extends \PHPUnit\Framework\TestCase
         })->toArray());
     }
 
-    function testImplementsFilter()
+    public function testImplementsFilter()
     {
         $items = [
             'foo' => 1,
@@ -237,7 +237,7 @@ final class CollectionTest extends \PHPUnit\Framework\TestCase
         })->toArray());
     }
 
-    function testImplementsReject()
+    public function testImplementsReject()
     {
         $items = [
             'foo' => 1,
@@ -253,7 +253,7 @@ final class CollectionTest extends \PHPUnit\Framework\TestCase
         })->toArray());
     }
 
-    function testImplementsReduce()
+    public function testImplementsReduce()
     {
         $items = [1, 2, 3];
         $this->collection = new Collection($items);
@@ -262,7 +262,7 @@ final class CollectionTest extends \PHPUnit\Framework\TestCase
         }));
     }
 
-    function testImplementsPluck()
+    public function testImplementsPluck()
     {
         $items = [[
             'foo' => 1,
@@ -278,7 +278,7 @@ final class CollectionTest extends \PHPUnit\Framework\TestCase
         $this->assertSame([1, 3, 5], $this->collection->pluck('foo')->toArray());
     }
 
-    function testImplementsEach()
+    public function testImplementsEach()
     {
         /** @var DateTime|\PHPUnit\Framework\MockObject\MockObject $date */
         $date = m::mock('DateTime');
@@ -292,14 +292,14 @@ final class CollectionTest extends \PHPUnit\Framework\TestCase
         });
     }
 
-    function testImplementsPush()
+    public function testImplementsPush()
     {
         $items = [1, 2, 3];
         $this->collection = new Collection($items);
         $this->assertSame([1, 2, 3, 4], $this->collection->push(4)->toArray());
     }
 
-    function testImplementsPop()
+    public function testImplementsPop()
     {
         $items = [1, 2, 3];
         $this->collection = new Collection($items);
@@ -307,14 +307,14 @@ final class CollectionTest extends \PHPUnit\Framework\TestCase
         $this->assertSame([1, 2], $this->collection->toArray());
     }
 
-    function testImplementsUnshift()
+    public function testImplementsUnshift()
     {
         $items = [1, 2, 3];
         $this->collection = new Collection($items);
         $this->assertSame([4, 1, 2, 3], $this->collection->unshift(4)->toArray());
     }
 
-    function testImplementsShift()
+    public function testImplementsShift()
     {
         $items = [1, 2, 3];
         $this->collection = new Collection($items);
@@ -322,7 +322,7 @@ final class CollectionTest extends \PHPUnit\Framework\TestCase
         $this->assertSame([2, 3], $this->collection->toArray());
     }
 
-    function testImplementsSort()
+    public function testImplementsSort()
     {
         $items = [2, 1, 3];
         $this->collection = new Collection($items);
@@ -331,21 +331,21 @@ final class CollectionTest extends \PHPUnit\Framework\TestCase
         })->toArray());
     }
 
-    function testAllowsACallbackToSort()
+    public function testAllowsACallbackToSort()
     {
         $items = [2, 1, 3];
         $this->collection = new Collection($items);
         $this->assertSame([1, 2, 3], $this->collection->sort()->toArray());
     }
 
-    function testImplementsReverse()
+    public function testImplementsReverse()
     {
         $items = [3, 2, 1];
         $this->collection = new Collection($items);
         $this->assertSame([1, 2, 3], $this->collection->reverse()->toArray());
     }
 
-    function testImplementsKeys()
+    public function testImplementsKeys()
     {
         $items = [
             1 => "a",
@@ -356,7 +356,7 @@ final class CollectionTest extends \PHPUnit\Framework\TestCase
         $this->assertSame([1, 2, 3], $this->collection->keys()->toArray());
     }
 
-    function testImplementsValues()
+    public function testImplementsValues()
     {
         $items = [
             1 => "a",
@@ -367,7 +367,7 @@ final class CollectionTest extends \PHPUnit\Framework\TestCase
         $this->assertSame(["a", "b", "c"], $this->collection->values()->toArray());
     }
 
-    function testImplementsChunk()
+    public function testImplementsChunk()
     {
         $items = [
             "a",
@@ -388,7 +388,7 @@ final class CollectionTest extends \PHPUnit\Framework\TestCase
         ]], $this->collection->chunk(2)->toArray());
     }
 
-    function testImplementsMerge()
+    public function testImplementsMerge()
     {
         $items = [
             "a",
@@ -413,7 +413,7 @@ final class CollectionTest extends \PHPUnit\Framework\TestCase
         ], $this->collection->merge($merged)->toArray());
     }
 
-    function testImplementsSeek()
+    public function testImplementsSeek()
     {
         $items = [
             "a",
@@ -426,7 +426,7 @@ final class CollectionTest extends \PHPUnit\Framework\TestCase
         $this->assertSame("c", $this->collection->seek(2)->current());
     }
 
-    function testImplementsGroupBy()
+    public function testImplementsGroupBy()
     {
         $items = [
             ['account_id' => 'account-x10', 'product' => 'Chair'],
@@ -445,7 +445,7 @@ final class CollectionTest extends \PHPUnit\Framework\TestCase
         ], $this->collection->groupBy('account_id')->toArray());
     }
 
-    function testImplementsFlatten()
+    public function testImplementsFlatten()
     {
         $items = [
             1,
@@ -469,27 +469,35 @@ final class CollectionTest extends \PHPUnit\Framework\TestCase
         ], $this->collection->flatten()->toArray());
     }
 
-    function testSupportsMacros()
+    public function testSupportsMacros()
     {
         $items = [16, 25];
         $collection = new Collection($items);
         $collection->macro('squareRoot', function () use ($collection) {
-            return $collection->map(function($number) {
+            return $collection->map(function ($number) {
                 return (int)sqrt($number);
             });
         });
         $this->assertSame([4, 5], $collection->squareRoot()->toArray());
     }
 
-    function testSupportsStaticMacros()
+    public function testSupportsStaticMacros()
     {
         $items = [16, 25];
         $collection = new Collection($items);
         Collection::macro('squareRoot', function () use ($collection) {
-            return $collection->map(function($number) {
+            return $collection->map(function ($number) {
                 return (int)sqrt($number);
             });
         });
         $this->assertSame([4, 5], $collection->squareRoot()->toArray());
+    }
+
+    public function testAbsentMacroMethod()
+    {
+        $this->expectException('BadMethodCallException');
+        $items = [16, 25];
+        $collection = new Collection($items);
+        $collection->foo();
     }
 }
