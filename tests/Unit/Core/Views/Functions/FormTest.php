@@ -59,6 +59,49 @@ final class FormTest extends TestCase
         $form->__invoke('contact');
     }
 
+    public function testException()
+    {
+        $this->expectException('Statico\Core\Exceptions\Forms\FormNotFound');
+        $config = m::mock('Zend\Config\Config');
+        $config->shouldReceive('get')
+            ->with('forms')
+            ->once()
+            ->andReturn([]);
+        $factory = m::mock('Statico\Core\Contracts\Factories\FormFactory');
+        $renderer = m::mock('Zend\View\Renderer\PhpRenderer');
+        $helper = m::mock('Zend\Form\View\Helper\Form');
+        $helper->shouldReceive('setView')
+            ->with($renderer)
+            ->once();
+        $pluginManager = m::mock('Zend\View\HelperPluginManager');
+        $pluginManager->shouldReceive('setInvokableClass')
+            ->with('formRow', 'Zend\Form\View\Helper\FormRow')
+            ->once();
+        $pluginManager->shouldReceive('setInvokableClass')
+            ->with('form_label', 'Zend\Form\View\Helper\FormLabel')
+            ->once();
+        $pluginManager->shouldReceive('setInvokableClass')
+            ->with('form_element', 'Zend\Form\View\Helper\FormElement')
+            ->once();
+        $pluginManager->shouldReceive('setInvokableClass')
+            ->with('form_element_errors', 'Zend\Form\View\Helper\FormElementErrors')
+            ->once();
+        $pluginManager->shouldReceive('setInvokableClass')
+            ->with('forminput', 'Zend\Form\View\Helper\FormInput')
+            ->once();
+        $pluginManager->shouldReceive('setInvokableClass')
+            ->with('formtext', 'Zend\Form\View\Helper\FormText')
+            ->once();
+        $pluginManager->shouldReceive('setInvokableClass')
+            ->with('formsubmit', 'Zend\Form\View\Helper\FormSubmit')
+            ->once();
+        $renderer->shouldReceive('getHelperPluginManager')
+            ->once()
+            ->andReturn($pluginManager);
+        $form = new Form($config, $factory, $helper, $renderer);
+        $form->__invoke('contact');
+    }
+
     public function configProvider()
     {
         return [[[
