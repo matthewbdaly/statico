@@ -40,12 +40,12 @@ final class Document implements Documentable, JsonSerializable
         return $this;
     }
 
-    public function getField(string $key): string
+    public function getField(string $key)
     {
         return $this->data[$key];
     }
 
-    public function setField(string $key, string $value): Document
+    public function setField(string $key, $value): Document
     {
         $this->data[$key] = $value;
         return $this;

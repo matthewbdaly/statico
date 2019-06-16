@@ -10,9 +10,9 @@ interface Documentable
 
     public function setContent(string $data): Document;
 
-    public function getField(string $key): string;
+    public function getField(string $key);
 
-    public function setField(string $key, string $value): Document;
+    public function setField(string $key, $value): Document;
 
     public function getPath(): string;
 

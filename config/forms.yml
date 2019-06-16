@@ -12,8 +12,7 @@ forms:
             class: form-control mr-sm-2
       - spec:
           name: submit
-          options:
-            label: submit
-          type: Submit
+          type: submit
           attributes:
             class: form-control mr-sm-2
+            value: "Submit"
