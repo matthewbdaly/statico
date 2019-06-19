@@ -5,7 +5,7 @@ namespace Statico\Core\Console;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use League\Flysystem\MountManager;
+use League\Flysystem\FilesystemInterface;
 use Statico\Core\Contracts\Generators\Sitemap;
 
 final class GenerateSitemap extends Command
@@ -16,11 +16,11 @@ final class GenerateSitemap extends Command
     protected $sitemap;
 
     /**
-     * @var MountManager
+     * @var FilesystemInterface
      */
     protected $manager;
 
-    public function __construct(Sitemap $sitemap, MountManager $manager)
+    public function __construct(Sitemap $sitemap, FilesystemInterface $manager)
     {
         parent::__construct();
         $this->sitemap = $sitemap;

@@ -6,7 +6,7 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Statico\Core\Contracts\Sources\Source;
-use League\Flysystem\MountManager;
+use League\Flysystem\FilesystemInterface;
 
 final class GenerateIndex extends Command
 {
@@ -16,11 +16,11 @@ final class GenerateIndex extends Command
     protected $source;
 
     /**
-     * @var MountManager
+     * @var FilesystemInterface
      */
     protected $manager;
 
-    public function __construct(Source $source, MountManager $manager)
+    public function __construct(Source $source, FilesystemInterface $manager)
     {
         parent::__construct();
         $this->source = $source;
