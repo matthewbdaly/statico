@@ -220,7 +220,12 @@ trait IsString
         $this->position = $position;
     }
 
-    public function path()
+    /**
+     * Handle path in a platform-independent way
+     *
+     * @return Str
+     */
+    public function path(): Str
     {
         return new static(preg_replace('/(\\\|\/)/', DIRECTORY_SEPARATOR, $this->string));
     }
