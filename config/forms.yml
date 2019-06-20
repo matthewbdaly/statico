@@ -9,10 +9,10 @@ forms:
             label: Your name
           type: Text
           attributes:
-            class: form-control mr-sm-2
+            class: form-control mr-sm-2 m-2 p-2 border border-solid border-gray-400
       - spec:
           name: submit
           type: submit
           attributes:
-            class: form-control mr-sm-2
+            class: form-control mr-sm-2 m-2 p-2 bg-white text-purple hover:bg-purple hover:text-white border border-solid border-purple hover:border-transparent rounded
             value: "Submit"
