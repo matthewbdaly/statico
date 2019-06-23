@@ -11,6 +11,20 @@ forms:
           attributes:
             class: form-control mr-sm-2 m-2 p-2 border border-solid border-gray-400
       - spec:
+          name: email
+          options:
+            label: Your email address
+          type: Email
+          attributes:
+            class: form-control mr-sm-2 m-2 p-2 border border-solid border-gray-400
+      - spec:
+          name: message
+          options:
+            label: Your message
+          type: Textarea
+          attributes:
+            class: form-control mr-sm-2 m-2 p-2 border border-solid border-gray-400
+      - spec:
           name: submit
           type: submit
           attributes:

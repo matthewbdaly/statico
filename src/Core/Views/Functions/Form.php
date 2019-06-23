@@ -56,6 +56,8 @@ final class Form
             'form_element_errors' => 'Zend\Form\View\Helper\FormElementErrors',
             'forminput' => 'Zend\Form\View\Helper\FormInput',
             'formtext' => 'Zend\Form\View\Helper\FormText',
+            'formtextarea' => 'Zend\Form\View\Helper\FormTextarea',
+            'formemail' => 'Zend\Form\View\Helper\FormEmail',
             'formsubmit' => 'Zend\Form\View\Helper\FormSubmit',
         ];
     }
