@@ -48,6 +48,12 @@ final class FormTest extends TestCase
         $pluginManager->shouldReceive('setInvokableClass')
             ->with('formsubmit', 'Zend\Form\View\Helper\FormSubmit')
             ->once();
+        $pluginManager->shouldReceive('setInvokableClass')
+            ->with('formtextarea', 'Zend\Form\View\Helper\FormTextarea')
+            ->once();
+        $pluginManager->shouldReceive('setInvokableClass')
+            ->with('formemail', 'Zend\Form\View\Helper\FormEmail')
+            ->once();
         $renderer = m::mock('Zend\View\Renderer\PhpRenderer');
         $renderer->shouldReceive('getHelperPluginManager')
             ->once()
@@ -94,6 +100,12 @@ final class FormTest extends TestCase
             ->once();
         $pluginManager->shouldReceive('setInvokableClass')
             ->with('formsubmit', 'Zend\Form\View\Helper\FormSubmit')
+            ->once();
+        $pluginManager->shouldReceive('setInvokableClass')
+            ->with('formtextarea', 'Zend\Form\View\Helper\FormTextarea')
+            ->once();
+        $pluginManager->shouldReceive('setInvokableClass')
+            ->with('formemail', 'Zend\Form\View\Helper\FormEmail')
             ->once();
         $renderer->shouldReceive('getHelperPluginManager')
             ->once()
