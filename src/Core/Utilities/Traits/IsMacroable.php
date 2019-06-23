@@ -5,6 +5,7 @@ namespace Statico\Core\Utilities\Traits;
 use BadMethodCallException;
 use ReflectionClass;
 use ReflectionMethod;
+use Closure;
 
 trait IsMacroable
 {
