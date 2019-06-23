@@ -2,6 +2,7 @@
 
 namespace Statico\Core\Generators;
 
+use DOMDocument;
 use SimpleXmlElement;
 use Statico\Core\Contracts\Sources\Source;
 use Statico\Core\Contracts\Generators\Sitemap;
@@ -34,7 +35,11 @@ final class XmlStringSitemap implements Sitemap
             $path = preg_replace('/index$/', '', $this->parsePath($document->getPath()));
             $item->addChild('loc', $this->config->get('base_url') . '/' . $path);
         }
-        return $xml->asXml();
+        $doc = new DOMDocument();
+        $doc->preserveWhiteSpace = false;
+        $doc->formatOutput = true;
+        $doc->loadXML($xml->asXML());
+        return $doc->saveXML();
     }
 
     private function parsePath(string $path): string
