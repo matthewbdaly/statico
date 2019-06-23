@@ -5,3 +5,6 @@ filesystem:
   assets:
     driver: local
     path: public/storage
+  media:
+    driver: local
+    path: public/media

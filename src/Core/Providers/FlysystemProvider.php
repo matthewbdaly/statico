@@ -22,10 +22,12 @@ final class FlysystemProvider extends AbstractServiceProvider
                 // Decorate the adapter
                 $contentFilesystem = $factory->make($config->filesystem->content->toArray());
                 $assetFilesystem = $factory->make($config->filesystem->assets->toArray());
+                $mediaFilesystem = $factory->make($config->filesystem->media->toArray());
 
                 return new MountManager([
                     'content' => $contentFilesystem,
                     'assets'  => $assetFilesystem,
+                    'media'   => $mediaFilesystem,
                 ]);
         });
     }
