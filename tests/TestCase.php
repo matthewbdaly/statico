@@ -3,7 +3,7 @@
 namespace Tests;
 
 use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
-use Statico\Core\Kernel;
+use Statico\Core\Application;
 
 abstract class TestCase extends \PHPUnit\Framework\TestCase
 {
@@ -20,7 +20,7 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
         if (!defined('PUBLIC_DIR')) {
             define('PUBLIC_DIR', __DIR__.'/../public/');
         }
-        $this->app = new Kernel;
+        $this->app = new Application;
         $this->app->bootstrap();
         $this->container = $this->app->getContainer();
     }

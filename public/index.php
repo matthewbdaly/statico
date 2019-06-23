@@ -1,5 +1,7 @@
 <?php declare(strict_types = 1);
 
+use Statico\Core\Application;
+
 require_once __DIR__.'/../bootstrap.php';
 
 if (!defined('PUBLIC_DIR')) {
@@ -14,7 +16,7 @@ $request = Zend\Diactoros\ServerRequestFactory::fromGlobals(
     $_FILES
 );
 
-$app = new Statico\Core\Kernel;
+$app = new Statico\Core\Application;
 $response = $app->bootstrap()
     ->handle($request);
 

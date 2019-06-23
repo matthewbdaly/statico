@@ -7,11 +7,12 @@ use League\Container\Container;
 use League\Container\ReflectionContainer;
 use Psr\Http\Message\ServerRequestInterface;
 use ReflectionClass;
+use Statico\Core\Application;
 
 /**
- * Application kernel
+ * Application instance
  */
-final class Kernel
+final class Application
 {
     /**
      * @var Container
@@ -57,9 +58,9 @@ final class Kernel
     /**
      * Bootstrap the application
      *
-     * @return Kernel
+     * @return Application
      */
-    public function bootstrap(): Kernel
+    public function bootstrap(): Application
     {
         $this->setupContainer();
         $this->setErrorHandler();
