@@ -7,6 +7,7 @@ use Psr\Http\Message\ResponseInterface;
 use Statico\Core\Contracts\Views\Renderer;
 use League\Route\Http\Exception\NotFoundException;
 use Statico\Core\Contracts\Sources\Source;
+use League\Event\EmitterInterface;
 
 final class MainController
 {
@@ -25,11 +26,17 @@ final class MainController
      */
     protected $view;
 
-    public function __construct(ResponseInterface $response, Source $source, Renderer $view)
+    /**
+     * @var EmitterInterface
+     */
+    protected $emitter;
+
+    public function __construct(ResponseInterface $response, Source $source, Renderer $view, EmitterInterface $emitter)
     {
         $this->response = $response;
         $this->source = $source;
         $this->view = $view;
+        $this->emitter = $emitter;
     }
 
     public function index(ServerRequestInterface $request, array $args): ResponseInterface
@@ -42,5 +49,13 @@ final class MainController
         $data['content'] = $document->getContent();
         $layout = isset($data['layout']) ? $data['layout'].'.html' : 'default.html';
         return $this->view->render($this->response, $layout, $data);
+    }
+
+    public function submit(ServerRequestInterface $request, array $args): ResponseInterface
+    {
+        $name = isset($args['name']) ? $args['name'] : 'index';
+        if (!$document = $this->source->find($name)) {
+            throw new NotFoundException('Page not found');
+        }
     }
 }
