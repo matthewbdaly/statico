@@ -11,6 +11,7 @@ final class MainControllerTest extends TestCase
 {
     public function testGetResponse()
     {
+        $emitter = m::mock('League\Event\EmitterInterface');
         $response = m::mock('Psr\Http\Message\ResponseInterface');
         $doc = (new Document)
             ->setField('title', 'Foo')
@@ -28,7 +29,8 @@ final class MainControllerTest extends TestCase
         $controller = new MainController(
             $response,
             $source,
-            $view
+            $view,
+            $emitter
         );
         $controller->index($request, ['name' => 'foo']);
     }
@@ -36,6 +38,7 @@ final class MainControllerTest extends TestCase
     public function test404()
     {
         $this->expectException('League\Route\Http\Exception\NotFoundException');
+        $emitter = m::mock('League\Event\EmitterInterface');
         $response = m::mock('Psr\Http\Message\ResponseInterface');
         $source = m::mock('Statico\Core\Contracts\Sources\Source');
         $source->shouldReceive('find')->once()->andReturn(null);
@@ -44,7 +47,8 @@ final class MainControllerTest extends TestCase
         $controller = new MainController(
             $response,
             $source,
-            $view
+            $view,
+            $emitter
         );
         $controller->index($request, ['name' => 'foo']);
     }
