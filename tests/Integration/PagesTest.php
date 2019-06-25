@@ -21,6 +21,26 @@ final class PagesTest extends IntegrationTestCase
             ->assertStatusCode(200);
     }
 
+    public function testPostToForm(): void
+    {
+        $params = [
+            'name' => 'Bob Smith',
+            'email' => 'bob@example.com',
+            'message' => 'Just testing'
+        ];
+        $this->makeRequest(
+            '/contact',
+            'POST',
+            [],
+            [],
+            'php://input',
+            [],
+            [],
+            [],
+            $params
+        )->assertStatusCode(200);
+    }
+
     public function test404(): void
     {
         $this->makeRequest('/foo')
