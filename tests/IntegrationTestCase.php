@@ -23,12 +23,13 @@ abstract class IntegrationTestCase extends TestCase
         return $this;
     }
 
-    public function assertStatusCode(int $code, $message = ''): void
+    public function assertStatusCode(int $code, $message = ''): IntegrationTestCase
     {
         if (!isset($this->response)) {
             throw new \Exception('No response has been received');
         }
         self::assertThat($this->response->getStatusCode() == $code, self::isTrue(), $message);
+        return $this;
     }
 
     public function tearDown(): void
