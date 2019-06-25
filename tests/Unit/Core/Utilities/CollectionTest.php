@@ -426,6 +426,20 @@ final class CollectionTest extends \PHPUnit\Framework\TestCase
         $this->assertSame("c", $this->collection->seek(2)->current());
     }
 
+    public function testSeekOutOfBounds()
+    {
+        $this->expectException('OutOfBoundsException');
+        $items = [
+            "a",
+            "b",
+            "c",
+            "d",
+            "e"
+        ];
+        $this->collection = new Collection($items);
+        $this->collection->seek(7);
+    }
+
     public function testImplementsGroupBy()
     {
         $items = [
