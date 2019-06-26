@@ -8,6 +8,7 @@ use Statico\Core\Contracts\Views\Renderer;
 use League\Route\Http\Exception\NotFoundException;
 use Statico\Core\Contracts\Sources\Source;
 use League\Event\EmitterInterface;
+use Statico\Core\Events\FormSubmitted;
 
 final class MainController
 {
@@ -60,6 +61,8 @@ final class MainController
         $data = $document->getFields();
         $data['content'] = $document->getContent();
         $layout = isset($data['layout']) ? $data['layout'].'.html' : 'default.html';
+        $event = new FormSubmitted;
+        $this->emitter->emit($event);
         return $this->view->render($this->response, $layout, $data);
     }
 }

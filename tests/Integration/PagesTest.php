@@ -3,6 +3,7 @@
 namespace Tests\Integration;
 
 use Tests\IntegrationTestCase;
+use Mockery as m;
 
 /**
  * @runTestsInSeparateProcesses
@@ -23,6 +24,9 @@ final class PagesTest extends IntegrationTestCase
 
     public function testPostToForm(): void
     {
+        $emitter = m::mock('League\Event\EmitterInterface');
+        $emitter->shouldReceive('emit')->with('Statico\Core\Events\FormSubmitted')->once();
+        $this->app->getContainer()->share('League\Event\EmitterInterface', $emitter);
         $params = [
             'name' => 'Bob Smith',
             'email' => 'bob@example.com',

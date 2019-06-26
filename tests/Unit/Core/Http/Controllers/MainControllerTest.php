@@ -38,6 +38,7 @@ final class MainControllerTest extends TestCase
     public function testPostResponse()
     {
         $emitter = m::mock('League\Event\EmitterInterface');
+        $emitter->shouldReceive('emit')->with('Statico\Core\Events\FormSubmitted')->once();
         $response = m::mock('Psr\Http\Message\ResponseInterface');
         $doc = (new Document)
             ->setField('title', 'Foo')
