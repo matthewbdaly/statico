@@ -96,13 +96,39 @@ final class FlysystemFactoryTest extends TestCase
         $this->assertInstanceOf('League\Flysystem\AzureBlobStorage\AzureBlobStorageAdapter', $cache->getAdapter());
     }
 
-    public function testAzureMisconfigured()
+    public function testAzureMisconfiguredContainer()
     {
         $this->expectException('Statico\Core\Exceptions\Factories\BadFlysystemConfigurationException');
         $pool = m::mock('Stash\Pool');
         $factory = new FlysystemFactory($pool);
         $fs = $factory->make([
             'driver' => 'azure',
+            'name' => 'bar',
+            'key' => 'baz',
+        ]);
+    }
+
+    public function testAzureMisconfiguredName()
+    {
+        $this->expectException('Statico\Core\Exceptions\Factories\BadFlysystemConfigurationException');
+        $pool = m::mock('Stash\Pool');
+        $factory = new FlysystemFactory($pool);
+        $fs = $factory->make([
+            'driver' => 'azure',
+            'container' => 'foo',
+            'key' => 'baz',
+        ]);
+    }
+
+    public function testAzureMisconfiguredKey()
+    {
+        $this->expectException('Statico\Core\Exceptions\Factories\BadFlysystemConfigurationException');
+        $pool = m::mock('Stash\Pool');
+        $factory = new FlysystemFactory($pool);
+        $fs = $factory->make([
+            'driver' => 'azure',
+            'container' => 'foo',
+            'name' => 'bar',
         ]);
     }
 
@@ -127,13 +153,55 @@ final class FlysystemFactoryTest extends TestCase
         $this->assertInstanceOf('League\Flysystem\AwsS3v3\AwsS3Adapter', $cache->getAdapter());
     }
 
-    public function testS3Misconfigured()
+    public function testS3MisconfiguredKey()
     {
         $this->expectException('Statico\Core\Exceptions\Factories\BadFlysystemConfigurationException');
         $pool = m::mock('Stash\Pool');
         $factory = new FlysystemFactory($pool);
         $fs = $factory->make([
             'driver' => 's3',
+            'secret' => 'baz',
+            'region' => 'foo',
+            'version' => 'latest',
+        ]);
+    }
+
+    public function testS3MisconfiguredSecret()
+    {
+        $this->expectException('Statico\Core\Exceptions\Factories\BadFlysystemConfigurationException');
+        $pool = m::mock('Stash\Pool');
+        $factory = new FlysystemFactory($pool);
+        $fs = $factory->make([
+            'driver' => 's3',
+            'key' => 'bar',
+            'region' => 'foo',
+            'version' => 'latest',
+        ]);
+    }
+
+    public function testS3MisconfiguredRegion()
+    {
+        $this->expectException('Statico\Core\Exceptions\Factories\BadFlysystemConfigurationException');
+        $pool = m::mock('Stash\Pool');
+        $factory = new FlysystemFactory($pool);
+        $fs = $factory->make([
+            'driver' => 's3',
+            'key' => 'bar',
+            'secret' => 'baz',
+            'version' => 'latest',
+        ]);
+    }
+
+    public function testS3MisconfiguredVersion()
+    {
+        $this->expectException('Statico\Core\Exceptions\Factories\BadFlysystemConfigurationException');
+        $pool = m::mock('Stash\Pool');
+        $factory = new FlysystemFactory($pool);
+        $fs = $factory->make([
+            'driver' => 's3',
+            'key' => 'bar',
+            'secret' => 'baz',
+            'region' => 'foo',
         ]);
     }
 
@@ -157,13 +225,42 @@ final class FlysystemFactoryTest extends TestCase
         $this->assertInstanceOf('League\Flysystem\Sftp\SftpAdapter', $cache->getAdapter());
     }
 
-    public function testSFTPMisconfigured()
+    public function testSFTPMisconfiguredHost()
     {
         $this->expectException('Statico\Core\Exceptions\Factories\BadFlysystemConfigurationException');
         $pool = m::mock('Stash\Pool');
         $factory = new FlysystemFactory($pool);
         $fs = $factory->make([
             'driver' => 'sftp',
+            'username' => 'bob',
+            'password' => 'password',
+            'root' => 'foo',
+        ]);
+    }
+
+    public function testSFTPMisconfiguredUsername()
+    {
+        $this->expectException('Statico\Core\Exceptions\Factories\BadFlysystemConfigurationException');
+        $pool = m::mock('Stash\Pool');
+        $factory = new FlysystemFactory($pool);
+        $fs = $factory->make([
+            'driver' => 'sftp',
+            'host' => 'foo.com',
+            'password' => 'password',
+            'root' => 'foo',
+        ]);
+    }
+
+    public function testSFTPMisconfiguredPassword()
+    {
+        $this->expectException('Statico\Core\Exceptions\Factories\BadFlysystemConfigurationException');
+        $pool = m::mock('Stash\Pool');
+        $factory = new FlysystemFactory($pool);
+        $fs = $factory->make([
+            'driver' => 'sftp',
+            'host' => 'foo.com',
+            'username' => 'bob',
+            'root' => 'foo',
         ]);
     }
 
@@ -187,13 +284,42 @@ final class FlysystemFactoryTest extends TestCase
         $this->assertInstanceOf('League\Flysystem\Adapter\Ftp', $cache->getAdapter());
     }
 
-    public function testFTPMisconfigured()
+    public function testFTPMisconfiguredHost()
     {
         $this->expectException('Statico\Core\Exceptions\Factories\BadFlysystemConfigurationException');
         $pool = m::mock('Stash\Pool');
         $factory = new FlysystemFactory($pool);
         $fs = $factory->make([
             'driver' => 'ftp',
+            'username' => 'bob',
+            'password' => 'password',
+            'root' => 'foo',
+        ]);
+    }
+
+    public function testFTPMisconfiguredUsername()
+    {
+        $this->expectException('Statico\Core\Exceptions\Factories\BadFlysystemConfigurationException');
+        $pool = m::mock('Stash\Pool');
+        $factory = new FlysystemFactory($pool);
+        $fs = $factory->make([
+            'driver' => 'ftp',
+            'host' => 'foo.com',
+            'password' => 'password',
+            'root' => 'foo',
+        ]);
+    }
+
+    public function testFTPMisconfiguredPassword()
+    {
+        $this->expectException('Statico\Core\Exceptions\Factories\BadFlysystemConfigurationException');
+        $pool = m::mock('Stash\Pool');
+        $factory = new FlysystemFactory($pool);
+        $fs = $factory->make([
+            'driver' => 'ftp',
+            'host' => 'foo.com',
+            'username' => 'bob',
+            'root' => 'foo',
         ]);
     }
 }
