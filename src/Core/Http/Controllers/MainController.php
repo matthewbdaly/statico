@@ -9,7 +9,7 @@ use League\Route\Http\Exception\NotFoundException;
 use Statico\Core\Contracts\Sources\Source;
 use League\Event\EmitterInterface;
 use Statico\Core\Events\FormSubmitted;
-use Statico\Core\Exceptions\Forms\FormNotFound;
+use Zend\Diactoros\Response\EmptyResponse;
 
 final class MainController
 {
@@ -61,7 +61,7 @@ final class MainController
         }
         $data = $document->getFields();
         if (!isset($data['forms'])) {
-            throw new FormNotFound;
+            return new EmptyResponse(405);
         }
         $data['content'] = $document->getContent();
         $layout = isset($data['layout']) ? $data['layout'].'.html' : 'default.html';
