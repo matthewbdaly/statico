@@ -9,6 +9,7 @@ use League\Route\Http\Exception\NotFoundException;
 use Statico\Core\Contracts\Sources\Source;
 use League\Event\EmitterInterface;
 use Statico\Core\Events\FormSubmitted;
+use Statico\Core\Exceptions\Forms\FormNotFound;
 
 final class MainController
 {
@@ -59,6 +60,9 @@ final class MainController
             throw new NotFoundException('Page not found');
         }
         $data = $document->getFields();
+        if (!isset($data['forms'])) {
+            throw new FormNotFound;
+        }
         $data['content'] = $document->getContent();
         $layout = isset($data['layout']) ? $data['layout'].'.html' : 'default.html';
         $event = new FormSubmitted;

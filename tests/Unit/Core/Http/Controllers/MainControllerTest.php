@@ -42,6 +42,7 @@ final class MainControllerTest extends TestCase
         $response = m::mock('Psr\Http\Message\ResponseInterface');
         $doc = (new Document)
             ->setField('title', 'Foo')
+            ->setField('forms', ['contact'])
             ->setPath('foo.md')
             ->setContent('foo');
         $source = m::mock('Statico\Core\Contracts\Sources\Source');
@@ -50,7 +51,7 @@ final class MainControllerTest extends TestCase
         $view->shouldReceive('render')->with(
             $response,
             'default.html',
-            ['title' => 'Foo', 'content' => 'foo']
+            ['title' => 'Foo', 'content' => 'foo', 'forms' => ['contact']]
         )->once();
         $request = m::mock('Psr\Http\Message\ServerRequestInterface');
         $controller = new MainController(
