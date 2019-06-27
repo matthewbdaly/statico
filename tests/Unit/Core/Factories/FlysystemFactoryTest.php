@@ -153,6 +153,19 @@ final class FlysystemFactoryTest extends TestCase
         $this->assertInstanceOf('League\Flysystem\AwsS3v3\AwsS3Adapter', $cache->getAdapter());
     }
 
+    public function testS3MisconfiguredBucket()
+    {
+        $this->expectException('Statico\Core\Exceptions\Factories\BadFlysystemConfigurationException');
+        $pool = m::mock('Stash\Pool');
+        $factory = new FlysystemFactory($pool);
+        $fs = $factory->make([
+            'driver' => 's3',
+            'secret' => 'baz',
+            'region' => 'foo',
+            'version' => 'latest',
+        ]);
+    }
+
     public function testS3MisconfiguredKey()
     {
         $this->expectException('Statico\Core\Exceptions\Factories\BadFlysystemConfigurationException');
@@ -160,6 +173,7 @@ final class FlysystemFactoryTest extends TestCase
         $factory = new FlysystemFactory($pool);
         $fs = $factory->make([
             'driver' => 's3',
+            'bucket' => 'foo',
             'secret' => 'baz',
             'region' => 'foo',
             'version' => 'latest',
@@ -173,6 +187,7 @@ final class FlysystemFactoryTest extends TestCase
         $factory = new FlysystemFactory($pool);
         $fs = $factory->make([
             'driver' => 's3',
+            'bucket' => 'foo',
             'key' => 'bar',
             'region' => 'foo',
             'version' => 'latest',
@@ -186,6 +201,7 @@ final class FlysystemFactoryTest extends TestCase
         $factory = new FlysystemFactory($pool);
         $fs = $factory->make([
             'driver' => 's3',
+            'bucket' => 'foo',
             'key' => 'bar',
             'secret' => 'baz',
             'version' => 'latest',
@@ -199,6 +215,7 @@ final class FlysystemFactoryTest extends TestCase
         $factory = new FlysystemFactory($pool);
         $fs = $factory->make([
             'driver' => 's3',
+            'bucket' => 'foo',
             'key' => 'bar',
             'secret' => 'baz',
             'region' => 'foo',
