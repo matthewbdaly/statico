@@ -3,18 +3,9 @@
 
 require_once __DIR__.'/bootstrap.php';
 
-use Symfony\Component\Console\Application;
+use Statico\Core\Console\Runner;
 
 $dotenv = new Dotenv\Dotenv(__DIR__);
 $dotenv->load();
 
-$console = new Application();
-$app = new Statico\Core\Application;
-$app->bootstrap();
-$container = $app->getContainer();
-$console->add($container->get('Statico\Core\Console\FlushCache'));
-$console->add($container->get('Statico\Core\Console\Shell'));
-$console->add($container->get('Statico\Core\Console\Server'));
-$console->add($container->get('Statico\Core\Console\GenerateIndex'));
-$console->add($container->get('Statico\Core\Console\GenerateSitemap'));
-$console->run();
+$runner = (new Runner)();
