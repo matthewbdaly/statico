@@ -2,16 +2,25 @@
 
 namespace Statico\Core\Console;
 
-use Symfony\Component\Console\Application;
+use Statico\Core\Application;
 
 final class Runner
 {
+    /**
+     * @var Application
+     */
+    protected $app;
+
+    public function __construct()
+    {
+        $this->app = new Application;
+    }
+
     public function __invoke()
     {
-        $console = new Application;
-        $app = new \Statico\Core\Application;
-        $app->bootstrap();
-        $container = $app->getContainer();
+        $this->app->bootstrap();
+        $container = $this->app->getContainer();
+        $console = $container->get('Symfony\Component\Console\Application');
         $console->add($container->get('Statico\Core\Console\FlushCache'));
         $console->add($container->get('Statico\Core\Console\Shell'));
         $console->add($container->get('Statico\Core\Console\Server'));
