@@ -554,4 +554,18 @@ final class CollectionTest extends \PHPUnit\Framework\TestCase
         $collection = new Collection($items);
         $this->assertEquals('Foo', Collection::foo());
     }
+
+    public function testCallCallableMacroStatically()
+    {
+        $callable = new class {
+            public function __invoke()
+            {
+                return 'Foo';
+            }
+        };
+        $items = [16, 25];
+        Collection::macro('foo', $callable);
+        $collection = new Collection($items);
+        $this->assertEquals('Foo', Collection::foo());
+    }
 }
