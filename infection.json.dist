@@ -5,8 +5,7 @@
             "src"
         ],
         "excludes": [
-            "views",
-            "routes.php"
+            "views"
         ]
     },
     "logs": {
