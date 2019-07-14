@@ -9,3 +9,4 @@ htmlcov/
 infection.log
 output.html
 .env
+deploy.php
