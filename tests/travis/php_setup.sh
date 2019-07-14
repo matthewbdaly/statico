@@ -49,7 +49,15 @@ echo "******************************"
 set +e
 echo "Installing libmemcached-dev"
 sudo apt-get -y install libmemcached-dev
-printf "no --disable-memcached-sasl\n"  | pecl install memcached
+git clone https://github.com/php-memcached-dev/php-memcached.git
+cd php-memcached
+git checkout php7
+phpize
+./configure --disable-memcached-sasl
+make
+sudo make install
+cd ..
+rm -Rf php-memcached
 set -e
 echo "Finished installing memcached extension."
 
