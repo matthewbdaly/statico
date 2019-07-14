@@ -81,7 +81,11 @@ final class CacheFactoryTest extends TestCase
         $factory = new CacheFactory;
         try {
             $pool = $factory->make([
-                'driver' => 'memcache'
+                'driver' => 'memcache',
+                'servers' => [[
+                    '127.0.0.1',
+                    '11211'
+                ]]
             ]);
         } catch (RuntimeException $e) {
             $this->markTestSkipped('Dependency not installed');
@@ -96,9 +100,10 @@ final class CacheFactoryTest extends TestCase
         try {
             $pool = $factory->make([
                 'driver' => 'redis',
-                'servers' => [
+                'servers' => [[
                     '127.0.0.1',
-                ]
+                    '6379'
+                ]]
             ]);
         } catch (RuntimeException $e) {
             $this->markTestSkipped('Dependency not installed');
