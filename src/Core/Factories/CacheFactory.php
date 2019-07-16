@@ -58,7 +58,7 @@ final class CacheFactory
     private function createFilesystemAdapter(array $config): FileSystem
     {
         return new FileSystem([
-            'path' => isset($config['path']) ? $config['path'] : null,
+            'path' => isset($config['path']) ? BASE_DIR.'/'.$config['path'] : null,
             'dirSplit' => isset($config['dirSplit']) ? $config['dirSplit'] : null,
             'filePermissions' => isset($config['filePermissions']) ? $config['filePermissions'] : null,
             'dirPermissions' => isset($config['dirPermissions']) ? $config['dirPermissions'] : null

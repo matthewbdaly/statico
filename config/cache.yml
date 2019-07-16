@@ -1,0 +1,3 @@
+cache:
+  driver: filesystem
+  path: cache/data

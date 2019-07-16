@@ -18,7 +18,8 @@ final class CacheProvider extends AbstractServiceProvider
         $container = $this->getContainer();
         $container->add('Stash\Pool', function () use ($container) {
             $factory = $container->get('Statico\Core\Factories\CacheFactory');
-            return $factory->make([]);
+            $config = $container->get('Zend\Config\Config');
+            return $factory->make($config->cache->toArray());
         });
         $container->add('Psr\Cache\CacheItemPoolInterface', function () {
             return $this->getContainer()->get('Stash\Pool');
