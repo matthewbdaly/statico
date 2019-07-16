@@ -3,6 +3,7 @@
 namespace Statico\Core\Providers;
 
 use League\Container\ServiceProvider\AbstractServiceProvider;
+use Statico\Core\Sources\Decorators\Psr6CacheDecorator;
 
 final class SourceProvider extends AbstractServiceProvider
 {
@@ -15,6 +16,11 @@ final class SourceProvider extends AbstractServiceProvider
         // Register items
         $container = $this->getContainer();
         $config = $container->get('Zend\Config\Config');
-        $container->add('Statico\Core\Contracts\Sources\Source', $container->get($config->get('source')));
+        $container->add('Statico\Core\Contracts\Sources\Source', function () use ($config, $container) {
+            return new Psr6CacheDecorator(
+                $container->get('Psr\Cache\CacheItemPoolInterface'),
+                $container->get($config->get('source'))
+            );
+        });
     }
 }
