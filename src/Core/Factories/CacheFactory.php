@@ -57,12 +57,19 @@ final class CacheFactory
 
     private function createFilesystemAdapter(array $config): FileSystem
     {
-        return new FileSystem([
+        $adapterConfig = [
             'path' => isset($config['path']) ? BASE_DIR.'/'.$config['path'] : null,
-            'dirSplit' => isset($config['dirSplit']) ? $config['dirSplit'] : null,
-            'filePermissions' => isset($config['filePermissions']) ? $config['filePermissions'] : null,
-            'dirPermissions' => isset($config['dirPermissions']) ? $config['dirPermissions'] : null
-        ]);
+        ];
+        if (isset($config['dirSplit'])) {
+            $adapterConfig['dirSplit'] = $config['dirSplit'];
+        }
+        if (isset($config['filePermissions'])) {
+            $adapterConfig['filePermissions'] = $config['filePermissions'];
+        }
+        if (isset($config['dirPermissions'])) {
+            $adapterConfig['dirPermissions'] = $config['dirPermissions'];
+        }
+        return new FileSystem($adapterConfig);
     }
 
     private function createBlackHoleAdapter(array $config): BlackHole
