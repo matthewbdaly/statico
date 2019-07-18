@@ -12,7 +12,12 @@ final class CacheFactoryTest extends TestCase
     public function testFilesystem()
     {
         $factory = new CacheFactory;
-        $pool = $factory->make([]);
+        $pool = $factory->make([
+            'driver' => 'filesystem',
+            'filePermissions' => 0660,
+            'dirPermissions' => 0770,
+            'dirSplit' => 2,
+        ]);
         $this->assertInstanceOf('Stash\Pool', $pool);
         $this->assertInstanceOf('Stash\Driver\FileSystem', $pool->getDriver());
     }
