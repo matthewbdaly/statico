@@ -9,6 +9,14 @@ use Mockery as m;
 
 final class CacheFactoryTest extends TestCase
 {
+    public function testDefault()
+    {
+        $factory = new CacheFactory;
+        $pool = $factory->make([]);
+        $this->assertInstanceOf('Stash\Pool', $pool);
+        $this->assertInstanceOf('Stash\Driver\FileSystem', $pool->getDriver());
+    }
+
     public function testFilesystem()
     {
         $factory = new CacheFactory;
