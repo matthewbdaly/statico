@@ -397,4 +397,15 @@ trait IsCollection
         });
         return new static($return);
     }
+
+    /**
+     * Paginate items
+     *
+     * @return Collection
+     */
+    public function paginate(int $perPage, int $page)
+    {
+        $offset = ($page - 1) * $perPage;
+        return new static(array_slice($this->items, $offset, $perPage));
+    }
 }

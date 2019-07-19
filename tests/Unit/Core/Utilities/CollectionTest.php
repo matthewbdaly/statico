@@ -568,4 +568,12 @@ final class CollectionTest extends \PHPUnit\Framework\TestCase
         $collection = new Collection($items);
         $this->assertEquals('Foo', Collection::foo());
     }
+
+    public function testPaginate()
+    {
+        $items = [1, 2, 3, 4, 5];
+        $collection = new Collection($items);
+        $this->assertEquals([1, 2, 3], $collection->paginate(3, 1)->toArray());
+        $this->assertEquals([4, 5], $collection->paginate(3, 2)->toArray());
+    }
 }
