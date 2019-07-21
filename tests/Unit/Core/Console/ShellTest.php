@@ -20,5 +20,8 @@ final class ShellTest extends TestCase
         $cmd = new Shell($container, $shell);
         $tester = new CommandTester($cmd);
         $tester->execute([]);
+        $this->assertEquals('shell', $cmd->getName());
+        $this->assertEquals('Runs an interactive shell', $cmd->getDescription());
+        $this->assertEquals('This command runs an interactive shell', $cmd->getHelp());
     }
 }

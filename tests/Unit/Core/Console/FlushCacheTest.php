@@ -16,5 +16,8 @@ final class FlushCacheTest extends TestCase
         $cmd = new FlushCache($cache);
         $tester = new CommandTester($cmd);
         $tester->execute([]);
+        $this->assertEquals('cache:flush', $cmd->getName());
+        $this->assertEquals('Flushes the cache', $cmd->getDescription());
+        $this->assertEquals('This command will flush the cache', $cmd->getHelp());
     }
 }

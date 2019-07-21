@@ -22,5 +22,8 @@ final class GenerateIndexTest extends TestCase
         $cmd = new GenerateIndex($source, $manager);
         $tester = new CommandTester($cmd);
         $tester->execute([]);
+        $this->assertEquals('index:generate', $cmd->getName());
+        $this->assertEquals('Generates the search index', $cmd->getDescription());
+        $this->assertEquals('This command will generate the search index file', $cmd->getHelp());
     }
 }

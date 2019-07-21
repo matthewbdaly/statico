@@ -20,5 +20,8 @@ final class GenerateSitemapTest extends TestCase
         $cmd = new GenerateSitemap($generator, $manager);
         $tester = new CommandTester($cmd);
         $tester->execute([]);
+        $this->assertEquals('sitemap:generate', $cmd->getName());
+        $this->assertEquals('Generates the sitemap', $cmd->getDescription());
+        $this->assertEquals('This command will generate the sitemap', $cmd->getHelp());
     }
 }

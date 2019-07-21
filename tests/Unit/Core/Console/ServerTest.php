@@ -16,5 +16,8 @@ final class ServerTest extends TestCase
         $cmd = new Server;
         $tester = new CommandTester($cmd);
         $tester->execute([]);
+        $this->assertEquals('server', $cmd->getName());
+        $this->assertEquals('Runs the development server', $cmd->getDescription());
+        $this->assertEquals('This command runs the development server', $cmd->getHelp());
     }
 }
