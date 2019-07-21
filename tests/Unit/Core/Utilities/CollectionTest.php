@@ -5,6 +5,7 @@ namespace Tests\Unit\Core\Utilities;
 use Statico\Core\Utilities\Collection;
 use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
 use Mockery as m;
+use ReflectionClass;
 
 final class CollectionTest extends \PHPUnit\Framework\TestCase
 {
@@ -24,6 +25,10 @@ final class CollectionTest extends \PHPUnit\Framework\TestCase
     protected function tearDown()
     {
         $this->collection = null;
+        $reflect = new ReflectionClass(Collection::class);
+        $macros = $reflect->getProperty('macros');
+        $macros->setAccessible(true);
+        $macros->setValue(null);
     }
 
     public function testCanBeCalledStatically()

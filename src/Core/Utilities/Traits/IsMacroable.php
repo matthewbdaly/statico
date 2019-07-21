@@ -26,7 +26,6 @@ trait IsMacroable
         static::$macros[$name] = $macro;
     }
 
-
     /**
      * Mix another object into the class.
      *

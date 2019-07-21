@@ -3,6 +3,7 @@
 namespace Tests\Unit\Core\Utilities;
 
 use Statico\Core\Utilities\Str;
+use ReflectionClass;
 
 final class StrTest extends \PHPUnit\Framework\TestCase
 {
@@ -20,6 +21,10 @@ final class StrTest extends \PHPUnit\Framework\TestCase
     protected function tearDown()
     {
         $this->str = null;
+        $reflect = new ReflectionClass(Str::class);
+        $macros = $reflect->getProperty('macros');
+        $macros->setAccessible(true);
+        $macros->setValue(null);
     }
 
     public function testImplementsCountable()
