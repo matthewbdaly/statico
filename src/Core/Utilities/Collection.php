@@ -8,7 +8,7 @@ use ArrayAccess;
 use SeekableIterator;
 use JsonSerializable;
 use Statico\Core\Contracts\Utilities\Collectable;
-use Statico\Core\Utilities\Traits\IsMacroable;
+use Statico\Core\Utilities\Traits\Macroable;
 use OutOfBoundsException;
 
 /**
@@ -16,7 +16,7 @@ use OutOfBoundsException;
  */
 class Collection implements Countable, ArrayAccess, SeekableIterator, JsonSerializable, Collectable
 {
-    use IsMacroable;
+    use Macroable;
 
     /**
      * Items

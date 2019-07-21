@@ -6,7 +6,7 @@ use Countable;
 use ArrayAccess;
 use SeekableIterator;
 use Statico\Core\Contracts\Utilities\Stringable;
-use Statico\Core\Utilities\Traits\IsMacroable;
+use Statico\Core\Utilities\Traits\Macroable;
 use OutOfBoundsException;
 
 /**
@@ -14,7 +14,7 @@ use OutOfBoundsException;
  */
 class Str implements Countable, ArrayAccess, SeekableIterator, Stringable
 {
-    use IsMacroable;
+    use Macroable;
 
     /**
      * String

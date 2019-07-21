@@ -7,7 +7,7 @@ use ReflectionClass;
 use ReflectionMethod;
 use Closure;
 
-trait IsMacroable
+trait Macroable
 {
     /**
      * @var array
