@@ -21,6 +21,11 @@ final class CollectionTest extends \PHPUnit\Framework\TestCase
         $this->collection = new Collection($items);
     }
 
+    protected function tearDown()
+    {
+        $this->collection = null;
+    }
+
     public function testCanBeCalledStatically()
     {
         $items = [
