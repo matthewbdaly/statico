@@ -237,7 +237,9 @@ class Str implements Countable, ArrayAccess, SeekableIterator, Stringable
      * Seek a position
      *
      * @param mixed $position Position to seek.
-     * @return null
+     *
+     * @return void
+     *
      * @throws OutOfBoundsException Invalid position.
      */
     public function seek($position)

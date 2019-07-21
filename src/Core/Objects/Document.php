@@ -45,6 +45,9 @@ final class Document implements Documentable, JsonSerializable
         return $this->data[$key];
     }
 
+    /**
+     * @param string $value
+     */
     public function setField(string $key, $value): Document
     {
         $this->data[$key] = $value;

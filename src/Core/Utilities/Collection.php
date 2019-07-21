@@ -355,7 +355,7 @@ class Collection implements Countable, ArrayAccess, SeekableIterator, JsonSerial
      *
      * @return Collection
      */
-    public function values()
+    public function values(): Collection
     {
         return new static(array_values($this->items));
     }
