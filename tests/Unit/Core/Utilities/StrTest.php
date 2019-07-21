@@ -17,6 +17,11 @@ final class StrTest extends \PHPUnit\Framework\TestCase
         $this->str = new Str($str);
     }
 
+    protected function tearDown()
+    {
+        $this->str = null;
+    }
+
     public function testImplementsCountable()
     {
         $this->assertInstanceOf('Countable', $this->str);
