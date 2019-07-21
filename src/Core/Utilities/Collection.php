@@ -386,16 +386,15 @@ class Collection implements Countable, ArrayAccess, SeekableIterator, JsonSerial
      * Seek a position
      *
      * @param mixed $position Position to seek.
-     * @return Collection
+     * @return void
      * @throws OutOfBoundsException Invalid position.
      */
-    public function seek($position): Collection
+    public function seek($position)
     {
         if (! isset($this->items[$position])) {
             throw new OutOfBoundsException("invalid seek position ($position)");
         }
         $this->position = $position;
-        return $this;
     }
 
     /**

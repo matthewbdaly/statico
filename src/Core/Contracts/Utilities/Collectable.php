@@ -157,7 +157,7 @@ interface Collectable
      * Seek a position
      *
      * @param mixed $position Position to seek.
-     * @return Collectable
+     * @return void
      * @throws OutOfBoundsException Invalid position.
      */
     public function seek($position);
