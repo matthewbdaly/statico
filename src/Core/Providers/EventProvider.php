@@ -17,7 +17,6 @@ final class EventProvider extends AbstractServiceProvider
         $container = $this->getContainer();
         $container->share('League\Event\EmitterInterface', function () use ($container) {
                 $emitter = $container->get('League\Event\Emitter');
-                $emitter->addListener('Statico\Core\Events\FormSubmitted', $container->get('Statico\Core\Listeners\HandleFormSubmit'));
                 return $emitter;
         });
     }
