@@ -566,7 +566,7 @@ final class CollectionTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('Foo', Collection::foo());
     }
 
-    public function testCallCallableMacroStatically()
+    public function testCallCallableMacro()
     {
         $callable = new class {
             public function __invoke()
@@ -577,6 +577,19 @@ final class CollectionTest extends \PHPUnit\Framework\TestCase
         $items = [16, 25];
         Collection::macro('foo', $callable);
         $collection = new Collection($items);
+        $this->assertEquals('Foo', $collection->foo());
+    }
+
+    public function testCallCallableMacroStatically()
+    {
+        $callable = new class {
+            public function __invoke()
+            {
+                return 'Foo';
+            }
+        };
+        $items = [16, 25];
+        Collection::macro('foo', $callable);
         $this->assertEquals('Foo', Collection::foo());
     }
 
