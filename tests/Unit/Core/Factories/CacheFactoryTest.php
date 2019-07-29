@@ -12,7 +12,9 @@ final class CacheFactoryTest extends TestCase
     public function testDefault()
     {
         $factory = new CacheFactory;
-        $pool = $factory->make([]);
+        $config = m::mock('Zend\Config\Config');
+        $config->shouldReceive('toArray')->once()->andReturn([]);
+        $pool = $factory->make($config);
         $this->assertInstanceOf('Stash\Pool', $pool);
         $this->assertInstanceOf('Stash\Driver\FileSystem', $pool->getDriver());
     }
@@ -20,12 +22,14 @@ final class CacheFactoryTest extends TestCase
     public function testFilesystem()
     {
         $factory = new CacheFactory;
-        $pool = $factory->make([
+        $config = m::mock('Zend\Config\Config');
+        $config->shouldReceive('toArray')->once()->andReturn([
             'driver' => 'filesystem',
             'filePermissions' => 0660,
             'dirPermissions' => 0770,
             'dirSplit' => 2,
         ]);
+        $pool = $factory->make($config);
         $this->assertInstanceOf('Stash\Pool', $pool);
         $this->assertInstanceOf('Stash\Driver\FileSystem', $pool->getDriver());
     }
@@ -33,9 +37,11 @@ final class CacheFactoryTest extends TestCase
     public function testBlackhole()
     {
         $factory = new CacheFactory;
-        $pool = $factory->make([
+        $config = m::mock('Zend\Config\Config');
+        $config->shouldReceive('toArray')->once()->andReturn([
             'driver' => 'test'
         ]);
+        $pool = $factory->make($config);
         $this->assertInstanceOf('Stash\Pool', $pool);
         $this->assertInstanceOf('Stash\Driver\BlackHole', $pool->getDriver());
     }
@@ -43,9 +49,11 @@ final class CacheFactoryTest extends TestCase
     public function testEphemeral()
     {
         $factory = new CacheFactory;
-        $pool = $factory->make([
+        $config = m::mock('Zend\Config\Config');
+        $config->shouldReceive('toArray')->once()->andReturn([
             'driver' => 'ephemeral'
         ]);
+        $pool = $factory->make($config);
         $this->assertInstanceOf('Stash\Pool', $pool);
         $this->assertInstanceOf('Stash\Driver\Ephemeral', $pool->getDriver());
     }
@@ -53,7 +61,8 @@ final class CacheFactoryTest extends TestCase
     public function testComposite()
     {
         $factory = new CacheFactory;
-        $pool = $factory->make([
+        $config = m::mock('Zend\Config\Config');
+        $config->shouldReceive('toArray')->once()->andReturn([
             'driver' => 'composite',
             'subdrivers' => [[
                 'driver' => 'ephemeral',
@@ -61,6 +70,7 @@ final class CacheFactoryTest extends TestCase
                 'driver' => 'filesystem',
             ]]
         ]);
+        $pool = $factory->make($config);
         $this->assertInstanceOf('Stash\Pool', $pool);
         $this->assertInstanceOf('Stash\Driver\Composite', $pool->getDriver());
     }
@@ -68,9 +78,11 @@ final class CacheFactoryTest extends TestCase
     public function testSqlite()
     {
         $factory = new CacheFactory;
-        $pool = $factory->make([
+        $config = m::mock('Zend\Config\Config');
+        $config->shouldReceive('toArray')->once()->andReturn([
             'driver' => 'sqlite'
         ]);
+        $pool = $factory->make($config);
         $this->assertInstanceOf('Stash\Pool', $pool);
         $this->assertInstanceOf('Stash\Driver\Sqlite', $pool->getDriver());
     }
@@ -79,9 +91,11 @@ final class CacheFactoryTest extends TestCase
     {
         $factory = new CacheFactory;
         try {
-            $pool = $factory->make([
+            $config = m::mock('Zend\Config\Config');
+            $config->shouldReceive('toArray')->once()->andReturn([
                 'driver' => 'apc'
             ]);
+            $pool = $factory->make($config);
         } catch (RuntimeException $e) {
             $this->markTestSkipped('Dependency not installed');
         }
@@ -93,13 +107,15 @@ final class CacheFactoryTest extends TestCase
     {
         $factory = new CacheFactory;
         try {
-            $pool = $factory->make([
+            $config = m::mock('Zend\Config\Config');
+            $config->shouldReceive('toArray')->once()->andReturn([
                 'driver' => 'memcache',
                 'servers' => [[
                     '127.0.0.1',
                     '11211'
                 ]]
             ]);
+            $pool = $factory->make($config);
         } catch (RuntimeException $e) {
             $this->markTestSkipped('Dependency not installed');
         }
@@ -111,13 +127,15 @@ final class CacheFactoryTest extends TestCase
     {
         $factory = new CacheFactory;
         try {
-            $pool = $factory->make([
+            $config = m::mock('Zend\Config\Config');
+            $config->shouldReceive('toArray')->once()->andReturn([
                 'driver' => 'redis',
                 'servers' => [[
                     '127.0.0.1',
                     '6379'
                 ]]
             ]);
+            $pool = $factory->make($config);
         } catch (RuntimeException $e) {
             $this->markTestSkipped('Dependency not installed');
         }
