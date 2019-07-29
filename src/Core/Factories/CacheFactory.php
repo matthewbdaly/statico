@@ -12,12 +12,13 @@ use Stash\Driver\Memcache;
 use Stash\Driver\Redis;
 use Stash\Driver\Sqlite;
 use Stash\Interfaces\DriverInterface;
+use Zend\Config\Config;
 
 final class CacheFactory
 {
-    public function make(array $config): Pool
+    public function make(Config $config): Pool
     {
-        $driver = $this->createAdapter($config);
+        $driver = $this->createAdapter($config->toArray());
         return new Pool($driver);
     }
 
