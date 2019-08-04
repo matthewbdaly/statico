@@ -28,13 +28,10 @@ final class LoggerFactory
         switch ($config->get('logger')) {
             case 'browser-console':
                 return $this->createBrowserConsoleHandler($config);
-            break;
             case 'firephp':
                 return $this->createFirePHPHandler($config);
-            break;
             case 'stream':
                 return $this->createStreamHandler($config);
-            break;
         }
     }
 
