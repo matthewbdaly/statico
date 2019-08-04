@@ -4,6 +4,7 @@ namespace Statico\Core\Factories;
 
 use Psr\Log\LoggerInterface;
 use Monolog\Logger;
+use Monolog\Handler\BrowserConsoleHandler;
 use Monolog\Handler\FirePHPHandler;
 use Monolog\Handler\StreamHandler;
 use Zend\Config\Config;
@@ -25,6 +26,9 @@ final class LoggerFactory
     private function createHandler(Config $config)
     {
         switch ($config->get('logger')) {
+            case 'browser-console':
+                return $this->createBrowserConsoleHandler($config);
+            break;
             case 'firephp':
                 return $this->createFirePHPHandler($config);
             break;
@@ -42,5 +46,10 @@ final class LoggerFactory
     private function createFirePHPHandler(Config $config)
     {
         return new FirePHPHandler();
+    }
+
+    private function createBrowserConsoleHandler(Config $config)
+    {
+        return new BrowserConsoleHandler();
     }
 }

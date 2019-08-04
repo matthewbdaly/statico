@@ -46,4 +46,17 @@ final class LoggerFactoryTest extends TestCase
         $this->assertCount(1, $handlers);
         $this->assertInstanceOf('Monolog\Handler\FirePHPHandler', $handlers[0]);
     }
+
+    public function testCreateBrowserConsoleHandler()
+    {
+        $factory = new LoggerFactory;
+        $config = new Config([[
+            'logger' => 'browser-console',
+        ]]);
+        $logger = $factory->make($config);
+        $this->assertInstanceOf('Monolog\Logger', $logger);
+        $handlers = $logger->getHandlers();
+        $this->assertCount(1, $handlers);
+        $this->assertInstanceOf('Monolog\Handler\BrowserConsoleHandler', $handlers[0]);
+    }
 }
