@@ -14,10 +14,11 @@ final class LoggerProvider extends AbstractServiceProvider
     public function register(): void
     {
         // Register items
-        $this->getContainer()
-             ->add('Psr\Log\LoggerInterface', function () {
-                 $factory = new LoggerFactory;
-                 return $factory->make([]);
-             });
+        $container = $this->getContainer();
+        $container->add('Psr\Log\LoggerInterface', function () use ($container) {
+            $config = $container->get('Zend\Config\Config');
+            $factory = new LoggerFactory;
+            return $factory->make($config->get('loggers'));
+        });
     }
 }
