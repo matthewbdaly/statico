@@ -14,7 +14,7 @@ final class LoggerFactoryTest extends TestCase
         $factory = new LoggerFactory;
         $config = new Config([[
             'logger' => 'stream',
-            'paths' => './logs/site.log'
+            'path' => './logs/site.log'
         ]]);
         $logger = $factory->make($config);
         $this->assertInstanceOf('Monolog\Logger', $logger);
@@ -32,5 +32,18 @@ final class LoggerFactoryTest extends TestCase
         $handlers = $logger->getHandlers();
         $this->assertCount(1, $handlers);
         $this->assertInstanceOf('Monolog\Handler\StreamHandler', $handlers[0]);
+    }
+
+    public function testCreateFirePHPHandler()
+    {
+        $factory = new LoggerFactory;
+        $config = new Config([[
+            'logger' => 'firephp',
+        ]]);
+        $logger = $factory->make($config);
+        $this->assertInstanceOf('Monolog\Logger', $logger);
+        $handlers = $logger->getHandlers();
+        $this->assertCount(1, $handlers);
+        $this->assertInstanceOf('Monolog\Handler\FirePHPHandler', $handlers[0]);
     }
 }
