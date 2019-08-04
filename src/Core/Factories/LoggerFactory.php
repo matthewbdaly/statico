@@ -37,7 +37,7 @@ final class LoggerFactory
 
     private function createStreamHandler(Config $config)
     {
-        return new StreamHandler($config->get('path'));
+        return new StreamHandler($config->get('path') ? $config->get('path') : './log/site.logs');
     }
 
     private function createFirePHPHandler(Config $config)
