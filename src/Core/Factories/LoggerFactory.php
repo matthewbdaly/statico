@@ -4,6 +4,7 @@ namespace Statico\Core\Factories;
 
 use Psr\Log\LoggerInterface;
 use Monolog\Logger;
+use Monolog\Handler\HandlerInterface;
 use Monolog\Handler\BrowserConsoleHandler;
 use Monolog\Handler\FirePHPHandler;
 use Monolog\Handler\StreamHandler;
@@ -23,7 +24,7 @@ final class LoggerFactory
         return $log;
     }
 
-    private function createHandler(Config $config)
+    private function createHandler(Config $config): HandlerInterface
     {
         switch ($config->get('logger')) {
             case 'browser-console':
@@ -35,17 +36,17 @@ final class LoggerFactory
         }
     }
 
-    private function createStreamHandler(Config $config)
+    private function createStreamHandler(Config $config): StreamHandler
     {
         return new StreamHandler($config->get('path') ? $config->get('path') : './log/site.logs');
     }
 
-    private function createFirePHPHandler(Config $config)
+    private function createFirePHPHandler(Config $config): FirePHPHandler
     {
         return new FirePHPHandler();
     }
 
-    private function createBrowserConsoleHandler(Config $config)
+    private function createBrowserConsoleHandler(Config $config): BrowserConsoleHandler
     {
         return new BrowserConsoleHandler();
     }
