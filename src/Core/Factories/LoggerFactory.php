@@ -6,6 +6,7 @@ use Psr\Log\LoggerInterface;
 use Monolog\Logger;
 use Monolog\Handler\HandlerInterface;
 use Monolog\Handler\BrowserConsoleHandler;
+use Monolog\Handler\ChromePHPHandler;
 use Monolog\Handler\FirePHPHandler;
 use Monolog\Handler\StreamHandler;
 use Zend\Config\Config;
@@ -33,6 +34,8 @@ final class LoggerFactory
                 return $this->createFirePHPHandler($config);
             case 'stream':
                 return $this->createStreamHandler($config);
+            case 'chrome':
+                return $this->createChromePHPHandler($config);
         }
     }
 
@@ -49,6 +52,11 @@ final class LoggerFactory
     private function createBrowserConsoleHandler(Config $config): BrowserConsoleHandler
     {
         return new BrowserConsoleHandler($config->get('level'));
+    }
+
+    private function createChromePHPHandler(Config $config): ChromePHPHandler
+    {
+        return new ChromePHPHandler($config->get('level'));
     }
 
     private function getLevel(string $level): int
