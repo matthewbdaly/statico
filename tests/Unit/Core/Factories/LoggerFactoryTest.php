@@ -72,4 +72,20 @@ final class LoggerFactoryTest extends TestCase
         $this->assertCount(1, $handlers);
         $this->assertInstanceOf('Monolog\Handler\ChromePHPHandler', $handlers[0]);
     }
+
+    public function testCreateNativeMailerHandler()
+    {
+        $factory = new LoggerFactory;
+        $config = new Config([[
+            'logger' => 'mailer',
+            'from' => 'bob@example.com',
+            'to' => 'eric@example.com',
+            'subject' => 'Error'
+        ]]);
+        $logger = $factory->make($config);
+        $this->assertInstanceOf('Monolog\Logger', $logger);
+        $handlers = $logger->getHandlers();
+        $this->assertCount(1, $handlers);
+        $this->assertInstanceOf('Monolog\Handler\NativeMailerHandler', $handlers[0]);
+    }
 }

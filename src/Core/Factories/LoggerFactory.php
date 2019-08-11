@@ -9,6 +9,7 @@ use Monolog\Handler\BrowserConsoleHandler;
 use Monolog\Handler\ChromePHPHandler;
 use Monolog\Handler\FirePHPHandler;
 use Monolog\Handler\StreamHandler;
+use Monolog\Handler\NativeMailerHandler;
 use Zend\Config\Config;
 
 final class LoggerFactory
@@ -36,30 +37,42 @@ final class LoggerFactory
                 return $this->createStreamHandler($config);
             case 'chrome':
                 return $this->createChromePHPHandler($config);
+            case 'mailer':
+                return $this->createNativeMailerHandler($config);
         }
     }
 
     private function createStreamHandler(Config $config): StreamHandler
     {
-        return new StreamHandler($config->get('path') ? $config->get('path') : './log/site.logs', $config->get('level'));
+        return new StreamHandler($config->get('path') ? $config->get('path') : './log/site.logs', $this->getLevel($config->get('level')));
     }
 
     private function createFirePHPHandler(Config $config): FirePHPHandler
     {
-        return new FirePHPHandler($config->get('level'));
+        return new FirePHPHandler($this->getLevel($config->get('level')));
     }
 
     private function createBrowserConsoleHandler(Config $config): BrowserConsoleHandler
     {
-        return new BrowserConsoleHandler($config->get('level'));
+        return new BrowserConsoleHandler($this->getLevel($config->get('level')));
     }
 
     private function createChromePHPHandler(Config $config): ChromePHPHandler
     {
-        return new ChromePHPHandler($config->get('level'));
+        return new ChromePHPHandler($this->getLevel($config->get('level')));
     }
 
-    private function getLevel(string $level): int
+    private function createNativeMailerHandler(Config $config): NativeMailerHandler
+    {
+        return new NativeMailerHandler(
+            $config->get('to'),
+            $config->get('subject'),
+            $config->get('from'),
+            $this->getLevel($config->get('level'))
+        );
+    }
+
+    private function getLevel(string $level = null): int
     {
         switch ($level) {
             case 'debug':
