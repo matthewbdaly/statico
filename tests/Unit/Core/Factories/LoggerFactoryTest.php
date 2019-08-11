@@ -106,4 +106,21 @@ final class LoggerFactoryTest extends TestCase
         $this->assertCount(1, $handlers);
         $this->assertInstanceOf('Monolog\Handler\SlackHandler', $handlers[0]);
     }
+
+    public function testCreateHipchatHandler()
+    {
+        $factory = new LoggerFactory;
+        $config = new Config([[
+            'logger' => 'hipchat',
+            'token' => 'foo',
+            'room' => 'bar',
+            'name' => 'baz',
+            'notify' => true,
+        ]]);
+        $logger = $factory->make($config);
+        $this->assertInstanceOf('Monolog\Logger', $logger);
+        $handlers = $logger->getHandlers();
+        $this->assertCount(1, $handlers);
+        $this->assertInstanceOf('Monolog\Handler\HipChatHandler', $handlers[0]);
+    }
 }
