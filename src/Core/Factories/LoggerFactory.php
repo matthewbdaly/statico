@@ -8,6 +8,7 @@ use Monolog\Handler\HandlerInterface;
 use Monolog\Handler\BrowserConsoleHandler;
 use Monolog\Handler\ChromePHPHandler;
 use Monolog\Handler\FirePHPHandler;
+use Monolog\Handler\SlackHandler;
 use Monolog\Handler\StreamHandler;
 use Monolog\Handler\NativeMailerHandler;
 use Zend\Config\Config;
@@ -39,6 +40,8 @@ final class LoggerFactory
                 return $this->createChromePHPHandler($config);
             case 'mailer':
                 return $this->createNativeMailerHandler($config);
+            case 'slack':
+                return $this->createSlackHandler($config);
         }
     }
 
@@ -68,6 +71,18 @@ final class LoggerFactory
             $config->get('to'),
             $config->get('subject'),
             $config->get('from'),
+            $this->getLevel($config->get('level'))
+        );
+    }
+
+    private function createSlackHandler(Config $config): SlackHandler
+    {
+        return new SlackHandler(
+            $config->get('token'),
+            $config->get('channel'),
+            $config->get('username'),
+            $config->get('attachment'),
+            $config->get('emoji'),
             $this->getLevel($config->get('level'))
         );
     }

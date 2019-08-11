@@ -88,4 +88,22 @@ final class LoggerFactoryTest extends TestCase
         $this->assertCount(1, $handlers);
         $this->assertInstanceOf('Monolog\Handler\NativeMailerHandler', $handlers[0]);
     }
+
+    public function testCreateSlackHandler()
+    {
+        $factory = new LoggerFactory;
+        $config = new Config([[
+            'logger' => 'slack',
+            'token' => 'foo',
+            'channel' => 'bar',
+            'username' => 'baz',
+            'attachment' => true,
+            'emoji' => 'poo'
+        ]]);
+        $logger = $factory->make($config);
+        $this->assertInstanceOf('Monolog\Logger', $logger);
+        $handlers = $logger->getHandlers();
+        $this->assertCount(1, $handlers);
+        $this->assertInstanceOf('Monolog\Handler\SlackHandler', $handlers[0]);
+    }
 }
