@@ -62,7 +62,7 @@ final class MarkdownFiles implements Source
         return DocumentFactory::fromYaml($this->parser->parse($rawcontent), $path);
     }
 
-    private function stripExtension(string $path): string
+    private function stripExtension(string $path): ?string
     {
         return preg_replace('/.(markdown|md)$/', '', $path);
     }
