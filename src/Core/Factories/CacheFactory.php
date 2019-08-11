@@ -59,7 +59,7 @@ final class CacheFactory
     private function createFilesystemAdapter(array $config): FileSystem
     {
         $adapterConfig = [
-            'path' => isset($config['path']) ? BASE_DIR.'/'.$config['path'] : null,
+            'path' => isset($config['path']) ? BASE_DIR . '/' . $config['path'] : null,
         ];
         if (isset($config['dirSplit'])) {
             $adapterConfig['dirSplit'] = $config['dirSplit'];
@@ -75,12 +75,12 @@ final class CacheFactory
 
     private function createBlackHoleAdapter(array $config): BlackHole
     {
-        return new BlackHole;
+        return new BlackHole();
     }
     
     private function createEphemeralAdapter(array $config): Ephemeral
     {
-        return new Ephemeral;
+        return new Ephemeral();
     }
 
     private function createCompositeAdapter(array $config): Composite

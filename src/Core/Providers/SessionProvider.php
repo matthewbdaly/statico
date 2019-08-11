@@ -16,7 +16,7 @@ class SessionProvider extends AbstractServiceProvider
         // Register items
         $this->getContainer()
              ->add('Symfony\Component\HttpFoundation\Session\SessionInterface', function () {
-                 return new Session;
+                 return new Session();
              });
     }
 }

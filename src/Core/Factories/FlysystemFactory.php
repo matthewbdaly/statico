@@ -68,7 +68,7 @@ final class FlysystemFactory
         if (!isset($config['path'])) {
             throw new BadFlysystemConfigurationException('Path not set for local driver');
         }
-        return new Local(BASE_DIR.'/'.$config['path']);
+        return new Local(BASE_DIR . '/' . $config['path']);
     }
 
     private function createDropboxAdapter(array $config): DropboxAdapter

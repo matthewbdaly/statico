@@ -41,11 +41,11 @@ final class RunnerTest extends TestCase
             ->with('Statico\Core\Console\GenerateSitemap')
             ->once()
             ->andReturn($mockCommand);
-        $mockApp = m::mock(new Application);
+        $mockApp = m::mock(new Application());
         $mockApp->shouldReceive('getContainer')
             ->once()
             ->andReturn($container);
-        $runner = new Runner;
+        $runner = new Runner();
         $reflect = new ReflectionClass($runner);
         $app = $reflect->getProperty('app');
         $app->setAccessible(true);

@@ -22,7 +22,7 @@ final class Server extends Command
         if (!$port = $input->getOption('port')) {
             $port = 8000;
         }
-        $output->writeln('Running PHP development server on port '.$port.'...');
-        passthru('php -S localhost:'.$port.' -t '.getcwd().'/public');
+        $output->writeln('Running PHP development server on port ' . $port . '...');
+        passthru('php -S localhost:' . $port . ' -t ' . getcwd() . '/public');
     }
 }

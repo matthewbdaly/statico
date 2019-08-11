@@ -16,7 +16,7 @@ final class YamlProvider extends AbstractServiceProvider
         // Register items
         $this->getContainer()
             ->share('Mni\FrontYAML\Parser', function () {
-                return new Parser;
+                return new Parser();
             });
     }
 }

@@ -14,7 +14,7 @@ final class LoggerFactoryTest extends TestCase
      */
     public function testCreateStreamHandler($level)
     {
-        $factory = new LoggerFactory;
+        $factory = new LoggerFactory();
         $config = new Config([[
             'logger' => 'stream',
             'path' => './logs/site.log',
@@ -29,7 +29,7 @@ final class LoggerFactoryTest extends TestCase
 
     public function testCreateDefaultHandler()
     {
-        $factory = new LoggerFactory;
+        $factory = new LoggerFactory();
         $config = new Config([]);
         $logger = $factory->make($config);
         $this->assertInstanceOf('Monolog\Logger', $logger);
@@ -40,7 +40,7 @@ final class LoggerFactoryTest extends TestCase
 
     public function testCreateFirePHPHandler()
     {
-        $factory = new LoggerFactory;
+        $factory = new LoggerFactory();
         $config = new Config([[
             'logger' => 'firephp',
         ]]);
@@ -53,7 +53,7 @@ final class LoggerFactoryTest extends TestCase
 
     public function testCreateBrowserConsoleHandler()
     {
-        $factory = new LoggerFactory;
+        $factory = new LoggerFactory();
         $config = new Config([[
             'logger' => 'browser-console',
         ]]);
@@ -66,7 +66,7 @@ final class LoggerFactoryTest extends TestCase
 
     public function testCreateChromePHPHandler()
     {
-        $factory = new LoggerFactory;
+        $factory = new LoggerFactory();
         $config = new Config([[
             'logger' => 'chrome',
         ]]);
@@ -79,7 +79,7 @@ final class LoggerFactoryTest extends TestCase
 
     public function testCreateNativeMailerHandler()
     {
-        $factory = new LoggerFactory;
+        $factory = new LoggerFactory();
         $config = new Config([[
             'logger' => 'mailer',
             'from' => 'bob@example.com',
@@ -95,7 +95,7 @@ final class LoggerFactoryTest extends TestCase
 
     public function testCreateSlackHandler()
     {
-        $factory = new LoggerFactory;
+        $factory = new LoggerFactory();
         $config = new Config([[
             'logger' => 'slack',
             'token' => 'foo',
@@ -113,7 +113,7 @@ final class LoggerFactoryTest extends TestCase
 
     public function testCreateHipchatHandler()
     {
-        $factory = new LoggerFactory;
+        $factory = new LoggerFactory();
         $config = new Config([[
             'logger' => 'hipchat',
             'token' => 'foo',

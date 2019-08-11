@@ -39,7 +39,7 @@ final class Psr6CacheDecorator implements Source
 
     public function find(string $name): ?Document
     {
-        $item = $this->cache->getItem('Documents/find/'.$name);
+        $item = $this->cache->getItem('Documents/find/' . $name);
         if ($item->isHit()) {
             return $item->get();
         }

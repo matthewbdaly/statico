@@ -26,7 +26,7 @@ final class TwigProvider extends AbstractServiceProvider
             $version = $container->get('Statico\Core\Views\Filters\Version');
             $form = $container->get('Statico\Core\Views\Functions\Form');
             $config = [];
-            $config['cache'] = BASE_DIR.'/cache/views';
+            $config['cache'] = BASE_DIR . '/cache/views';
 
             $twig = new Environment($container->get('Twig\Loader\FilesystemLoader'), $config);
             $twig->addFilter(new TwigFilter('version', $version));

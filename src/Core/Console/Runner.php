@@ -13,7 +13,7 @@ final class Runner
 
     public function __construct()
     {
-        $this->app = new Application;
+        $this->app = new Application();
     }
 
     public function __invoke()

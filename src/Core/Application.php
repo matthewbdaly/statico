@@ -50,7 +50,7 @@ final class Application
     public function __construct(Container $container = null)
     {
         if (!$container) {
-            $container = new Container;
+            $container = new Container();
         }
         $this->container = $container;
     }
@@ -92,7 +92,7 @@ final class Application
     {
         $container = $this->container;
         $container->delegate(
-            new ReflectionContainer
+            new ReflectionContainer()
         );
 
         foreach ($this->providers as $provider) {
@@ -108,9 +108,9 @@ final class Application
         error_reporting(E_ALL);
         $environment = getenv('APP_ENV');
 
-        $whoops = new \Whoops\Run;
+        $whoops = new \Whoops\Run();
         if ($environment !== 'production') {
-            $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
+            $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler());
         } else {
             $handler = $this->container->get('Statico\Core\Contracts\Exceptions\Handler');
             $whoops->pushHandler(new \Whoops\Handler\CallbackHandler($handler));
@@ -122,7 +122,7 @@ final class Application
     {
         $router = $this->container->get('League\Route\Router');
         $router->get('/[{name:[a-zA-Z0-9\-\/]+}]', 'Statico\Core\Http\Controllers\MainController::index')
-            ->middleware(new \Statico\Core\Http\Middleware\ETag);
+            ->middleware(new \Statico\Core\Http\Middleware\ETag());
         $router->post('/[{name:[a-zA-Z0-9\-\/]+}]', 'Statico\Core\Http\Controllers\MainController::submit');
         $this->router = $router;
     }

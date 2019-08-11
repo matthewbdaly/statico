@@ -13,7 +13,7 @@ final class ServerTest extends TestCase
     public function testExecute()
     {
         $passthru = PHPMockery::mock('Statico\Core\Console', "passthru");
-        $cmd = new Server;
+        $cmd = new Server();
         $tester = new CommandTester($cmd);
         $tester->execute([]);
         $this->assertEquals('server', $cmd->getName());

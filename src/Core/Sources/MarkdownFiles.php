@@ -38,7 +38,7 @@ final class MarkdownFiles implements Source
             if (!preg_match('/.(markdown|md)$/', $file['path'])) {
                 continue;
             }
-            if ($content = $this->fs->read('content://'.$file['path'])) {
+            if ($content = $this->fs->read('content://' . $file['path'])) {
                 $items->push(
                     DocumentFactory::fromYaml($this->parser->parse($content), $this->stripExtension($file['path']))
                 );
@@ -51,12 +51,12 @@ final class MarkdownFiles implements Source
     {
         // Does that page exist?
         $path = rtrim($name, '/') . '.md';
-        if (!$this->fs->has("content://".$path)) {
+        if (!$this->fs->has("content://" . $path)) {
             return null;
         }
 
         // Get content
-        if (!$rawcontent = $this->fs->read("content://".$path)) {
+        if (!$rawcontent = $this->fs->read("content://" . $path)) {
             return null;
         }
         return DocumentFactory::fromYaml($this->parser->parse($rawcontent), $path);

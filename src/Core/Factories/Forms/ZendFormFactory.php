@@ -17,7 +17,7 @@ final class ZendFormFactory implements FormFactory
 
     public function __construct()
     {
-        $this->factory = new Factory;
+        $this->factory = new Factory();
     }
 
     public function make(Config $form = null): ElementInterface

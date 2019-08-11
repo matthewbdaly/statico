@@ -179,7 +179,7 @@ final class StrTest extends \PHPUnit\Framework\TestCase
     public function testPath()
     {
         $str = new Str('\foo\bar');
-        $this->assertSame(DIRECTORY_SEPARATOR.'foo'.DIRECTORY_SEPARATOR.'bar', $str->path()->__toString());
+        $this->assertSame(DIRECTORY_SEPARATOR . 'foo' . DIRECTORY_SEPARATOR . 'bar', $str->path()->__toString());
     }
 
     public function testSupportsMacros()

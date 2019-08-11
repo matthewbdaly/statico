@@ -11,7 +11,7 @@ final class ZendFormFactoryTest extends TestCase
 {
     public function testMake()
     {
-        $wrappedFactory = new Factory;
+        $wrappedFactory = new Factory();
         $factory = new ZendFormFactory($wrappedFactory);
         $formData = [[
             'spec' => [

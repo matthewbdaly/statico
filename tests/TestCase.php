@@ -12,15 +12,15 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
     public function setUp(): void
     {
         if (!defined('BASE_DIR')) {
-            define('BASE_DIR', __DIR__.'/../');
+            define('BASE_DIR', __DIR__ . '/../');
         }
         if (!defined('CONTENT_PATH')) {
             define('CONTENT_PATH', 'content/');
         }
         if (!defined('PUBLIC_DIR')) {
-            define('PUBLIC_DIR', __DIR__.'/../public/');
+            define('PUBLIC_DIR', __DIR__ . '/../public/');
         }
-        $this->app = new Application;
+        $this->app = new Application();
         $this->app->bootstrap();
         $this->container = $this->app->getContainer();
     }

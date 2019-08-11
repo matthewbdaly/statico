@@ -13,7 +13,7 @@ final class MainControllerTest extends TestCase
     {
         $emitter = m::mock('League\Event\EmitterInterface');
         $response = m::mock('Psr\Http\Message\ResponseInterface');
-        $doc = (new Document)
+        $doc = (new Document())
             ->setField('title', 'Foo')
             ->setPath('foo.md')
             ->setContent('foo');
@@ -40,7 +40,7 @@ final class MainControllerTest extends TestCase
         $emitter = m::mock('League\Event\EmitterInterface');
         $emitter->shouldReceive('emit')->with('Statico\Core\Events\FormSubmitted')->once();
         $response = m::mock('Psr\Http\Message\ResponseInterface');
-        $doc = (new Document)
+        $doc = (new Document())
             ->setField('title', 'Foo')
             ->setField('forms', ['contact'])
             ->setPath('foo.md')
@@ -67,7 +67,7 @@ final class MainControllerTest extends TestCase
     {
         $emitter = m::mock('League\Event\EmitterInterface');
         $response = m::mock('Psr\Http\Message\ResponseInterface');
-        $doc = (new Document)
+        $doc = (new Document())
             ->setField('title', 'Foo')
             ->setPath('foo.md')
             ->setContent('foo');

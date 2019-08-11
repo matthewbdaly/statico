@@ -49,7 +49,7 @@ final class MainController
         }
         $data = $document->getFields();
         $data['content'] = $document->getContent();
-        $layout = isset($data['layout']) ? $data['layout'].'.html' : 'default.html';
+        $layout = isset($data['layout']) ? $data['layout'] . '.html' : 'default.html';
         return $this->view->render($this->response, $layout, $data);
     }
 
@@ -64,8 +64,8 @@ final class MainController
             return new EmptyResponse(405);
         }
         $data['content'] = $document->getContent();
-        $layout = isset($data['layout']) ? $data['layout'].'.html' : 'default.html';
-        $event = new FormSubmitted;
+        $layout = isset($data['layout']) ? $data['layout'] . '.html' : 'default.html';
+        $event = new FormSubmitted();
         $this->emitter->emit($event);
         return $this->view->render($this->response, $layout, $data);
     }

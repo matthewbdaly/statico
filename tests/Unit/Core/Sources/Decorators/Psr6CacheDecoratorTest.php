@@ -40,7 +40,7 @@ final class Psr6CacheDecoratorTest extends TestCase
 
     public function testFindHit()
     {
-        $result = new Document;
+        $result = new Document();
         $cache = m::mock('Psr\Cache\CacheItemPoolInterface');
         $cache->shouldReceive('getItem')->once()->andReturn($cache);
         $cache->shouldReceive('isHit')->once()->andReturn(true);
@@ -52,7 +52,7 @@ final class Psr6CacheDecoratorTest extends TestCase
 
     public function testFindMiss()
     {
-        $result = new Document;
+        $result = new Document();
         $item = m::mock('Psr\Cache\CacheItemInterface');
         $cache = m::mock('Psr\Cache\CacheItemPoolInterface');
         $cache->shouldReceive('getItem')->once()->andReturn($item);

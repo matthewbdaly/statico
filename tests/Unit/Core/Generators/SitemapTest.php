@@ -21,7 +21,7 @@ final class SitemapTest extends TestCase
   </url>
 </urlset>
 EOF;
-        $doc = new Document;
+        $doc = new Document();
         $doc->setContent('This is my content');
         $doc->setField('title', 'My Page');
         $doc->setField('layout', 'custom.html');
