@@ -34,14 +34,14 @@ final class LoggerFactory
                 return $this->createBrowserConsoleHandler($config);
             case 'firephp':
                 return $this->createFirePHPHandler($config);
-            case 'stream':
-                return $this->createStreamHandler($config);
             case 'chrome':
                 return $this->createChromePHPHandler($config);
             case 'mailer':
                 return $this->createNativeMailerHandler($config);
             case 'slack':
                 return $this->createSlackHandler($config);
+            default:
+                return $this->createStreamHandler($config);
         }
     }
 
