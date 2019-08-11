@@ -9,12 +9,16 @@ use Zend\Config\Config;
 
 final class LoggerFactoryTest extends TestCase
 {
-    public function testCreateStreamHandler()
+    /**
+     * @dataProvider levelProvider
+     */
+    public function testCreateStreamHandler($level)
     {
         $factory = new LoggerFactory;
         $config = new Config([[
             'logger' => 'stream',
-            'path' => './logs/site.log'
+            'path' => './logs/site.log',
+            'level' => $level,
         ]]);
         $logger = $factory->make($config);
         $this->assertInstanceOf('Monolog\Logger', $logger);
@@ -122,5 +126,26 @@ final class LoggerFactoryTest extends TestCase
         $handlers = $logger->getHandlers();
         $this->assertCount(1, $handlers);
         $this->assertInstanceOf('Monolog\Handler\HipChatHandler', $handlers[0]);
+    }
+
+    public function levelProvider()
+    {
+        return [[
+            'debug',
+        ], [
+            'info',
+        ], [
+            'notice',
+        ], [
+            'warning',
+        ], [
+            'error',
+        ], [
+            'critical',
+        ], [
+            'alert',
+        ], [
+            'emergency',
+        ]];
     }
 }

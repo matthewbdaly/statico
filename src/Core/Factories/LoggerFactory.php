@@ -118,7 +118,7 @@ final class LoggerFactory
                 return Logger::CRITICAL;
             case 'alert':
                 return Logger::ALERT;
-            case 'EMERGENCY':
+            case 'emergency':
                 return Logger::EMERGENCY;
             default:
                 return Logger::WARNING;
