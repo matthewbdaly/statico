@@ -38,7 +38,9 @@ final class XmlStringSitemap implements Sitemap
         $doc = new DOMDocument();
         $doc->preserveWhiteSpace = false;
         $doc->formatOutput = true;
-        $doc->loadXML($xml->asXML());
+        if ($content = $xml->asXML()) {
+            $doc->loadXML($content);
+        }
         return $doc->saveXML();
     }
 
