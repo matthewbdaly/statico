@@ -5,4 +5,5 @@
 	<file>tests</file>
 	<arg value="np"/>
 	<rule ref="PSR12"/>
+	<rule ref="Generic.Arrays.DisallowLongArraySyntax"/>
 </ruleset>

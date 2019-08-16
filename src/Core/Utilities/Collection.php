@@ -419,7 +419,7 @@ class Collection implements Countable, ArrayAccess, SeekableIterator, JsonSerial
      */
     public function flatten(): Collection
     {
-        $return = array();
+        $return = [];
         array_walk_recursive($this->items, function ($a) use (&$return) {
             $return[] = $a;
         });
