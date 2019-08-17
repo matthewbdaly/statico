@@ -1,9 +1,9 @@
 <?php declare(strict_types = 1);
 
-require_once __DIR__.'/vendor/autoload.php';
+require_once __DIR__ . '/vendor/autoload.php';
 
 if (!defined('BASE_DIR')) {
-    define('BASE_DIR', __DIR__.'/');
+    define('BASE_DIR', __DIR__ . '/');
 }
 if (!defined('CONTENT_PATH')) {
     define('CONTENT_PATH', 'content/');
@@ -11,7 +11,7 @@ if (!defined('CONTENT_PATH')) {
 
 error_reporting(E_ALL);
 
-if (file_exists(__DIR__.DIRECTORY_SEPARATOR.'.env')) {
+if (file_exists(__DIR__ . DIRECTORY_SEPARATOR . '.env')) {
     $dotenv = new Dotenv\Dotenv(BASE_DIR);
     $dotenv->load();
 }

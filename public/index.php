@@ -2,7 +2,7 @@
 
 use Statico\Core\Application;
 
-require_once __DIR__.'/../bootstrap.php';
+require_once __DIR__ . '/../bootstrap.php';
 
 if (!defined('PUBLIC_DIR')) {
     define('PUBLIC_DIR', __DIR__);
@@ -16,9 +16,9 @@ $request = Zend\Diactoros\ServerRequestFactory::fromGlobals(
     $_FILES
 );
 
-$app = new Statico\Core\Application;
+$app = new Statico\Core\Application();
 $response = $app->bootstrap()
     ->handle($request);
 
 // send the response to the browser
-(new Zend\HttpHandlerRunner\Emitter\SapiEmitter)->emit($response);
+(new Zend\HttpHandlerRunner\Emitter\SapiEmitter())->emit($response);
