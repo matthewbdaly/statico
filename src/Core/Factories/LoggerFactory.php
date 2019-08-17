@@ -13,6 +13,7 @@ use Monolog\Handler\StreamHandler;
 use Monolog\Handler\NativeMailerHandler;
 use Monolog\Handler\HipChatHandler;
 use Zend\Config\Config;
+use Statico\Core\Utilities\Str;
 
 final class LoggerFactory
 {
@@ -23,7 +24,12 @@ final class LoggerFactory
             $log->pushHandler($this->createHandler($configItem));
         }
         if (!count($config)) {
-            $log->pushHandler(new StreamHandler('./logs/site.log', Logger::WARNING));
+            $configItem = new Config([
+                'logger' => 'stream',
+                'path' => 'logs/site.log',
+                'level' => 'warning'
+            ]);
+            $log->pushHandler($this->createHandler($configItem));
         }
         return $log;
     }
@@ -50,7 +56,8 @@ final class LoggerFactory
 
     private function createStreamHandler(Config $config): StreamHandler
     {
-        return new StreamHandler($config->get('path') ? $config->get('path') : './log/site.logs', $this->getLevel($config->get('level')));
+        $path = Str::make($config->get('path') ? $config->get('path') : 'log/site.logs');
+        return new StreamHandler(BASE_DIR . DIRECTORY_SEPARATOR . $path->path()->__toString(), $this->getLevel($config->get('level')));
     }
 
     private function createFirePHPHandler(Config $config): FirePHPHandler
