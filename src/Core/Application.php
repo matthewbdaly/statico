@@ -110,10 +110,10 @@ final class Application
 
         $whoops = new \Whoops\Run();
         if ($environment !== 'production') {
-            $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler());
+            $whoops->prependHandler(new \Whoops\Handler\PrettyPageHandler());
         } else {
             $handler = $this->container->get('Statico\Core\Contracts\Exceptions\Handler');
-            $whoops->pushHandler(new \Whoops\Handler\CallbackHandler($handler));
+            $whoops->prependHandler(new \Whoops\Handler\CallbackHandler($handler));
         }
         $whoops->register();
     }
