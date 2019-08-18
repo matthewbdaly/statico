@@ -1,0 +1,3 @@
+plugins:
+  - Statico\Plugins\DynamicSearch\Plugin
+  - Statico\Plugins\DynamicSitemap\Plugin
