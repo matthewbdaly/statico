@@ -131,7 +131,10 @@ final class Application
     private function setupPlugins(): void
     {
         $config = $this->container->get('Zend\Config\Config');
-        foreach ($config->get('plugins') as $name) {
+        if (!$plugins = $config->get('plugins')) {
+            return;
+        }
+        foreach ($plugins as $name) {
             $plugin = $this->container->get($name);
             $plugin->register();
         }

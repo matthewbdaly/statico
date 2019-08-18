@@ -5,6 +5,7 @@ namespace Tests\Unit\Core\Utilities;
 use Tests\TestCase;
 use Mockery as m;
 use Statico\Core\Application;
+use Zend\Config\Config;
 
 final class ApplicationTest extends TestCase
 {
@@ -40,6 +41,9 @@ final class ApplicationTest extends TestCase
         $container->shouldReceive('get')->with('Statico\Core\Contracts\Exceptions\Handler')
             ->once()
             ->andReturn($handler);
+        $container->shouldReceive('get')->with('Zend\Config\Config')
+            ->once()
+            ->andReturn(new Config([]));
         $app = new Application($container);
         $app->bootstrap();
     }
