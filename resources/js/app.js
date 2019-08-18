@@ -6,7 +6,7 @@ try {
   require('bootstrap');
 
   $(document).ready(function () {
-    window.$.getJSON('/storage/index.json', function (response) {
+    window.$.getJSON('/search/index', function (response) {
       const fuse = new Fuse(response, {
         keys: ['title'],
         shouldSort: true

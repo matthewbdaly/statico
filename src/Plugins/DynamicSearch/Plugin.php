@@ -3,8 +3,9 @@
 namespace Statico\Plugins\DynamicSearch;
 
 use League\Route\Router;
+use Statico\Core\Contracts\Plugin as PluginContract;
 
-final class Plugin
+final class Plugin implements PluginContract
 {
     /**
      * @var Router
@@ -23,6 +24,6 @@ final class Plugin
 
     private function registerRoute()
     {
-        $this->router->get('/index.json', 'Statico\Plugins\DynamicSearch\Http\Controllers\SearchController::index');
+        $this->router->get('/search/index', 'Statico\Plugins\DynamicSearch\Http\Controllers\SearchController::index');
     }
 }

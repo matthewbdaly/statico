@@ -2,6 +2,11 @@
 
 namespace Statico\Plugins\DynamicSitemap;
 
-final class Plugin
+use Statico\Core\Contracts\Plugin as PluginContract;
+
+final class Plugin implements PluginContract
 {
+    public function register()
+    {
+    }
 }

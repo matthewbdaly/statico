@@ -64,6 +64,7 @@ final class Application
     {
         $this->setupContainer();
         $this->setErrorHandler();
+        $this->setupPlugins();
         $this->setupRoutes();
         return $this;
     }
@@ -125,6 +126,15 @@ final class Application
             ->middleware(new \Statico\Core\Http\Middleware\ETag());
         $router->post('/[{name:[a-zA-Z0-9\-\/]+}]', 'Statico\Core\Http\Controllers\MainController::submit');
         $this->router = $router;
+    }
+
+    private function setupPlugins(): void
+    {
+        $config = $this->container->get('Zend\Config\Config');
+        foreach ($config->get('plugins') as $name) {
+            $plugin = $this->container->get($name);
+            $plugin->register();
+        }
     }
 
     public function getContainer(): Container
