@@ -23,7 +23,7 @@ try {
           // Show results
           resultdiv.empty();
           for (let item in result.slice(0,4)) {
-            let searchitem = '<li><a href="/' + result[item].path + '">' + result[item].title + '</a></li>';
+            let searchitem = '<li><a href="' + result[item].url + '">' + result[item].title + '</a></li>';
             resultdiv.append(searchitem);
           }
           resultdiv.show();

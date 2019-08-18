@@ -59,6 +59,11 @@ final class Document implements Documentable, JsonSerializable
         return $this->path;
     }
 
+    public function getUrl(): string
+    {
+        return '/' . preg_replace('/index$/', '', $this->getPath());
+    }
+
     public function setPath(string $path): Document
     {
         $this->path = $path;
@@ -105,7 +110,7 @@ final class Document implements Documentable, JsonSerializable
     {
         $data = $this->getFields();
         $data['content'] = $this->getContent();
-        $data['path'] = $this->getPath();
+        $data['url'] = $this->getUrl();
         return $data;
     }
 }

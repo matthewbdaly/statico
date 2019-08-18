@@ -78,7 +78,7 @@ final class DocumentTest extends TestCase
             'title' => 'My Page',
             'layout' => 'custom.html',
             'content' => 'This is my content',
-            'path' => 'foo'
+            'url' => '/foo'
         ], $doc->jsonSerialize());
     }
 }

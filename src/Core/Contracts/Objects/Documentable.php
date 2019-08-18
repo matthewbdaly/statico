@@ -16,6 +16,8 @@ interface Documentable
 
     public function getPath(): string;
 
+    public function getUrl(): string;
+
     public function setPath(string $path): Document;
 
     public function getFields(): array;
