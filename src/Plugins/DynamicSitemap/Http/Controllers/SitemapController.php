@@ -3,16 +3,16 @@
 namespace Statico\Plugins\DynamicSitemap\Http\Controllers;
 
 use Zend\Diactoros\Response\XmlResponse;
-use Statico\Core\Generators\XmlStringSitemap;
+use Statico\Core\Contracts\Generators\Sitemap;
 
 final class SitemapController
 {
     /**
-     * @var XmlStringSitemap
+     * @var Sitemap
      */
     private $sitemap;
 
-    public function __construct(XmlStringSitemap $sitemap)
+    public function __construct(Sitemap $sitemap)
     {
         $this->sitemap = $sitemap;
     }
