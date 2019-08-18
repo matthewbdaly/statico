@@ -8,6 +8,8 @@ use League\Container\ReflectionContainer;
 use Psr\Http\Message\ServerRequestInterface;
 use ReflectionClass;
 use Statico\Core\Application;
+use Statico\Core\Exceptions\Plugins\PluginNotFound;
+use Statico\Core\Exceptions\Plugins\PluginNotValid;
 
 /**
  * Application instance
@@ -135,7 +137,12 @@ final class Application
             return;
         }
         foreach ($plugins as $name) {
-            $plugin = $this->container->get($name);
+            if (!$plugin = $this->container->get($name)) {
+                throw new PluginNotFound('Plugin could not be resolved by the container');
+            }
+            if (!in_array('Statico\Core\Contracts\Plugin', array_keys(class_implements($name)))) {
+                throw new PluginNotValid('Plugin does not implement Statico\Core\Contracts\Plugin');
+            }
             $plugin->register();
         }
     }
