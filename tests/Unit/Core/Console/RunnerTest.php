@@ -52,4 +52,19 @@ final class RunnerTest extends TestCase
         $app->setValue($runner, $mockApp);
         $runner();
     }
+
+    public function testCatchError()
+    {
+        $this->expectOutputRegex('/^Unable to run/');
+        $mockApp = m::mock(new Application());
+        $mockApp->shouldReceive('getContainer')
+            ->once()
+            ->andThrow('Exception');
+        $runner = new Runner();
+        $reflect = new ReflectionClass($runner);
+        $app = $reflect->getProperty('app');
+        $app->setAccessible(true);
+        $app->setValue($runner, $mockApp);
+        $runner();
+    }
 }

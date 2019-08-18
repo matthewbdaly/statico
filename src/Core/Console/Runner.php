@@ -3,6 +3,7 @@
 namespace Statico\Core\Console;
 
 use Statico\Core\Application;
+use Exception;
 
 final class Runner
 {
@@ -18,14 +19,26 @@ final class Runner
 
     public function __invoke()
     {
-        $this->app->bootstrap();
-        $container = $this->app->getContainer();
-        $console = $container->get('Symfony\Component\Console\Application');
-        $console->add($container->get('Statico\Core\Console\FlushCache'));
-        $console->add($container->get('Statico\Core\Console\Shell'));
-        $console->add($container->get('Statico\Core\Console\Server'));
-        $console->add($container->get('Statico\Core\Console\GenerateIndex'));
-        $console->add($container->get('Statico\Core\Console\GenerateSitemap'));
-        $console->run();
+        try {
+            $this->app->bootstrap();
+            $container = $this->app->getContainer();
+            $console = $container->get('Symfony\Component\Console\Application');
+            $console->add($container->get('Statico\Core\Console\FlushCache'));
+            $console->add($container->get('Statico\Core\Console\Shell'));
+            $console->add($container->get('Statico\Core\Console\Server'));
+            $console->add($container->get('Statico\Core\Console\GenerateIndex'));
+            $console->add($container->get('Statico\Core\Console\GenerateSitemap'));
+            $console->run();
+        } catch (Exception $err) {
+            $this->returnError($err);
+        }
+    }
+
+    private function returnError(Exception $err)
+    {
+            $msg = "Unable to run - " . $err->getMessage();
+            $msg .= "\n" . $err->__toString();
+            $msg .= "\n";
+            echo $msg;
     }
 }
