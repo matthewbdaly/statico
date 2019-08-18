@@ -13,6 +13,7 @@ A minimal CMS. Features include:
 * Caching built in, with support for multiple backends
 * Support for multiple Monolog loggers
 * Search using Fuse.js
+* Plugin system (experimental at this stage)
 
 Planned features include:
 
@@ -21,7 +22,6 @@ Planned features include:
 * Multiple notifiers for form submission, including mail, SMS and webhook support, for easy integration into your own systems
 * Dynamically generate navigation bars from content
 * Support for taxonomies
-* Plugin system
 
 # The Statico CLI
 
@@ -37,7 +37,7 @@ This will display the available commands.
 
 By design, Statico doesn't include an admin interface out of the box. The intention is to optimise for developer's workflow rather than that of site owners, and so Markdown files are a better way to manage that.
 
-Once the plugin system is in place, it may be possible to use that to add an admin interface, but it's out of scope for the core system.
+In theory it should be possible to create a plugin to add the admin routes, but as at right now the source and document interfaces don't include the ability to do anything other than read content. Once that changes it should be possible to create an admin interface as a plugin.
 
 # How do I set it up?
 
@@ -64,3 +64,16 @@ Add to that the fact that Wordpress, at least out of the box, lacks a proper tem
 Instead, Statico enables a workflow more familiar to developers who use modern MVC frameworks like Laravel. You're given a basic boilerplate to get you started, and can create and theme your own layouts, as well as add Javascript. Content can either be stored locally, so it can be version controlled with the rest of the site for easy rollbacks, or pulled in using one of the remote filesystems. This can allow for some more creative workflows, such as pulling content from a Dropbox folder.
 
 If you have a large number of similar sites, Statico may suit your use case. You can easily copy the layout and front end files between installs, and content files can either be copied, or pulled from the same remote source. Similarly, small or relatively simple sites that don't change often may also be a good fit.
+
+# How do I build and install plugins?
+
+The core of a Statico plugin is its `Plugin` class. This must implement `Statico\Core\Contracts\Plugin`, which defines a single `register()` method, which will be called during the application bootstrap. Any setup your plugin does must either be done in this method, or in a method or function it calls. The `Plugin` class is instantiated from the container, so you can use type hinting to inject any required dependencies in the constructor.
+
+Once you've implemented your plugin, it must be available in your project (either in the project folder, or pulled in via Composer). You can then register it in your configuration files. If you're using YAML, for instance, you might register your plugin like this:
+
+```yml
+plugins:
+  - My\Super\Awesome\Plugin
+```
+
+At some point I'll create a boilerplate for building Statico plugins.
