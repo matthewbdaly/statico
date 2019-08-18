@@ -22,7 +22,7 @@ final class SitemapController
         return new XmlResponse(
             $this->sitemap->__invoke(),
             200,
-            ['Content-Type' => ['application/hal+xml']]
+            ['Content-Type' => ['text/xml']]
         );
     }
 }
