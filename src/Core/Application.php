@@ -47,6 +47,7 @@ final class Application
         'Statico\Core\Providers\ViewProvider',
         'Statico\Core\Providers\YamlProvider',
         'Statico\Core\Providers\MailerProvider',
+        'Statico\Core\Providers\GlideProvider',
     ];
 
     public function __construct(Container $container = null)

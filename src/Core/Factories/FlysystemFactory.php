@@ -3,6 +3,7 @@
 namespace Statico\Core\Factories;
 
 use League\Flysystem\Adapter\Local;
+use League\Flysystem\Memory\MemoryAdapter;
 use League\Flysystem\Filesystem;
 use League\Flysystem\Cached\CachedAdapter;
 use League\Flysystem\Cached\Storage\Stash as StashStore;
@@ -35,6 +36,9 @@ final class FlysystemFactory
             $config['driver'] = 'local';
         }
         switch ($config['driver']) {
+            case 'memory':
+                $adapter = $this->createMemoryAdapter($config);
+                break;
             case 'dropbox':
                 $adapter = $this->createDropboxAdapter($config);
                 break;
@@ -61,6 +65,11 @@ final class FlysystemFactory
                 $cache
             )
         );
+    }
+
+    private function createMemoryAdapter(array $config): MemoryAdapter
+    {
+        return new MemoryAdapter();
     }
 
     private function createLocalAdapter(array $config): Local

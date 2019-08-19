@@ -23,11 +23,13 @@ final class FlysystemProvider extends AbstractServiceProvider
                 $contentFilesystem = $factory->make($config->filesystem->content->toArray());
                 $assetFilesystem = $factory->make($config->filesystem->assets->toArray());
                 $mediaFilesystem = $factory->make($config->filesystem->media->toArray());
+                $cacheFilesystem = $factory->make($config->filesystem->cache->toArray());
 
                 return new MountManager([
                     'content' => $contentFilesystem,
                     'assets'  => $assetFilesystem,
                     'media'   => $mediaFilesystem,
+                    'cache'   => $cacheFilesystem,
                 ]);
         });
     }
