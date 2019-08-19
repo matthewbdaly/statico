@@ -50,6 +50,22 @@ final class FlysystemFactoryTest extends TestCase
         ]);
     }
 
+    public function testMemory()
+    {
+        $pool = m::mock('Stash\Pool');
+        $pool->shouldReceive('getItem')->once()->andReturn($pool);
+        $pool->shouldReceive('get')->once()->andReturn(false);
+        $pool->shouldReceive('isMiss')->once()->andReturn(true);
+        $factory = new FlysystemFactory($pool);
+        $fs = $factory->make([
+            'driver' => 'memory',
+        ]);
+        $this->assertInstanceOf('League\Flysystem\Filesystem', $fs);
+        $cache = $fs->getAdapter();
+        $this->assertInstanceOf('League\Flysystem\Cached\CachedAdapter', $cache);
+        $this->assertInstanceOf('League\Flysystem\Memory\MemoryAdapter', $cache->getAdapter());
+    }
+
     public function testDropbox()
     {
         $pool = m::mock('Stash\Pool');
