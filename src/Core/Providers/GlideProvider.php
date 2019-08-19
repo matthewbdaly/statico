@@ -4,6 +4,9 @@ namespace Statico\Core\Providers;
 
 use League\Container\ServiceProvider\AbstractServiceProvider;
 use League\Glide\ServerFactory;
+use League\Glide\Responses\PsrResponseFactory;
+use Zend\Diactoros\Response;
+use Zend\Diactoros\Stream;
 
 final class GlideProvider extends AbstractServiceProvider
 {
@@ -21,6 +24,9 @@ final class GlideProvider extends AbstractServiceProvider
             return ServerFactory::create([
                 'source' => $source,
                 'cache' => $cache,
+                'response' => new PsrResponseFactory(new Response(), function ($stream) {
+                    return new Stream($stream);
+                }),
             ]);
         });
     }
