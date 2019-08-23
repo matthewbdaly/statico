@@ -34,7 +34,7 @@ final class Runner
         }
     }
 
-    private function returnError(Exception $err)
+    private function returnError(Exception $err): void
     {
             $msg = "Unable to run - " . $err->getMessage();
             $msg .= "\n" . $err->__toString();

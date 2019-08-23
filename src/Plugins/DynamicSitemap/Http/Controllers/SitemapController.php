@@ -17,7 +17,7 @@ final class SitemapController
         $this->sitemap = $sitemap;
     }
 
-    public function index()
+    public function index(): XmlResponse
     {
         return new XmlResponse(
             $this->sitemap->__invoke(),

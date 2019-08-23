@@ -17,7 +17,7 @@ final class SearchController
         $this->source = $source;
     }
 
-    public function index()
+    public function index(): JsonResponse
     {
         $searchable = $this->source->all();
         return new JsonResponse(

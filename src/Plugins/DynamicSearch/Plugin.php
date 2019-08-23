@@ -17,12 +17,15 @@ final class Plugin implements PluginContract
         $this->router = $router;
     }
 
+    /**
+     * @return void
+     */
     public function register()
     {
         $this->registerRoute();
     }
 
-    private function registerRoute()
+    private function registerRoute(): void
     {
         $this->router->get('/search/index', 'Statico\Plugins\DynamicSearch\Http\Controllers\SearchController::index');
     }
