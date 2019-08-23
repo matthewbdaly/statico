@@ -40,6 +40,9 @@ final class Document implements Documentable, JsonSerializable
         return $this;
     }
 
+    /**
+     * @return mixed
+     */
     public function getField(string $key)
     {
         return $this->data[$key];

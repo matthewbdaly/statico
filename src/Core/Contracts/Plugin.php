@@ -4,5 +4,5 @@ namespace Statico\Core\Contracts;
 
 interface Plugin
 {
-    public function register();
+    public function register(): void;
 }

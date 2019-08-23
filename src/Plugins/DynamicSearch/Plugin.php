@@ -17,10 +17,7 @@ final class Plugin implements PluginContract
         $this->router = $router;
     }
 
-    /**
-     * @return void
-     */
-    public function register()
+    public function register(): void
     {
         $this->registerRoute();
     }

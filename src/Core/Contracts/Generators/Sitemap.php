@@ -7,5 +7,5 @@ namespace Statico\Core\Contracts\Generators;
  */
 interface Sitemap
 {
-    public function __invoke();
+    public function __invoke(): string;
 }
