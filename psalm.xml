@@ -7,6 +7,9 @@
 >
     <projectFiles>
         <directory name="src" />
+        <file name="bootstrap.php" />
+        <file name="public/index.php" />
+        <file name="statico" />
         <ignoreFiles>
             <directory name="vendor" />
         </ignoreFiles>
