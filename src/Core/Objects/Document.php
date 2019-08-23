@@ -49,7 +49,8 @@ final class Document implements Documentable, JsonSerializable
     }
 
     /**
-     * @param string $value
+     * @param string $key
+     * @param mixed $value
      */
     public function setField(string $key, $value): Document
     {
