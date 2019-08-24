@@ -1,4 +1,4 @@
-<?php declare(strict_types = 1);
+<?php declare(strict_types=1);
 
 namespace Statico\Core\Providers;
 
@@ -15,7 +15,7 @@ final class HandlerProvider extends AbstractServiceProvider
     {
         // Register items
         $this->getContainer()
-            ->add('Statico\Core\Contracts\Exceptions\Handler', function () {
+            ->add('Statico\Core\Contracts\Exceptions\Handler', function() {
                 return new LogHandler($this->getContainer()->get('Psr\Log\LoggerInterface'));
             });
     }

@@ -1,4 +1,4 @@
-<?php declare(strict_types = 1);
+<?php declare(strict_types=1);
 
 namespace Statico\Core\Providers;
 
@@ -16,7 +16,7 @@ final class RouterProvider extends AbstractServiceProvider
     {
         // Register items
         $this->getContainer()
-            ->share('League\Route\Router', function () {
+            ->share('League\Route\Router', function() {
                 $strategy = (new ApplicationStrategy())->setContainer($this->getContainer());
                 $router = new Router();
                 $router->setStrategy($strategy);

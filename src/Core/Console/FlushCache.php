@@ -1,4 +1,4 @@
-<?php declare(strict_types = 1);
+<?php declare(strict_types=1);
 
 namespace Statico\Core\Console;
 
@@ -23,8 +23,8 @@ final class FlushCache extends Command
     protected function configure(): void
     {
         $this->setName('cache:flush')
-             ->setDescription('Flushes the cache')
-             ->setHelp('This command will flush the cache');
+                ->setDescription('Flushes the cache')
+                ->setHelp('This command will flush the cache');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): void

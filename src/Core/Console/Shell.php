@@ -1,4 +1,4 @@
-<?php declare(strict_types = 1);
+<?php declare(strict_types=1);
 
 namespace Statico\Core\Console;
 
@@ -31,8 +31,8 @@ final class Shell extends Command
     protected function configure(): void
     {
         $this->setName('shell')
-             ->setDescription('Runs an interactive shell')
-             ->setHelp('This command runs an interactive shell');
+                ->setDescription('Runs an interactive shell')
+                ->setHelp('This command runs an interactive shell');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): void

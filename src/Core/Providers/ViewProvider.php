@@ -1,4 +1,4 @@
-<?php declare(strict_types = 1);
+<?php declare(strict_types=1);
 
 namespace Statico\Core\Providers;
 
@@ -15,9 +15,9 @@ final class ViewProvider extends AbstractServiceProvider
     {
         // Register items
         $this->getContainer()
-             ->add('Statico\Core\Contracts\Views\Renderer', function () {
-                 $twig = $this->getContainer()->get('Twig\Environment');
-                 return new TwigRenderer($twig);
-             });
+                ->add('Statico\Core\Contracts\Views\Renderer', function () {
+                    $twig = $this->getContainer()->get('Twig\Environment');
+                    return new TwigRenderer($twig);
+                });
     }
 }

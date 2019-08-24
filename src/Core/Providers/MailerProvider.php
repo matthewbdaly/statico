@@ -1,4 +1,4 @@
-<?php declare(strict_types = 1);
+<?php declare(strict_types=1);
 
 namespace Statico\Core\Providers;
 
@@ -15,7 +15,7 @@ final class MailerProvider extends AbstractServiceProvider
     public function register(): void
     {
         $this->getContainer()
-            ->add('Symfony\Component\Mailer\MailerInterface', function () {
+            ->add('Symfony\Component\Mailer\MailerInterface', function() {
                 $transport = new SendmailTransport();
                 return new Mailer($transport);
             });

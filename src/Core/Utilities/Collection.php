@@ -1,4 +1,4 @@
-<?php declare(strict_types = 1);
+<?php declare(strict_types=1);
 
 namespace Statico\Core\Utilities;
 
@@ -223,8 +223,8 @@ class Collection implements Countable, ArrayAccess, SeekableIterator, JsonSerial
      */
     public function reject(Closure $callback)
     {
-        return $this->filter(function ($item) use ($callback) {
-            return ! $callback($item);
+        return $this->filter(function($item) use ($callback) {
+            return !$callback($item);
         });
     }
 
@@ -252,7 +252,7 @@ class Collection implements Countable, ArrayAccess, SeekableIterator, JsonSerial
      */
     public function pluck($name)
     {
-        return $this->map(function ($item) use ($name) {
+        return $this->map(function($item) use ($name) {
             return $item[$name];
         });
     }
@@ -391,7 +391,7 @@ class Collection implements Countable, ArrayAccess, SeekableIterator, JsonSerial
      */
     public function seek($position)
     {
-        if (! isset($this->items[$position])) {
+        if (!isset($this->items[$position])) {
             throw new OutOfBoundsException("invalid seek position ($position)");
         }
         $this->position = $position;
@@ -420,7 +420,7 @@ class Collection implements Countable, ArrayAccess, SeekableIterator, JsonSerial
     public function flatten(): Collection
     {
         $return = [];
-        array_walk_recursive($this->items, function ($a) use (&$return) {
+        array_walk_recursive($this->items, function($a) use (&$return) {
             $return[] = $a;
         });
         return new static($return);

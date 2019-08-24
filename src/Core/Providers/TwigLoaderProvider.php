@@ -1,4 +1,4 @@
-<?php declare(strict_types = 1);
+<?php declare(strict_types=1);
 
 namespace Statico\Core\Providers;
 
@@ -15,7 +15,7 @@ final class TwigLoaderProvider extends AbstractServiceProvider
     {
         // Register items
         $container = $this->getContainer();
-        $container->add('Twig\Loader\FilesystemLoader', function () {
+        $container->add('Twig\Loader\FilesystemLoader', function() {
             return new FilesystemLoader(BASE_DIR . 'views');
         });
     }
