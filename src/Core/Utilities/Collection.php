@@ -7,6 +7,7 @@ use Countable;
 use ArrayAccess;
 use SeekableIterator;
 use JsonSerializable;
+use Serializable;
 use Statico\Core\Contracts\Utilities\Collectable;
 use Statico\Core\Utilities\Traits\Macroable;
 use OutOfBoundsException;
@@ -14,7 +15,7 @@ use OutOfBoundsException;
 /**
  * Collection class
  */
-class Collection implements Countable, ArrayAccess, SeekableIterator, JsonSerializable, Collectable
+class Collection implements Countable, ArrayAccess, SeekableIterator, JsonSerializable, Collectable, Serializable
 {
     use Macroable;
 
@@ -435,5 +436,21 @@ class Collection implements Countable, ArrayAccess, SeekableIterator, JsonSerial
     {
         $offset = ($page - 1) * $perPage;
         return new static(array_slice($this->items, $offset, $perPage));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function serialize()
+    {
+        return serialize($this->items);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function unserialize($serialized)
+    {
+        $this->items = unserialize($serialized);
     }
 }

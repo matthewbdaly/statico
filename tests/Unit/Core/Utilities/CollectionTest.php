@@ -600,4 +600,20 @@ final class CollectionTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals([1, 2, 3], $collection->paginate(3, 1)->toArray());
         $this->assertEquals([4, 5], $collection->paginate(3, 2)->toArray());
     }
+
+    public function testImplementsSerializable()
+    {
+        $this->assertInstanceOf('Serializable', $this->collection);
+    }
+
+    public function testSerializeAndUnserialize()
+    {
+        $items = [1, 2, 3, 4, 5];
+        $collection = new Collection($items);
+        $data = $collection->serialize();
+        $this->assertEquals(serialize($items), $data);
+        $newCollection = new Collection([]);
+        $newCollection->unserialize($data);
+        $this->assertEquals($collection, $newCollection);
+    }
 }
