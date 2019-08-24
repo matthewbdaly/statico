@@ -1,4 +1,4 @@
-<?php declare(strict_types = 1);
+<?php declare(strict_types=1);
 
 namespace Statico\Core\Utilities;
 
@@ -244,7 +244,7 @@ class Str implements Countable, ArrayAccess, SeekableIterator, Stringable
      */
     public function seek($position)
     {
-        if (! isset($this->string[$position])) {
+        if (!isset($this->string[$position])) {
             throw new OutOfBoundsException("invalid seek position ($position)");
         }
         $this->position = $position;

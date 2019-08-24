@@ -41,9 +41,9 @@ trait Macroable
             ReflectionMethod::IS_PUBLIC | ReflectionMethod::IS_PROTECTED
         );
         foreach ($methods as $method) {
-            if ($replace || ! static::hasMacro($method->name)) {
+            if ($replace || !static::hasMacro($method->name)) {
                 $method->setAccessible(true);
-                static::macro($method->name, function () use ($method, $mixin) {
+                static::macro($method->name, function() use ($method, $mixin) {
                     return $method->invoke($mixin);
                 });
             }
@@ -60,7 +60,7 @@ trait Macroable
      */
     public function __call($method, $parameters)
     {
-        if (! static::hasMacro($method)) {
+        if (!static::hasMacro($method)) {
             throw new BadMethodCallException("Method {$method} does not exist.");
         }
 
@@ -82,7 +82,7 @@ trait Macroable
      */
     public static function __callStatic($method, $parameters)
     {
-        if (! static::hasMacro($method)) {
+        if (!static::hasMacro($method)) {
             throw new BadMethodCallException(sprintf(
                 'Method %s::%s does not exist.',
                 static::class,

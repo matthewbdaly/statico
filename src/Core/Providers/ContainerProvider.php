@@ -1,4 +1,4 @@
-<?php declare(strict_types = 1);
+<?php declare(strict_types=1);
 
 namespace Statico\Core\Providers;
 
@@ -15,8 +15,8 @@ final class ContainerProvider extends AbstractServiceProvider
     {
         // Register items
         $this->getContainer()
-             ->add('Psr\Container\ContainerInterface', function () {
-                 return $this->getContainer();
-             });
+                ->add('Psr\Container\ContainerInterface', function () {
+                    return $this->getContainer();
+                });
     }
 }

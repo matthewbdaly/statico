@@ -1,4 +1,4 @@
-<?php declare(strict_types = 1);
+<?php declare(strict_types=1);
 
 namespace Statico\Core\Providers;
 
@@ -15,7 +15,7 @@ final class SitemapGeneratorProvider extends AbstractServiceProvider
     {
         // Register items
         $container = $this->getContainer();
-        $container->add('Statico\Core\Contracts\Generators\Sitemap', function () use ($container) {
+        $container->add('Statico\Core\Contracts\Generators\Sitemap', function() use ($container) {
             $config = $container->get('Zend\Config\Config');
             $source = $container->get('Statico\Core\Contracts\Sources\Source');
             return new XmlStringSitemap($config, $source);

@@ -1,4 +1,4 @@
-<?php declare(strict_types = 1);
+<?php declare(strict_types=1);
 
 namespace Statico\Core\Console;
 
@@ -30,8 +30,8 @@ final class GenerateIndex extends Command
     protected function configure(): void
     {
         $this->setName('index:generate')
-             ->setDescription('Generates the search index')
-             ->setHelp('This command will generate the search index file');
+                ->setDescription('Generates the search index')
+                ->setHelp('This command will generate the search index file');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output): void

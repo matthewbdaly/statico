@@ -1,4 +1,4 @@
-<?php declare(strict_types = 1);
+<?php declare(strict_types=1);
 
 namespace Statico\Core\Providers;
 
@@ -15,7 +15,7 @@ final class EventProvider extends AbstractServiceProvider
     {
         // Register items
         $container = $this->getContainer();
-        $container->share('League\Event\EmitterInterface', function () use ($container) {
+        $container->share('League\Event\EmitterInterface', function() use ($container) {
                 $emitter = $container->get('League\Event\Emitter');
                 return $emitter;
         });
