@@ -22,7 +22,7 @@ final class TwigProvider extends AbstractServiceProvider
     {
         // Register items
         $container = $this->getContainer();
-        $container->add('Twig\Environment', function() use ($container) {
+        $container->add('Twig\Environment', function () use ($container) {
             $version = $container->get('Statico\Core\Views\Filters\Version');
             $form = $container->get('Statico\Core\Views\Functions\Form');
             $config = [];

@@ -16,7 +16,7 @@ final class RouterProvider extends AbstractServiceProvider
     {
         // Register items
         $this->getContainer()
-            ->share('League\Route\Router', function() {
+            ->share('League\Route\Router', function () {
                 $strategy = (new ApplicationStrategy())->setContainer($this->getContainer());
                 $router = new Router();
                 $router->setStrategy($strategy);

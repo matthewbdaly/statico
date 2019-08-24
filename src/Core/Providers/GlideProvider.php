@@ -17,14 +17,14 @@ final class GlideProvider extends AbstractServiceProvider
     public function register(): void
     {
         $container = $this->getContainer();
-        $container->share('League\Glide\Server', function() use ($container) {
+        $container->share('League\Glide\Server', function () use ($container) {
             $fs = $container->get('League\Flysystem\FilesystemInterface');
             $source = $fs->getFilesystem('media');
             $cache = $fs->getFilesystem('cache');
             return ServerFactory::create([
                 'source' => $source,
                 'cache' => $cache,
-                'response' => new PsrResponseFactory(new Response(), function($stream) {
+                'response' => new PsrResponseFactory(new Response(), function ($stream) {
                     return new Stream($stream);
                 }),
             ]);

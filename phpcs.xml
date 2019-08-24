@@ -3,6 +3,9 @@
 	<description>Coding standard.</description>
 	<file>src</file>
 	<file>tests</file>
+	<file>statico</file>
+	<file>bootstrap.php</file>
+    <file>public/index.php</file>
 	<arg value="np"/>
 	<rule ref="PSR12"/>
 	<rule ref="Generic.Arrays.DisallowLongArraySyntax"/>

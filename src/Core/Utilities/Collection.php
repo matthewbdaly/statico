@@ -223,7 +223,7 @@ class Collection implements Countable, ArrayAccess, SeekableIterator, JsonSerial
      */
     public function reject(Closure $callback)
     {
-        return $this->filter(function($item) use ($callback) {
+        return $this->filter(function ($item) use ($callback) {
             return !$callback($item);
         });
     }
@@ -252,7 +252,7 @@ class Collection implements Countable, ArrayAccess, SeekableIterator, JsonSerial
      */
     public function pluck($name)
     {
-        return $this->map(function($item) use ($name) {
+        return $this->map(function ($item) use ($name) {
             return $item[$name];
         });
     }
@@ -420,7 +420,7 @@ class Collection implements Countable, ArrayAccess, SeekableIterator, JsonSerial
     public function flatten(): Collection
     {
         $return = [];
-        array_walk_recursive($this->items, function($a) use (&$return) {
+        array_walk_recursive($this->items, function ($a) use (&$return) {
             $return[] = $a;
         });
         return new static($return);

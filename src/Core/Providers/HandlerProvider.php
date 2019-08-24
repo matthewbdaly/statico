@@ -15,7 +15,7 @@ final class HandlerProvider extends AbstractServiceProvider
     {
         // Register items
         $this->getContainer()
-            ->add('Statico\Core\Contracts\Exceptions\Handler', function() {
+            ->add('Statico\Core\Contracts\Exceptions\Handler', function () {
                 return new LogHandler($this->getContainer()->get('Psr\Log\LoggerInterface'));
             });
     }

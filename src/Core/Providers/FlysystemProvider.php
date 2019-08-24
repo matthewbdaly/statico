@@ -15,7 +15,7 @@ final class FlysystemProvider extends AbstractServiceProvider
     {
         // Register items
         $container = $this->getContainer();
-        $container->add('League\Flysystem\FilesystemInterface', function() use ($container) {
+        $container->add('League\Flysystem\FilesystemInterface', function () use ($container) {
                 $factory = $container->get('Statico\Core\Factories\FlysystemFactory');
                 $config = $container->get('Zend\Config\Config');
 

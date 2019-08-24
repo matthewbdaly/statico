@@ -15,7 +15,7 @@ final class MailerProvider extends AbstractServiceProvider
     public function register(): void
     {
         $this->getContainer()
-            ->add('Symfony\Component\Mailer\MailerInterface', function() {
+            ->add('Symfony\Component\Mailer\MailerInterface', function () {
                 $transport = new SendmailTransport();
                 return new Mailer($transport);
             });

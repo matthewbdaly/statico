@@ -43,7 +43,7 @@ trait Macroable
         foreach ($methods as $method) {
             if ($replace || !static::hasMacro($method->name)) {
                 $method->setAccessible(true);
-                static::macro($method->name, function() use ($method, $mixin) {
+                static::macro($method->name, function () use ($method, $mixin) {
                     return $method->invoke($mixin);
                 });
             }
