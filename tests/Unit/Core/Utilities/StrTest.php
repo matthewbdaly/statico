@@ -244,4 +244,19 @@ final class StrTest extends \PHPUnit\Framework\TestCase
         $str = new Str('I am the very model of a modern major general');
         $this->assertEquals('Foo', Str::foo());
     }
+
+    public function testImplementsSerializable()
+    {
+        $this->assertInstanceOf('Serializable', $this->str);
+    }
+
+    public function testSerializeAndUnserialize()
+    {
+        $str = new Str('My string');
+        $data = $str->serialize();
+        $this->assertEquals(serialize('My string'), $data);
+        $newStr = new Str('');
+        $newStr->unserialize($data);
+        $this->assertEquals($str, $newStr);
+    }
 }

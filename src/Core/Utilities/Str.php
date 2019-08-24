@@ -8,11 +8,12 @@ use SeekableIterator;
 use Statico\Core\Contracts\Utilities\Stringable;
 use Statico\Core\Utilities\Traits\Macroable;
 use OutOfBoundsException;
+use Serializable;
 
 /**
  * String class
  */
-class Str implements Countable, ArrayAccess, SeekableIterator, Stringable
+class Str implements Countable, ArrayAccess, SeekableIterator, Stringable, Serializable
 {
     use Macroable;
 
@@ -258,5 +259,21 @@ class Str implements Countable, ArrayAccess, SeekableIterator, Stringable
     public function path(): Str
     {
         return new static(preg_replace('/(\\\|\/)/', DIRECTORY_SEPARATOR, $this->string));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function serialize()
+    {
+        return serialize($this->string);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function unserialize($serialized)
+    {
+        $this->string = unserialize($serialized);
     }
 }
