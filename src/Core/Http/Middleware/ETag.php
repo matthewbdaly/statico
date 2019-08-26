@@ -6,6 +6,7 @@ use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
+use Zend\Diactoros\Response\EmptyResponse;
 
 final class ETag implements MiddlewareInterface
 {
@@ -26,6 +27,7 @@ final class ETag implements MiddlewareInterface
 
         // Check to see if Etag has changed
         if ($requestEtag && $requestEtag[0] == $etag) {
+            $response = new EmptyResponse();
             return $response->withStatus(304);
         }
 
