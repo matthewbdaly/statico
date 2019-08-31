@@ -3,7 +3,7 @@
 namespace Tests;
 
 use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
-use Statico\Core\Application;
+use Statico\Core\Kernel\Application;
 
 abstract class TestCase extends \PHPUnit\Framework\TestCase
 {

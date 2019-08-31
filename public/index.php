@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-use Statico\Core\Application;
+use Statico\Core\Kernel\Application;
 
 require_once __DIR__ . '/../bootstrap.php';
 
@@ -16,7 +16,7 @@ $request = Zend\Diactoros\ServerRequestFactory::fromGlobals(
     $_FILES
 );
 
-$app = new Statico\Core\Application();
+$app = new Application();
 $response = $app->bootstrap()
     ->handle($request);
 

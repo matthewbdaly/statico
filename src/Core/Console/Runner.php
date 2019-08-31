@@ -2,7 +2,7 @@
 
 namespace Statico\Core\Console;
 
-use Statico\Core\Application;
+use Statico\Core\Kernel\Application;
 use Exception;
 
 final class Runner

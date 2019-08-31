@@ -4,7 +4,7 @@ namespace Tests\Unit\Core\Utilities;
 
 use Tests\TestCase;
 use Mockery as m;
-use Statico\Core\Application;
+use Statico\Core\Kernel\Application;
 use Zend\Config\Config;
 
 final class ApplicationTest extends TestCase

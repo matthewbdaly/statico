@@ -4,7 +4,7 @@ namespace Tests\Unit\Core\Console;
 
 use Tests\TestCase;
 use Statico\Core\Console\Runner;
-use Statico\Core\Application;
+use Statico\Core\Kernel\Application;
 use Mockery as m;
 use ReflectionClass;
 

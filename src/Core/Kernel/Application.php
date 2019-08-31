@@ -1,20 +1,21 @@
 <?php declare(strict_types=1);
 
-namespace Statico\Core;
+namespace Statico\Core\Kernel;
 
 use Zend\Diactoros\ServerRequestFactory;
 use League\Container\Container;
 use League\Container\ReflectionContainer;
 use Psr\Http\Message\ServerRequestInterface;
 use ReflectionClass;
-use Statico\Core\Application;
+use Statico\Core\Kernel\Application;
 use Statico\Core\Exceptions\Plugins\PluginNotFound;
 use Statico\Core\Exceptions\Plugins\PluginNotValid;
+use Statico\Core\Contracts\Kernel\KernelInterface;
 
 /**
  * Application instance
  */
-final class Application
+final class Application implements KernelInterface
 {
     /**
      * @var Container
