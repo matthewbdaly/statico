@@ -11,7 +11,6 @@ use Monolog\Handler\FirePHPHandler;
 use Monolog\Handler\SlackHandler;
 use Monolog\Handler\StreamHandler;
 use Monolog\Handler\NativeMailerHandler;
-use Monolog\Handler\HipChatHandler;
 use Zend\Config\Config;
 use Statico\Core\Utilities\Str;
 
@@ -47,8 +46,6 @@ final class LoggerFactory
                 return $this->createNativeMailerHandler($config);
             case 'slack':
                 return $this->createSlackHandler($config);
-            case 'hipchat':
-                return $this->createHipChatHandler($config);
             default:
                 return $this->createStreamHandler($config);
         }
@@ -93,17 +90,6 @@ final class LoggerFactory
             $config->get('username'),
             $config->get('attachment'),
             $config->get('emoji'),
-            $this->getLevel($config->get('level'))
-        );
-    }
-
-    private function createHipChatHandler(Config $config): HipChatHandler
-    {
-        return new HipChatHandler(
-            $config->get('token'),
-            $config->get('room'),
-            $config->get('name'),
-            $config->get('notify'),
             $this->getLevel($config->get('level'))
         );
     }
