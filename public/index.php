@@ -20,11 +20,12 @@ $request = Zend\Diactoros\ServerRequestFactory::fromGlobals(
     $_FILES
 );
 
-$app = new HttpCache(
-    (new Application())->bootstrap(),
-    //new FileStore(__DIR__ . '/../cache/pages')
-    new PredisStore(new Client())
-);
+/* $app = new HttpCache( */
+/*     (new Application())->bootstrap(), */
+/*     //new FileStore(__DIR__ . '/../cache/pages') */
+/*     new PredisStore(new Client()) */
+/* ); */
+$app = (new Application())->bootstrap();
 $response = $app->handle($request);
 
 // send the response to the browser
