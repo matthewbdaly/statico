@@ -127,6 +127,7 @@ final class Application implements KernelInterface
     {
         $router = $this->container->get('League\Route\Router');
         $router->get('/[{name:[a-zA-Z0-9\-\/]+}]', 'Statico\Core\Http\Controllers\MainController::index')
+            ->middleware(new \Statico\Core\Http\Middleware\HttpCache())
             ->middleware(new \Statico\Core\Http\Middleware\ETag());
         $router->post('/[{name:[a-zA-Z0-9\-\/]+}]', 'Statico\Core\Http\Controllers\MainController::submit');
         $this->router = $router;
