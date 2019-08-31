@@ -5,7 +5,4 @@ require_once __DIR__.'/bootstrap.php';
 
 use Statico\Core\Console\Runner;
 
-$dotenv = new Dotenv\Dotenv(__DIR__);
-$dotenv->load();
-
 $runner = (new Runner)();
