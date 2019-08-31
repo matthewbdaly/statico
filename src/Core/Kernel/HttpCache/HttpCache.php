@@ -5,7 +5,6 @@ namespace Statico\Core\Kernel\HttpCache;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Statico\Core\Contracts\Kernel\KernelInterface;
-use Statico\Core\Contracts\Kernel\StoreInterface;
 use Zend\Diactoros\Response\HtmlResponse;
 
 final class HttpCache implements KernelInterface
@@ -37,7 +36,7 @@ final class HttpCache implements KernelInterface
         }
 
         // return early if page is cached
-        if ($html = $this->getCachedHtml($request)) {
+        if ($html = $this->store->get($request)) {
             return new HtmlResponse($html);
         }
 
@@ -46,19 +45,9 @@ final class HttpCache implements KernelInterface
 
         // check if response can be cached
         if ($response->getStatusCode() == 200) {
-            $this->cacheResponse($request, $response);
+            $this->store->put($request, $response);
         }
 
         return $response;
-    }
-
-    private function getCachedHtml(ServerRequestInterface $request): string
-    {
-        return $this->store->get($request);
-    }
-
-    private function cacheResponse(ServerRequestInterface $request, ResponseInterface $response): void
-    {
-        $this->store->put($request, $response);
     }
 }

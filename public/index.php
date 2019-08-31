@@ -1,6 +1,7 @@
 <?php declare(strict_types=1);
 
 use Statico\Core\Kernel\HttpCache\HttpCache;
+use Statico\Core\Kernel\HttpCache\FileStore;
 use Statico\Core\Kernel\Application;
 
 require_once __DIR__ . '/../bootstrap.php';
@@ -18,7 +19,8 @@ $request = Zend\Diactoros\ServerRequestFactory::fromGlobals(
 );
 
 $app = new HttpCache(
-    (new Application())->bootstrap()
+    (new Application())->bootstrap(),
+    new FileStore(__DIR__ . '/../cache/pages')
 );
 $response = $app->handle($request);
 
