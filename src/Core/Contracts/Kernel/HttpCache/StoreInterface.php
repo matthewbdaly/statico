@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Statico\Core\Kernel\HttpCache;
+namespace Statico\Core\Contracts\Kernel\HttpCache;
 
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ResponseInterface;

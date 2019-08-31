@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
 use Statico\Core\Kernel\HttpCache\HttpCache;
-use Statico\Core\Kernel\HttpCache\FileStore;
-use Statico\Core\Kernel\HttpCache\PredisStore;
+use Statico\Core\Kernel\HttpCache\Store\FileStore;
+use Statico\Core\Kernel\HttpCache\Store\PredisStore;
 use Predis\Client;
 use Statico\Core\Kernel\Application;
 

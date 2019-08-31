@@ -1,9 +1,10 @@
 <?php declare(strict_types=1);
 
-namespace Statico\Core\Kernel\HttpCache;
+namespace Statico\Core\Kernel\HttpCache\Store;
 
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ResponseInterface;
+use Statico\Core\Contracts\Kernel\HttpCache\StoreInterface;
 
 final class FileStore implements StoreInterface
 {
