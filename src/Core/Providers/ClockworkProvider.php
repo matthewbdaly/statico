@@ -15,7 +15,10 @@ final class ClockworkProvider extends AbstractServiceProvider
     {
         // Register items
         $this->getContainer()->share('Clockwork\Support\Vanilla\Clockwork', function () {
-            return Clockwork::init();
+            return Clockwork::init([
+                'storage' => 'sql',
+                'storage_database' => 'sqlite:' . __DIR__ . '/clockwork.sqlite'
+            ]);
         });
     }
 }

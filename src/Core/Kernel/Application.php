@@ -90,6 +90,8 @@ final class Application implements KernelInterface
                 '404.html'
             );
         }
+        $clockwork = $this->container->get('Clockwork\Support\Vanilla\Clockwork');
+        $clockwork->requestProcessed();
         return $response;
     }
 
@@ -126,6 +128,7 @@ final class Application implements KernelInterface
     private function setupRoutes(): void
     {
         $router = $this->container->get('League\Route\Router');
+        $router->get('/__clockwork/{request:.+}', 'Statico\Core\Http\Controllers\ClockworkController::process');
         $router->get('/[{name:[a-zA-Z0-9\-\/]+}]', 'Statico\Core\Http\Controllers\MainController::index')
             ->middleware(new \Statico\Core\Http\Middleware\HttpCache())
             ->middleware(new \Statico\Core\Http\Middleware\ETag());
