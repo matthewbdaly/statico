@@ -1,5 +1,6 @@
 <?php declare(strict_types=1);
 
+use Statico\Core\Kernel\HttpCache\HttpCache;
 use Statico\Core\Kernel\Application;
 
 require_once __DIR__ . '/../bootstrap.php';
@@ -16,9 +17,10 @@ $request = Zend\Diactoros\ServerRequestFactory::fromGlobals(
     $_FILES
 );
 
-$app = new Application();
-$response = $app->bootstrap()
-    ->handle($request);
+$app = new HttpCache(
+    (new Application())->bootstrap()
+);
+$response = $app->handle($request);
 
 // send the response to the browser
 (new Zend\HttpHandlerRunner\Emitter\SapiEmitter())->emit($response);
