@@ -1,6 +1,6 @@
 <?php declare(strict_types = 1);
 
-namespace Tests\Unit\Core\Utilities;
+namespace Tests\Unit\Core\Kernel;
 
 use Tests\TestCase;
 use Mockery as m;
