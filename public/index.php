@@ -1,10 +1,10 @@
 <?php declare(strict_types=1);
 
 use Statico\Core\Kernel\HttpCache\HttpCache;
-use Statico\Core\Kernel\HttpCache\Store\FileStore;
-use Statico\Core\Kernel\HttpCache\Store\PredisStore;
-use Predis\Client;
+use Statico\Core\Kernel\HttpCache\Store\Psr6Store;
+use Statico\Core\Factories\CacheFactory;
 use Statico\Core\Kernel\Application;
+use Zend\Config\Config;
 
 require_once __DIR__ . '/../bootstrap.php';
 
@@ -20,12 +20,15 @@ $request = Zend\Diactoros\ServerRequestFactory::fromGlobals(
     $_FILES
 );
 
-/* $app = new HttpCache( */
-/*     (new Application())->bootstrap(), */
-/*     //new FileStore(__DIR__ . '/../cache/pages') */
-/*     new PredisStore(new Client()) */
-/* ); */
-$app = (new Application())->bootstrap();
+$config = new Config([
+    'driver' => 'filesystem',
+    'path' => 'cache/proxy'
+]);
+$cache = (new CacheFactory())->make($config);
+$app = new HttpCache(
+    (new Application())->bootstrap(),
+    new Psr6Store($cache)
+);
 $response = $app->handle($request);
 
 // send the response to the browser

@@ -1,29 +1,30 @@
-<?php declare(strict_types=1);
+<?php declare(strict_types = 1);
 
 namespace Statico\Core\Kernel\HttpCache\Store;
 
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ResponseInterface;
-use Predis\Client;
 use Statico\Core\Contracts\Kernel\HttpCache\StoreInterface;
+use Psr\Cache\CacheItemPoolInterface;
 
-final class PredisStore implements StoreInterface
+final class Psr6Store implements StoreInterface
 {
     /**
-     * @var Client
+     * @var CacheItemPoolInterface
      */
-    private $predis;
+    private $cache;
 
-    public function __construct(Client $predis)
+    public function __construct(CacheItemPoolInterface $cache)
     {
-        $this->predis = $predis;
+        $this->cache = $cache;
     }
 
     public function get(ServerRequestInterface $request): ?string
     {
         $key = $this->getCacheKey($request);
-        if ($this->predis->exists($key)) {
-            return $this->predis->get($key);
+        $item = $this->cache->getItem($key);
+        if ($item->isHit()) {
+            return $item->get();
         }
         return null;
     }
@@ -31,8 +32,9 @@ final class PredisStore implements StoreInterface
     public function put(ServerRequestInterface $request, ResponseInterface $response): void
     {
         $key = $this->getCacheKey($request);
-        $this->predis->set($key, $response->getBody()->__toString());
-        $this->predis->expire($key, 3600);
+        $item = $this->cache->getItem($key);
+        $item->set($response->getBody()->__toString());
+        $this->cache->save($item);
     }
 
     private function getCacheKey(ServerRequestInterface $request)
