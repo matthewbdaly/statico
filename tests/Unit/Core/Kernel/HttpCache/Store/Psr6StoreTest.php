@@ -35,4 +35,22 @@ final class Psr6StoreTest extends TestCase
         $response = $store->get($request);
         $this->assertEquals("foo", $response);
     }
+
+    public function testPut()
+    {
+        $cache = m::mock('Psr\Cache\CacheItemPoolInterface');
+        $cacheItem = m::mock('Psr\Cache\CacheItemInterface');
+        $cache->shouldReceive('getItem')->with('cached-foo.html')->andReturn($cacheItem);
+        $cacheItem->shouldReceive('set')->with('foo')->once();
+        $cache->shouldReceive('save')->with($cacheItem);
+        $request = m::mock('Psr\Http\Message\ServerRequestInterface');
+        $request->shouldReceive('getUri')->andReturn($request);
+        $request->shouldReceive('getPath')->andReturn('/foo');
+        $request->shouldReceive('getQuery')->andReturn('');
+        $response = m::mock('Psr\Http\Message\ResponseInterface');
+        $response->shouldReceive('getBody')->once()->andReturn($response);
+        $response->shouldReceive('__toString')->once()->andReturn('foo');
+        $store = new Psr6Store($cache);
+        $store->put($request, $response);
+    }
 }
