@@ -41,7 +41,6 @@ final class HttpCache implements KernelInterface
             return new HtmlResponse($html);
         }
 
-        //
         $response = $this->kernel->handle($request);
 
         // check if response can be cached
