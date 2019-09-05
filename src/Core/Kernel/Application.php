@@ -34,6 +34,7 @@ final class Application implements KernelInterface
         'Statico\Core\Providers\ContainerProvider',
         'Statico\Core\Providers\CacheProvider',
         'Statico\Core\Providers\ConfigProvider',
+        'Statico\Core\Providers\ConsoleProvider',
         'Statico\Core\Providers\EventProvider',
         'Statico\Core\Providers\FlysystemProvider',
         'Statico\Core\Providers\FormsProvider',
