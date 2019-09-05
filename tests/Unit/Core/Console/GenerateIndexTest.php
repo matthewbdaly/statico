@@ -4,7 +4,7 @@ namespace Tests\Unit\Core\Console;
 
 use Tests\TestCase;
 use Mockery as m;
-use Statico\Core\Console\GenerateIndex;
+use Statico\Core\Console\Commands\GenerateIndex;
 use Statico\Core\Utilities\Collection;
 use Symfony\Component\Console\Tester\CommandTester;
 

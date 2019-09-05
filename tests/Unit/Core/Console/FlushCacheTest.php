@@ -4,7 +4,7 @@ namespace Tests\Unit\Core\Console;
 
 use Tests\TestCase;
 use Mockery as m;
-use Statico\Core\Console\FlushCache;
+use Statico\Core\Console\Commands\FlushCache;
 use Symfony\Component\Console\Tester\CommandTester;
 
 final class FlushCacheTest extends TestCase

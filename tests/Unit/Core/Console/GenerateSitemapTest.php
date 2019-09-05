@@ -4,7 +4,7 @@ namespace Tests\Unit\Core\Console;
 
 use Tests\TestCase;
 use Mockery as m;
-use Statico\Core\Console\GenerateSitemap;
+use Statico\Core\Console\Commands\GenerateSitemap;
 use Symfony\Component\Console\Tester\CommandTester;
 
 final class GenerateSitemapTest extends TestCase

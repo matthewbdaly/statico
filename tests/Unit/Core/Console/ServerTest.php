@@ -5,7 +5,7 @@ namespace Tests\Unit\Core\Console;
 use Tests\TestCase;
 use Mockery as m;
 use Symfony\Component\Console\Tester\CommandTester;
-use Statico\Core\Console\Server;
+use Statico\Core\Console\Commands\Server;
 use phpmock\mockery\PHPMockery;
 
 final class ServerTest extends TestCase

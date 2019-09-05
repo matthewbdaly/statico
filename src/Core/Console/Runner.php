@@ -23,11 +23,11 @@ final class Runner
             $this->app->bootstrap();
             $container = $this->app->getContainer();
             $console = $container->get('Symfony\Component\Console\Application');
-            $console->add($container->get('Statico\Core\Console\FlushCache'));
-            $console->add($container->get('Statico\Core\Console\Shell'));
-            $console->add($container->get('Statico\Core\Console\Server'));
-            $console->add($container->get('Statico\Core\Console\GenerateIndex'));
-            $console->add($container->get('Statico\Core\Console\GenerateSitemap'));
+            $console->add($container->get('Statico\Core\Console\Commands\FlushCache'));
+            $console->add($container->get('Statico\Core\Console\Commands\Shell'));
+            $console->add($container->get('Statico\Core\Console\Commands\Server'));
+            $console->add($container->get('Statico\Core\Console\Commands\GenerateIndex'));
+            $console->add($container->get('Statico\Core\Console\Commands\GenerateSitemap'));
             $console->run();
         } catch (Exception $err) {
             $this->returnError($err);
