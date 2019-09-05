@@ -25,8 +25,8 @@ class DoctrineProvider extends AbstractServiceProvider
             return DriverManager::getConnection($dbParams);
         });
         $container->add('Doctrine\ORM\EntityManager', function () use ($container) {
-            $paths = ['app/Doctrine/Entities'];
-            $isDevMode = false;
+            $paths = [__DIR__ . '/../Entities'];
+            $isDevMode = (getenv('APP_ENV') == 'development');
             $config = Setup::createAnnotationMetadataConfiguration($paths, $isDevMode);
             return EntityManager::create($container->get('Doctrine\DBAL\Connection'), $config);
         });
