@@ -19,9 +19,9 @@ class DoctrineProvider extends AbstractServiceProvider
         // Register items
         $container = $this->getContainer();
         $container->add('Doctrine\DBAL\Connection', function () {
-            $dbParams = array(
+            $dbParams = [
                 'url' => getenv('DB_URL'),
-            );
+            ];
             return DriverManager::getConnection($dbParams);
         });
         $container->add('Doctrine\ORM\EntityManager', function () use ($container) {

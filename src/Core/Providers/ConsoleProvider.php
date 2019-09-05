@@ -16,7 +16,7 @@ final class ConsoleProvider extends AbstractServiceProvider
         // Register items
         $this->getContainer()
             ->share('Symfony\Component\Console\Application', function () {
-                return new Application;
+                return new Application();
             });
     }
 }
