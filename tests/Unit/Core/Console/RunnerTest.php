@@ -22,23 +22,23 @@ final class RunnerTest extends TestCase
             ->andReturn($console);
         $mockCommand = m::mock('Symfony\Component\Console\Command\Command');
         $container->shouldReceive('get')
-            ->with('Statico\Core\Console\FlushCache')
+            ->with('Statico\Core\Console\Commands\FlushCache')
             ->once()
             ->andReturn($mockCommand);
         $container->shouldReceive('get')
-            ->with('Statico\Core\Console\Shell')
+            ->with('Statico\Core\Console\Commands\Shell')
             ->once()
             ->andReturn($mockCommand);
         $container->shouldReceive('get')
-            ->with('Statico\Core\Console\Server')
+            ->with('Statico\Core\Console\Commands\Server')
             ->once()
             ->andReturn($mockCommand);
         $container->shouldReceive('get')
-            ->with('Statico\Core\Console\GenerateIndex')
+            ->with('Statico\Core\Console\Commands\GenerateIndex')
             ->once()
             ->andReturn($mockCommand);
         $container->shouldReceive('get')
-            ->with('Statico\Core\Console\GenerateSitemap')
+            ->with('Statico\Core\Console\Commands\GenerateSitemap')
             ->once()
             ->andReturn($mockCommand);
         $mockApp = m::mock(new Application());

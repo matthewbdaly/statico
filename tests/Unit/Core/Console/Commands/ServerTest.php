@@ -1,6 +1,6 @@
 <?php declare(strict_types = 1);
 
-namespace Tests\Unit\Core\Console;
+namespace Tests\Unit\Core\Console\Commands;
 
 use Tests\TestCase;
 use Mockery as m;
@@ -12,7 +12,7 @@ final class ServerTest extends TestCase
 {
     public function testExecute()
     {
-        $passthru = PHPMockery::mock('Statico\Core\Console', "passthru");
+        $passthru = PHPMockery::mock('Statico\Core\Console\Commands', "passthru");
         $cmd = new Server();
         $tester = new CommandTester($cmd);
         $tester->execute([]);
