@@ -10,3 +10,4 @@ infection.log
 output.html
 .env
 deploy.php
+db.sqlite
