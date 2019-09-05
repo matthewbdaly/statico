@@ -3,6 +3,7 @@
 namespace Statico\Core\Console;
 
 use Statico\Core\Kernel\Application;
+use Dotenv\Dotenv;
 use Exception;
 
 final class Runner
@@ -20,6 +21,10 @@ final class Runner
     public function __invoke()
     {
         try {
+            if (file_exists(BASE_DIR . DIRECTORY_SEPARATOR . '.env')) {
+                $dotenv = new Dotenv(BASE_DIR);
+                $dotenv->load();
+            }
             $this->app->bootstrap();
             $container = $this->app->getContainer();
             $console = $container->get('Symfony\Component\Console\Application');
@@ -36,9 +41,9 @@ final class Runner
 
     private function returnError(Exception $err): void
     {
-            $msg = "Unable to run - " . $err->getMessage();
-            $msg .= "\n" . $err->__toString();
-            $msg .= "\n";
-            echo $msg;
+        $msg = "Unable to run - " . $err->getMessage();
+        $msg .= "\n" . $err->__toString();
+        $msg .= "\n";
+        echo $msg;
     }
 }
