@@ -18,20 +18,50 @@ class Document
     /**
      * @Column(type="string",length=200)
      */
-    private $name = '';
+    private $title = '';
+
+    /**
+     * @Column(type="string",length=200)
+     */
+    private $path = '';
+
+    /**
+     * @Column(type="text")
+     */
+    private $content = '';
+
+    /**
+     * @Column(type="json")
+     */
+    private $data;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getName(): string
+    public function getTitle(): string
     {
-        return $this->name;
+        return $this->title;
     }
 
-    public function setName(string $name): void
+    /**
+     * Getter for path
+     *
+     * @return string
+     */
+    public function getPath(): string
     {
-        $this->name = $name;
+        return $this->path;
+    }
+
+    /**
+     * Getter for content
+     *
+     * @return string
+     */
+    public function getContent(): string
+    {
+        return $this->content;
     }
 }
