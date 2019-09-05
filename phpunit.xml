@@ -24,5 +24,6 @@
     </logging>
     <php>
         <env name="APP_ENV" value="testing"/>
+        <env name="DB_URL" value="sqlite://:memory:"/>
     </php>
 </phpunit>
