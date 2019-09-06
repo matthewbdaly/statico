@@ -4,7 +4,7 @@ namespace Tests\Unit\Core\Generators;
 
 use Tests\TestCase;
 use Mockery as m;
-use Statico\Core\Objects\Document;
+use Statico\Core\Objects\MarkdownDocument;
 use Statico\Core\Generators\XmlStringSitemap;
 use Statico\Core\Utilities\Collection;
 use Zend\Config\Config;
@@ -21,7 +21,7 @@ final class SitemapTest extends TestCase
   </url>
 </urlset>
 EOF;
-        $doc = new Document();
+        $doc = new MarkdownDocument();
         $doc->setContent('This is my content');
         $doc->setField('title', 'My Page');
         $doc->setField('layout', 'custom.html');

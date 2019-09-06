@@ -3,7 +3,7 @@
 namespace Tests\Unit\Core\Factories;
 
 use Tests\TestCase;
-use Statico\Core\Objects\Document;
+use Statico\Core\Objects\MarkdownDocument;
 use Statico\Core\Factories\DocumentFactory;
 use Mockery as m;
 
@@ -20,7 +20,7 @@ final class DocumentFactoryTest extends TestCase
         $document->shouldReceive('getContent')->once()
             ->andReturn('My content');
         $response = DocumentFactory::fromYaml($document, 'foo.md');
-        $this->assertInstanceOf(Document::class, $response);
+        $this->assertInstanceOf(MarkdownDocument::class, $response);
         $this->assertEquals('My content', $response->getContent());
         $this->assertEquals('Foo', $response->getField('title'));
         $this->assertEquals('custom.html', $response->getField('layout'));

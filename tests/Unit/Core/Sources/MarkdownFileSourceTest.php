@@ -40,7 +40,7 @@ final class MarkdownFileSourceTest extends TestCase
         $source = new MarkdownFiles($manager, $parser);
         $response = $source->all();
         $this->assertCount(1, $response);
-        $this->assertInstanceOf('Statico\Core\Objects\Document', $response[0]);
+        $this->assertInstanceOf('Statico\Core\Objects\MarkdownDocument', $response[0]);
         $this->assertEquals('My content', $response[0]->content);
         $this->assertEquals('Foo', $response[0]->title);
         $this->assertEquals('foo', $response[0]->path);
@@ -67,7 +67,7 @@ final class MarkdownFileSourceTest extends TestCase
             ->andReturn($document);
         $source = new MarkdownFiles($manager, $parser);
         $document = $source->find('foo');
-        $this->assertInstanceOf('Statico\Core\Objects\Document', $document);
+        $this->assertInstanceOf('Statico\Core\Objects\MarkdownDocument', $document);
         $this->assertEquals('My content', $document->content);
         $this->assertEquals('Foo', $document->title);
         $this->assertEquals('foo.md', $document->path);

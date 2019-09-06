@@ -4,13 +4,13 @@ namespace Tests\Unit\Core\Objects;
 
 use Tests\TestCase;
 use Mockery as m;
-use Statico\Core\Objects\Document;
+use Statico\Core\Objects\MarkdownDocument;
 
 final class DocumentTest extends TestCase
 {
     public function testCreate()
     {
-        $doc = new Document();
+        $doc = new MarkdownDocument();
         $doc->setContent('This is my content');
         $doc->setField('title', 'My Page');
         $doc->setField('layout', 'custom.html');
@@ -23,14 +23,14 @@ final class DocumentTest extends TestCase
 
     public function testTostring()
     {
-        $doc = new Document();
+        $doc = new MarkdownDocument();
         $doc->setContent('This is my content');
         $this->assertEquals('This is my content', $doc->__toString());
     }
 
     public function testSet()
     {
-        $doc = new Document();
+        $doc = new MarkdownDocument();
         $doc->content = 'This is my content';
         $doc->title = 'My Page';
         $doc->layout = 'custom.html';
@@ -43,7 +43,7 @@ final class DocumentTest extends TestCase
 
     public function testGet()
     {
-        $doc = new Document();
+        $doc = new MarkdownDocument();
         $doc->setContent('This is my content');
         $doc->setField('title', 'My Page');
         $doc->setField('layout', 'custom.html');
@@ -56,7 +56,7 @@ final class DocumentTest extends TestCase
 
     public function testGetFields()
     {
-        $doc = new Document();
+        $doc = new MarkdownDocument();
         $doc->setContent('This is my content');
         $doc->setField('title', 'My Page');
         $doc->setField('layout', 'custom.html');
@@ -69,7 +69,7 @@ final class DocumentTest extends TestCase
 
     public function testJsonSerialize()
     {
-        $doc = new Document();
+        $doc = new MarkdownDocument();
         $doc->setContent('This is my content');
         $doc->setField('title', 'My Page');
         $doc->setField('layout', 'custom.html');

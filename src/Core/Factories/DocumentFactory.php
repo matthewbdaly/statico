@@ -2,14 +2,14 @@
 
 namespace Statico\Core\Factories;
 
-use Statico\Core\Objects\Document;
+use Statico\Core\Objects\MarkdownDocument;
 use Mni\FrontYAML\Document as YamlDocument;
 
 final class DocumentFactory
 {
-    public static function fromYaml(YamlDocument $doc, string $path): Document
+    public static function fromYaml(YamlDocument $doc, string $path): MarkdownDocument
     {
-        $document = new Document();
+        $document = new MarkdownDocument();
         $document->setContent($doc->getContent());
         foreach ($doc->getYAML() as $field => $value) {
             $document->setField($field, $value);

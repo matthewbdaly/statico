@@ -4,8 +4,9 @@ namespace Statico\Core\Objects;
 
 use Statico\Core\Contracts\Objects\Documentable;
 use JsonSerializable;
+use Statico\Core\Objects\MarkdownDocument;
 
-final class Document implements Documentable, JsonSerializable
+final class MarkdownDocument implements Documentable, JsonSerializable
 {
     /**
      * @var string
@@ -34,7 +35,7 @@ final class Document implements Documentable, JsonSerializable
         return $this->content;
     }
 
-    public function setContent(string $data): Document
+    public function setContent(string $data): MarkdownDocument
     {
         $this->content = $data;
         return $this;
@@ -52,7 +53,7 @@ final class Document implements Documentable, JsonSerializable
      * @param string $key
      * @param mixed $value
      */
-    public function setField(string $key, $value): Document
+    public function setField(string $key, $value): MarkdownDocument
     {
         $this->data[$key] = $value;
         return $this;
@@ -68,7 +69,7 @@ final class Document implements Documentable, JsonSerializable
         return '/' . preg_replace('/index$/', '', $this->getPath());
     }
 
-    public function setPath(string $path): Document
+    public function setPath(string $path): MarkdownDocument
     {
         $this->path = $path;
         return $this;
@@ -90,7 +91,7 @@ final class Document implements Documentable, JsonSerializable
         return $this->getField($name);
     }
 
-    public function __set(string $name, string $value): Document
+    public function __set(string $name, string $value): MarkdownDocument
     {
         if ($name == 'content') {
             $this->setContent($value);

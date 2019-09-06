@@ -6,7 +6,7 @@ use Tests\TestCase;
 use Mockery as m;
 use Statico\Core\Sources\Decorators\Psr6CacheDecorator;
 use Statico\Core\Utilities\Collection;
-use Statico\Core\Objects\Document;
+use Statico\Core\Objects\MarkdownDocument;
 
 final class Psr6CacheDecoratorTest extends TestCase
 {
@@ -40,7 +40,7 @@ final class Psr6CacheDecoratorTest extends TestCase
 
     public function testFindHit()
     {
-        $result = new Document();
+        $result = new MarkdownDocument();
         $cache = m::mock('Psr\Cache\CacheItemPoolInterface');
         $cache->shouldReceive('getItem')->once()->andReturn($cache);
         $cache->shouldReceive('isHit')->once()->andReturn(true);
@@ -52,7 +52,7 @@ final class Psr6CacheDecoratorTest extends TestCase
 
     public function testFindMiss()
     {
-        $result = new Document();
+        $result = new MarkdownDocument();
         $item = m::mock('Psr\Cache\CacheItemInterface');
         $cache = m::mock('Psr\Cache\CacheItemPoolInterface');
         $cache->shouldReceive('getItem')->once()->andReturn($item);

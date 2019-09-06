@@ -3,7 +3,7 @@
 namespace Statico\Core\Sources\Decorators;
 
 use Statico\Core\Contracts\Sources\Source;
-use Statico\Core\Objects\Document;
+use Statico\Core\Objects\MarkdownDocument;
 use Statico\Core\Utilities\Collection;
 use Psr\Cache\CacheItemPoolInterface;
 
@@ -37,7 +37,7 @@ final class Psr6CacheDecorator implements Source
         return $result;
     }
 
-    public function find(string $name): ?Document
+    public function find(string $name): ?MarkdownDocument
     {
         $item = $this->cache->getItem('Documents/find/' . $name);
         if ($item->isHit()) {
