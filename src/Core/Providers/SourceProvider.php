@@ -17,10 +17,7 @@ final class SourceProvider extends AbstractServiceProvider
         $container = $this->getContainer();
         $config = $container->get('Zend\Config\Config');
         $container->add('Statico\Core\Contracts\Sources\Source', function () use ($config, $container) {
-            return new Psr6CacheDecorator(
-                $container->get('Psr\Cache\CacheItemPoolInterface'),
-                $container->get($config->get('source'))
-            );
+            return $container->get($config->get('source'));
         });
     }
 }

@@ -10,6 +10,6 @@ final class SourceProviderTest extends TestCase
     {
         $source = $this->container->get('Statico\Core\Contracts\Sources\Source');
         $this->assertInstanceOf('Statico\Core\Contracts\Sources\Source', $source);
-        $this->assertInstanceOf('Statico\Core\Sources\Decorators\Psr6CacheDecorator', $source);
+        $this->assertInstanceOf('Statico\Core\Sources\MarkdownFiles', $source);
     }
 }
