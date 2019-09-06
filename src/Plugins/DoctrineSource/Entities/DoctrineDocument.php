@@ -2,11 +2,13 @@
 
 namespace Statico\Plugins\DoctrineSource\Entities;
 
+use Statico\Core\Contracts\Objects\Document;
+
 /**
  * @Entity
  * @Table(name="documents")
  */
-class Document
+class DoctrineDocument implements Document
 {
     /**
      * @Id
@@ -63,5 +65,44 @@ class Document
     public function getContent(): string
     {
         return $this->content;
+    }
+
+    public function setContent(string $data): Document
+    {
+        $this->content = $data;
+        return $this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getField(string $key)
+    {
+        return $this->data[$key];
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setField(string $key, $value): Document
+    {
+        $this->data[$key] = $value;
+        return $this;
+    }
+
+    public function getUrl(): string
+    {
+        return '/' . preg_replace('/index$/', '', $this->getPath());
+    }
+
+    public function setPath(string $path): Document
+    {
+        $this->path = $path;
+        return $this;
+    }
+
+    public function getFields(): array
+    {
+        return $this->data;
     }
 }
