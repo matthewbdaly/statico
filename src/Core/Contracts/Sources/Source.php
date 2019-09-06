@@ -3,11 +3,11 @@
 namespace Statico\Core\Contracts\Sources;
 
 use Statico\Core\Utilities\Collection;
-use Statico\Core\Objects\MarkdownDocument;
+use Statico\Core\Contracts\Objects\Document;
 
 interface Source
 {
     public function all(): Collection;
 
-    public function find(string $name): ?MarkdownDocument;
+    public function find(string $name): ?Document;
 }

@@ -6,7 +6,7 @@ use League\Flysystem\FilesystemInterface;
 use Mni\FrontYAML\Parser;
 use Statico\Core\Contracts\Sources\Source;
 use Statico\Core\Factories\DocumentFactory;
-use Statico\Core\Objects\MarkdownDocument;
+use Statico\Core\Contracts\Objects\Document;
 use Statico\Core\Utilities\Collection;
 
 final class MarkdownFiles implements Source
@@ -47,7 +47,7 @@ final class MarkdownFiles implements Source
         return $items;
     }
 
-    public function find(string $name): ?MarkdownDocument
+    public function find(string $name): ?Document
     {
         // Does that page exist?
         $path = rtrim($name, '/') . '.md';
