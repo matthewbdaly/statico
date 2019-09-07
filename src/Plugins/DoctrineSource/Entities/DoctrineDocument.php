@@ -20,11 +20,6 @@ class DoctrineDocument implements Document
     /**
      * @Column(type="string",length=200)
      */
-    private $title = '';
-
-    /**
-     * @Column(type="string",length=200)
-     */
     private $path = '';
 
     /**
@@ -40,11 +35,6 @@ class DoctrineDocument implements Document
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getTitle(): string
-    {
-        return $this->title;
     }
 
     /**
