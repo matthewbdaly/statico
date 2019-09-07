@@ -23,13 +23,17 @@ final class DoctrineDB implements Source
 
     public function all(): Collection
     {
+        return Collection::make($this->getRepository()->findAll());
     }
 
-    public function find(string $name): Document
+    public function find(string $name): ?Document
     {
+        return $this->getRepository()->findOneBy([
+            'path' => $name
+        ]);
     }
 
-    private function getRepository()
+    private function getRepository(): ObjectRepository
     {
         return $this->em->getRepository(DoctrineDocument::class);
     }
