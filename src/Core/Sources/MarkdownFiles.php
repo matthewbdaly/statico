@@ -4,9 +4,10 @@ namespace Statico\Core\Sources;
 
 use League\Flysystem\FilesystemInterface;
 use Mni\FrontYAML\Parser;
+use Mni\FrontYAML\Document as ParsedDocument;
 use Statico\Core\Contracts\Sources\Source;
-use Statico\Core\Factories\DocumentFactory;
 use Statico\Core\Contracts\Objects\Document;
+use Statico\Core\Objects\MarkdownDocument;
 use Statico\Core\Utilities\Collection;
 
 final class MarkdownFiles implements Source
@@ -40,7 +41,7 @@ final class MarkdownFiles implements Source
             }
             if ($content = $this->fs->read('content://' . $file['path'])) {
                 $items->push(
-                    DocumentFactory::fromYaml($this->parser->parse($content), $this->stripExtension($file['path']))
+                    $this->fromMarkdown($this->parser->parse($content), $this->stripExtension($file['path']))
                 );
             }
         }
@@ -59,11 +60,22 @@ final class MarkdownFiles implements Source
         if (!$rawcontent = $this->fs->read("content://" . $path)) {
             return null;
         }
-        return DocumentFactory::fromYaml($this->parser->parse($rawcontent), $path);
+        return $this->fromMarkdown($this->parser->parse($rawcontent), $path);
     }
 
     private function stripExtension(string $path): ?string
     {
         return preg_replace('/.(markdown|md)$/', '', $path);
+    }
+
+    private function fromMarkdown(ParsedDocument $doc, string $path): MarkdownDocument
+    {
+        $document = new MarkdownDocument();
+        $document->setContent($doc->getContent());
+        foreach ($doc->getYAML() as $field => $value) {
+            $document->setField($field, $value);
+        }
+        $document->setPath($path);
+        return $document;
     }
 }
