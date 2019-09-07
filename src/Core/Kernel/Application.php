@@ -6,7 +6,6 @@ use Zend\Diactoros\ServerRequestFactory;
 use League\Container\Container;
 use League\Container\ReflectionContainer;
 use Psr\Http\Message\ServerRequestInterface;
-use ReflectionClass;
 use Statico\Core\Kernel\Application;
 use Statico\Core\Exceptions\Plugins\PluginNotFound;
 use Statico\Core\Exceptions\Plugins\PluginNotValid;

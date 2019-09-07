@@ -5,10 +5,12 @@ namespace Tests\Unit\Plugins\DoctrineSource\Entities;
 use Tests\TestCase;
 use Mockery as m;
 use Statico\Plugins\DoctrineSource\Entities\DoctrineDocument;
-use ReflectionClass;
+use Tests\Traits\SetsPrivateProperties;
 
 final class DoctrineDocumentTest extends TestCase
 {
+    use SetsPrivateProperties;
+
     public function testCreate()
     {
         $doc = new DoctrineDocument();
@@ -38,10 +40,7 @@ final class DoctrineDocumentTest extends TestCase
     public function testGetId()
     {
         $doc = new DoctrineDocument();
-        $reflect = new ReflectionClass($doc);
-        $id = $reflect->getProperty('id');
-        $id->setAccessible(true);
-        $id->setValue($doc, 1);
+        $this->setPrivateProperty($doc, 'id', 1);
         $this->assertEquals(1, $doc->getId());
     }
 
