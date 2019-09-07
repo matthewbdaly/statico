@@ -3,13 +3,15 @@
 namespace Tests\Unit\Core\Console;
 
 use Tests\TestCase;
+use Tests\Traits\SetsPrivateProperties;
 use Statico\Core\Console\Runner;
 use Statico\Core\Kernel\Application;
 use Mockery as m;
-use ReflectionClass;
 
 final class RunnerTest extends TestCase
 {
+    use SetsPrivateProperties;
+
     public function testExecute()
     {
         $console = m::mock('Symfony\Component\Console\Application');
@@ -46,10 +48,7 @@ final class RunnerTest extends TestCase
             ->once()
             ->andReturn($container);
         $runner = new Runner();
-        $reflect = new ReflectionClass($runner);
-        $app = $reflect->getProperty('app');
-        $app->setAccessible(true);
-        $app->setValue($runner, $mockApp);
+        $this->setPrivateProperty($runner, 'app', $mockApp);
         $runner();
     }
 
@@ -61,10 +60,7 @@ final class RunnerTest extends TestCase
             ->once()
             ->andThrow('Exception');
         $runner = new Runner();
-        $reflect = new ReflectionClass($runner);
-        $app = $reflect->getProperty('app');
-        $app->setAccessible(true);
-        $app->setValue($runner, $mockApp);
+        $this->setPrivateProperty($runner, 'app', $mockApp);
         $runner();
     }
 }
