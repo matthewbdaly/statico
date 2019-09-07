@@ -32,6 +32,7 @@ final class Application implements KernelInterface
     private $providers = [
         'Statico\Core\Providers\ContainerProvider',
         'Statico\Core\Providers\CacheProvider',
+        'Statico\Core\Providers\ClockworkProvider',
         'Statico\Core\Providers\ConfigProvider',
         'Statico\Core\Providers\ConsoleProvider',
         'Statico\Core\Providers\EventProvider',
