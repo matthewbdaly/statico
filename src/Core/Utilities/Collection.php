@@ -476,4 +476,9 @@ class Collection implements Countable, ArrayAccess, SeekableIterator, JsonSerial
         }
         return $branch;
     }
+
+    public function pipe(callable $callback)
+    {
+        return $callback($this);
+    }
 }
