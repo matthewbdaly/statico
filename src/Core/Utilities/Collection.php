@@ -453,4 +453,27 @@ class Collection implements Countable, ArrayAccess, SeekableIterator, JsonSerial
     {
         $this->items = unserialize($serialized);
     }
+
+    public function sortByParent(): Collection
+    {
+        return new static($this->buildTree($this->items));
+    }
+
+    private function buildTree(array $elements, $parentId = 0, $childName = 'children', $parentName = 'parent_id')
+    {
+        $branch = [];
+        foreach ($elements as $element) {
+            if (!isset($element[$childName])) {
+                $element[$childName] = [];
+            }
+            if ($element[$parentName] == $parentId) {
+                $children = $this->buildTree($elements, $element['id']);
+                if ($children) {
+                    $element[$childName] = $children;
+                }
+                $branch[] = $element;
+            }
+        }
+        return $branch;
+    }
 }
