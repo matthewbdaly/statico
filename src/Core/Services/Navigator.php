@@ -25,7 +25,7 @@ final class Navigator
             })->sortByParent(function ($child, $parent) {
                 $path = explode("/", $child->getPath());
                 array_pop($path);
-                return $path == $parent->getPath();
+                return $path == explode("/", $parent->getPath());
             })->map(function ($item) {
                 return [
                     'label' => $item->getField('title'),
