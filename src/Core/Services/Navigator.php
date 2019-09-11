@@ -21,7 +21,7 @@ final class Navigator
     {
         $items = $this->source->all()
             ->sort(function ($a, $b) {
-                return count(explode("/", $a->getPath())) > count(explode("/", $b->getPath()));
+                return count(explode("/", $a->getPath())) < count(explode("/", $b->getPath()));
             })->sortByParent(function ($child, $parent) {
                 $path = explode("/", $child->getPath());
                 array_pop($path);
