@@ -20,7 +20,9 @@ final class Navigator
     public function __invoke(): Navigation
     {
         $items = $this->source->all()
-            ->map(function ($item) {
+            ->sort(function ($a, $b) {
+                return count(explode("/", $a->getPath())) > count(explode("/", $b->getPath()));
+            })->map(function ($item) {
                 return [
                     'label' => $item->getField('title'),
                     'uri' => $item->getUrl()
