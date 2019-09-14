@@ -458,24 +458,4 @@ class Collection implements Countable, ArrayAccess, SeekableIterator, JsonSerial
     {
         return $callback($this);
     }
-
-    public function sortByParent(callable $callback)
-    {
-        $branch = [];
-        foreach ($this->items as $item) {
-            foreach ($this->items as $item2) {
-                if ($item === $item2) {
-                    continue;
-                }
-                if ($callback($item2, $item)) {
-                    if (!isset($item['children'])) {
-                        $item['children'] = [];
-                    }
-                    $item['children'][] = $item2;
-                }
-            }
-            $branch[] = $item;
-        }
-        return new static($branch);
-    }
 }
