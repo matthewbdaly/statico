@@ -468,11 +468,10 @@ class Collection implements Countable, ArrayAccess, SeekableIterator, JsonSerial
                     continue;
                 }
                 if ($callback($item2, $item)) {
-                    eval(\Psy\Sh());
-                    if (!isset($item->children)) {
-                        $item->children = [];
+                    if (!isset($item['children'])) {
+                        $item['children'] = [];
                     }
-                    $item->children[] = $item2;
+                    $item['children'][] = $item2;
                 }
             }
             $branch[] = $item;

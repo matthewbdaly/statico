@@ -20,18 +20,19 @@ final class Navigator
     public function __invoke(): Navigation
     {
         $items = $this->source->all()
-            ->sort(function ($a, $b) {
-                return count(explode("/", $a->getPath())) < count(explode("/", $b->getPath()));
-            })->sortByParent(function ($child, $parent) {
-                $path = explode("/", $child->getPath());
-                array_pop($path);
-                return $path == explode("/", $parent->getPath());
-            })->map(function ($item) {
+            ->map(function ($item) {
                 return [
                     'label' => $item->getField('title'),
                     'uri' => $item->getUrl()
                 ];
+            })->sort(function ($a, $b) {
+                return count(explode("/", $a['uri'])) < count(explode("/", $b['uri']));
+            })->sortByParent(function ($child, $parent) {
+                $path = explode("/", $child['uri']);
+                array_pop($path);
+                return $path == explode("/", $parent['uri']);
             })->toArray();
+        eval(\Psy\Sh());
         return new Navigation($items);
     }
 }
