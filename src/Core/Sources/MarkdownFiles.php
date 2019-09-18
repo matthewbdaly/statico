@@ -63,7 +63,7 @@ final class MarkdownFiles implements Source
         return $this->fromMarkdown($this->parser->parse($rawcontent), $path);
     }
 
-    private function stripExtension(string $path): ?string
+    private function stripExtension(string $path): string
     {
         return preg_replace('/.(markdown|md)$/', '', $path);
     }
