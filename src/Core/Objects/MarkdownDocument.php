@@ -4,6 +4,7 @@ namespace Statico\Core\Objects;
 
 use Statico\Core\Contracts\Objects\Document;
 use JsonSerializable;
+use DateTime;
 
 final class MarkdownDocument implements Document, JsonSerializable
 {
@@ -21,6 +22,11 @@ final class MarkdownDocument implements Document, JsonSerializable
      * @var string
      */
     protected $path;
+
+    /**
+     * @var DateTime
+     */
+    private $updatedAt;
 
     public function __construct()
     {
@@ -116,5 +122,16 @@ final class MarkdownDocument implements Document, JsonSerializable
         $data['content'] = $this->getContent();
         $data['url'] = $this->getUrl();
         return $data;
+    }
+
+    public function getUpdatedAt(): DateTime
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(DateTime $updatedAt): Document
+    {
+        $this->updatedAt = $updatedAt;
+        return $this;
     }
 }

@@ -2,6 +2,7 @@
 
 namespace Statico\Plugins\DoctrineSource\Entities;
 
+use DateTime;
 use Statico\Core\Contracts\Objects\Document;
 
 /**
@@ -94,5 +95,13 @@ class DoctrineDocument implements Document
     public function getFields(): array
     {
         return $this->data;
+    }
+
+    public function getUpdatedAt(): DateTime
+    {
+    }
+
+    public function setUpdatedAt(DateTime $updatedAt): Document
+    {
     }
 }

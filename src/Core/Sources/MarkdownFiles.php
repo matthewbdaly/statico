@@ -9,6 +9,7 @@ use Statico\Core\Contracts\Sources\Source;
 use Statico\Core\Contracts\Objects\Document;
 use Statico\Core\Objects\MarkdownDocument;
 use Statico\Core\Utilities\Collection;
+use DateTime;
 
 final class MarkdownFiles implements Source
 {
@@ -76,6 +77,9 @@ final class MarkdownFiles implements Source
             $document->setField($field, $value);
         }
         $document->setPath($path);
+        $lastUpdated = new DateTime();
+        $lastUpdated->setTimestamp($this->fs->getTimestamp("content://" . $path));
+        $document->setUpdatedAt($lastUpdated);
         return $document;
     }
 }

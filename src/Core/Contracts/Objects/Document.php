@@ -2,6 +2,8 @@
 
 namespace Statico\Core\Contracts\Objects;
 
+use DateTime;
+
 interface Document
 {
     public function getContent(): string;
@@ -26,4 +28,8 @@ interface Document
     public function setPath(string $path): Document;
 
     public function getFields(): array;
+
+    public function getUpdatedAt(): DateTime;
+
+    public function setUpdatedAt(DateTime $updatedAt): Document;
 }
