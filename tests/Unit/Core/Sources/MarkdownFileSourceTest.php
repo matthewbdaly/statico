@@ -27,6 +27,9 @@ final class MarkdownFileSourceTest extends TestCase
         $manager->shouldReceive('read')->with('content://foo.md')
             ->once()
             ->andReturn('foo');
+        $manager->shouldReceive('getTimestamp')->with('content://foo.md')
+            ->once()
+            ->andReturn(1568840820);
         $document = m::mock('Mni\FrontYAML\Document');
         $document->shouldReceive('getContent')->once()
             ->andReturn('My content');
@@ -55,6 +58,9 @@ final class MarkdownFileSourceTest extends TestCase
         $manager->shouldReceive('read')->with('content://foo.md')
             ->once()
             ->andReturn('foo');
+        $manager->shouldReceive('getTimestamp')->with('content://foo.md')
+            ->once()
+            ->andReturn(1568840820);
         $document = m::mock('Mni\FrontYAML\Document');
         $document->shouldReceive('getContent')->once()
             ->andReturn('My content');
