@@ -45,7 +45,7 @@ final class HttpCache implements KernelInterface
 
         // check if response can be cached
         $nocache = $response->getHeader('Cache-Control');
-        if (count($nocache) && strtolower($nocache[0]) == 'no-cache') {
+        if (count($nocache) && (strtolower($nocache[0]) == 'no-cache' || strtolower($nocache[0] == 'no-store'))) {
             return $response;
         }
 
