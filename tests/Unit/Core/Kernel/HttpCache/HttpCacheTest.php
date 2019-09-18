@@ -52,6 +52,10 @@ final class HttpCacheTest extends TestCase
         $mockResponse->shouldReceive('getStatusCode')
             ->once()
             ->andReturn(201);
+        $mockResponse->shouldReceive('getHeader')
+            ->with('Cache-Control')
+            ->once()
+            ->andReturn([]);
         $kernel = m::mock('Statico\Core\Contracts\Kernel\KernelInterface');
         $kernel->shouldReceive('handle')
             ->with($request)
@@ -76,6 +80,10 @@ final class HttpCacheTest extends TestCase
         $mockResponse->shouldReceive('getStatusCode')
             ->once()
             ->andReturn(200);
+        $mockResponse->shouldReceive('getHeader')
+            ->with('Cache-Control')
+            ->once()
+            ->andReturn([]);
         $kernel = m::mock('Statico\Core\Contracts\Kernel\KernelInterface');
         $kernel->shouldReceive('handle')
             ->with($request)

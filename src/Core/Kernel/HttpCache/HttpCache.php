@@ -44,6 +44,11 @@ final class HttpCache implements KernelInterface
         $response = $this->kernel->handle($request);
 
         // check if response can be cached
+        $nocache = $response->getHeader('Cache-Control');
+        if (count($nocache) && strtolower($nocache[0]) == 'no-cache') {
+            return $response;
+        }
+
         if ($response->getStatusCode() == 200) {
             $this->store->put($request, $response);
         }
