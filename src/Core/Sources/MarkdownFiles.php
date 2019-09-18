@@ -42,7 +42,7 @@ final class MarkdownFiles implements Source
             }
             if ($content = $this->fs->read('content://' . $file['path'])) {
                 $items->push(
-                    $this->fromMarkdown($this->parser->parse($content), $this->stripExtension($file['path']))
+                    $this->fromMarkdown($this->parser->parse($content), $file['path'])
                 );
             }
         }
