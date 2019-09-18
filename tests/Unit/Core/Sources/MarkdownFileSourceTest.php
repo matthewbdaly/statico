@@ -46,7 +46,7 @@ final class MarkdownFileSourceTest extends TestCase
         $this->assertInstanceOf('Statico\Core\Objects\MarkdownDocument', $response[0]);
         $this->assertEquals('My content', $response[0]->content);
         $this->assertEquals('Foo', $response[0]->title);
-        $this->assertEquals('foo', $response[0]->path);
+        $this->assertEquals('foo.md', $response[0]->path);
     }
 
     public function testFind()
