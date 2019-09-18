@@ -6,6 +6,7 @@ use Tests\TestCase;
 use Mockery as m;
 use Statico\Core\Http\Controllers\MainController;
 use Statico\Core\Objects\MarkdownDocument;
+use DateTime;
 
 final class MainControllerTest extends TestCase
 {
@@ -13,10 +14,16 @@ final class MainControllerTest extends TestCase
     {
         $emitter = m::mock('League\Event\EmitterInterface');
         $response = m::mock('Psr\Http\Message\ResponseInterface');
+        $timestamp = (new DateTime())->setTimestamp(1568840820);
+        $response->shouldReceive('withAddedHeader')
+            ->with('Last-Modified', $timestamp->format('D, d M Y H:i:s') . ' GMT')
+            ->once()
+            ->andReturn($response);
         $doc = (new MarkdownDocument())
             ->setField('title', 'Foo')
             ->setPath('foo.md')
-            ->setContent('foo');
+            ->setContent('foo')
+            ->setUpdatedAt($timestamp);
         $source = m::mock('Statico\Core\Contracts\Sources\Source');
         $source->shouldReceive('find')->once()->andReturn($doc);
         $view = m::mock('Statico\Core\Contracts\Views\Renderer');
