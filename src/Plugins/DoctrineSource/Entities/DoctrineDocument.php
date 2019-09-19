@@ -112,4 +112,13 @@ class DoctrineDocument implements Document
         $this->updatedAt = $updatedAt;
         return $this;
     }
+
+    /**
+     * @PrePersist
+     * @PreUpdate
+     */
+    public function updatedTimestamps(): void
+    {
+        $this->setUpdatedAt(new DateTime('now'));
+    }
 }
