@@ -29,6 +29,10 @@ class LazyCollection implements Collectable, Countable, IteratorAggregate, JsonS
      */
     public function toArray()
     {
+        if (is_array($this->source)) {
+            return $this->source;
+        }
+        return iterator_to_array($this->source);
     }
 
     /**
@@ -36,13 +40,30 @@ class LazyCollection implements Collectable, Countable, IteratorAggregate, JsonS
      */
     public function map(Closure $callback)
     {
+        return new static(function () use ($callback) {
+            foreach ($this as $key => $value) {
+                yield $key => $callback($value, $key);
+            }
+        });
     }
 
     /**
      * {@inheritDoc}
      */
-    public function filter(Closure $callback)
+    public function filter(Closure $callback = null)
     {
+        if (is_null($callback)) {
+            $callback = function ($value) {
+                return (bool) $value;
+            };
+        }
+        return new static(function () use ($callback) {
+            foreach ($this as $key => $value) {
+                if ($callback($value, $key)) {
+                    yield $key => $value;
+                }
+            }
+        });
     }
 
     /**
@@ -57,6 +78,11 @@ class LazyCollection implements Collectable, Countable, IteratorAggregate, JsonS
      */
     public function reduce(Closure $callback, $initial = 0)
     {
+        $result = $initial;
+        foreach ($this as $value) {
+            $result = $callback($result, $value);
+        }
+        return $result;
     }
 
     /**
