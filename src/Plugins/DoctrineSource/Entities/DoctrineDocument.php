@@ -32,6 +32,11 @@ class DoctrineDocument implements Document
      * @Column(type="json")
      */
     private $data;
+      
+    /**
+     * @Column(type="datetime"))
+     */
+    private $updatedAt;
 
     public function getId(): ?int
     {
@@ -99,9 +104,12 @@ class DoctrineDocument implements Document
 
     public function getUpdatedAt(): DateTime
     {
+        return $this->updatedAt;
     }
 
     public function setUpdatedAt(DateTime $updatedAt): Document
     {
+        $this->updatedAt = $updatedAt;
+        return $this;
     }
 }
