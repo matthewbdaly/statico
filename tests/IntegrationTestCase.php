@@ -6,6 +6,12 @@ use Zend\Diactoros\ServerRequest;
 
 abstract class IntegrationTestCase extends TestCase
 {
+    public function setUp(): void
+    {
+        parent::setUp();
+        chdir('public');
+    }
+
     public function makeRequest(string $uri, string $method = 'GET', $server = [], $files = [], $body = 'php://input', $headers = [], $cookies = [], $queryParams = [], $parsedBody = null): IntegrationTestCase
     {
         $request = new ServerRequest(
@@ -35,6 +41,7 @@ abstract class IntegrationTestCase extends TestCase
     public function tearDown(): void
     {
         $this->response = null;
+        chdir('..');
         parent::tearDown();
     }
 }
