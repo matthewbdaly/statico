@@ -71,6 +71,9 @@ class LazyCollection implements Collectable, Countable, IteratorAggregate, JsonS
      */
     public function reject(Closure $callback)
     {
+        return $this->filter(function ($item) use ($callback) {
+            return !$callback($item);
+        });
     }
 
     /**
