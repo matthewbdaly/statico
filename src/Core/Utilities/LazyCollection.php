@@ -8,9 +8,12 @@ use Countable;
 use IteratorAggregate;
 use JsonSerializable;
 use Generator;
+use Statico\Core\Utilities\Traits\Macroable;
 
 class LazyCollection implements Collectable, Countable, IteratorAggregate, JsonSerializable
 {
+    use Macroable;
+
     /**
      * @var Generator
      */
