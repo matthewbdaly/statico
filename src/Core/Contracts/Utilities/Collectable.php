@@ -8,14 +8,6 @@ use OutOfBoundsException;
 interface Collectable
 {
     /**
-     * Create collection
-     *
-     * @param array $items Items to collect.
-     * @return Collectable
-     */
-    public static function make(array $items);
-
-    /**
      * Convert collection to J)SON
      *
      * @return string|false

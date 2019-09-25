@@ -7,14 +7,26 @@ use Statico\Core\Contracts\Utilities\Collectable;
 use Countable;
 use IteratorAggregate;
 use JsonSerializable;
+use Generator;
 
 class LazyCollection implements Collectable, Countable, IteratorAggregate, JsonSerializable
 {
     /**
+     * @var Generator
+     */
+    private $source;
+
+    public function __construct(callable $callback)
+    {
+        $this->source = $callback();
+    }
+
+    /**
      * {@inheritDoc}
      */
-    public static function make(array $items)
+    public static function make(callable $callback)
     {
+        return new static($callback);
     }
 
     /**
