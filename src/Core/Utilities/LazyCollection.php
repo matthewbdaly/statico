@@ -6,22 +6,36 @@ use Closure;
 use Statico\Core\Contracts\Utilities\Collectable;
 use Countable;
 use IteratorAggregate;
+use ArrayIterator;
 use JsonSerializable;
 use Generator;
 use Statico\Core\Utilities\Traits\Macroable;
+use Traversable;
 
 class LazyCollection implements Collectable, Countable, IteratorAggregate, JsonSerializable
 {
     use Macroable;
 
     /**
-     * @var Generator
+     * @var callable|static
      */
     private $source;
 
-    public function __construct(callable $callback)
+    /**
+     * Create a new lazy collection instance.
+     *
+     * @param  mixed  $source
+     * @return void
+     */
+    public function __construct($source = null)
     {
-        $this->source = $callback();
+        if ($source instanceof Closure || $source instanceof self) {
+            $this->source = $source;
+        } elseif (is_null($source)) {
+            $this->source = static::empty();
+        } else {
+            $this->source = $this->getArrayableItems($source);
+        }
     }
 
     /**
@@ -30,6 +44,26 @@ class LazyCollection implements Collectable, Countable, IteratorAggregate, JsonS
     public static function make(callable $callback)
     {
         return new static($callback);
+    }
+
+    /**
+     * Results array of items from Collection or Arrayable.
+     *
+     * @param  mixed  $items
+     * @return array
+     */
+    protected function getArrayableItems($items)
+    {
+        if (is_array($items)) {
+            return $items;
+        } elseif ($items instanceof Collectable) {
+            return $items->all();
+        } elseif ($items instanceof JsonSerializable) {
+            return (array) $items->jsonSerialize();
+        } elseif ($items instanceof Traversable) {
+            return iterator_to_array($items);
+        }
+        return (array) $items;
     }
 
     /**
@@ -213,6 +247,7 @@ class LazyCollection implements Collectable, Countable, IteratorAggregate, JsonS
      */
     public function count()
     {
+        return iterator_count($this->getIterator());
     }
 
     /**
@@ -220,6 +255,7 @@ class LazyCollection implements Collectable, Countable, IteratorAggregate, JsonS
      */
     public function getIterator()
     {
+        return $this->makeIterator($this->source);
     }
 
     /**
@@ -227,5 +263,22 @@ class LazyCollection implements Collectable, Countable, IteratorAggregate, JsonS
      */
     public function jsonSerialize()
     {
+    }
+
+    /**
+     * Make an iterator from the given source.
+     *
+     * @param  mixed  $source
+     * @return \Traversable
+     */
+    protected function makeIterator($source)
+    {
+        if ($source instanceof IteratorAggregate) {
+            return $source->getIterator();
+        }
+        if (is_array($source)) {
+            return new ArrayIterator($source);
+        }
+        return $source();
     }
 }
