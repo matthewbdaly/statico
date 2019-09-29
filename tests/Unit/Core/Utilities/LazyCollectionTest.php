@@ -82,4 +82,11 @@ final class LazyCollectionTest extends \PHPUnit\Framework\TestCase
             return $item < 3;
         })->toArray());
     }
+
+    public function testImplementsReduce()
+    {
+        $this->assertSame(10, $this->collection->reduce(function ($total, $item) {
+            return $total += $item;
+        }));
+    }
 }
