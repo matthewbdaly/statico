@@ -59,6 +59,11 @@ final class LazyCollectionTest extends \PHPUnit\Framework\TestCase
         $this->assertSame(5, $this->collection->count());
     }
 
+    public function testCanConvertToJson()
+    {
+        $this->assertSame(json_encode([0, 1, 2, 3, 4]), $this->collection->toJson());
+    }
+
     public function testCanConvertToArray()
     {
         $this->assertSame([0, 1, 2, 3, 4], $this->collection->toArray());
