@@ -5,6 +5,7 @@ namespace Tests\Unit\Core\Utilities;
 use Statico\Core\Utilities\LazyCollection;
 use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
 use ReflectionClass;
+use Mockery as m;
 
 final class LazyCollectionTest extends \PHPUnit\Framework\TestCase
 {
@@ -127,5 +128,19 @@ final class LazyCollectionTest extends \PHPUnit\Framework\TestCase
         ]];
         $this->collection = new LazyCollection($items);
         $this->assertSame([1, 3, 5], $this->collection->pluck('foo')->toArray());
+    }
+
+    public function testImplementsEach()
+    {
+        /** @var DateTime|\PHPUnit\Framework\MockObject\MockObject $date */
+        $date = m::mock('DateTime');
+        $date->shouldReceive('setTimezone')
+            ->with('Europe/London')
+            ->once()
+            ->andReturn(null);
+        $this->collection = new LazyCollection([$date]);
+        $this->collection->each(function ($item) {
+            $item->setTimezone('Europe/London');
+        });
     }
 }

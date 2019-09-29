@@ -162,6 +162,9 @@ class LazyCollection implements Collectable, Countable, IteratorAggregate, JsonS
      */
     public function each(Closure $callback)
     {
+        foreach ($this->source as $item) {
+            $callback($item);
+        }
     }
 
     /**
