@@ -83,6 +83,11 @@ final class LazyCollectionTest extends \PHPUnit\Framework\TestCase
         })->toArray());
     }
 
+    public function testFilterByValue()
+    {
+        $this->assertSame([1 => 1, 2 => 2, 3 => 3, 4 => 4], $this->collection->filter()->all());
+    }
+
     public function testImplementsReject()
     {
         $this->assertSame([0, 1, 2], $this->collection->reject(function ($item) {
