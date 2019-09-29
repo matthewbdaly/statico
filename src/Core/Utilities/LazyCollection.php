@@ -11,8 +11,9 @@ use JsonSerializable;
 use Generator;
 use Statico\Core\Utilities\Traits\Macroable;
 use Traversable;
+use Serializable;
 
-class LazyCollection implements Collectable, Countable, IteratorAggregate, JsonSerializable
+class LazyCollection implements Collectable, Countable, IteratorAggregate, JsonSerializable, Serializable
 {
     use Macroable;
 
@@ -205,5 +206,21 @@ class LazyCollection implements Collectable, Countable, IteratorAggregate, JsonS
             return new ArrayIterator($source);
         }
         return $source();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function serialize()
+    {
+        return serialize($this->toArray());
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function unserialize($serialized)
+    {
+        $this->source = unserialize($serialized);
     }
 }

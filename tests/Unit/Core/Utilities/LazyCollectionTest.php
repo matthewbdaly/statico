@@ -143,4 +143,20 @@ final class LazyCollectionTest extends \PHPUnit\Framework\TestCase
             $item->setTimezone('Europe/London');
         });
     }
+
+    public function testImplementsSerializable()
+    {
+        $this->assertInstanceOf('Serializable', $this->collection);
+    }
+
+    public function testSerializeAndUnserialize()
+    {
+        $items = [1, 2, 3, 4, 5];
+        $collection = new LazyCollection($items);
+        $data = $collection->serialize();
+        $this->assertEquals(serialize($items), $data);
+        $newCollection = new LazyCollection([]);
+        $newCollection->unserialize($data);
+        $this->assertEquals($collection, $newCollection);
+    }
 }
