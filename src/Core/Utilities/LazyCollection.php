@@ -57,7 +57,7 @@ class LazyCollection implements Collectable, Countable, IteratorAggregate, JsonS
         if (is_array($items)) {
             return $items;
         } elseif ($items instanceof Collectable) {
-            return $items->all();
+            return $items->toArray();
         } elseif ($items instanceof JsonSerializable) {
             return (array) $items->jsonSerialize();
         } elseif ($items instanceof Traversable) {
@@ -165,97 +165,6 @@ class LazyCollection implements Collectable, Countable, IteratorAggregate, JsonS
         foreach ($this->source as $item) {
             $callback($item);
         }
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function push($item)
-    {
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function pop()
-    {
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function unshift($item)
-    {
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function shift()
-    {
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function sort(Closure $callback = null)
-    {
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function reverse()
-    {
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function keys()
-    {
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function values()
-    {
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function chunk(int $size)
-    {
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function merge($merge)
-    {
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function seek($position)
-    {
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function groupBy(string $key)
-    {
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public function flatten()
-    {
     }
 
     /**
