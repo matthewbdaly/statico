@@ -113,4 +113,19 @@ final class LazyCollectionTest extends \PHPUnit\Framework\TestCase
         $this->assertSame([0, 1, 2], $collection->all());
     }
 
+    public function testImplementsPluck()
+    {
+        $items = [[
+            'foo' => 1,
+            'bar' => 2
+        ], [
+            'foo' => 3,
+            'bar' => 4
+        ], [
+            'foo' => 5,
+            'bar' => 6
+        ]];
+        $this->collection = new LazyCollection($items);
+        $this->assertSame([1, 3, 5], $this->collection->pluck('foo')->toArray());
+    }
 }

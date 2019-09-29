@@ -152,6 +152,9 @@ class LazyCollection implements Collectable, Countable, IteratorAggregate, JsonS
      */
     public function pluck($name)
     {
+        return $this->map(function ($item) use ($name) {
+            return $item[$name];
+        });
     }
 
     /**
