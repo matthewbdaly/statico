@@ -22,4 +22,21 @@ trait SetsPrivateProperties
         $prop->setValue($object, $value);
         $prop->setAccessible(false);
     }
+
+    /**
+     * Gets a private property
+     *
+     * @param mixed $object
+     * @param string $property
+     * @return mixed
+     */
+    public function getPrivateProperty($object, string $property)
+    {
+        $reflect = new ReflectionClass($object);
+        $prop = $reflect->getProperty($property);
+        $prop->setAccessible(true);
+        $result = $prop->getValue($object);
+        $prop->setAccessible(false);
+        return $result;
+    }
 }

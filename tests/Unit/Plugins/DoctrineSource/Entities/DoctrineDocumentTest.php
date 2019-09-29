@@ -3,9 +3,9 @@
 namespace Tests\Unit\Plugins\DoctrineSource\Entities;
 
 use Tests\TestCase;
-use Mockery as m;
 use Statico\Plugins\DoctrineSource\Entities\DoctrineDocument;
 use Tests\Traits\SetsPrivateProperties;
+use DateTime;
 
 final class DoctrineDocumentTest extends TestCase
 {
@@ -49,5 +49,29 @@ final class DoctrineDocumentTest extends TestCase
         $doc = new DoctrineDocument();
         $doc->setPath('foo');
         $this->assertEquals('/foo', $doc->getUrl());
+    }
+
+    public function testGetUpdatedAt()
+    {
+        $doc = new DoctrineDocument();
+        $dateTime = new DateTime();
+        $this->setPrivateProperty($doc, 'updatedAt', $dateTime);
+        $this->assertEquals($dateTime, $doc->getUpdatedAt());
+    }
+
+    public function testSetUpdatedAt()
+    {
+        $doc = new DoctrineDocument();
+        $dateTime = new DateTime();
+        $doc->setUpdatedAt($dateTime);
+        $this->assertEquals($dateTime, $this->getPrivateProperty($doc, 'updatedAt'));
+    }
+
+    public function testUpdatedTimestamps()
+    {
+        $doc = new DoctrineDocument();
+        $dateTime = new DateTime();
+        $doc->updatedTimestamps();
+        $this->assertNotEquals($dateTime, $this->getPrivateProperty($doc, 'updatedAt'));
     }
 }
