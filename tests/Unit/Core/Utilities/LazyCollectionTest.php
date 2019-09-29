@@ -96,4 +96,16 @@ final class LazyCollectionTest extends \PHPUnit\Framework\TestCase
             return $total += $item;
         }));
     }
+
+    public function testAll()
+    {
+        $this->assertSame([0, 1, 2, 3, 4], $this->collection->all());
+    }
+
+    public function testAllArray()
+    {
+        $collection = new LazyCollection([0, 1, 2]);
+        $this->assertSame([0, 1, 2], $collection->all());
+    }
+
 }
