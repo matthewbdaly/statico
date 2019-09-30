@@ -13,7 +13,6 @@ final class MarkdownFileSourceTest extends TestCase
         $manager = m::mock('League\Flysystem\MountManager');
         $manager->shouldReceive('listContents')
             ->with('content://', true)
-            ->once()
             ->andReturn([[
                 'type' => 'dir',
                 'path' => 'about'
@@ -25,28 +24,27 @@ final class MarkdownFileSourceTest extends TestCase
                 'path' => 'bar.pdf'
             ]]);
         $manager->shouldReceive('read')->with('content://foo.md')
-            ->once()
             ->andReturn('foo');
         $manager->shouldReceive('getTimestamp')->with('content://foo.md')
-            ->once()
             ->andReturn(1568840820);
         $document = m::mock('Mni\FrontYAML\Document');
-        $document->shouldReceive('getContent')->once()
+        $document->shouldReceive('getContent')
             ->andReturn('My content');
-        $document->shouldReceive('getYAML')->once()
+        $document->shouldReceive('getYAML')
             ->andReturn([
                 'title' => 'Foo'
             ]);
         $parser = m::mock('Mni\FrontYAML\Parser');
-        $parser->shouldReceive('parse')->with('foo')->once()
+        $parser->shouldReceive('parse')->with('foo')
             ->andReturn($document);
         $source = new MarkdownFiles($manager, $parser);
         $response = $source->all();
         $this->assertCount(1, $response);
-        $this->assertInstanceOf('Statico\Core\Objects\MarkdownDocument', $response[0]);
-        $this->assertEquals('My content', $response[0]->content);
-        $this->assertEquals('Foo', $response[0]->title);
-        $this->assertEquals('foo.md', $response[0]->path);
+        $item = $response->toArray()[0];
+        $this->assertInstanceOf('Statico\Core\Objects\MarkdownDocument', $item);
+        $this->assertEquals('My content', $item->content);
+        $this->assertEquals('Foo', $item->title);
+        $this->assertEquals('foo.md', $item->path);
     }
 
     public function testFind()

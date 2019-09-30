@@ -8,7 +8,7 @@ use Mni\FrontYAML\Document as ParsedDocument;
 use Statico\Core\Contracts\Sources\Source;
 use Statico\Core\Contracts\Objects\Document;
 use Statico\Core\Objects\MarkdownDocument;
-use Statico\Core\Utilities\Collection;
+use Statico\Core\Utilities\LazyCollection;
 use Statico\Core\Contracts\Utilities\Collectable;
 use DateTime;
 
@@ -32,22 +32,20 @@ final class MarkdownFiles implements Source
  
     public function all(): Collectable
     {
-        $files = $this->fs->listContents('content://', true);
-        $items = Collection::make([]);
-        foreach ($files as $file) {
-            if ($file['type'] == 'dir') {
-                continue;
+        return LazyCollection::make(function () {
+            $files = $this->fs->listContents('content://', true);
+            foreach ($files as $file) {
+                if ($file['type'] == 'dir') {
+                    continue;
+                }
+                if (!preg_match('/.(markdown|md)$/', $file['path'])) {
+                    continue;
+                }
+                if ($content = $this->fs->read('content://' . $file['path'])) {
+                    yield $this->fromMarkdown($this->parser->parse($content), $file['path']);
+                }
             }
-            if (!preg_match('/.(markdown|md)$/', $file['path'])) {
-                continue;
-            }
-            if ($content = $this->fs->read('content://' . $file['path'])) {
-                $items->push(
-                    $this->fromMarkdown($this->parser->parse($content), $file['path'])
-                );
-            }
-        }
-        return $items;
+        });
     }
 
     public function find(string $name): ?Document
