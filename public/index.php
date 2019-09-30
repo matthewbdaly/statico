@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 use Statico\Core\Kernel\HttpCache\HttpCache;
 use Statico\Core\Kernel\HttpCache\Store\Psr6Store;
