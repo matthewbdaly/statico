@@ -27,14 +27,7 @@ final class Psr6CacheDecorator implements Source
 
     public function all(): Collectable
     {
-        $item = $this->cache->getItem('Documents/all');
-        if ($item->isHit()) {
-            return $item->get();
-        }
-        $result = $this->source->all();
-        $item->set($result);
-        $this->cache->save($item);
-        return $result;
+        return $this->source->all();
     }
 
     public function find(string $name): ?Document
