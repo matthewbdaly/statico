@@ -4,7 +4,7 @@ namespace Statico\Core\Sources\Decorators;
 
 use Statico\Core\Contracts\Sources\Source;
 use Statico\Core\Contracts\Objects\Document;
-use Statico\Core\Utilities\Collection;
+use Statico\Core\Contracts\Utilities\Collectable;
 use Psr\Cache\CacheItemPoolInterface;
 
 final class Psr6CacheDecorator implements Source
@@ -25,7 +25,7 @@ final class Psr6CacheDecorator implements Source
         $this->source = $source;
     }
 
-    public function all(): Collection
+    public function all(): Collectable
     {
         $item = $this->cache->getItem('Documents/all');
         if ($item->isHit()) {

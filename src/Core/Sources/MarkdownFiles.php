@@ -9,6 +9,7 @@ use Statico\Core\Contracts\Sources\Source;
 use Statico\Core\Contracts\Objects\Document;
 use Statico\Core\Objects\MarkdownDocument;
 use Statico\Core\Utilities\Collection;
+use Statico\Core\Contracts\Utilities\Collectable;
 use DateTime;
 
 final class MarkdownFiles implements Source
@@ -29,7 +30,7 @@ final class MarkdownFiles implements Source
         $this->parser = $parser;
     }
  
-    public function all(): Collection
+    public function all(): Collectable
     {
         $files = $this->fs->listContents('content://', true);
         $items = Collection::make([]);

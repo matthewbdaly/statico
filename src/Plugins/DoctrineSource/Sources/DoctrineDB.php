@@ -4,6 +4,7 @@ namespace Statico\Plugins\DoctrineSource\Sources;
 
 use Statico\Core\Contracts\Sources\Source;
 use Statico\Core\Contracts\Objects\Document;
+use Statico\Core\Contracts\Utilities\Collectable;
 use Statico\Core\Utilities\Collection;
 use Doctrine\ORM\EntityManager;
 use Doctrine\Common\Persistence\ObjectRepository;
@@ -21,7 +22,7 @@ final class DoctrineDB implements Source
         $this->em = $em;
     }
 
-    public function all(): Collection
+    public function all(): Collectable
     {
         return Collection::make($this->getRepository()->findAll());
     }
