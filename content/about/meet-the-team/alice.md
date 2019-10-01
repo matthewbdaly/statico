@@ -1,3 +1,4 @@
 ---
 title: "Alice"
+navigation: true
 ---

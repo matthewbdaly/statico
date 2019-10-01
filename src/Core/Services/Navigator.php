@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace Statico\Core\Services;
 
-use Zend\Navigation\Navigation;
 use Statico\Core\Contracts\Sources\Source;
+use Statico\Core\Objects\Navigation\Container;
+use Statico\Core\Objects\Navigation\Page;
+use Statico\Core\Utilities\Collection;
 
 final class Navigator
 {
@@ -19,21 +21,24 @@ final class Navigator
         $this->source = $source;
     }
 
-    public function __invoke(): Navigation
+    public function __invoke()
     {
         $items = $this->source->all()
-            ->map(function ($item) {
-                return [
-                    'label' => $item->getField('title'),
-                    'uri' => $item->getUrl(),
-                    'pages' => [],
-                ];
-            })->sort(function ($a, $b) {
-                return count(explode("/", $a['uri'])) > count(explode("/", $b['uri']));
-            })->reduce(function ($result, $item) {
-                return $this->sortByParent($result, $item);
-            }, []);
-        return new Navigation($items);
+            ->filter(function ($item) {
+                return $item->getField('navigation');
+            })->toArray();
+        $items = Collection::make($items)->map(function ($item) {
+            return [
+                'label' => $item->getField('title'),
+                'uri' => $item->getUrl(),
+                'pages' => [],
+            ];
+        })->sort(function ($a, $b) {
+            return count(explode("/", $a['uri'])) > count(explode("/", $b['uri']));
+        })->reduce(function ($result, $item) {
+            return $this->sortByParent($result, $item);
+        }, []);
+        return $items;
     }
 
     private function sortByParent(array $result, array $item): array

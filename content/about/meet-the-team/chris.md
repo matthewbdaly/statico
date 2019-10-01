@@ -1,3 +1,4 @@
 ---
 title: "Chris"
+navigation: true
 ---

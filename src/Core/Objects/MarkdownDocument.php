@@ -53,6 +53,9 @@ final class MarkdownDocument implements Document, JsonSerializable
      */
     public function getField(string $key)
     {
+        if (!isset($this->data[$key])) {
+            return null;
+        }
         return $this->data[$key];
     }
 

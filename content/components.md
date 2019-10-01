@@ -1,5 +1,6 @@
 ---
 title: "Components"
+navigation: true
 ---
 
 A big part of the philosophy behined Statico is that as far as possible, it uses off-the-shelf PHP libraries that you may already be familiar with. This has the following advantages:
