@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>http://example.com/about</loc>
+    <loc>http://localhost/about</loc>
   </url>
   <url>
-    <loc>http://example.com/about/meet-the-team</loc>
+    <loc>http://localhost/about/meet-the-team</loc>
   </url>
   <url>
-    <loc>http://example.com/about/meet-the-team/alice</loc>
+    <loc>http://localhost/about/meet-the-team/alice</loc>
   </url>
   <url>
-    <loc>http://example.com/about/meet-the-team/bob</loc>
+    <loc>http://localhost/about/meet-the-team/bob</loc>
   </url>
   <url>
-    <loc>http://example.com/about/meet-the-team/chris</loc>
+    <loc>http://localhost/about/meet-the-team/chris</loc>
   </url>
   <url>
-    <loc>http://example.com/components</loc>
+    <loc>http://localhost/components</loc>
   </url>
   <url>
-    <loc>http://example.com/contact</loc>
+    <loc>http://localhost/contact</loc>
   </url>
   <url>
-    <loc>http://example.com/</loc>
+    <loc>http://localhost/</loc>
   </url>
 </urlset>

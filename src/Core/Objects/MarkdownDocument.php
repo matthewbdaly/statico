@@ -73,7 +73,7 @@ final class MarkdownDocument implements Document, JsonSerializable
 
     public function getUrl(): string
     {
-        return '/' . preg_replace('/index$/', '', $this->getPath());
+        return '/' . preg_replace('/index$/', '', $this->stripExtension($this->getPath()));
     }
 
     public function setPath(string $path): Document
@@ -135,5 +135,10 @@ final class MarkdownDocument implements Document, JsonSerializable
     {
         $this->updatedAt = $updatedAt;
         return $this;
+    }
+
+    private function stripExtension(string $path): string
+    {
+        return preg_replace('/.(markdown|md)$/', '', $path);
     }
 }
