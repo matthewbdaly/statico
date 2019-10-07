@@ -248,6 +248,22 @@ class Collection implements Countable, ArrayAccess, SeekableIterator, JsonSerial
     }
 
     /**
+     * Reduce operation that returns a collection
+     *
+     * @param Closure $callback The callback to use.
+     * @param mixed   $initial  The initial value.
+     * @return Collection
+     */
+    public function reduceToCollection(Closure $callback, $initial = 0): Collection
+    {
+        $accumulator = $initial;
+        foreach ($this->items as $item) {
+            $accumulator = $callback($accumulator, $item);
+        }
+        return new static($accumulator);
+    }
+
+    /**
      * Pluck a single field
      *
      * @param mixed $name Name of field to pluck.

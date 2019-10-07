@@ -274,6 +274,26 @@ final class CollectionTest extends \PHPUnit\Framework\TestCase
         }));
     }
 
+    public function testImplementsReduceToCollection()
+    {
+        $items = [[
+            'foo' => 1,
+            'bar' => 2
+        ], [
+            'foo' => 3,
+            'bar' => 4
+        ], [
+            'foo' => 5,
+            'bar' => 6
+        ]];
+        $this->collection = new Collection($items);
+        $result = $this->collection->reduceToCollection(function ($total, $item) {
+            return [$item['bar']];
+        }, []);
+        $this->assertInstanceOf(Collection::class, $result);
+        $this->assertSame(6, $result[0]);
+    }
+
     public function testImplementsPluck()
     {
         $items = [[
