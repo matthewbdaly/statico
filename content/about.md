@@ -1,5 +1,6 @@
 ---
 title: "About Statico"
+navigation: true
 ---
 
 ## Who is Statico for?
