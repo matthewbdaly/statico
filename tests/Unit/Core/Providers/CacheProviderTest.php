@@ -21,4 +21,11 @@ final class CacheProviderTest extends TestCase
         $this->assertInstanceOf('Psr\Cache\CacheItemPoolInterface', $cache);
         $this->assertInstanceOf('Stash\Pool', $cache);
     }
+
+    public function testCreateService(): void
+    {
+        $cache = $this->container->get('Statico\Core\Contracts\Services\CacheContract');
+        $this->assertInstanceOf('Statico\Core\Services\Cache\Psr6Cache', $cache);
+        $this->assertInstanceOf('Statico\Core\Contracts\Services\CacheContract', $cache);
+    }
 }
