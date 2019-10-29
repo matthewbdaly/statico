@@ -21,7 +21,7 @@ final class Navigator
         $this->source = $source;
     }
 
-    public function __invoke()
+    public function __invoke(): Container
     {
         $items = $this->source->all()
             ->filter(function ($item) {
@@ -38,7 +38,7 @@ final class Navigator
         })->reduce(function ($result, $item) {
             return $this->sortByParent($result, $item);
         }, []);
-        return $items;
+        return Container::make($items);
     }
 
     private function sortByParent(array $result, array $item): array
