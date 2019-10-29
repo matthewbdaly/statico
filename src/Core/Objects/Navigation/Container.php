@@ -18,4 +18,13 @@ final class Container extends Collection
         }
         $this->items = $items;
     }
+
+    public static function make(array $items): Collection
+    {
+        $pages = [];
+        foreach ($items as $item) {
+            $pages[] = Page::make($item);
+        }
+        return new static($pages);
+    }
 }
