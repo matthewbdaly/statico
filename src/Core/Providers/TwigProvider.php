@@ -38,15 +38,12 @@ final class TwigProvider extends AbstractServiceProvider
                 'form',
                 $container->get('Statico\Core\Views\Functions\Form')
             ));
-            $twig->addFunction(new TwigFunction(
-                'navigation',
-                $container->get('Statico\Core\Views\Functions\Navigation')
-            ));
             $cache = $container->get('Psr\Cache\CacheItemPoolInterface');
             $cacheProvider  = new PsrCacheAdapter($cache);
             $cacheStrategy  = new LifetimeCacheStrategy($cacheProvider);
             $cacheExtension = new CacheExtension($cacheStrategy);
             $twig->addExtension($cacheExtension);
+            $twig->addGlobal('navigation', $container->get('Statico\Core\Services\Navigator')->__invoke());
 
             return $twig;
         });
