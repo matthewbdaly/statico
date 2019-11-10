@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Statico\Core\Views\Functions;
 
 use Statico\Core\Services\Navigator;
+use Twig\Markup;
 
 final class Navigation
 {
@@ -18,8 +19,8 @@ final class Navigation
         $this->nav = $nav;
     }
 
-    public function __invoke()
+    public function __invoke(): Markup
     {
-        return $this->nav->__invoke();
+        return new Markup($this->nav->__invoke()->__toString(), 'UTF-8');
     }
 }

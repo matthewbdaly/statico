@@ -28,16 +28,22 @@ final class TwigProvider extends AbstractServiceProvider
         $container->add('Twig\Environment', function () use ($container) {
             $version = $container->get('Statico\Core\Views\Filters\Version');
             $mix = $container->get('Statico\Core\Views\Filters\Mix');
-            $form = $container->get('Statico\Core\Views\Functions\Form');
             $config = [];
             $config['cache'] = BASE_DIR . '/cache/views';
 
             $twig = new Environment($container->get('Twig\Loader\FilesystemLoader'), $config);
             $twig->addFilter(new TwigFilter('version', $version));
             $twig->addFilter(new TwigFilter('mix', $mix));
-            $twig->addFunction(new TwigFunction('form', $form, [
-                'is_safe' => ['html']
-            ]));
+            $twig->addFunction(new TwigFunction(
+                'form',
+                $container->get('Statico\Core\Views\Functions\Form'),
+                ['is_safe' => ['html']]
+            ));
+            $twig->addFunction(new TwigFunction(
+                'navigation',
+                $container->get('Statico\Core\Views\Functions\Navigation'),
+                ['is_safe' => ['html']]
+            ));
             $cache = $container->get('Psr\Cache\CacheItemPoolInterface');
             $cacheProvider  = new PsrCacheAdapter($cache);
             $cacheStrategy  = new LifetimeCacheStrategy($cacheProvider);
