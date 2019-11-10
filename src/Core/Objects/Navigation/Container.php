@@ -30,11 +30,11 @@ final class Container extends Collection
 
     public function __toString()
     {
-        $response = "<ul>";
+        $response = "<ul>\n";
         foreach ($this->items as $item) {
             $response .= $item->__toString();
         }
-        $response .= "</ul>";
+        $response .= "</ul>\n";
         return $response;
     }
 }

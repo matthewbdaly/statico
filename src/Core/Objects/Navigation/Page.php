@@ -46,18 +46,18 @@ final class Page
     {
         $response = "";
         if ($this->pages) {
-            $response .= "<li class=\"dropdown\">";
-            $response .= "<a href='{$this->uri}'>{$this->label}</a>";
-            $response .= "<div class=\"dropdown-content\">";
+            $response .= "<li class=\"dropdown\">\n";
+            $response .= "<a href='{$this->uri}'>{$this->label}</a>\n";
+            $response .= "<div class=\"dropdown-content\">\n";
             foreach ($this->pages as $page) {
                 $response .= $page->__toString();
             }
-            $response .= "</div";
+            $response .= "</div>\n";
         } else {
-            $response .= "<li>";
-            $response .= "<a href='{$this->uri}'>{$this->label}</a>";
+            $response .= "<li>\n";
+            $response .= "<a href='{$this->uri}'>{$this->label}</a>\n";
         }
-        $response .= "</li>";
+        $response .= "</li>\n";
         return $response;
     }
 }
