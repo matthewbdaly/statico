@@ -48,13 +48,13 @@ final class Page implements IteratorAggregate
     {
         $response = "";
         if ($this->pages) {
-            $response .= "<li class=\"dropdown\">\n";
+            $response .= "<li>\n";
             $response .= "<a href='{$this->uri}'>{$this->label}</a>\n";
-            $response .= "<div class=\"dropdown-content\">\n";
+            $response .= "<ul>\n";
             foreach ($this->pages as $page) {
                 $response .= $page->__toString();
             }
-            $response .= "</div>\n";
+            $response .= "</ul>\n";
         } else {
             $response .= "<li>\n";
             $response .= "<a href='{$this->uri}'>{$this->label}</a>\n";

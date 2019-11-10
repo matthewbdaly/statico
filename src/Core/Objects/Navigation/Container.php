@@ -30,7 +30,7 @@ final class Container extends Collection
 
     public function __toString()
     {
-        $response = "<ul>\n";
+        $response = "<ul class='navigation'>\n";
         foreach ($this->items as $item) {
             $response .= $item->__toString();
         }
