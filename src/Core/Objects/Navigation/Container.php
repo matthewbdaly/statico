@@ -27,4 +27,14 @@ final class Container extends Collection
         }
         return new static($pages);
     }
+
+    public function __toString()
+    {
+        $response = "<ul>";
+        foreach ($this->items as $item) {
+            $response .= $item->__toString();
+        }
+        $response .= "</ul>";
+        return $response;
+    }
 }
