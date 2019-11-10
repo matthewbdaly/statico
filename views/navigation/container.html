@@ -1,5 +1,5 @@
 <ul class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
     {% for page in navigation %}
-    {{ include('navigation/page.html', {page: 'page'}) }}
+    {{ include('navigation/page.html', {uri: page.uri, label: page.label, pages: page.pages}) }}
     {% endfor %}
 </ul>

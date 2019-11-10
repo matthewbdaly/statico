@@ -13,17 +13,17 @@ final class Page implements IteratorAggregate
     /**
      * @var string
      */
-    private $label;
+    public $label;
 
     /**
      * @var string
      */
-    private $uri;
+    public $uri;
 
     /**
      * @var array
      */
-    private $pages;
+    public $pages;
 
     public function __construct(string $label, string $uri, array $pages = [])
     {
