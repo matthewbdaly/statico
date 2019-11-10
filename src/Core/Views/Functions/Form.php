@@ -10,6 +10,7 @@ use Statico\Core\Exceptions\Forms\FormNotFound;
 use Statico\Core\Contracts\Factories\FormFactory;
 use Zend\Form\View\Helper\Form as FormHelper;
 use Zend\View\Renderer\PhpRenderer;
+use Twig\Markup;
 
 final class Form
 {
@@ -46,7 +47,7 @@ final class Form
             throw new FormNotFound('The specified form is not registered');
         }
         $form = $this->factory->make($this->config[$name]);
-        return $this->helper->__invoke($form);
+        return new Markup($this->helper->__invoke($form), 'UTF-8');
     }
 
     private function getInvokables(): array

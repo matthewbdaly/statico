@@ -36,13 +36,11 @@ final class TwigProvider extends AbstractServiceProvider
             $twig->addFilter(new TwigFilter('mix', $mix));
             $twig->addFunction(new TwigFunction(
                 'form',
-                $container->get('Statico\Core\Views\Functions\Form'),
-                ['is_safe' => ['html']]
+                $container->get('Statico\Core\Views\Functions\Form')
             ));
             $twig->addFunction(new TwigFunction(
                 'navigation',
-                $container->get('Statico\Core\Views\Functions\Navigation'),
-                ['is_safe' => ['html']]
+                $container->get('Statico\Core\Views\Functions\Navigation')
             ));
             $cache = $container->get('Psr\Cache\CacheItemPoolInterface');
             $cacheProvider  = new PsrCacheAdapter($cache);
