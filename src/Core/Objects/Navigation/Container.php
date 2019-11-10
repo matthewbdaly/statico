@@ -37,4 +37,13 @@ final class Container extends Collection
         $response .= "</ul>\n";
         return $response;
     }
+
+    public function toArray(): array
+    {
+        $data = [];
+        foreach ($this->items as $item) {
+            $data[] = $item->toArray();
+        }
+        return $data;
+    }
 }

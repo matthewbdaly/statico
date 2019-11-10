@@ -60,4 +60,16 @@ final class Page
         $response .= "</li>\n";
         return $response;
     }
+
+    public function toArray(): array
+    {
+        $data = [];
+        $data['label'] = $this->label;
+        $data['uri'] = $this->uri;
+        $data['pages'] = [];
+        foreach ($this->pages as $page) {
+            $data['pages'][] = $page->toArray();
+        }
+        return $data;
+    }
 }
