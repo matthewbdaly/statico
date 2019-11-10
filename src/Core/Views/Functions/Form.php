@@ -41,7 +41,7 @@ final class Form
         $this->helper = $helper;
     }
 
-    public function __invoke(string $name)
+    public function __invoke(string $name): Markup
     {
         if (!isset($this->config[$name])) {
             throw new FormNotFound('The specified form is not registered');
