@@ -5,8 +5,10 @@ declare(strict_types=1);
 namespace Statico\Core\Objects\Navigation;
 
 use Exception;
+use IteratorAggregate;
+use ArrayIterator;
 
-final class Page
+final class Page implements IteratorAggregate
 {
     /**
      * @var string
@@ -71,5 +73,13 @@ final class Page
             $data['pages'][] = $page->toArray();
         }
         return $data;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getIterator()
+    {
+        return new ArrayIterator($this);
     }
 }
