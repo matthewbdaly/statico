@@ -28,16 +28,6 @@ final class Container extends Collection
         return new static($pages);
     }
 
-    public function __toString()
-    {
-        $response = "<ul class='navigation'>\n";
-        foreach ($this->items as $item) {
-            $response .= $item->__toString();
-        }
-        $response .= "</ul>\n";
-        return $response;
-    }
-
     public function toArray(): array
     {
         $data = [];

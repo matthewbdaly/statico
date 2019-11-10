@@ -44,25 +44,6 @@ final class Page implements IteratorAggregate
         return new static($item['label'], $item['uri'], $item['pages']);
     }
 
-    public function __toString()
-    {
-        $response = "";
-        if ($this->pages) {
-            $response .= "<li>\n";
-            $response .= "<a href='{$this->uri}'>{$this->label}</a>\n";
-            $response .= "<ul>\n";
-            foreach ($this->pages as $page) {
-                $response .= $page->__toString();
-            }
-            $response .= "</ul>\n";
-        } else {
-            $response .= "<li>\n";
-            $response .= "<a href='{$this->uri}'>{$this->label}</a>\n";
-        }
-        $response .= "</li>\n";
-        return $response;
-    }
-
     public function toArray(): array
     {
         $data = [];
