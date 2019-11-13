@@ -27,7 +27,7 @@ final class TwigProvider extends AbstractServiceProvider
         // Register items
         $container = $this->getContainer();
         $container->add('Statico\Core\Contracts\Services\Navigator', function () use ($container) {
-            return $container->get('Statico\Core\Services\DynamicNavigator');
+            return $container->get('Statico\Core\Services\Navigation\DynamicNavigator');
         });
         $container->add('Twig\Environment', function () use ($container) {
             $version = $container->get('Statico\Core\Views\Filters\Version');

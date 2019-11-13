@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Statico\Core\Services;
+namespace Statico\Core\Services\Navigation;
 
 use Statico\Core\Contracts\Sources\Source;
 use Statico\Core\Contracts\Services\Navigator;
