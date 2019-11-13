@@ -12,14 +12,17 @@ echo ""
 echo "Update Pecl"
 pecl channel-update pecl.php.net
 
-echo ""
-echo "******************************"
-echo "Installing apcu extension"
-echo "******************************"
-set +e
-printf "yes\n" | pecl install apcu
-set -e
-echo "Finished installing apcu extension."
+if [ "$TRAVIS_PHP_VERSION" != "7.2"]
+then
+  echo ""
+  echo "******************************"
+  echo "Installing apcu extension"
+  echo "******************************"
+  set +e
+  printf "yes\n" | pecl install apcu
+  set -e
+  echo "Finished installing apcu extension."
+fi
 
 
 echo ""
