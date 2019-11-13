@@ -19,12 +19,16 @@ final class TwigProvider extends AbstractServiceProvider
 {
     protected $provides = [
         'Twig\Environment',
+        'Statico\Core\Contracts\Services\Navigator',
     ];
 
     public function register(): void
     {
         // Register items
         $container = $this->getContainer();
+        $container->add('Statico\Core\Contracts\Services\Navigator', function () use ($container) {
+            return $container->get('Statico\Core\Services\DynamicNavigator');
+        });
         $container->add('Twig\Environment', function () use ($container) {
             $version = $container->get('Statico\Core\Views\Filters\Version');
             $mix = $container->get('Statico\Core\Views\Filters\Mix');
@@ -43,7 +47,7 @@ final class TwigProvider extends AbstractServiceProvider
             $cacheStrategy  = new LifetimeCacheStrategy($cacheProvider);
             $cacheExtension = new CacheExtension($cacheStrategy);
             $twig->addExtension($cacheExtension);
-            $twig->addGlobal('navigation', $container->get('Statico\Core\Services\Navigator')->__invoke());
+            $twig->addGlobal('navigation', $container->get('Statico\Core\Contracts\Services\Navigator')->__invoke());
 
             return $twig;
         });

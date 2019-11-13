@@ -5,11 +5,12 @@ declare(strict_types=1);
 namespace Statico\Core\Services;
 
 use Statico\Core\Contracts\Sources\Source;
+use Statico\Core\Contracts\Services\Navigator;
 use Statico\Core\Objects\Navigation\Container;
 use Statico\Core\Objects\Navigation\Page;
 use Statico\Core\Utilities\Collection;
 
-final class Navigator
+final class DynamicNavigator implements Navigator
 {
     /**
      * @var Source
