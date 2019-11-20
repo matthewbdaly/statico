@@ -33,7 +33,9 @@ final class TwigProvider extends AbstractServiceProvider
             $version = $container->get('Statico\Core\Views\Filters\Version');
             $mix = $container->get('Statico\Core\Views\Filters\Mix');
             $config = [];
-            $config['cache'] = BASE_DIR . '/cache/views';
+            if (getenv('APP_ENV') !== 'development') {
+                $config['cache'] = BASE_DIR . '/cache/views';
+            }
 
             $twig = new Environment($container->get('Twig\Loader\FilesystemLoader'), $config);
             $twig->addFilter(new TwigFilter('version', $version));
