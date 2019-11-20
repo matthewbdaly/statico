@@ -26,12 +26,12 @@ $config = new Config([
     'driver' => 'filesystem',
     'path' => 'cache/proxy'
 ]);
-if (getenv('CACHE_PROXY') == true)
-$cache = (new CacheFactory())->make($config);
-$app = new HttpCache(
-    (new Application())->bootstrap(),
-    new Psr6Store($cache)
-);
+if (getenv('CACHE_PROXY') == true) {
+    $cache = (new CacheFactory())->make($config);
+    $app = new HttpCache(
+        (new Application())->bootstrap(),
+        new Psr6Store($cache)
+    );
 } else {
     $app = (new Application())->bootstrap();
 }
