@@ -1,4 +1,4 @@
-<ul class="w-full block flex-grow lg:flex lg:items-center lg:w-auto">
+<ul class="w-full flex-grow lg:items-center lg:w-auto lg:flex block {{ top == true ? '' : 'invisible group-hover:visible' }}">
     {% for page in navigation %}
     {{ include('navigation/page.html', {uri: page.uri, label: page.label, pages: page.pages}) }}
     {% endfor %}

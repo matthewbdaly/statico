@@ -1,6 +1,6 @@
-<li class="text-lg lg:flex-grow">
+<li class="text-lg lg:flex-grow group">
     <a class="block mt-4 lg:inline-block lg:mt-0 text-purple-200 hover:text-white mr-4 no-underline" href="{{ uri }}">{{ label }}</a>
     {% if pages %}
-    {{ include('navigation/container.html', {navigation: pages}) }}
+    {{ include('navigation/container.html', {navigation: pages, top: false}) }}
     {% endif %}
 </li>
