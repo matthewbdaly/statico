@@ -28,7 +28,6 @@
         "zendframework/zend-form": "^2.14",
         "zendframework/zend-httphandlerrunner": "^1.0",
         "zendframework/zend-i18n": "^2.9",
-        "zendframework/zend-mail": "^2.10",
         "zendframework/zend-view": "^2.11"
     },
     "require-dev": {
