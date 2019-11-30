@@ -21,7 +21,7 @@ final class ClockworkController
         $this->clockwork = $clockwork;
     }
 
-    public function process(ServerRequestInterface $request, $requestName)
+    public function process(ServerRequestInterface $request, $requestName): JsonResponse
     {
         return new JsonResponse($this->clockwork->getMetadata($requestName['request']));
     }

@@ -43,8 +43,10 @@ class LazyCollection implements Collectable, Countable, IteratorAggregate, JsonS
 
     /**
      * {@inheritDoc}
+     *
+     * @return self
      */
-    public static function make(callable $callback)
+    public static function make(callable $callback): self
     {
         return new static($callback);
     }
@@ -89,7 +91,12 @@ class LazyCollection implements Collectable, Countable, IteratorAggregate, JsonS
         })->all();
     }
 
-    public function all()
+    /**
+     * @return array
+     *
+     * @psalm-return array<int|mixed, mixed>
+     */
+    public function all(): array
     {
         if (is_array($this->source)) {
             return $this->source;
@@ -115,7 +122,7 @@ class LazyCollection implements Collectable, Countable, IteratorAggregate, JsonS
     public function filter(Closure $callback = null)
     {
         if (is_null($callback)) {
-            $callback = function ($value) {
+            $callback = function ($value): bool {
                 return (bool) $value;
             };
         }

@@ -39,7 +39,7 @@ final class Psr6Store implements StoreInterface
         $this->cache->save($item);
     }
 
-    private function getCacheKey(ServerRequestInterface $request)
+    private function getCacheKey(ServerRequestInterface $request): string
     {
         $uri = $request->getUri();
         return 'cached-'
