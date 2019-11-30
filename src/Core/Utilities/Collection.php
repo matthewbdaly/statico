@@ -271,7 +271,7 @@ class Collection implements Countable, ArrayAccess, SeekableIterator, JsonSerial
      */
     public function pluck($name)
     {
-        return $this->map(function ($item) use ($name) {
+        return $this->map(function (array $item) use ($name) {
             return $item[$name];
         });
     }
@@ -472,6 +472,9 @@ class Collection implements Countable, ArrayAccess, SeekableIterator, JsonSerial
         $this->items = unserialize($serialized);
     }
 
+    /**
+     * @return mixed
+     */
     public function pipe(callable $callback)
     {
         return $callback($this);
