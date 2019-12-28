@@ -7,7 +7,7 @@ namespace Tests\Unit\Core\Sources\Decorators;
 use Tests\TestCase;
 use Mockery as m;
 use Statico\Core\Sources\Decorators\Psr6CacheDecorator;
-use Statico\Core\Utilities\Collection;
+use PublishingKit\Utilities\Collections\Collection;
 use Statico\Core\Objects\MarkdownDocument;
 
 final class Psr6CacheDecoratorTest extends TestCase

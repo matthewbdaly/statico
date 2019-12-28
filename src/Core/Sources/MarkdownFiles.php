@@ -10,8 +10,8 @@ use Mni\FrontYAML\Document as ParsedDocument;
 use Statico\Core\Contracts\Sources\Source;
 use Statico\Core\Contracts\Objects\Document;
 use Statico\Core\Objects\MarkdownDocument;
-use Statico\Core\Utilities\LazyCollection;
-use Statico\Core\Contracts\Utilities\Collectable;
+use PublishingKit\Utilities\Contracts\Collectable;
+use PublishingKit\Utilities\Collections\LazyCollection;
 use DateTime;
 
 final class MarkdownFiles implements Source

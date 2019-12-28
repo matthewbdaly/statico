@@ -7,7 +7,7 @@ namespace Tests\Unit\Core\Console\Commands;
 use Tests\TestCase;
 use Mockery as m;
 use Statico\Core\Console\Commands\GenerateIndex;
-use Statico\Core\Utilities\Collection;
+use PublishingKit\Utilities\Collections\Collection;
 use Symfony\Component\Console\Tester\CommandTester;
 
 final class GenerateIndexTest extends TestCase

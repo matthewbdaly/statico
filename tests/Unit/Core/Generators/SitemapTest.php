@@ -8,7 +8,7 @@ use Tests\TestCase;
 use Mockery as m;
 use Statico\Core\Objects\MarkdownDocument;
 use Statico\Core\Generators\XmlStringSitemap;
-use Statico\Core\Utilities\Collection;
+use PublishingKit\Utilities\Collections\Collection;
 use Zend\Config\Config;
 
 final class SitemapTest extends TestCase

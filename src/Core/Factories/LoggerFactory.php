@@ -14,7 +14,7 @@ use Monolog\Handler\SlackHandler;
 use Monolog\Handler\StreamHandler;
 use Monolog\Handler\NativeMailerHandler;
 use Zend\Config\Config;
-use Statico\Core\Utilities\Str;
+use PublishingKit\Utilities\Str;
 
 final class LoggerFactory
 {

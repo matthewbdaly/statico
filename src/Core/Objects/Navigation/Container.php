@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Statico\Core\Objects\Navigation;
 
 use TypeError;
-use Statico\Core\Utilities\Collection;
+use PublishingKit\Utilities\Collections\Collection;
 
 final class Container extends Collection
 {

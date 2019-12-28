@@ -6,7 +6,7 @@ namespace Statico\Core\Sources\Decorators;
 
 use Statico\Core\Contracts\Sources\Source;
 use Statico\Core\Contracts\Objects\Document;
-use Statico\Core\Contracts\Utilities\Collectable;
+use PublishingKit\Utilities\Contracts\Collectable;
 use Psr\Cache\CacheItemPoolInterface;
 
 final class Psr6CacheDecorator implements Source

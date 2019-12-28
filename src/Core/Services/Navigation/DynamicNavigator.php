@@ -8,7 +8,7 @@ use Statico\Core\Contracts\Sources\Source;
 use Statico\Core\Contracts\Services\Navigator;
 use Statico\Core\Objects\Navigation\Container;
 use Statico\Core\Objects\Navigation\Page;
-use Statico\Core\Utilities\Collection;
+use PublishingKit\Utilities\Collections\Collection;
 
 final class DynamicNavigator implements Navigator
 {

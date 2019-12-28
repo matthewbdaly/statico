@@ -6,8 +6,8 @@ namespace Statico\Plugins\DoctrineSource\Sources;
 
 use Statico\Core\Contracts\Sources\Source;
 use Statico\Core\Contracts\Objects\Document;
-use Statico\Core\Contracts\Utilities\Collectable;
-use Statico\Core\Utilities\LazyCollection;
+use PublishingKit\Utilities\Contracts\Collectable;
+use PublishingKit\Utilities\Collections\LazyCollection;
 use Doctrine\ORM\EntityManager;
 use Doctrine\Common\Persistence\ObjectRepository;
 use Statico\Plugins\DoctrineSource\Entities\DoctrineDocument;

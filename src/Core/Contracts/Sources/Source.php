@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Statico\Core\Contracts\Sources;
 
-use Statico\Core\Contracts\Utilities\Collectable;
+use PublishingKit\Utilities\Contracts\Collectable;
 use Statico\Core\Contracts\Objects\Document;
 
 interface Source

@@ -7,7 +7,7 @@ namespace Tests\Unit\Plugins\DynamicSearch\Http\Controllers;
 use Tests\TestCase;
 use Mockery as m;
 use Statico\Plugins\DynamicSearch\Http\Controllers\SearchController;
-use Statico\Core\Utilities\Collection;
+use PublishingKit\Utilities\Collections\Collection;
 
 final class SearchControllerTest extends TestCase
 {
