@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 use Statico\Core\Kernel\HttpCache\HttpCache;
 use Statico\Core\Kernel\HttpCache\Store\Psr6Store;
-use Statico\Core\Factories\CacheFactory;
+use PublishingKit\Cache\Factories\StashCacheFactory;
 use Statico\Core\Kernel\Application;
 use Zend\Config\Config;
 
@@ -27,7 +27,7 @@ $config = new Config([
     'path' => 'cache/proxy'
 ]);
 if (getenv('CACHE_PROXY') == true) {
-    $cache = (new CacheFactory())->make($config);
+    $cache = (new StashCacheFactory())->make($config);
     $app = new HttpCache(
         (new Application())->bootstrap(),
         new Psr6Store($cache)
