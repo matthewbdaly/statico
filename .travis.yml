@@ -14,7 +14,3 @@ script: vendor/bin/phpunit
 
 after_success:
     - travis_retry php vendor/bin/php-coveralls
-
-services:
-  - memcached
-  - redis-server
