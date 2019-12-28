@@ -136,6 +136,7 @@ final class Application implements KernelInterface
         if (getenv('APP_ENV') == 'development') {
             $router->get('/__clockwork/{request:.+}', 'Statico\Core\Http\Controllers\ClockworkController::process');
         }
+        $router->get('/images/[{name}]', 'Statico\Core\Http\Controllers\ImageController::get');
         $router->get('/[{name:[a-zA-Z0-9\-\/]+}]', 'Statico\Core\Http\Controllers\MainController::index')
             ->middleware(new \Statico\Core\Http\Middleware\HttpCache())
             ->middleware(new \Statico\Core\Http\Middleware\ETag());

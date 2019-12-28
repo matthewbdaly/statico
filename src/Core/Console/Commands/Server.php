@@ -25,6 +25,6 @@ final class Server extends Command
             $port = 8000;
         }
         $output->writeln('Running PHP development server on port ' . $port . '...');
-        passthru('php -S localhost:' . $port . ' -t ' . getcwd() . '/public');
+        passthru('php -S localhost:' . $port . ' -t ' . getcwd() . '/public public/router.php');
     }
 }
