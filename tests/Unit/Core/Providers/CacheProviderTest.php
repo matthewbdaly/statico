@@ -15,6 +15,13 @@ final class CacheProviderTest extends TestCase
         $this->assertInstanceOf('Stash\Pool', $cache);
     }
 
+    public function testCreateFactory(): void
+    {
+        $factory = $this->container->get('PublishingKit\Cache\Contracts\Factories\CacheFactory');
+        $this->assertInstanceOf('PublishingKit\Cache\Contracts\Factories\CacheFactory', $factory);
+        $this->assertInstanceOf('PublishingKit\Cache\Factories\StashCacheFactory', $factory);
+    }
+
     public function testCreatePool(): void
     {
         $cache = $this->container->get('Stash\Pool');
@@ -24,8 +31,8 @@ final class CacheProviderTest extends TestCase
 
     public function testCreateService(): void
     {
-        $cache = $this->container->get('Statico\Core\Contracts\Services\CacheContract');
-        $this->assertInstanceOf('Statico\Core\Services\Cache\Psr6Cache', $cache);
-        $this->assertInstanceOf('Statico\Core\Contracts\Services\CacheContract', $cache);
+        $cache = $this->container->get('PublishingKit\Cache\Contracts\Services\CacheContract');
+        $this->assertInstanceOf('PublishingKit\Cache\Services\Cache\Psr6Cache', $cache);
+        $this->assertInstanceOf('PublishingKit\Cache\Contracts\Services\CacheContract', $cache);
     }
 }
