@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Statico\Core\Utilities;
 
-use Closure;
 use Statico\Core\Contracts\Utilities\Collectable;
 use Countable;
 use IteratorAggregate;
@@ -32,7 +31,7 @@ class LazyCollection implements Collectable, Countable, IteratorAggregate, JsonS
      */
     public function __construct($source = null)
     {
-        if ($source instanceof Closure || $source instanceof self) {
+        if (is_callable($source) || $source instanceof self) {
             $this->source = $source;
         } elseif (is_null($source)) {
             $this->source = static::empty();
@@ -107,7 +106,7 @@ class LazyCollection implements Collectable, Countable, IteratorAggregate, JsonS
     /**
      * {@inheritDoc}
      */
-    public function map(Closure $callback)
+    public function map(callable $callback)
     {
         return new static(function () use ($callback) {
             foreach ($this as $key => $value) {
@@ -119,7 +118,7 @@ class LazyCollection implements Collectable, Countable, IteratorAggregate, JsonS
     /**
      * {@inheritDoc}
      */
-    public function filter(Closure $callback = null)
+    public function filter(callable $callback = null)
     {
         if (is_null($callback)) {
             $callback = function ($value): bool {
@@ -138,7 +137,7 @@ class LazyCollection implements Collectable, Countable, IteratorAggregate, JsonS
     /**
      * {@inheritDoc}
      */
-    public function reject(Closure $callback)
+    public function reject(callable $callback)
     {
         return $this->filter(function ($item) use ($callback) {
             return !$callback($item);
@@ -148,7 +147,7 @@ class LazyCollection implements Collectable, Countable, IteratorAggregate, JsonS
     /**
      * {@inheritDoc}
      */
-    public function reduce(Closure $callback, $initial = 0)
+    public function reduce(callable $callback, $initial = 0)
     {
         $result = $initial;
         foreach ($this as $value) {
@@ -170,7 +169,7 @@ class LazyCollection implements Collectable, Countable, IteratorAggregate, JsonS
     /**
      * {@inheritDoc}
      */
-    public function each(Closure $callback)
+    public function each(callable $callback)
     {
         foreach ($this->source as $item) {
             $callback($item);

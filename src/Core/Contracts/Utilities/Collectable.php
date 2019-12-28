@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Statico\Core\Contracts\Utilities;
 
-use Closure;
 use OutOfBoundsException;
 
 interface Collectable
@@ -26,35 +25,35 @@ interface Collectable
     /**
      * Map operation
      *
-     * @param Closure $callback The callback to use.
+     * @param callable $callback The callback to use.
      * @return Collectable
      */
-    public function map(Closure $callback);
+    public function map(callable $callback);
 
     /**
      * Filter operation
      *
-     * @param Closure $callback The callback to use.
+     * @param callable $callback The callback to use.
      * @return Collectable
      */
-    public function filter(Closure $callback);
+    public function filter(callable $callback);
 
     /**
      * Reverse filter operation
      *
-     * @param Closure $callback The callback to use.
+     * @param callable $callback The callback to use.
      * @return Collectable
      */
-    public function reject(Closure $callback);
+    public function reject(callable $callback);
 
     /**
      * Reduce operation
      *
-     * @param Closure $callback The callback to use.
+     * @param callable $callback The callback to use.
      * @param mixed   $initial  The initial value.
      * @return mixed
      */
-    public function reduce(Closure $callback, $initial = 0);
+    public function reduce(callable $callback, $initial = 0);
 
     /**
      * Pluck a single field
@@ -67,8 +66,8 @@ interface Collectable
     /**
      * Apply callback to each item in the collection
      *
-     * @param Closure $callback The callback to use.
+     * @param callable $callback The callback to use.
      * @return void
      */
-    public function each(Closure $callback);
+    public function each(callable $callback);
 }

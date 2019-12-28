@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Statico\Core\Utilities;
 
-use Closure;
 use Countable;
 use ArrayAccess;
 use SeekableIterator;
@@ -199,10 +198,10 @@ class Collection implements Countable, ArrayAccess, SeekableIterator, JsonSerial
     /**
      * Map operation
      *
-     * @param Closure $callback The callback to use.
+     * @param callable $callback The callback to use.
      * @return Collection
      */
-    public function map(Closure $callback)
+    public function map(callable $callback)
     {
         return new static(array_map($callback, $this->items));
     }
@@ -210,10 +209,10 @@ class Collection implements Countable, ArrayAccess, SeekableIterator, JsonSerial
     /**
      * Filter operation
      *
-     * @param Closure $callback The callback to use.
+     * @param callable $callback The callback to use.
      * @return Collection
      */
-    public function filter(Closure $callback)
+    public function filter(callable $callback)
     {
         return new static(array_filter($this->items, $callback));
     }
@@ -221,10 +220,10 @@ class Collection implements Countable, ArrayAccess, SeekableIterator, JsonSerial
     /**
      * Reverse filter operation
      *
-     * @param Closure $callback The callback to use.
+     * @param callable $callback The callback to use.
      * @return Collection
      */
-    public function reject(Closure $callback)
+    public function reject(callable $callback)
     {
         return $this->filter(function ($item) use ($callback) {
             return !$callback($item);
@@ -234,11 +233,11 @@ class Collection implements Countable, ArrayAccess, SeekableIterator, JsonSerial
     /**
      * Reduce operation
      *
-     * @param Closure $callback The callback to use.
+     * @param callable $callback The callback to use.
      * @param mixed   $initial  The initial value.
      * @return mixed
      */
-    public function reduce(Closure $callback, $initial = 0)
+    public function reduce(callable $callback, $initial = 0)
     {
         $accumulator = $initial;
         foreach ($this->items as $item) {
@@ -250,11 +249,11 @@ class Collection implements Countable, ArrayAccess, SeekableIterator, JsonSerial
     /**
      * Reduce operation that returns a collection
      *
-     * @param Closure $callback The callback to use.
+     * @param callable $callback The callback to use.
      * @param mixed   $initial  The initial value.
      * @return Collection
      */
-    public function reduceToCollection(Closure $callback, $initial = 0): Collection
+    public function reduceToCollection(callable $callback, $initial = 0): Collection
     {
         $accumulator = $initial;
         foreach ($this->items as $item) {
@@ -279,10 +278,10 @@ class Collection implements Countable, ArrayAccess, SeekableIterator, JsonSerial
     /**
      * Apply callback to each item in the collection
      *
-     * @param Closure $callback The callback to use.
+     * @param callable $callback The callback to use.
      * @return void
      */
-    public function each(Closure $callback)
+    public function each(callable $callback)
     {
         foreach ($this->items as $item) {
             $callback($item);
@@ -336,10 +335,10 @@ class Collection implements Countable, ArrayAccess, SeekableIterator, JsonSerial
     /**
      * Sort collection
      *
-     * @param Closure|null $callback The callback to use.
+     * @param callable|null $callback The callback to use.
      * @return Collection
      */
-    public function sort(Closure $callback = null)
+    public function sort(callable $callback = null)
     {
         if ($callback) {
             usort($this->items, $callback);
