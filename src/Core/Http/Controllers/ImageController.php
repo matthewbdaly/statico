@@ -31,7 +31,6 @@ final class ImageController
 
     public function get(ServerRequestInterface $request, array $args): ResponseInterface
     {
-        eval(\Psy\Sh());
-        dd($args);
+        return $this->glide->getImageResponse($args['name'], $request->getQueryParams());
     }
 }
