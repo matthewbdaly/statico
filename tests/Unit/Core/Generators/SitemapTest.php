@@ -9,7 +9,7 @@ use Mockery as m;
 use Statico\Core\Objects\MarkdownDocument;
 use Statico\Core\Generators\XmlStringSitemap;
 use PublishingKit\Utilities\Collections\Collection;
-use Zend\Config\Config;
+use Laminas\Config\Config;
 
 final class SitemapTest extends TestCase
 {
@@ -32,7 +32,7 @@ EOF;
 
         $source = m::mock('Statico\Core\Contracts\Sources\Source');
         $source->shouldReceive('all')->once()->andReturn($docs);
-        $config = m::mock('Zend\Config\Config');
+        $config = m::mock('Laminas\Config\Config');
         $config->shouldReceive('get')
             ->with('base_url')
             ->once()

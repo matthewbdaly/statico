@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Statico\Core\Views\Functions;
 
-use Zend\Config\Config;
-use Zend\Form\ElementInterface;
+use Laminas\Config\Config;
+use Laminas\Form\ElementInterface;
 use Statico\Core\Exceptions\Forms\FormNotFound;
 use Statico\Core\Contracts\Factories\FormFactory;
-use Zend\Form\View\Helper\Form as FormHelper;
-use Zend\View\Renderer\PhpRenderer;
+use Laminas\Form\View\Helper\Form as FormHelper;
+use Laminas\View\Renderer\PhpRenderer;
 use Twig\Markup;
 
 final class Form
@@ -53,15 +53,15 @@ final class Form
     private function getInvokables(): array
     {
         return [
-            'formRow' => 'Zend\Form\View\Helper\FormRow',
-            'form_label' => 'Zend\Form\View\Helper\FormLabel',
-            'form_element' => 'Zend\Form\View\Helper\FormElement',
-            'form_element_errors' => 'Zend\Form\View\Helper\FormElementErrors',
-            'forminput' => 'Zend\Form\View\Helper\FormInput',
-            'formtext' => 'Zend\Form\View\Helper\FormText',
-            'formtextarea' => 'Zend\Form\View\Helper\FormTextarea',
-            'formemail' => 'Zend\Form\View\Helper\FormEmail',
-            'formsubmit' => 'Zend\Form\View\Helper\FormSubmit',
+            'formRow' => 'Laminas\Form\View\Helper\FormRow',
+            'form_label' => 'Laminas\Form\View\Helper\FormLabel',
+            'form_element' => 'Laminas\Form\View\Helper\FormElement',
+            'form_element_errors' => 'Laminas\Form\View\Helper\FormElementErrors',
+            'forminput' => 'Laminas\Form\View\Helper\FormInput',
+            'formtext' => 'Laminas\Form\View\Helper\FormText',
+            'formtextarea' => 'Laminas\Form\View\Helper\FormTextarea',
+            'formemail' => 'Laminas\Form\View\Helper\FormEmail',
+            'formsubmit' => 'Laminas\Form\View\Helper\FormSubmit',
         ];
     }
 }

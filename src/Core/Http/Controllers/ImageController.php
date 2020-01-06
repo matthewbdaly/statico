@@ -8,7 +8,7 @@ use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use League\Route\Http\Exception\NotFoundException;
 use Statico\Core\Events\FormSubmitted;
-use Zend\Diactoros\Response\EmptyResponse;
+use Laminas\Diactoros\Response\EmptyResponse;
 use League\Glide\Server;
 
 final class ImageController

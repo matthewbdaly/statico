@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Statico\Plugins\DynamicSitemap\Http\Controllers;
 
-use Zend\Diactoros\Response\XmlResponse;
+use Laminas\Diactoros\Response\XmlResponse;
 use Statico\Core\Contracts\Generators\Sitemap;
 
 final class SitemapController

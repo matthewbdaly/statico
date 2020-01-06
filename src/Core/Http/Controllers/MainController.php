@@ -11,7 +11,7 @@ use League\Route\Http\Exception\NotFoundException;
 use Statico\Core\Contracts\Sources\Source;
 use League\Event\EmitterInterface;
 use Statico\Core\Events\FormSubmitted;
-use Zend\Diactoros\Response\EmptyResponse;
+use Laminas\Diactoros\Response\EmptyResponse;
 
 final class MainController
 {

@@ -18,7 +18,7 @@ final class LoggerProvider extends AbstractServiceProvider
         // Register items
         $container = $this->getContainer();
         $container->add('Psr\Log\LoggerInterface', function () use ($container) {
-            $config = $container->get('Zend\Config\Config');
+            $config = $container->get('Laminas\Config\Config');
             $factory = new LoggerFactory();
             return $factory->make($config->get('loggers'));
         });

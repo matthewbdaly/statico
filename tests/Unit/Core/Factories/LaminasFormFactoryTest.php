@@ -5,16 +5,16 @@ declare(strict_types=1);
 namespace Tests\Unit\Core\Factories;
 
 use Tests\TestCase;
-use Statico\Core\Factories\Forms\ZendFormFactory;
-use Zend\Form\Factory;
+use Statico\Core\Factories\Forms\LaminasFormFactory;
+use Laminas\Form\Factory;
 use Mockery as m;
 
-final class ZendFormFactoryTest extends TestCase
+final class LaminasFormFactoryTest extends TestCase
 {
     public function testMake()
     {
         $wrappedFactory = new Factory();
-        $factory = new ZendFormFactory($wrappedFactory);
+        $factory = new LaminasFormFactory($wrappedFactory);
         $formData = [[
             'spec' => [
                 'name' => 'name',
@@ -24,7 +24,7 @@ final class ZendFormFactoryTest extends TestCase
                 'type' => 'Text'
             ]
         ]];
-        $form = m::mock('Zend\Config\Config');
+        $form = m::mock('Laminas\Config\Config');
         $form->shouldReceive('get')->with('elements')->once()
             ->andReturn($form);
         $form->shouldReceive('toArray')->andReturn($formData);

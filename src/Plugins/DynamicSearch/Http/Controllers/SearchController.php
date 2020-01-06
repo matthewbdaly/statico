@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Statico\Plugins\DynamicSearch\Http\Controllers;
 
 use Statico\Core\Contracts\Sources\Source;
-use Zend\Diactoros\Response\JsonResponse;
+use Laminas\Diactoros\Response\JsonResponse;
 
 final class SearchController
 {

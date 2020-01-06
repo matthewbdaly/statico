@@ -18,7 +18,7 @@ final class SearchControllerTest extends TestCase
         $source->shouldReceive('all')->once()->andReturn($response);
         $controller = new SearchController($source);
         $result = $controller->index();
-        $this->assertInstanceOf('Zend\Diactoros\Response\JsonResponse', $result);
+        $this->assertInstanceOf('Laminas\Diactoros\Response\JsonResponse', $result);
         $this->assertEquals('[["foo"]]', $result->getBody()->getContents());
     }
 }

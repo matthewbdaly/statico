@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Tests;
 
-use Zend\Diactoros\ServerRequest;
+use Laminas\Diactoros\ServerRequest;
 
 abstract class IntegrationTestCase extends TestCase
 {

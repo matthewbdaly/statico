@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Statico\Core\Kernel;
 
-use Zend\Diactoros\ServerRequestFactory;
+use Laminas\Diactoros\ServerRequestFactory;
 use League\Container\Container;
 use League\Container\ReflectionContainer;
 use Psr\Http\Message\ServerRequestInterface;
@@ -110,8 +110,8 @@ final class Application implements KernelInterface
         foreach ($this->providers as $provider) {
             $container->addServiceProvider($provider);
         }
-        $container->share('response', \Zend\Diactoros\Response::class);
-        $container->share('Psr\Http\Message\ResponseInterface', \Zend\Diactoros\Response::class);
+        $container->share('response', \Laminas\Diactoros\Response::class);
+        $container->share('Psr\Http\Message\ResponseInterface', \Laminas\Diactoros\Response::class);
         $this->container = $container;
     }
 
@@ -146,7 +146,7 @@ final class Application implements KernelInterface
 
     private function setupPlugins(): void
     {
-        $config = $this->container->get('Zend\Config\Config');
+        $config = $this->container->get('Laminas\Config\Config');
         if (!$plugins = $config->get('plugins')) {
             return;
         }

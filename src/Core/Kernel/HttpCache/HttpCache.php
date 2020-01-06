@@ -7,7 +7,7 @@ namespace Statico\Core\Kernel\HttpCache;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Statico\Core\Contracts\Kernel\KernelInterface;
-use Zend\Diactoros\Response\HtmlResponse;
+use Laminas\Diactoros\Response\HtmlResponse;
 use Statico\Core\Contracts\Kernel\HttpCache\StoreInterface;
 
 final class HttpCache implements KernelInterface

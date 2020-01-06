@@ -15,48 +15,48 @@ final class FormTest extends TestCase
      */
     public function testRenderForm($data): void
     {
-        $config = m::mock('Zend\Config\Config');
+        $config = m::mock('Laminas\Config\Config');
         $config->shouldReceive('get')
             ->with('forms')
             ->once()
             ->andReturn($data);
-        $mockForm = m::mock('Zend\Form\FormInterface');
+        $mockForm = m::mock('Laminas\Form\FormInterface');
         $factory = m::mock('Statico\Core\Contracts\Factories\FormFactory');
         $factory->shouldReceive('make')
             ->with($data['contact'])
             ->once()
             ->andReturn($mockForm);
-        $helper = m::mock('Zend\Form\View\Helper\Form');
+        $helper = m::mock('Laminas\Form\View\Helper\Form');
         $helper->shouldReceive('__invoke')->once();
-        $pluginManager = m::mock('Zend\View\HelperPluginManager');
+        $pluginManager = m::mock('Laminas\View\HelperPluginManager');
         $pluginManager->shouldReceive('setInvokableClass')
-            ->with('formRow', 'Zend\Form\View\Helper\FormRow')
+            ->with('formRow', 'Laminas\Form\View\Helper\FormRow')
             ->once();
         $pluginManager->shouldReceive('setInvokableClass')
-            ->with('form_label', 'Zend\Form\View\Helper\FormLabel')
+            ->with('form_label', 'Laminas\Form\View\Helper\FormLabel')
             ->once();
         $pluginManager->shouldReceive('setInvokableClass')
-            ->with('form_element', 'Zend\Form\View\Helper\FormElement')
+            ->with('form_element', 'Laminas\Form\View\Helper\FormElement')
             ->once();
         $pluginManager->shouldReceive('setInvokableClass')
-            ->with('form_element_errors', 'Zend\Form\View\Helper\FormElementErrors')
+            ->with('form_element_errors', 'Laminas\Form\View\Helper\FormElementErrors')
             ->once();
         $pluginManager->shouldReceive('setInvokableClass')
-            ->with('forminput', 'Zend\Form\View\Helper\FormInput')
+            ->with('forminput', 'Laminas\Form\View\Helper\FormInput')
             ->once();
         $pluginManager->shouldReceive('setInvokableClass')
-            ->with('formtext', 'Zend\Form\View\Helper\FormText')
+            ->with('formtext', 'Laminas\Form\View\Helper\FormText')
             ->once();
         $pluginManager->shouldReceive('setInvokableClass')
-            ->with('formsubmit', 'Zend\Form\View\Helper\FormSubmit')
+            ->with('formsubmit', 'Laminas\Form\View\Helper\FormSubmit')
             ->once();
         $pluginManager->shouldReceive('setInvokableClass')
-            ->with('formtextarea', 'Zend\Form\View\Helper\FormTextarea')
+            ->with('formtextarea', 'Laminas\Form\View\Helper\FormTextarea')
             ->once();
         $pluginManager->shouldReceive('setInvokableClass')
-            ->with('formemail', 'Zend\Form\View\Helper\FormEmail')
+            ->with('formemail', 'Laminas\Form\View\Helper\FormEmail')
             ->once();
-        $renderer = m::mock('Zend\View\Renderer\PhpRenderer');
+        $renderer = m::mock('Laminas\View\Renderer\PhpRenderer');
         $renderer->shouldReceive('getHelperPluginManager')
             ->once()
             ->andReturn($pluginManager);
@@ -70,44 +70,44 @@ final class FormTest extends TestCase
     public function testException()
     {
         $this->expectException('Statico\Core\Exceptions\Forms\FormNotFound');
-        $config = m::mock('Zend\Config\Config');
+        $config = m::mock('Laminas\Config\Config');
         $config->shouldReceive('get')
             ->with('forms')
             ->once()
             ->andReturn([]);
         $factory = m::mock('Statico\Core\Contracts\Factories\FormFactory');
-        $renderer = m::mock('Zend\View\Renderer\PhpRenderer');
-        $helper = m::mock('Zend\Form\View\Helper\Form');
+        $renderer = m::mock('Laminas\View\Renderer\PhpRenderer');
+        $helper = m::mock('Laminas\Form\View\Helper\Form');
         $helper->shouldReceive('setView')
             ->with($renderer)
             ->once();
-        $pluginManager = m::mock('Zend\View\HelperPluginManager');
+        $pluginManager = m::mock('Laminas\View\HelperPluginManager');
         $pluginManager->shouldReceive('setInvokableClass')
-            ->with('formRow', 'Zend\Form\View\Helper\FormRow')
+            ->with('formRow', 'Laminas\Form\View\Helper\FormRow')
             ->once();
         $pluginManager->shouldReceive('setInvokableClass')
-            ->with('form_label', 'Zend\Form\View\Helper\FormLabel')
+            ->with('form_label', 'Laminas\Form\View\Helper\FormLabel')
             ->once();
         $pluginManager->shouldReceive('setInvokableClass')
-            ->with('form_element', 'Zend\Form\View\Helper\FormElement')
+            ->with('form_element', 'Laminas\Form\View\Helper\FormElement')
             ->once();
         $pluginManager->shouldReceive('setInvokableClass')
-            ->with('form_element_errors', 'Zend\Form\View\Helper\FormElementErrors')
+            ->with('form_element_errors', 'Laminas\Form\View\Helper\FormElementErrors')
             ->once();
         $pluginManager->shouldReceive('setInvokableClass')
-            ->with('forminput', 'Zend\Form\View\Helper\FormInput')
+            ->with('forminput', 'Laminas\Form\View\Helper\FormInput')
             ->once();
         $pluginManager->shouldReceive('setInvokableClass')
-            ->with('formtext', 'Zend\Form\View\Helper\FormText')
+            ->with('formtext', 'Laminas\Form\View\Helper\FormText')
             ->once();
         $pluginManager->shouldReceive('setInvokableClass')
-            ->with('formsubmit', 'Zend\Form\View\Helper\FormSubmit')
+            ->with('formsubmit', 'Laminas\Form\View\Helper\FormSubmit')
             ->once();
         $pluginManager->shouldReceive('setInvokableClass')
-            ->with('formtextarea', 'Zend\Form\View\Helper\FormTextarea')
+            ->with('formtextarea', 'Laminas\Form\View\Helper\FormTextarea')
             ->once();
         $pluginManager->shouldReceive('setInvokableClass')
-            ->with('formemail', 'Zend\Form\View\Helper\FormEmail')
+            ->with('formemail', 'Laminas\Form\View\Helper\FormEmail')
             ->once();
         $renderer->shouldReceive('getHelperPluginManager')
             ->once()

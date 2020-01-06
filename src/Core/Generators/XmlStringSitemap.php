@@ -8,7 +8,7 @@ use DOMDocument;
 use SimpleXMLElement;
 use Statico\Core\Contracts\Sources\Source;
 use Statico\Core\Contracts\Generators\Sitemap;
-use Zend\Config\Config;
+use Laminas\Config\Config;
 
 final class XmlStringSitemap implements Sitemap
 {

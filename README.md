@@ -9,7 +9,7 @@ A minimal CMS. Features include:
 * Files are fetched using Flysystem, meaning they can be stored locally and kept under version control, or pulled in from an S3 bucket, Dropbox folder or an FTP server
 * Uses Twig for templating
 * Comes with Laravel Mix and Tailwind configured out of the box
-* Easy configuration with Zend Config - you can configure it with YAML, PHP arrays, or any other supported configuration mechanism
+* Easy configuration with Laminas Config - you can configure it with YAML, PHP arrays, or any other supported configuration mechanism
 * Caching built in, with support for multiple backends
 * Support for multiple Monolog loggers
 * Search using Fuse.js

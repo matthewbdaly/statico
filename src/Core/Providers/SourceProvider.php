@@ -17,7 +17,7 @@ final class SourceProvider extends AbstractServiceProvider
     {
         // Register items
         $container = $this->getContainer();
-        $config = $container->get('Zend\Config\Config');
+        $config = $container->get('Laminas\Config\Config');
         $container->add('Statico\Core\Contracts\Sources\Source', function () use ($config, $container) {
             return $container->get($config->get('source'));
         });

@@ -6,7 +6,7 @@ namespace Statico\Core\Http\Controllers;
 
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ResponseInterface;
-use Zend\Diactoros\Response\JsonResponse;
+use Laminas\Diactoros\Response\JsonResponse;
 use Clockwork\Support\Vanilla\Clockwork;
 
 final class ClockworkController

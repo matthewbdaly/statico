@@ -7,7 +7,7 @@ namespace Tests\Unit\Core\Factories;
 use Tests\TestCase;
 use Statico\Core\Factories\LoggerFactory;
 use Mockery as m;
-use Zend\Config\Config;
+use Laminas\Config\Config;
 
 final class LoggerFactoryTest extends TestCase
 {

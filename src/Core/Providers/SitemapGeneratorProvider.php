@@ -18,7 +18,7 @@ final class SitemapGeneratorProvider extends AbstractServiceProvider
         // Register items
         $container = $this->getContainer();
         $container->add('Statico\Core\Contracts\Generators\Sitemap', function () use ($container) {
-            $config = $container->get('Zend\Config\Config');
+            $config = $container->get('Laminas\Config\Config');
             $source = $container->get('Statico\Core\Contracts\Sources\Source');
             return new XmlStringSitemap($config, $source);
         });

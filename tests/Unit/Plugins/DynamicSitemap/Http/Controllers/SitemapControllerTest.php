@@ -7,7 +7,7 @@ namespace Tests\Unit\Plugins\DynamicSitemap\Http\Controllers;
 use Tests\TestCase;
 use Mockery as m;
 use Statico\Plugins\DynamicSitemap\Http\Controllers\SitemapController;
-use Zend\Config\Config;
+use Laminas\Config\Config;
 
 final class SitemapControllerTest extends TestCase
 {
@@ -25,7 +25,7 @@ EOF;
         $generator->shouldReceive('__invoke')->once()->andReturn($response);
         $controller = new SitemapController($generator);
         $result = $controller->index();
-        $this->assertInstanceOf('Zend\Diactoros\Response\XmlResponse', $result);
+        $this->assertInstanceOf('Laminas\Diactoros\Response\XmlResponse', $result);
         $this->assertEquals($response, $result->getBody()->getContents());
     }
 }

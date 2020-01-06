@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Statico\Core\Factories\Forms;
 
-use Zend\Form\ElementInterface;
-use Zend\Form\Factory;
-use Zend\Hydrator\ArraySerializableHydrator;
-use Zend\Config\Config;
+use Laminas\Form\ElementInterface;
+use Laminas\Form\Factory;
+use Laminas\Hydrator\ArraySerializableHydrator;
+use Laminas\Config\Config;
 use Statico\Core\Contracts\Factories\FormFactory;
 
-final class ZendFormFactory implements FormFactory
+final class LaminasFormFactory implements FormFactory
 {
     /**
      * @var Factory

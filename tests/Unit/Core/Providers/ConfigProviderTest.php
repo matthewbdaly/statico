@@ -10,7 +10,7 @@ final class ConfigProviderTest extends TestCase
 {
     public function testCreateContainer(): void
     {
-        $config = $this->container->get('Zend\Config\Config');
-        $this->assertInstanceOf('Zend\Config\Config', $config);
+        $config = $this->container->get('Laminas\Config\Config');
+        $this->assertInstanceOf('Laminas\Config\Config', $config);
     }
 }

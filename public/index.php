@@ -6,7 +6,7 @@ use Statico\Core\Kernel\HttpCache\HttpCache;
 use Statico\Core\Kernel\HttpCache\Store\Psr6Store;
 use PublishingKit\Cache\Factories\StashCacheFactory;
 use Statico\Core\Kernel\Application;
-use Zend\Config\Config;
+use Laminas\Config\Config;
 
 require_once __DIR__ . '/../bootstrap.php';
 
@@ -14,7 +14,7 @@ if (!defined('PUBLIC_DIR')) {
     define('PUBLIC_DIR', __DIR__);
 }
 
-$request = Zend\Diactoros\ServerRequestFactory::fromGlobals(
+$request = Laminas\Diactoros\ServerRequestFactory::fromGlobals(
     $_SERVER,
     $_GET,
     $_POST,
@@ -38,4 +38,4 @@ if (getenv('CACHE_PROXY') == true) {
 $response = $app->handle($request);
 
 // send the response to the browser
-(new Zend\HttpHandlerRunner\Emitter\SapiEmitter())->emit($response);
+(new Laminas\HttpHandlerRunner\Emitter\SapiEmitter())->emit($response);

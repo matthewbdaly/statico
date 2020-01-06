@@ -17,7 +17,7 @@ final class FormsProvider extends AbstractServiceProvider
         // Register items
         $this->getContainer()->add(
             'Statico\Core\Contracts\Factories\FormFactory',
-            'Statico\Core\Factories\Forms\ZendFormFactory'
+            'Statico\Core\Factories\Forms\LaminasFormFactory'
         );
     }
 }
