@@ -7,8 +7,10 @@ namespace Statico\Core\Kernel\HttpCache;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Statico\Core\Contracts\Kernel\KernelInterface;
-use Laminas\Diactoros\Response\HtmlResponse;
-use Statico\Core\Contracts\Kernel\HttpCache\StoreInterface;
+use PublishingKit\HttpProxy\Client;
+use PublishingKit\HttpProxy\Proxy;
+use Psr\Cache\CacheItemPoolInterface;
+use Http\Message\StreamFactory\DiactorosStreamFactory;
 
 final class HttpCache implements KernelInterface
 {
@@ -18,14 +20,20 @@ final class HttpCache implements KernelInterface
     private $kernel;
 
     /**
-     * @var StoreInterface
+     * @var CacheItemPoolInterface
      */
-    private $store;
+    private $cache;
 
-    public function __construct(KernelInterface $kernel, StoreInterface $store)
+    /**
+     * @var DiactorosStreamFactory
+     */
+    private $factory;
+
+    public function __construct(KernelInterface $kernel, CacheItemPoolInterface $cache)
     {
         $this->kernel = $kernel;
-        $this->store = $store;
+        $this->cache = $cache;
+        $this->factory = new DiactorosStreamFactory();
     }
 
     /**
@@ -33,28 +41,10 @@ final class HttpCache implements KernelInterface
      */
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        // check if request can be cached
-        if ($request->getMethod() != 'GET') {
+        $client = new Client(function ($request) {
             return $this->kernel->handle($request);
-        }
-
-        // return early if page is cached
-        if ($html = $this->store->get($request)) {
-            return new HtmlResponse($html);
-        }
-
-        $response = $this->kernel->handle($request);
-
-        // check if response can be cached
-        $nocache = $response->getHeader('Cache-Control');
-        if (count($nocache) && (strtolower($nocache[0]) == 'no-cache' || strtolower($nocache[0] == 'no-store'))) {
-            return $response;
-        }
-
-        if ($response->getStatusCode() == 200) {
-            $this->store->put($request, $response);
-        }
-
-        return $response;
+        });
+        $proxy = new Proxy($client, $this->cache, $this->factory);
+        return $proxy->handle($request);
     }
 }

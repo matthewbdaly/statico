@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 use Statico\Core\Kernel\HttpCache\HttpCache;
-use Statico\Core\Kernel\HttpCache\Store\Psr6Store;
 use PublishingKit\Cache\Factories\StashCacheFactory;
 use Statico\Core\Kernel\Application;
 use Laminas\Config\Config;
@@ -27,10 +26,10 @@ $config = new Config([
     'path' => 'cache/proxy'
 ]);
 if (getenv('CACHE_PROXY') == true) {
-    $cache = (new StashCacheFactory())->make($config);
+    $cache = (new StashCacheFactory())->make($config->toArray());
     $app = new HttpCache(
         (new Application())->bootstrap(),
-        new Psr6Store($cache)
+        $cache
     );
 } else {
     $app = (new Application())->bootstrap();
