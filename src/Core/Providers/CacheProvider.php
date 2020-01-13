@@ -26,7 +26,7 @@ final class CacheProvider extends AbstractServiceProvider
         });
         $container->add('Stash\Pool', function () use ($container) {
             $factory = $container->get('PublishingKit\Cache\Contracts\Factories\CacheFactory');
-            $config = $container->get('Laminas\Config\Config');
+            $config = $container->get('PublishingKit\Config\Config');
             return $factory->make($config->cache->toArray());
         });
         $container->add('Psr\Cache\CacheItemPoolInterface', function () {

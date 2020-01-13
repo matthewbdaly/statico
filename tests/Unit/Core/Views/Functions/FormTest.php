@@ -15,7 +15,7 @@ final class FormTest extends TestCase
      */
     public function testRenderForm($data): void
     {
-        $config = m::mock('Laminas\Config\Config');
+        $config = m::mock('PublishingKit\Config\Config');
         $config->shouldReceive('get')
             ->with('forms')
             ->once()
@@ -70,7 +70,7 @@ final class FormTest extends TestCase
     public function testException()
     {
         $this->expectException('Statico\Core\Exceptions\Forms\FormNotFound');
-        $config = m::mock('Laminas\Config\Config');
+        $config = m::mock('PublishingKit\Config\Config');
         $config->shouldReceive('get')
             ->with('forms')
             ->once()

@@ -24,7 +24,7 @@ final class LaminasFormFactoryTest extends TestCase
                 'type' => 'Text'
             ]
         ]];
-        $form = m::mock('Laminas\Config\Config');
+        $form = m::mock('PublishingKit\Config\Config');
         $form->shouldReceive('get')->with('elements')->once()
             ->andReturn($form);
         $form->shouldReceive('toArray')->andReturn($formData);

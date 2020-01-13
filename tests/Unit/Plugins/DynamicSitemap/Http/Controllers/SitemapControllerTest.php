@@ -7,7 +7,7 @@ namespace Tests\Unit\Plugins\DynamicSitemap\Http\Controllers;
 use Tests\TestCase;
 use Mockery as m;
 use Statico\Plugins\DynamicSitemap\Http\Controllers\SitemapController;
-use Laminas\Config\Config;
+use PublishingKit\Config\Config;
 
 final class SitemapControllerTest extends TestCase
 {

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Statico\Core\Views\Functions;
 
-use Laminas\Config\Config;
+use PublishingKit\Config\Config;
 use Laminas\Form\ElementInterface;
 use Statico\Core\Exceptions\Forms\FormNotFound;
 use Statico\Core\Contracts\Factories\FormFactory;

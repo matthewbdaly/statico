@@ -146,7 +146,7 @@ final class Application implements KernelInterface
 
     private function setupPlugins(): void
     {
-        $config = $this->container->get('Laminas\Config\Config');
+        $config = $this->container->get('PublishingKit\Config\Config');
         if (!$plugins = $config->get('plugins')) {
             return;
         }

@@ -13,7 +13,7 @@ use Monolog\Handler\FirePHPHandler;
 use Monolog\Handler\SlackHandler;
 use Monolog\Handler\StreamHandler;
 use Monolog\Handler\NativeMailerHandler;
-use Laminas\Config\Config;
+use PublishingKit\Config\Config;
 use PublishingKit\Utilities\Str;
 
 final class LoggerFactory

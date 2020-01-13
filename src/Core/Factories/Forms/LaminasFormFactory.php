@@ -7,7 +7,7 @@ namespace Statico\Core\Factories\Forms;
 use Laminas\Form\ElementInterface;
 use Laminas\Form\Factory;
 use Laminas\Hydrator\ArraySerializableHydrator;
-use Laminas\Config\Config;
+use PublishingKit\Config\Config;
 use Statico\Core\Contracts\Factories\FormFactory;
 
 final class LaminasFormFactory implements FormFactory

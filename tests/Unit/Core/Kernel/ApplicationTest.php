@@ -7,7 +7,7 @@ namespace Tests\Unit\Core\Kernel;
 use Tests\TestCase;
 use Mockery as m;
 use Statico\Core\Kernel\Application;
-use Laminas\Config\Config;
+use PublishingKit\Config\Config;
 
 final class ApplicationTest extends TestCase
 {
@@ -44,7 +44,7 @@ final class ApplicationTest extends TestCase
         $container->shouldReceive('get')->with('Statico\Core\Contracts\Exceptions\Handler')
             ->once()
             ->andReturn($handler);
-        $container->shouldReceive('get')->with('Laminas\Config\Config')
+        $container->shouldReceive('get')->with('PublishingKit\Config\Config')
             ->once()
             ->andReturn(new Config([]));
         $app = new Application($container);
@@ -70,7 +70,7 @@ final class ApplicationTest extends TestCase
                 'My\Nonexistent\Plugin'
             ]
         ]);
-        $container->shouldReceive('get')->with('Laminas\Config\Config')
+        $container->shouldReceive('get')->with('PublishingKit\Config\Config')
             ->once()
             ->andReturn($config);
         $app = new Application($container);
@@ -96,7 +96,7 @@ final class ApplicationTest extends TestCase
                 'stdClass'
             ]
         ]);
-        $container->shouldReceive('get')->with('Laminas\Config\Config')
+        $container->shouldReceive('get')->with('PublishingKit\Config\Config')
             ->once()
             ->andReturn($config);
         $app = new Application($container);
@@ -132,7 +132,7 @@ final class ApplicationTest extends TestCase
         $container->shouldReceive('get')->with('League\Route\Router')
             ->once()
             ->andReturn($router);
-        $container->shouldReceive('get')->with('Laminas\Config\Config')
+        $container->shouldReceive('get')->with('PublishingKit\Config\Config')
             ->once()
             ->andReturn(new Config([]));
         $request = m::mock('Psr\Http\Message\ServerRequestInterface');
