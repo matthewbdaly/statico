@@ -5,7 +5,7 @@ declare(strict_types=1);
 use Statico\Core\Kernel\HttpCache\HttpCache;
 use PublishingKit\Cache\Factories\StashCacheFactory;
 use Statico\Core\Kernel\Application;
-use Laminas\Config\Config;
+use PublishingKit\Config\Config;
 
 require_once __DIR__ . '/../bootstrap.php';
 
