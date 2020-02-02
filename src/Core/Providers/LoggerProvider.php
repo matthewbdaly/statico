@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Statico\Core\Providers;
 
 use League\Container\ServiceProvider\AbstractServiceProvider;
-use Statico\Core\Factories\LoggerFactory;
+use Statico\Core\Factories\MonologFactory;
 
 final class LoggerProvider extends AbstractServiceProvider
 {
@@ -19,7 +19,7 @@ final class LoggerProvider extends AbstractServiceProvider
         $container = $this->getContainer();
         $container->add('Psr\Log\LoggerInterface', function () use ($container) {
             $config = $container->get('PublishingKit\Config\Config');
-            $factory = new LoggerFactory();
+            $factory = new MonologFactory();
             return $factory->make($config->get('loggers'));
         });
     }

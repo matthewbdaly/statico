@@ -15,8 +15,9 @@ use Monolog\Handler\StreamHandler;
 use Monolog\Handler\NativeMailerHandler;
 use PublishingKit\Config\Config;
 use PublishingKit\Utilities\Str;
+use Statico\Core\Contracts\Factories\LoggerFactory;
 
-final class LoggerFactory
+final class MonologFactory implements LoggerFactory
 {
     public function make(Config $config): LoggerInterface
     {
