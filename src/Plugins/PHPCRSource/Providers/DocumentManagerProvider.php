@@ -9,6 +9,7 @@ use Doctrine\Common\Annotations\AnnotationReader;
 use Doctrine\ODM\PHPCR\Mapping\Driver\AnnotationDriver;
 use Doctrine\ODM\PHPCR\DocumentManager;
 use Doctrine\ODM\PHPCR\Configuration;
+use Doctrine\Common\Cache\ArrayCache;
 
 class DocumentManagerProvider extends AbstractServiceProvider
 {
@@ -27,6 +28,7 @@ class DocumentManagerProvider extends AbstractServiceProvider
 
             $config = new Configuration();
             $config->setMetadataDriverImpl($driver);
+            $config->setMetadataCacheImpl(new ArrayCache());
 
             return DocumentManager::create($session, $config);
         });
