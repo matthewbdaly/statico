@@ -8,6 +8,8 @@ use Statico\Core\Contracts\Plugin as PluginContract;
 use Psr\Container\ContainerInterface;
 use Symfony\Component\Console\Application;
 use Doctrine\ORM\Tools\Console\ConsoleRunner;
+use Jackalope\Tools\Console\Command\InitDoctrineDbalCommand;
+use PHPCR\Util\Console\Command;
 
 final class Plugin implements PluginContract
 {
@@ -62,6 +64,23 @@ final class Plugin implements PluginContract
             new \Doctrine\ODM\PHPCR\Tools\Console\Command\InfoDoctrineCommand(),
             new \Doctrine\ODM\PHPCR\Tools\Console\Command\VerifyUniqueNodeTypesMappingCommand(),
             new \Doctrine\ODM\PHPCR\Tools\Console\Command\RegisterSystemNodeTypesCommand(),
+            new Command\NodeDumpCommand(),
+            new Command\NodeMoveCommand(),
+            new Command\NodeRemoveCommand(),
+            new Command\NodeTouchCommand(),
+
+            new Command\NodeTypeListCommand(),
+            new Command\NodeTypeRegisterCommand(),
+
+            new Command\WorkspaceCreateCommand(),
+            new Command\WorkspaceDeleteCommand(),
+            new Command\WorkspaceExportCommand(),
+            new Command\WorkspaceImportCommand(),
+            new Command\WorkspaceListCommand(),
+            new Command\WorkspacePurgeCommand(),
+            new Command\WorkspaceQueryCommand(),
+
+            new InitDoctrineDbalCommand(),
         ]);
     }
 }
