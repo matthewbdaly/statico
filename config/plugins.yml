@@ -2,3 +2,4 @@ plugins:
   - Statico\Plugins\DynamicSearch\Plugin
   - Statico\Plugins\DynamicSitemap\Plugin
   - Statico\Plugins\DoctrineSource\Plugin
+  - Statico\Plugins\PHPCRSource\Plugin
