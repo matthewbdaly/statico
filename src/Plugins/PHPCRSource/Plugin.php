@@ -45,8 +45,9 @@ final class Plugin implements PluginContract
     {
         $helperSet = new HelperSet();
         $this->console->setCatchExceptions(true);
+        global $argv;
         if (isset($argv[1])
-            && !preg_match('/(jackalope:init:dbal|list|help|orm.*|dbal.*)/', $argv[1])
+            && !preg_match('/^(jackalope:init:dbal|list|help|orm.*|dbal.*)/', $argv[1])
         ) {
             $helperSet->set($this->container->get('PHPCR\Util\Console\Helper\PhpcrHelper'), 'phpcr');
             $helperSet->set($this->container->get('PHPCR\Util\Console\Helper\PhpcrConsoleDumperHelper'), 'phpcr_console_dumper');
