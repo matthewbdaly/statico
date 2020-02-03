@@ -10,6 +10,7 @@ use Symfony\Component\Console\Application;
 use Doctrine\ORM\Tools\Console\ConsoleRunner;
 use Jackalope\Tools\Console\Command\InitDoctrineDbalCommand;
 use PHPCR\Util\Console\Command;
+use Symfony\Component\Console\Helper\HelperSet;
 
 final class Plugin implements PluginContract
 {
@@ -42,6 +43,19 @@ final class Plugin implements PluginContract
 
     private function registerConsoleCommands(): void
     {
+        $helperSet = new HelperSet();
+        $this->console->setCatchExceptions(true);
+        if (isset($argv[1])
+            && !preg_match('/(jackalope:init:dbal|list|help|orm.*|dbal.*)/', $argv[1])
+        ) {
+            $helperSet->set($this->container->get('PHPCR\Util\Console\Helper\PhpcrHelper'), 'phpcr');
+            $helperSet->set($this->container->get('PHPCR\Util\Console\Helper\PhpcrConsoleDumperHelper'), 'phpcr_console_dumper');
+        } else if (isset($argv[1]) && $argv[1] == 'jackalope:init:dbal') {
+            // special case: the init command needs the db connection, but a session is impossible if the db is not yet initialized
+            $helperSet->set($this->container->get('Jackalope\Tools\Console\Helper\DoctrineDbalHelper'), 'connection');
+        }
+
+        $this->console->setHelperSet($helperSet);
         $this->console->addCommands([
             new \PHPCR\Util\Console\Command\NodeDumpCommand(),
             new \PHPCR\Util\Console\Command\NodeMoveCommand(),
