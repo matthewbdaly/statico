@@ -19,13 +19,15 @@ final class MarkdownFileSourceTest extends TestCase
                          [
                           'type' => 'dir',
                           'path' => 'about',
-                         ],                         [
-                                                     'type' => 'file',
-                                                     'path' => 'foo.md',
-                                                    ],                         [
-                                                                                'type' => 'file',
-                                                                                'path' => 'bar.pdf',
-                                                                               ],
+                         ],
+                         [
+                          'type' => 'file',
+                          'path' => 'foo.md',
+                         ],
+                         [
+                          'type' => 'file',
+                          'path' => 'bar.pdf',
+                         ],
                         ]);
         $manager->shouldReceive('read')->with('content://foo.md')
             ->andReturn('foo');
