@@ -32,27 +32,27 @@ final class Application implements KernelInterface
      * @var array
      */
     private $providers = [
-        'Statico\Core\Providers\ContainerProvider',
-        'Statico\Core\Providers\CacheProvider',
-        'Statico\Core\Providers\ClockworkProvider',
-        'Statico\Core\Providers\ConfigProvider',
-        'Statico\Core\Providers\ConsoleProvider',
-        'Statico\Core\Providers\EventProvider',
-        'Statico\Core\Providers\FlysystemProvider',
-        'Statico\Core\Providers\FormsProvider',
-        'Statico\Core\Providers\HandlerProvider',
-        'Statico\Core\Providers\LoggerProvider',
-        'Statico\Core\Providers\RouterProvider',
-        'Statico\Core\Providers\SessionProvider',
-        'Statico\Core\Providers\SitemapGeneratorProvider',
-        'Statico\Core\Providers\SourceProvider',
-        'Statico\Core\Providers\TwigProvider',
-        'Statico\Core\Providers\TwigLoaderProvider',
-        'Statico\Core\Providers\ViewProvider',
-        'Statico\Core\Providers\YamlProvider',
-        'Statico\Core\Providers\MailerProvider',
-        'Statico\Core\Providers\GlideProvider',
-    ];
+                          'Statico\Core\Providers\ContainerProvider',
+                          'Statico\Core\Providers\CacheProvider',
+                          'Statico\Core\Providers\ClockworkProvider',
+                          'Statico\Core\Providers\ConfigProvider',
+                          'Statico\Core\Providers\ConsoleProvider',
+                          'Statico\Core\Providers\EventProvider',
+                          'Statico\Core\Providers\FlysystemProvider',
+                          'Statico\Core\Providers\FormsProvider',
+                          'Statico\Core\Providers\HandlerProvider',
+                          'Statico\Core\Providers\LoggerProvider',
+                          'Statico\Core\Providers\RouterProvider',
+                          'Statico\Core\Providers\SessionProvider',
+                          'Statico\Core\Providers\SitemapGeneratorProvider',
+                          'Statico\Core\Providers\SourceProvider',
+                          'Statico\Core\Providers\TwigProvider',
+                          'Statico\Core\Providers\TwigLoaderProvider',
+                          'Statico\Core\Providers\ViewProvider',
+                          'Statico\Core\Providers\YamlProvider',
+                          'Statico\Core\Providers\MailerProvider',
+                          'Statico\Core\Providers\GlideProvider',
+                         ];
 
     public function __construct(Container $container = null)
     {

@@ -66,10 +66,8 @@ final class ApplicationTest extends TestCase
             ->once()
             ->andReturn($handler);
         $config = new Config([
-            'plugins' => [
-                'My\Nonexistent\Plugin'
-            ]
-        ]);
+                              'plugins' => ['My\Nonexistent\Plugin'],
+                             ]);
         $container->shouldReceive('get')->with('PublishingKit\Config\Config')
             ->once()
             ->andReturn($config);
@@ -92,10 +90,8 @@ final class ApplicationTest extends TestCase
             ->once()
             ->andReturn($handler);
         $config = new Config([
-            'plugins' => [
-                'stdClass'
-            ]
-        ]);
+                              'plugins' => ['stdClass'],
+                             ]);
         $container->shouldReceive('get')->with('PublishingKit\Config\Config')
             ->once()
             ->andReturn($config);

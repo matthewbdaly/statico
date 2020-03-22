@@ -9,9 +9,7 @@ use Symfony\Component\Console\Application;
 
 final class ConsoleProvider extends AbstractServiceProvider
 {
-    protected $provides = [
-        'Symfony\Component\Console\Application',
-    ];
+    protected $provides = ['Symfony\Component\Console\Application'];
 
     public function register(): void
     {

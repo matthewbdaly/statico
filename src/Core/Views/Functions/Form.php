@@ -53,15 +53,15 @@ final class Form
     private function getInvokables(): array
     {
         return [
-            'formRow' => 'Laminas\Form\View\Helper\FormRow',
-            'form_label' => 'Laminas\Form\View\Helper\FormLabel',
-            'form_element' => 'Laminas\Form\View\Helper\FormElement',
-            'form_element_errors' => 'Laminas\Form\View\Helper\FormElementErrors',
-            'forminput' => 'Laminas\Form\View\Helper\FormInput',
-            'formtext' => 'Laminas\Form\View\Helper\FormText',
-            'formtextarea' => 'Laminas\Form\View\Helper\FormTextarea',
-            'formemail' => 'Laminas\Form\View\Helper\FormEmail',
-            'formsubmit' => 'Laminas\Form\View\Helper\FormSubmit',
-        ];
+                'formRow'             => 'Laminas\Form\View\Helper\FormRow',
+                'form_label'          => 'Laminas\Form\View\Helper\FormLabel',
+                'form_element'        => 'Laminas\Form\View\Helper\FormElement',
+                'form_element_errors' => 'Laminas\Form\View\Helper\FormElementErrors',
+                'forminput'           => 'Laminas\Form\View\Helper\FormInput',
+                'formtext'            => 'Laminas\Form\View\Helper\FormText',
+                'formtextarea'        => 'Laminas\Form\View\Helper\FormTextarea',
+                'formemail'           => 'Laminas\Form\View\Helper\FormEmail',
+                'formsubmit'          => 'Laminas\Form\View\Helper\FormSubmit',
+               ];
     }
 }

@@ -9,9 +9,7 @@ use Clockwork\Support\Vanilla\Clockwork;
 
 final class ClockworkProvider extends AbstractServiceProvider
 {
-    protected $provides = [
-        'Clockwork\Support\Vanilla\Clockwork',
-    ];
+    protected $provides = ['Clockwork\Support\Vanilla\Clockwork'];
 
     public function register(): void
     {

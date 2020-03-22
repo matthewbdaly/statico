@@ -16,14 +16,13 @@ final class LaminasFormFactoryTest extends TestCase
         $wrappedFactory = new Factory();
         $factory = new LaminasFormFactory($wrappedFactory);
         $formData = [[
-            'spec' => [
-                'name' => 'name',
-                'options' => [
-                    'label' => 'Your name',
-                ],
-                'type' => 'Text'
-            ]
-        ]];
+                      'spec' => [
+                                 'name'    => 'name',
+                                 'options' => ['label' => 'Your name'],
+                                 'type'    => 'Text',
+                                ],
+                     ],
+                    ];
         $form = m::mock('PublishingKit\Config\Config');
         $form->shouldReceive('get')->with('elements')->once()
             ->andReturn($form);
@@ -33,8 +32,8 @@ final class LaminasFormFactoryTest extends TestCase
         $this->assertCount(1, $elements);
         $el = $elements['name'];
         $this->assertEquals([
-            'type' => 'text',
-            'name' => 'name'
-        ], $el->getAttributes());
+                             'type' => 'text',
+                             'name' => 'name',
+                            ], $el->getAttributes());
     }
 }

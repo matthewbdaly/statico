@@ -10,9 +10,7 @@ use Symfony\Component\Mailer\Transport\SendmailTransport;
 
 final class MailerProvider extends AbstractServiceProvider
 {
-    protected $provides = [
-        'Symfony\Component\Mailer\MailerInterface',
-    ];
+    protected $provides = ['Symfony\Component\Mailer\MailerInterface'];
 
     public function register(): void
     {

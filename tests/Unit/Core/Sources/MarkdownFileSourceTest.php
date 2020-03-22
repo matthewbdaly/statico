@@ -15,16 +15,18 @@ final class MarkdownFileSourceTest extends TestCase
         $manager = m::mock('League\Flysystem\MountManager');
         $manager->shouldReceive('listContents')
             ->with('content://', true)
-            ->andReturn([[
-                'type' => 'dir',
-                'path' => 'about'
-            ], [
-                'type' => 'file',
-                'path' => 'foo.md'
-            ], [
-                'type' => 'file',
-                'path' => 'bar.pdf'
-            ]]);
+            ->andReturn([
+                         [
+                          'type' => 'dir',
+                          'path' => 'about',
+                         ],                         [
+                                                     'type' => 'file',
+                                                     'path' => 'foo.md',
+                                                    ],                         [
+                                                                                'type' => 'file',
+                                                                                'path' => 'bar.pdf',
+                                                                               ],
+                        ]);
         $manager->shouldReceive('read')->with('content://foo.md')
             ->andReturn('foo');
         $manager->shouldReceive('getTimestamp')->with('content://foo.md')
@@ -33,9 +35,7 @@ final class MarkdownFileSourceTest extends TestCase
         $document->shouldReceive('getContent')
             ->andReturn('My content');
         $document->shouldReceive('getYAML')
-            ->andReturn([
-                'title' => 'Foo'
-            ]);
+            ->andReturn(['title' => 'Foo']);
         $parser = m::mock('Mni\FrontYAML\Parser');
         $parser->shouldReceive('parse')->with('foo')
             ->andReturn($document);
@@ -65,9 +65,7 @@ final class MarkdownFileSourceTest extends TestCase
         $document->shouldReceive('getContent')->once()
             ->andReturn('My content');
         $document->shouldReceive('getYAML')->once()
-            ->andReturn([
-                'title' => 'Foo'
-            ]);
+            ->andReturn(['title' => 'Foo']);
         $parser = m::mock('Mni\FrontYAML\Parser');
         $parser->shouldReceive('parse')->with('foo')->once()
             ->andReturn($document);

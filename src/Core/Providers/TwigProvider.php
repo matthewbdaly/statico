@@ -18,9 +18,9 @@ use Statico\Core\Views\Functions\Form;
 final class TwigProvider extends AbstractServiceProvider
 {
     protected $provides = [
-        'Twig\Environment',
-        'Statico\Core\Contracts\Services\Navigator',
-    ];
+                           'Twig\Environment',
+                           'Statico\Core\Contracts\Services\Navigator',
+                          ];
 
     public function register(): void
     {

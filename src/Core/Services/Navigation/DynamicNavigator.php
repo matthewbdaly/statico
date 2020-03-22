@@ -30,10 +30,10 @@ final class DynamicNavigator implements Navigator
             })->toArray();
         $items = Collection::make($items)->map(function ($item) {
             return [
-                'label' => $item->getField('title'),
-                'uri' => $item->getUrl(),
-                'pages' => [],
-            ];
+                    'label' => $item->getField('title'),
+                    'uri'   => $item->getUrl(),
+                    'pages' => [],
+                   ];
         })->sort(function ($a, $b) {
             return count(explode("/", $a['uri'])) > count(explode("/", $b['uri']));
         })->reduce(function ($result, $item) {

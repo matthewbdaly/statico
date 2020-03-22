@@ -9,9 +9,7 @@ use Mni\FrontYAML\Parser;
 
 final class YamlProvider extends AbstractServiceProvider
 {
-    protected $provides = [
-        'Mni\FrontYAML\Parser',
-    ];
+    protected $provides = ['Mni\FrontYAML\Parser'];
 
     public function register(): void
     {

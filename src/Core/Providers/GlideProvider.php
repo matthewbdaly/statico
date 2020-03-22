@@ -12,9 +12,7 @@ use Laminas\Diactoros\Stream;
 
 final class GlideProvider extends AbstractServiceProvider
 {
-    protected $provides = [
-        'League\Glide\Server'
-    ];
+    protected $provides = ['League\Glide\Server'];
 
     public function register(): void
     {
@@ -24,12 +22,12 @@ final class GlideProvider extends AbstractServiceProvider
             $source = $fs->getFilesystem('media');
             $cache = $fs->getFilesystem('cache');
             return ServerFactory::create([
-                'source' => $source,
-                'cache' => $cache,
-                'response' => new PsrResponseFactory(new Response(), function ($stream) {
-                    return new Stream($stream);
-                }),
-            ]);
+                                          'source'   => $source,
+                                          'cache'    => $cache,
+                                          'response' => new PsrResponseFactory(new Response(), function ($stream) {
+                                            return new Stream($stream);
+                                          }),
+                                         ]);
         });
     }
 }

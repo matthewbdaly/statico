@@ -36,9 +36,7 @@ final class DoctrineDB implements Source
 
     public function find(string $name): ?Document
     {
-        return $this->getRepository()->findOneBy([
-            'path' => $name
-        ]);
+        return $this->getRepository()->findOneBy(['path' => $name]);
     }
 
     private function getRepository(): ObjectRepository

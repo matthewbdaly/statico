@@ -9,9 +9,7 @@ use PublishingKit\Config\Config;
 
 final class ConfigProvider extends AbstractServiceProvider
 {
-    protected $provides = [
-        'PublishingKit\Config\Config',
-    ];
+    protected $provides = ['PublishingKit\Config\Config'];
 
     public function register(): void
     {

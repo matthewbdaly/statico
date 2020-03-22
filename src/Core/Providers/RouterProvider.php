@@ -10,9 +10,7 @@ use League\Route\Strategy\ApplicationStrategy;
 
 final class RouterProvider extends AbstractServiceProvider
 {
-    protected $provides = [
-        'League\Route\Router',
-    ];
+    protected $provides = ['League\Route\Router'];
 
     public function register(): void
     {

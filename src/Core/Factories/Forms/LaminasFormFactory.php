@@ -25,8 +25,8 @@ final class LaminasFormFactory implements FormFactory
     public function make(Config $form = null): ElementInterface
     {
         return $this->factory->createForm([
-            'hydrator' => ArraySerializableHydrator::class,
-            'elements' => $form->get('elements')->toArray()
-        ]);
+                                           'hydrator' => ArraySerializableHydrator::class,
+                                           'elements' => $form->get('elements')->toArray(),
+                                          ]);
     }
 }

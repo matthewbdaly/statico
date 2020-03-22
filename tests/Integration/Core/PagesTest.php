@@ -30,10 +30,10 @@ final class PagesTest extends IntegrationTestCase
         $emitter->shouldReceive('emit')->with('Statico\Core\Events\FormSubmitted')->once();
         $this->app->getContainer()->share('League\Event\EmitterInterface', $emitter);
         $params = [
-            'name' => 'Bob Smith',
-            'email' => 'bob@example.com',
-            'message' => 'Just testing'
-        ];
+                   'name'    => 'Bob Smith',
+                   'email'   => 'bob@example.com',
+                   'message' => 'Just testing',
+                  ];
         $this->makeRequest(
             '/contact',
             'POST',

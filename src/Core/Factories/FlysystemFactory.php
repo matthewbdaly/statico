@@ -129,13 +129,13 @@ final class FlysystemFactory
             throw new BadFlysystemConfigurationException('Version not set for S3 driver');
         }
         $client = new S3Client([
-            'credentials' => [
-                'key'    => $config['key'],
-                'secret' => $config['secret'],
-            ],
-            'region' => $config['region'],
-            'version' => $config['version'],
-        ]);
+                                'credentials' => [
+                                                  'key'    => $config['key'],
+                                                  'secret' => $config['secret'],
+                                                 ],
+                                'region'      => $config['region'],
+                                'version'     => $config['version'],
+                               ]);
         return new AwsS3Adapter($client, $config['bucket']);
     }
 
@@ -151,14 +151,14 @@ final class FlysystemFactory
             throw new BadFlysystemConfigurationException('Neither password nor private key set for SFTP driver');
         }
         return new SftpAdapter([
-            'host' => $config['host'],
-            'port' => isset($config['port']) ? $config['port'] : 22,
-            'username' => $config['username'],
-            'password' => $config['password'],
-            'privateKey' => isset($config['privatekey']) ? $config['privatekey'] : null,
-            'root' => isset($config['root']) ? $config['root'] : null,
-            'timeout' => isset($config['timeout']) ? $config['timeout'] : 10,
-        ]);
+                                'host'       => $config['host'],
+                                'port'       => isset($config['port']) ? $config['port'] : 22,
+                                'username'   => $config['username'],
+                                'password'   => $config['password'],
+                                'privateKey' => isset($config['privatekey']) ? $config['privatekey'] : null,
+                                'root'       => isset($config['root']) ? $config['root'] : null,
+                                'timeout'    => isset($config['timeout']) ? $config['timeout'] : 10,
+                               ]);
     }
 
     private function createFtpAdapter(array $config): FTPAdapter
@@ -173,13 +173,13 @@ final class FlysystemFactory
             throw new BadFlysystemConfigurationException('Neither password nor private key set for FTP driver');
         }
         return new FTPAdapter([
-            'host' => $config['host'],
-            'port' => isset($config['port']) ? $config['port'] : 22,
-            'username' => $config['username'],
-            'password' => $config['password'],
-            'privateKey' => isset($config['privatekey']) ? $config['privatekey'] : null,
-            'root' => isset($config['root']) ? $config['root'] : null,
-            'timeout' => isset($config['timeout']) ? $config['timeout'] : 10,
-        ]);
+                               'host'       => $config['host'],
+                               'port'       => isset($config['port']) ? $config['port'] : 22,
+                               'username'   => $config['username'],
+                               'password'   => $config['password'],
+                               'privateKey' => isset($config['privatekey']) ? $config['privatekey'] : null,
+                               'root'       => isset($config['root']) ? $config['root'] : null,
+                               'timeout'    => isset($config['timeout']) ? $config['timeout'] : 10,
+                              ]);
     }
 }

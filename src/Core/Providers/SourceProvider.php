@@ -9,9 +9,7 @@ use Statico\Core\Sources\Decorators\Psr6CacheDecorator;
 
 final class SourceProvider extends AbstractServiceProvider
 {
-    protected $provides = [
-        'Statico\Core\Contracts\Sources\Source',
-    ];
+    protected $provides = ['Statico\Core\Contracts\Sources\Source'];
 
     public function register(): void
     {

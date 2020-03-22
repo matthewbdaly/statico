@@ -64,9 +64,9 @@ final class DocumentTest extends TestCase
         $doc->setField('layout', 'custom.html');
         $doc->setPath('foo');
         $this->assertEquals([
-            'title' => 'My Page',
-            'layout' => 'custom.html'
-        ], $doc->getFields());
+                             'title'  => 'My Page',
+                             'layout' => 'custom.html',
+                            ], $doc->getFields());
     }
 
     public function testJsonSerialize()
@@ -77,10 +77,10 @@ final class DocumentTest extends TestCase
         $doc->setField('layout', 'custom.html');
         $doc->setPath('foo');
         $this->assertEquals([
-            'title' => 'My Page',
-            'layout' => 'custom.html',
-            'content' => 'This is my content',
-            'url' => '/foo'
-        ], $doc->jsonSerialize());
+                             'title'   => 'My Page',
+                             'layout'  => 'custom.html',
+                             'content' => 'This is my content',
+                             'url'     => '/foo',
+                            ], $doc->jsonSerialize());
     }
 }

@@ -9,9 +9,7 @@ use Statico\Core\Factories\MonologFactory;
 
 final class LoggerProvider extends AbstractServiceProvider
 {
-    protected $provides = [
-        'Psr\Log\LoggerInterface',
-    ];
+    protected $provides = ['Psr\Log\LoggerInterface'];
 
     public function register(): void
     {

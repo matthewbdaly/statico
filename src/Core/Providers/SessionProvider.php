@@ -9,9 +9,7 @@ use Symfony\Component\HttpFoundation\Session\Session;
 
 class SessionProvider extends AbstractServiceProvider
 {
-    protected $provides = [
-        'Symfony\Component\HttpFoundation\Session\SessionInterface',
-    ];
+    protected $provides = ['Symfony\Component\HttpFoundation\Session\SessionInterface'];
 
     public function register(): void
     {

@@ -18,9 +18,9 @@ final class FlysystemFactoryTest extends TestCase
         $pool->shouldReceive('isMiss')->once()->andReturn(true);
         $factory = new FlysystemFactory($pool);
         $fs = $factory->make([
-            'driver' => 'local',
-            'path' => 'content/'
-        ]);
+                              'driver' => 'local',
+                              'path'   => 'content/',
+                             ]);
         $this->assertInstanceOf('League\Flysystem\Filesystem', $fs);
         $cache = $fs->getAdapter();
         $this->assertInstanceOf('League\Flysystem\Cached\CachedAdapter', $cache);
@@ -34,9 +34,7 @@ final class FlysystemFactoryTest extends TestCase
         $pool->shouldReceive('get')->once()->andReturn(false);
         $pool->shouldReceive('isMiss')->once()->andReturn(true);
         $factory = new FlysystemFactory($pool);
-        $fs = $factory->make([
-            'path' => 'content/'
-        ]);
+        $fs = $factory->make(['path' => 'content/']);
         $this->assertInstanceOf('League\Flysystem\Filesystem', $fs);
         $cache = $fs->getAdapter();
         $this->assertInstanceOf('League\Flysystem\Cached\CachedAdapter', $cache);
@@ -48,8 +46,7 @@ final class FlysystemFactoryTest extends TestCase
         $this->expectException('Statico\Core\Exceptions\Factories\BadFlysystemConfigurationException');
         $pool = m::mock('Stash\Pool');
         $factory = new FlysystemFactory($pool);
-        $fs = $factory->make([
-        ]);
+        $fs = $factory->make([]);
     }
 
     public function testMemory()
@@ -59,9 +56,7 @@ final class FlysystemFactoryTest extends TestCase
         $pool->shouldReceive('get')->once()->andReturn(false);
         $pool->shouldReceive('isMiss')->once()->andReturn(true);
         $factory = new FlysystemFactory($pool);
-        $fs = $factory->make([
-            'driver' => 'memory',
-        ]);
+        $fs = $factory->make(['driver' => 'memory']);
         $this->assertInstanceOf('League\Flysystem\Filesystem', $fs);
         $cache = $fs->getAdapter();
         $this->assertInstanceOf('League\Flysystem\Cached\CachedAdapter', $cache);
@@ -76,9 +71,9 @@ final class FlysystemFactoryTest extends TestCase
         $pool->shouldReceive('isMiss')->once()->andReturn(true);
         $factory = new FlysystemFactory($pool);
         $fs = $factory->make([
-            'driver' => 'dropbox',
-            'token' => 'foo'
-        ]);
+                              'driver' => 'dropbox',
+                              'token'  => 'foo',
+                             ]);
         $this->assertInstanceOf('League\Flysystem\Filesystem', $fs);
         $cache = $fs->getAdapter();
         $this->assertInstanceOf('League\Flysystem\Cached\CachedAdapter', $cache);
@@ -90,9 +85,7 @@ final class FlysystemFactoryTest extends TestCase
         $this->expectException('Statico\Core\Exceptions\Factories\BadFlysystemConfigurationException');
         $pool = m::mock('Stash\Pool');
         $factory = new FlysystemFactory($pool);
-        $fs = $factory->make([
-            'driver' => 'dropbox',
-        ]);
+        $fs = $factory->make(['driver' => 'dropbox']);
     }
 
     public function testAzure()
@@ -103,11 +96,11 @@ final class FlysystemFactoryTest extends TestCase
         $pool->shouldReceive('isMiss')->once()->andReturn(true);
         $factory = new FlysystemFactory($pool);
         $fs = $factory->make([
-            'driver' => 'azure',
-            'container' => 'foo',
-            'name' => 'bar',
-            'key' => 'baz',
-        ]);
+                              'driver'    => 'azure',
+                              'container' => 'foo',
+                              'name'      => 'bar',
+                              'key'       => 'baz',
+                             ]);
         $this->assertInstanceOf('League\Flysystem\Filesystem', $fs);
         $cache = $fs->getAdapter();
         $this->assertInstanceOf('League\Flysystem\Cached\CachedAdapter', $cache);
@@ -120,10 +113,10 @@ final class FlysystemFactoryTest extends TestCase
         $pool = m::mock('Stash\Pool');
         $factory = new FlysystemFactory($pool);
         $fs = $factory->make([
-            'driver' => 'azure',
-            'name' => 'bar',
-            'key' => 'baz',
-        ]);
+                              'driver' => 'azure',
+                              'name'   => 'bar',
+                              'key'    => 'baz',
+                             ]);
     }
 
     public function testAzureMisconfiguredName()
@@ -132,10 +125,10 @@ final class FlysystemFactoryTest extends TestCase
         $pool = m::mock('Stash\Pool');
         $factory = new FlysystemFactory($pool);
         $fs = $factory->make([
-            'driver' => 'azure',
-            'container' => 'foo',
-            'key' => 'baz',
-        ]);
+                              'driver'    => 'azure',
+                              'container' => 'foo',
+                              'key'       => 'baz',
+                             ]);
     }
 
     public function testAzureMisconfiguredKey()
@@ -144,10 +137,10 @@ final class FlysystemFactoryTest extends TestCase
         $pool = m::mock('Stash\Pool');
         $factory = new FlysystemFactory($pool);
         $fs = $factory->make([
-            'driver' => 'azure',
-            'container' => 'foo',
-            'name' => 'bar',
-        ]);
+                              'driver'    => 'azure',
+                              'container' => 'foo',
+                              'name'      => 'bar',
+                             ]);
     }
 
     public function testS3()
@@ -158,13 +151,13 @@ final class FlysystemFactoryTest extends TestCase
         $pool->shouldReceive('isMiss')->once()->andReturn(true);
         $factory = new FlysystemFactory($pool);
         $fs = $factory->make([
-            'driver' => 's3',
-            'bucket' => 'foo',
-            'key' => 'bar',
-            'secret' => 'baz',
-            'region' => 'foo',
-            'version' => 'latest',
-        ]);
+                              'driver'  => 's3',
+                              'bucket'  => 'foo',
+                              'key'     => 'bar',
+                              'secret'  => 'baz',
+                              'region'  => 'foo',
+                              'version' => 'latest',
+                             ]);
         $this->assertInstanceOf('League\Flysystem\Filesystem', $fs);
         $cache = $fs->getAdapter();
         $this->assertInstanceOf('League\Flysystem\Cached\CachedAdapter', $cache);
@@ -177,11 +170,11 @@ final class FlysystemFactoryTest extends TestCase
         $pool = m::mock('Stash\Pool');
         $factory = new FlysystemFactory($pool);
         $fs = $factory->make([
-            'driver' => 's3',
-            'secret' => 'baz',
-            'region' => 'foo',
-            'version' => 'latest',
-        ]);
+                              'driver'  => 's3',
+                              'secret'  => 'baz',
+                              'region'  => 'foo',
+                              'version' => 'latest',
+                             ]);
     }
 
     public function testS3MisconfiguredKey()
@@ -190,12 +183,12 @@ final class FlysystemFactoryTest extends TestCase
         $pool = m::mock('Stash\Pool');
         $factory = new FlysystemFactory($pool);
         $fs = $factory->make([
-            'driver' => 's3',
-            'bucket' => 'foo',
-            'secret' => 'baz',
-            'region' => 'foo',
-            'version' => 'latest',
-        ]);
+                              'driver'  => 's3',
+                              'bucket'  => 'foo',
+                              'secret'  => 'baz',
+                              'region'  => 'foo',
+                              'version' => 'latest',
+                             ]);
     }
 
     public function testS3MisconfiguredSecret()
@@ -204,12 +197,12 @@ final class FlysystemFactoryTest extends TestCase
         $pool = m::mock('Stash\Pool');
         $factory = new FlysystemFactory($pool);
         $fs = $factory->make([
-            'driver' => 's3',
-            'bucket' => 'foo',
-            'key' => 'bar',
-            'region' => 'foo',
-            'version' => 'latest',
-        ]);
+                              'driver'  => 's3',
+                              'bucket'  => 'foo',
+                              'key'     => 'bar',
+                              'region'  => 'foo',
+                              'version' => 'latest',
+                             ]);
     }
 
     public function testS3MisconfiguredRegion()
@@ -218,12 +211,12 @@ final class FlysystemFactoryTest extends TestCase
         $pool = m::mock('Stash\Pool');
         $factory = new FlysystemFactory($pool);
         $fs = $factory->make([
-            'driver' => 's3',
-            'bucket' => 'foo',
-            'key' => 'bar',
-            'secret' => 'baz',
-            'version' => 'latest',
-        ]);
+                              'driver'  => 's3',
+                              'bucket'  => 'foo',
+                              'key'     => 'bar',
+                              'secret'  => 'baz',
+                              'version' => 'latest',
+                             ]);
     }
 
     public function testS3MisconfiguredVersion()
@@ -232,12 +225,12 @@ final class FlysystemFactoryTest extends TestCase
         $pool = m::mock('Stash\Pool');
         $factory = new FlysystemFactory($pool);
         $fs = $factory->make([
-            'driver' => 's3',
-            'bucket' => 'foo',
-            'key' => 'bar',
-            'secret' => 'baz',
-            'region' => 'foo',
-        ]);
+                              'driver' => 's3',
+                              'bucket' => 'foo',
+                              'key'    => 'bar',
+                              'secret' => 'baz',
+                              'region' => 'foo',
+                             ]);
     }
 
     public function testSFTP()
@@ -248,12 +241,12 @@ final class FlysystemFactoryTest extends TestCase
         $pool->shouldReceive('isMiss')->once()->andReturn(true);
         $factory = new FlysystemFactory($pool);
         $fs = $factory->make([
-            'driver' => 'sftp',
-            'host' => 'foo.com',
-            'username' => 'bob',
-            'password' => 'password',
-            'root' => 'foo',
-        ]);
+                              'driver'   => 'sftp',
+                              'host'     => 'foo.com',
+                              'username' => 'bob',
+                              'password' => 'password',
+                              'root'     => 'foo',
+                             ]);
         $this->assertInstanceOf('League\Flysystem\Filesystem', $fs);
         $cache = $fs->getAdapter();
         $this->assertInstanceOf('League\Flysystem\Cached\CachedAdapter', $cache);
@@ -266,11 +259,11 @@ final class FlysystemFactoryTest extends TestCase
         $pool = m::mock('Stash\Pool');
         $factory = new FlysystemFactory($pool);
         $fs = $factory->make([
-            'driver' => 'sftp',
-            'username' => 'bob',
-            'password' => 'password',
-            'root' => 'foo',
-        ]);
+                              'driver'   => 'sftp',
+                              'username' => 'bob',
+                              'password' => 'password',
+                              'root'     => 'foo',
+                             ]);
     }
 
     public function testSFTPMisconfiguredUsername()
@@ -279,11 +272,11 @@ final class FlysystemFactoryTest extends TestCase
         $pool = m::mock('Stash\Pool');
         $factory = new FlysystemFactory($pool);
         $fs = $factory->make([
-            'driver' => 'sftp',
-            'host' => 'foo.com',
-            'password' => 'password',
-            'root' => 'foo',
-        ]);
+                              'driver'   => 'sftp',
+                              'host'     => 'foo.com',
+                              'password' => 'password',
+                              'root'     => 'foo',
+                             ]);
     }
 
     public function testSFTPMisconfiguredPassword()
@@ -292,11 +285,11 @@ final class FlysystemFactoryTest extends TestCase
         $pool = m::mock('Stash\Pool');
         $factory = new FlysystemFactory($pool);
         $fs = $factory->make([
-            'driver' => 'sftp',
-            'host' => 'foo.com',
-            'username' => 'bob',
-            'root' => 'foo',
-        ]);
+                              'driver'   => 'sftp',
+                              'host'     => 'foo.com',
+                              'username' => 'bob',
+                              'root'     => 'foo',
+                             ]);
     }
 
     public function testFTP()
@@ -307,12 +300,12 @@ final class FlysystemFactoryTest extends TestCase
         $pool->shouldReceive('isMiss')->once()->andReturn(true);
         $factory = new FlysystemFactory($pool);
         $fs = $factory->make([
-            'driver' => 'ftp',
-            'host' => 'foo.com',
-            'username' => 'bob',
-            'password' => 'password',
-            'root' => 'foo',
-        ]);
+                              'driver'   => 'ftp',
+                              'host'     => 'foo.com',
+                              'username' => 'bob',
+                              'password' => 'password',
+                              'root'     => 'foo',
+                             ]);
         $this->assertInstanceOf('League\Flysystem\Filesystem', $fs);
         $cache = $fs->getAdapter();
         $this->assertInstanceOf('League\Flysystem\Cached\CachedAdapter', $cache);
@@ -325,11 +318,11 @@ final class FlysystemFactoryTest extends TestCase
         $pool = m::mock('Stash\Pool');
         $factory = new FlysystemFactory($pool);
         $fs = $factory->make([
-            'driver' => 'ftp',
-            'username' => 'bob',
-            'password' => 'password',
-            'root' => 'foo',
-        ]);
+                              'driver'   => 'ftp',
+                              'username' => 'bob',
+                              'password' => 'password',
+                              'root'     => 'foo',
+                             ]);
     }
 
     public function testFTPMisconfiguredUsername()
@@ -338,11 +331,11 @@ final class FlysystemFactoryTest extends TestCase
         $pool = m::mock('Stash\Pool');
         $factory = new FlysystemFactory($pool);
         $fs = $factory->make([
-            'driver' => 'ftp',
-            'host' => 'foo.com',
-            'password' => 'password',
-            'root' => 'foo',
-        ]);
+                              'driver'   => 'ftp',
+                              'host'     => 'foo.com',
+                              'password' => 'password',
+                              'root'     => 'foo',
+                             ]);
     }
 
     public function testFTPMisconfiguredPassword()
@@ -351,10 +344,10 @@ final class FlysystemFactoryTest extends TestCase
         $pool = m::mock('Stash\Pool');
         $factory = new FlysystemFactory($pool);
         $fs = $factory->make([
-            'driver' => 'ftp',
-            'host' => 'foo.com',
-            'username' => 'bob',
-            'root' => 'foo',
-        ]);
+                              'driver'   => 'ftp',
+                              'host'     => 'foo.com',
+                              'username' => 'bob',
+                              'root'     => 'foo',
+                             ]);
     }
 }

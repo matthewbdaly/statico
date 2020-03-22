@@ -34,9 +34,9 @@ final class DoctrineDocumentTest extends TestCase
         $doc->setField('layout', 'custom.html');
         $doc->setPath('foo');
         $this->assertEquals([
-            'title' => 'My Page',
-            'layout' => 'custom.html'
-        ], $doc->getFields());
+                             'title'  => 'My Page',
+                             'layout' => 'custom.html',
+                            ], $doc->getFields());
     }
 
     public function testGetId()

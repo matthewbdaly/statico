@@ -40,8 +40,8 @@ final class Shell extends Command
     protected function execute(InputInterface $input, OutputInterface $output): void
     {
         $this->shell->setScopeVariables([
-            'container' => $this->container
-        ]);
+                                         'container' => $this->container,
+                                        ]);
         $this->shell->run();
     }
 }

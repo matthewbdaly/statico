@@ -9,9 +9,7 @@ use League\Event\Emitter;
 
 final class EventProvider extends AbstractServiceProvider
 {
-    protected $provides = [
-        'League\Event\EmitterInterface',
-    ];
+    protected $provides = ['League\Event\EmitterInterface'];
 
     public function register(): void
     {

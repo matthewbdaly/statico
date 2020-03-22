@@ -9,9 +9,7 @@ use League\Flysystem\MountManager;
 
 final class FlysystemProvider extends AbstractServiceProvider
 {
-    protected $provides = [
-        'League\Flysystem\FilesystemInterface',
-    ];
+    protected $provides = ['League\Flysystem\FilesystemInterface'];
 
     public function register(): void
     {
@@ -28,11 +26,11 @@ final class FlysystemProvider extends AbstractServiceProvider
                 $cacheFilesystem = $factory->make($config->filesystem->cache->toArray());
 
                 return new MountManager([
-                    'content' => $contentFilesystem,
-                    'assets'  => $assetFilesystem,
-                    'media'   => $mediaFilesystem,
-                    'cache'   => $cacheFilesystem,
-                ]);
+                                         'content' => $contentFilesystem,
+                                         'assets'  => $assetFilesystem,
+                                         'media'   => $mediaFilesystem,
+                                         'cache'   => $cacheFilesystem,
+                                        ]);
         });
     }
 }

@@ -18,10 +18,11 @@ final class LoggerFactoryTest extends TestCase
     {
         $factory = new MonologFactory();
         $config = new Config([[
-            'logger' => 'stream',
-            'path' => './logs/site.log',
-            'level' => $level,
-        ]]);
+                               'logger' => 'stream',
+                               'path'   => './logs/site.log',
+                               'level'  => $level,
+                              ],
+                             ]);
         $logger = $factory->make($config);
         $this->assertInstanceOf('Monolog\Logger', $logger);
         $handlers = $logger->getHandlers();
@@ -43,9 +44,8 @@ final class LoggerFactoryTest extends TestCase
     public function testCreateFirePHPHandler()
     {
         $factory = new MonologFactory();
-        $config = new Config([[
-            'logger' => 'firephp',
-        ]]);
+        $config = new Config([['logger' => 'firephp'],
+                             ]);
         $logger = $factory->make($config);
         $this->assertInstanceOf('Monolog\Logger', $logger);
         $handlers = $logger->getHandlers();
@@ -56,9 +56,8 @@ final class LoggerFactoryTest extends TestCase
     public function testCreateBrowserConsoleHandler()
     {
         $factory = new MonologFactory();
-        $config = new Config([[
-            'logger' => 'browser-console',
-        ]]);
+        $config = new Config([['logger' => 'browser-console'],
+                             ]);
         $logger = $factory->make($config);
         $this->assertInstanceOf('Monolog\Logger', $logger);
         $handlers = $logger->getHandlers();
@@ -69,9 +68,8 @@ final class LoggerFactoryTest extends TestCase
     public function testCreateChromePHPHandler()
     {
         $factory = new MonologFactory();
-        $config = new Config([[
-            'logger' => 'chrome',
-        ]]);
+        $config = new Config([['logger' => 'chrome'],
+                             ]);
         $logger = $factory->make($config);
         $this->assertInstanceOf('Monolog\Logger', $logger);
         $handlers = $logger->getHandlers();
@@ -83,11 +81,12 @@ final class LoggerFactoryTest extends TestCase
     {
         $factory = new MonologFactory();
         $config = new Config([[
-            'logger' => 'mailer',
-            'from' => 'bob@example.com',
-            'to' => 'eric@example.com',
-            'subject' => 'Error'
-        ]]);
+                               'logger'  => 'mailer',
+                               'from'    => 'bob@example.com',
+                               'to'      => 'eric@example.com',
+                               'subject' => 'Error',
+                              ],
+                             ]);
         $logger = $factory->make($config);
         $this->assertInstanceOf('Monolog\Logger', $logger);
         $handlers = $logger->getHandlers();
@@ -99,13 +98,14 @@ final class LoggerFactoryTest extends TestCase
     {
         $factory = new MonologFactory();
         $config = new Config([[
-            'logger' => 'slack',
-            'token' => 'foo',
-            'channel' => 'bar',
-            'username' => 'baz',
-            'attachment' => true,
-            'emoji' => 'poo'
-        ]]);
+                               'logger'     => 'slack',
+                               'token'      => 'foo',
+                               'channel'    => 'bar',
+                               'username'   => 'baz',
+                               'attachment' => true,
+                               'emoji'      => 'poo',
+                              ],
+                             ]);
         $logger = $factory->make($config);
         $this->assertInstanceOf('Monolog\Logger', $logger);
         $handlers = $logger->getHandlers();
@@ -115,22 +115,15 @@ final class LoggerFactoryTest extends TestCase
 
     public function levelProvider()
     {
-        return [[
-            'debug',
-        ], [
-            'info',
-        ], [
-            'notice',
-        ], [
-            'warning',
-        ], [
-            'error',
-        ], [
-            'critical',
-        ], [
-            'alert',
-        ], [
-            'emergency',
-        ]];
+        return [
+                ['debug'],
+                ['info'],
+                ['notice'],
+                ['warning'],
+                ['error'],
+                ['critical'],
+                ['alert'],
+                ['emergency'],
+               ];
     }
 }

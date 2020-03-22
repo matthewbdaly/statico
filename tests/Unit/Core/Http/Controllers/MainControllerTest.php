@@ -32,7 +32,10 @@ final class MainControllerTest extends TestCase
         $view->shouldReceive('render')->with(
             $response,
             'default.html',
-            ['title' => 'Foo', 'content' => 'foo']
+            [
+             'title'   => 'Foo',
+             'content' => 'foo',
+            ]
         )->once();
         $request = m::mock('Psr\Http\Message\ServerRequestInterface');
         $controller = new MainController(
@@ -60,7 +63,11 @@ final class MainControllerTest extends TestCase
         $view->shouldReceive('render')->with(
             $response,
             'default.html',
-            ['title' => 'Foo', 'content' => 'foo', 'forms' => ['contact']]
+            [
+             'title'   => 'Foo',
+             'content' => 'foo',
+             'forms'   => ['contact'],
+            ]
         )->once();
         $request = m::mock('Psr\Http\Message\ServerRequestInterface');
         $controller = new MainController(

@@ -12,9 +12,9 @@ use Doctrine\DBAL\DriverManager;
 class DoctrineProvider extends AbstractServiceProvider
 {
     protected $provides = [
-        'Doctrine\DBAL\Connection',
-        'Doctrine\ORM\EntityManager',
-    ];
+                           'Doctrine\DBAL\Connection',
+                           'Doctrine\ORM\EntityManager',
+                          ];
 
     public function register(): void
     {
@@ -22,8 +22,8 @@ class DoctrineProvider extends AbstractServiceProvider
         $container = $this->getContainer();
         $container->add('Doctrine\DBAL\Connection', function () {
             $dbParams = [
-                'url' => getenv('DB_URL'),
-            ];
+                         'url' => getenv('DB_URL'),
+                        ];
             return DriverManager::getConnection($dbParams);
         });
         $container->add('Doctrine\ORM\EntityManager', function () use ($container) {

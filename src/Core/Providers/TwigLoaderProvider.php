@@ -9,9 +9,7 @@ use Twig\Loader\FilesystemLoader;
 
 final class TwigLoaderProvider extends AbstractServiceProvider
 {
-    protected $provides = [
-        'Twig\Loader\FilesystemLoader',
-    ];
+    protected $provides = ['Twig\Loader\FilesystemLoader'];
 
     public function register(): void
     {

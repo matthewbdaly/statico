@@ -11,11 +11,11 @@ use PublishingKit\Cache\Factories\StashCacheFactory;
 final class CacheProvider extends AbstractServiceProvider
 {
     protected $provides = [
-        'Stash\Pool',
-        'Psr\Cache\CacheItemPoolInterface',
-        'PublishingKit\Cache\Contracts\Services\CacheContract',
-        'PublishingKit\Cache\Contracts\Factories\CacheFactory'
-    ];
+                           'Stash\Pool',
+                           'Psr\Cache\CacheItemPoolInterface',
+                           'PublishingKit\Cache\Contracts\Services\CacheContract',
+                           'PublishingKit\Cache\Contracts\Factories\CacheFactory',
+                          ];
 
     public function register(): void
     {

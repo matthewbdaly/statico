@@ -8,9 +8,7 @@ use League\Container\ServiceProvider\AbstractServiceProvider;
 
 final class FormsProvider extends AbstractServiceProvider
 {
-    protected $provides = [
-        'Statico\Core\Contracts\Factories\FormFactory',
-    ];
+    protected $provides = ['Statico\Core\Contracts\Factories\FormFactory'];
 
     public function register(): void
     {

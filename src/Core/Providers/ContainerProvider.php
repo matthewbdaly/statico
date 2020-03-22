@@ -9,9 +9,7 @@ use League\Container\Container;
 
 final class ContainerProvider extends AbstractServiceProvider
 {
-    protected $provides = [
-        'Psr\Container\ContainerInterface',
-    ];
+    protected $provides = ['Psr\Container\ContainerInterface'];
 
     public function register(): void
     {

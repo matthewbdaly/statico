@@ -14,7 +14,10 @@ final class HttpCache implements MiddlewareInterface
     /**
      * @var array
      */
-    private $cacheableStatus = [200, 304];
+    private $cacheableStatus = [
+                                200,
+                                304,
+                               ];
 
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {

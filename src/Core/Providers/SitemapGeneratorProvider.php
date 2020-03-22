@@ -9,9 +9,7 @@ use Statico\Core\Generators\XmlStringSitemap;
 
 final class SitemapGeneratorProvider extends AbstractServiceProvider
 {
-    protected $provides = [
-        'Statico\Core\Contracts\Generators\Sitemap',
-    ];
+    protected $provides = ['Statico\Core\Contracts\Generators\Sitemap'];
 
     public function register(): void
     {

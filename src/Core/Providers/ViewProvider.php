@@ -9,9 +9,7 @@ use Statico\Core\Views\TwigRenderer;
 
 final class ViewProvider extends AbstractServiceProvider
 {
-    protected $provides = [
-        'Statico\Core\Contracts\Views\Renderer',
-    ];
+    protected $provides = ['Statico\Core\Contracts\Views\Renderer'];
 
     public function register(): void
     {

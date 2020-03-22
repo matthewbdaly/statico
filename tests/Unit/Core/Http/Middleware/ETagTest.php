@@ -26,9 +26,7 @@ final class ETagTest extends TestCase
     {
         $request = m::mock('Psr\Http\Message\ServerRequestInterface');
         $request->shouldReceive('getMethod')->andReturn('GET');
-        $request->shouldReceive('getHeader')->with('if-none-match')->andReturn([
-            md5('foo')
-        ]);
+        $request->shouldReceive('getHeader')->with('if-none-match')->andReturn([md5('foo')]);
         $response = m::mock('Psr\Http\Message\ResponseInterface');
         $response->shouldReceive('getBody->getContents')->andReturn('foo');
         $response->shouldReceive('withAddedHeader')->andReturn($response);

@@ -13,9 +13,7 @@ final class YamlWrapperTest extends TestCase
 {
     public function testParse()
     {
-        $originalContent = [
-            'foo' => 'bar'
-        ];
+        $originalContent = ['foo' => 'bar'];
         $parser = m::mock('Symfony\Component\Yaml\Yaml');
         $parser->shouldReceive('parse')->with('file')
             ->andReturn($originalContent);

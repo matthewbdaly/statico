@@ -9,9 +9,7 @@ use Statico\Core\Exceptions\LogHandler;
 
 final class HandlerProvider extends AbstractServiceProvider
 {
-    protected $provides = [
-        'Statico\Core\Contracts\Exceptions\Handler',
-    ];
+    protected $provides = ['Statico\Core\Contracts\Exceptions\Handler'];
 
     public function register(): void
     {

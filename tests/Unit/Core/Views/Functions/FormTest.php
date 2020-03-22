@@ -119,37 +119,29 @@ final class FormTest extends TestCase
     public function configProvider()
     {
         return [[[
-            "contact" => [
-                "attributes" => [
-                    "class" => "form-inline my-2 my-lg-0 pull-right",
+                  "contact" => [
+                                "attributes" => ["class" => "form-inline my-2 my-lg-0 pull-right"],
+                                "elements"   => [
+                                                 [
+                                                  "spec" => [
+                                                             "name"       => "name",
+                                                             "options"    => ["label" => "Your name"],
+                                                             "type"       => "Text",
+                                                             "attributes" => ["class" => "form-control mr-sm-2"],
+                                                            ],
+                                                 ],
+                                                 [
+                                                  "spec" => [
+                                                             "name"       => "submit",
+                                                             "options"    => ["label" => "submit"],
+                                                             "type"       => "Submit",
+                                                             "attributes" => ["class" => "form-control mr-sm-2"],
+                                                            ],
+                                                 ],
+                                                ],
+                               ],
+                 ],
                 ],
-                "elements" => [
-                    [
-                        "spec" => [
-                            "name" => "name",
-                            "options" => [
-                                "label" => "Your name",
-                            ],
-                            "type" => "Text",
-                            "attributes" => [
-                                "class" => "form-control mr-sm-2",
-                            ],
-                        ],
-                    ],
-                    [
-                        "spec" => [
-                            "name" => "submit",
-                            "options" => [
-                                "label" => "submit",
-                            ],
-                            "type" => "Submit",
-                            "attributes" => [
-                                "class" => "form-control mr-sm-2",
-                            ],
-                        ],
-                    ],
-                ],
-            ],
-        ]]];
+               ];
     }
 }
