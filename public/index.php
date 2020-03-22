@@ -22,9 +22,9 @@ $request = Laminas\Diactoros\ServerRequestFactory::fromGlobals(
 );
 
 $config = new Config([
-    'driver' => 'filesystem',
-    'path' => 'cache/proxy'
-]);
+                      'driver' => 'filesystem',
+                      'path'   => 'cache/proxy',
+                     ]);
 if (getenv('CACHE_PROXY') == true) {
     $cache = (new StashCacheFactory())->make($config->toArray());
     $app = new HttpCache(
