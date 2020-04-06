@@ -10,3 +10,4 @@ output.html
 .env
 deploy.php
 db.sqlite
+.phpunit.result.cache
