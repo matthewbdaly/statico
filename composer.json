@@ -28,7 +28,7 @@
         "publishing-kit/http-proxy": "^0.0.1",
         "publishing-kit/utilities": "^0.0.1",
         "symfony/console": "^4.3",
-        "symfony/http-foundation": "^4.3",
+        "symfony/http-foundation": "^5.0",
         "symfony/mailer": "^4.3",
         "tedivm/stash": "^0.15.1",
         "twig/twig": "^2.6",
