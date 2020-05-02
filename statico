@@ -5,4 +5,4 @@ require_once __DIR__.'/bootstrap.php';
 
 use Statico\Core\Console\Runner;
 
-$runner = (new Runner)();
+$runner = (new Runner())();
