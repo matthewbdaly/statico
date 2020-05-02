@@ -68,7 +68,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Tests\\": "tests/"
+            "Statico\\Tests\\": "tests/"
         }
     },
     "config": {

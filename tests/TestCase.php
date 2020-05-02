@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests;
+namespace Statico\Tests;
 
 use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
 use Statico\Core\Kernel\Application;
