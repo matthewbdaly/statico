@@ -118,7 +118,9 @@ final class FormTest extends TestCase
 
     public function configProvider()
     {
-        return [[[
+        return [
+                [
+                 [
                   "contact" => [
                                 "attributes" => ["class" => "form-inline my-2 my-lg-0 pull-right"],
                                 "elements"   => [

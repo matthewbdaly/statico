@@ -17,7 +17,8 @@ final class LoggerFactoryTest extends TestCase
     public function testCreateStreamHandler($level)
     {
         $factory = new MonologFactory();
-        $config = new Config([[
+        $config = new Config([
+                              [
                                'logger' => 'stream',
                                'path'   => './logs/site.log',
                                'level'  => $level,
@@ -44,7 +45,8 @@ final class LoggerFactoryTest extends TestCase
     public function testCreateFirePHPHandler()
     {
         $factory = new MonologFactory();
-        $config = new Config([['logger' => 'firephp'],
+        $config = new Config([
+                              ['logger' => 'firephp'],
                              ]);
         $logger = $factory->make($config);
         $this->assertInstanceOf('Monolog\Logger', $logger);
@@ -56,7 +58,8 @@ final class LoggerFactoryTest extends TestCase
     public function testCreateBrowserConsoleHandler()
     {
         $factory = new MonologFactory();
-        $config = new Config([['logger' => 'browser-console'],
+        $config = new Config([
+                              ['logger' => 'browser-console'],
                              ]);
         $logger = $factory->make($config);
         $this->assertInstanceOf('Monolog\Logger', $logger);
@@ -68,7 +71,8 @@ final class LoggerFactoryTest extends TestCase
     public function testCreateChromePHPHandler()
     {
         $factory = new MonologFactory();
-        $config = new Config([['logger' => 'chrome'],
+        $config = new Config([
+                              ['logger' => 'chrome'],
                              ]);
         $logger = $factory->make($config);
         $this->assertInstanceOf('Monolog\Logger', $logger);
@@ -80,7 +84,8 @@ final class LoggerFactoryTest extends TestCase
     public function testCreateNativeMailerHandler()
     {
         $factory = new MonologFactory();
-        $config = new Config([[
+        $config = new Config([
+                              [
                                'logger'  => 'mailer',
                                'from'    => 'bob@example.com',
                                'to'      => 'eric@example.com',
@@ -97,7 +102,8 @@ final class LoggerFactoryTest extends TestCase
     public function testCreateSlackHandler()
     {
         $factory = new MonologFactory();
-        $config = new Config([[
+        $config = new Config([
+                              [
                                'logger'     => 'slack',
                                'token'      => 'foo',
                                'channel'    => 'bar',

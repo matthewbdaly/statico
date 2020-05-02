@@ -15,7 +15,8 @@ final class LaminasFormFactoryTest extends TestCase
     {
         $wrappedFactory = new Factory();
         $factory = new LaminasFormFactory($wrappedFactory);
-        $formData = [[
+        $formData = [
+                     [
                       'spec' => [
                                  'name'    => 'name',
                                  'options' => ['label' => 'Your name'],
