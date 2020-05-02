@@ -23,10 +23,6 @@ final class Runner
     public function __invoke()
     {
         try {
-            if (file_exists(BASE_DIR . DIRECTORY_SEPARATOR . '.env')) {
-                $dotenv = new Dotenv(BASE_DIR);
-                $dotenv->load();
-            }
             $this->app->bootstrap();
             $container = $this->app->getContainer();
             $console = $container->get('Symfony\Component\Console\Application');

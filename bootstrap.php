@@ -14,7 +14,7 @@ if (!defined('CONTENT_PATH')) {
 error_reporting(E_ALL);
 
 if (file_exists(__DIR__ . DIRECTORY_SEPARATOR . '.env')) {
-    $dotenv = new Dotenv\Dotenv(BASE_DIR);
+    $dotenv = Dotenv\Dotenv::createImmutable(BASE_DIR);
     $dotenv->load();
 }
 if (getenv('APP_ENV') == 'development') {
