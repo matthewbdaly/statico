@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Tests\Integration\Plugins\DynamicSearch;
+namespace Statico\Tests\Integration\Plugins\DynamicSearch;
 
-use Tests\IntegrationTestCase;
+use Statico\Tests\IntegrationTestCase;
 
 final class IndexTest extends IntegrationTestCase
 {

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Tests\Unit\Core\Generators;
+namespace Statico\Tests\Unit\Core\Generators;
 
-use Tests\TestCase;
+use Statico\Tests\TestCase;
 use Mockery as m;
 use Statico\Core\Objects\MarkdownDocument;
 use Statico\Core\Generators\XmlStringSitemap;

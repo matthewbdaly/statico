@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Tests\Unit\Core\Objects;
+namespace Statico\Tests\Unit\Core\Objects;
 
-use Tests\TestCase;
+use Statico\Tests\TestCase;
 use Mockery as m;
 use Statico\Core\Objects\EmailAddress;
 

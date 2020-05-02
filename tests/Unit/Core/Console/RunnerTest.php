@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Tests\Unit\Core\Console;
+namespace Statico\Tests\Unit\Core\Console;
 
-use Tests\TestCase;
-use Tests\Traits\SetsPrivateProperties;
+use Statico\Tests\TestCase;
+use Statico\Tests\Traits\SetsPrivateProperties;
 use Statico\Core\Console\Runner;
 use Statico\Core\Kernel\Application;
 use Mockery as m;

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Tests\Unit\Core\Providers;
+namespace Statico\Tests\Unit\Core\Providers;
 
-use Tests\TestCase;
+use Statico\Tests\TestCase;
 
 final class YamlProviderTest extends TestCase
 {

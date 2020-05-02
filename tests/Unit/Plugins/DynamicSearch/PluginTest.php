@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Tests\Unit\Plugins\DynamicSearch;
+namespace Statico\Tests\Unit\Plugins\DynamicSearch;
 
-use Tests\TestCase;
+use Statico\Tests\TestCase;
 use Mockery as m;
 use Statico\Plugins\DynamicSearch\Plugin;
 

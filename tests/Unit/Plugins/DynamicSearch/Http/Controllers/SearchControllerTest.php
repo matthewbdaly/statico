@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Tests\Unit\Plugins\DynamicSearch\Http\Controllers;
+namespace Statico\Tests\Unit\Plugins\DynamicSearch\Http\Controllers;
 
-use Tests\TestCase;
+use Statico\Tests\TestCase;
 use Mockery as m;
 use Statico\Plugins\DynamicSearch\Http\Controllers\SearchController;
 use PublishingKit\Utilities\Collections\Collection;

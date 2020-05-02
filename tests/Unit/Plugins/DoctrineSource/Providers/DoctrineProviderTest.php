@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Tests\Unit\Core\Providers;
+namespace Statico\Tests\Unit\Plugins\DoctrineSource\Providers;
 
-use Tests\TestCase;
+use Statico\Tests\TestCase;
 
 final class DoctrineProviderTest extends TestCase
 {

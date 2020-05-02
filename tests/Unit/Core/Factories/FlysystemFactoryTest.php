@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Tests\Unit\Core\Factories;
+namespace Statico\Tests\Unit\Core\Factories;
 
-use Tests\TestCase;
+use Statico\Tests\TestCase;
 use Statico\Core\Factories\FlysystemFactory;
 use Mockery as m;
 

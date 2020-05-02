@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Tests\Unit\Core\Console\Commands;
+namespace Statico\Tests\Unit\Core\Console\Commands;
 
-use Tests\TestCase;
+use Statico\Tests\TestCase;
 use Mockery as m;
 use Statico\Core\Console\Commands\GenerateIndex;
 use PublishingKit\Utilities\Collections\Collection;

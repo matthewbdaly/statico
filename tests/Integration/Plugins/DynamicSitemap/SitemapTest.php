@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Tests\Integration\Plugins\DynamicSitemap;
+namespace Statico\Tests\Integration\Plugins\DynamicSitemap;
 
-use Tests\IntegrationTestCase;
+use Statico\Tests\IntegrationTestCase;
 
 final class SitemapTest extends IntegrationTestCase
 {

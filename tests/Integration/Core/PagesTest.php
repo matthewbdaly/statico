@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Tests\Integration\Core;
+namespace Statico\Tests\Integration\Core;
 
-use Tests\IntegrationTestCase;
+use Statico\Tests\IntegrationTestCase;
 use Mockery as m;
 
 /**

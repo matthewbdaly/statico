@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Tests\Unit\Plugins\DoctrineSource;
+namespace Statico\Tests\Unit\Plugins\DoctrineSource;
 
-use Tests\TestCase;
+use Statico\Tests\TestCase;
 use Mockery as m;
 use Statico\Plugins\DoctrineSource\Plugin;
 

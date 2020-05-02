@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Tests\Unit\Plugins\DoctrineSource\Entities;
+namespace Statico\Tests\Unit\Plugins\DoctrineSource\Entities;
 
-use Tests\TestCase;
+use Statico\Tests\TestCase;
 use Statico\Plugins\DoctrineSource\Entities\DoctrineDocument;
-use Tests\Traits\SetsPrivateProperties;
+use Statico\Tests\Traits\SetsPrivateProperties;
 use DateTime;
 
 final class DoctrineDocumentTest extends TestCase

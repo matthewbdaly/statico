@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Tests\Unit\Core\Kernel\HttpCache;
+namespace Statico\Tests\Unit\Core\Kernel\HttpCache;
 
-use Tests\TestCase;
+use Statico\Tests\TestCase;
 use Mockery as m;
 use Statico\Core\Kernel\HttpCache\HttpCache;
 

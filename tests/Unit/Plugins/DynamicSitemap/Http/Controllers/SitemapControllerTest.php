@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Tests\Unit\Plugins\DynamicSitemap\Http\Controllers;
+namespace Statico\Tests\Unit\Plugins\DynamicSitemap\Http\Controllers;
 
-use Tests\TestCase;
+use Statico\Tests\TestCase;
 use Mockery as m;
 use Statico\Plugins\DynamicSitemap\Http\Controllers\SitemapController;
 use PublishingKit\Config\Config;
