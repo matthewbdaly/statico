@@ -13,8 +13,8 @@ abstract class TestCase extends \PHPUnit\Framework\TestCase
 
     public function setUp(): void
     {
-        if (!defined('BASE_DIR')) {
-            define('BASE_DIR', __DIR__ . '/../');
+        if (!defined('ROOT_DIR')) {
+            define('ROOT_DIR', __DIR__ . '/../');
         }
         if (!defined('CONTENT_PATH')) {
             define('CONTENT_PATH', 'content/');

@@ -16,7 +16,7 @@ final class ConfigProvider extends AbstractServiceProvider
         // Register items
         $this->getContainer()
             ->share('PublishingKit\Config\Config', function () {
-                return Config::fromFiles(glob(BASE_DIR . 'config/*.*'));
+                return Config::fromFiles(glob(ROOT_DIR . 'config/*.*'));
             });
     }
 }
