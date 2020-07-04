@@ -11,3 +11,4 @@ output.html
 deploy.php
 db.sqlite
 .phpunit.result.cache
+clockwork/
