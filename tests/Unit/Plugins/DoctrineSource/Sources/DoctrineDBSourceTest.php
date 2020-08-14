@@ -15,7 +15,7 @@ final class DoctrineDBSourceTest extends TestCase
     {
         $this->markTestIncomplete();
         $document = m::mock('Statico\Plugins\DoctrineSource\Entities\DoctrineDocument');
-        $repo = m::mock('Doctrine\Common\Persistence\ObjectRepository');
+        $repo = m::mock('Doctrine\Persistence\ObjectRepository');
         $repo->shouldReceive('findAll')->once()->andReturn([$document]);
         $em = m::mock('Doctrine\ORM\EntityManager');
         $em->shouldReceive('getRepository')->once()->andReturn($repo);
@@ -28,7 +28,7 @@ final class DoctrineDBSourceTest extends TestCase
     public function testFind()
     {
         $document = m::mock('Statico\Plugins\DoctrineSource\Entities\DoctrineDocument');
-        $repo = m::mock('Doctrine\Common\Persistence\ObjectRepository');
+        $repo = m::mock('Doctrine\Persistence\ObjectRepository');
         $repo->shouldReceive('findOneBy')
             ->with(['path' => 'foo/'])
             ->once()

@@ -39,7 +39,7 @@ final class DoctrineDB implements Source
         return $this->getRepository()->findOneBy(['path' => $name]);
     }
 
-    private function getRepository(): ObjectRepository
+    private function getRepository(): \Doctrine\Persistence\ObjectRepository
     {
         return $this->em->getRepository(DoctrineDocument::class);
     }
